@@ -4,12 +4,15 @@
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
  * @version 2/20/18
  */
+
+import java.util.ArrayList;
+
 public class Student extends User
 {
   /**
    * Array to store a student's saved schools
    */
-  private University [] savedUniversities;
+  private ArrayList<University> savedUniversities;
   
   /**
    * Constructor for a Student
@@ -22,7 +25,7 @@ public class Student extends User
    * @param logged a boolean to show if the Student is logged in
    * @param universities the saved universities for the Student
    */
-  public Student(String firstName, String lastName, String username, String password, char type, boolean activated, boolean logged, University[] universities)
+  public Student(String firstName, String lastName, String username, String password, char type, boolean activated, boolean logged, ArrayList<University> universities)
   {
    super(firstName, lastName, username, password, type, activated, logged);
    this.savedUniversities = universities;
@@ -32,7 +35,7 @@ public class Student extends User
    * Method to return an array of this Student's saved universities
    * @return a University array
    */
-  public University[] getSavedSchools()
+  public ArrayList<University> getSavedSchools()
   {
    return this.savedUniversities; 
   }
@@ -52,7 +55,7 @@ public class Student extends User
    */
   public void addSchool(University newUniversity)
   {
-    
+    boolean added = this.savedUniversities.add(newUniversity);
   }
   
    /**
@@ -61,7 +64,7 @@ public class Student extends User
    */
   public void removeSchool(University oldUniversity)
   {
-    
+    University removedUniversity = this.savedUniversities.remove(oldUniversity);
   }
 }  
 

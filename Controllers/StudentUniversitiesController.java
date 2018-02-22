@@ -7,29 +7,35 @@
 public class StudentUniversitiesController
 {
   /**
-   * TODO: instance variables
+   * DBController that will be accessed by the SearchController
    */
+  private DBController dbc;
   
   /**
-   * TODO: Constuctor
+   * Constructor for a StudentUniversitiesController
    */
-  public StudentUniversitiesController();
+  public StudentUniversitiesController()
+  {
+   this.dbc = new DBController(); 
+  }
 
   
   /**
-   * Method to return an array of this Student's saved universities
-   * @return a University array
+   * Method to view a Student's saved universities
    */
-  public University[] viewSavedUniversities()
+  public void viewSavedUniversities(Student student)
   {
-   return this.savedUniversities; 
+   Array<University> universities = student.getSavedSchools(savedUniversities); 
   }
   
    /**
-   * Method to return the University associated with the name passed
+   * Method to view an University
    * @return an University 
    */
-  public University getSpecificSchool(String universityName);
+  public void viewUniversity(Student student, University university)
+  {
+    
+  }
   
    /**
    * TODO: possible boolean return type

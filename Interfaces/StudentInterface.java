@@ -6,9 +6,6 @@
  */
 public class StudentInterface
 {
-  /**
-   * TODO: Constructor and Instance Variables
-   */
   
   /**
    * Student that will be associated with the StudentInterface
@@ -20,7 +17,7 @@ public class StudentInterface
    */
   private ProfileController pc;
   
-   /**
+  /**
    * SearchController that will be associated with the StudentInterface
    */
   private SearchController sc;
@@ -31,67 +28,95 @@ public class StudentInterface
   private StudentUniversitiesController suc;
   
   /**
+   * LoginController that will be associated with the StudentInterface
+   */
+  private LoginController lc;
+  
+  /**
    * Constructor for a StudentInterface
    * @param student the student that will be associated with the StudentInterface
    */
   public StudentInterface(Student student)
   {
-   this.student = student;
-   this.pc = new ProfileController();
-   this.sc = new SearchController();
-   this.suc = new StudentUniversitiesController();
-   
+    this.student = student;
+    this.pc = new ProfileController();
+    this.sc = new SearchController();
+    this.suc = new StudentUniversitiesController();
+    this.lc = new LoginController(); 
   }
-    
-    /**
-     * Method to veiw the Student's profile
-     */
-    public void viewProfile();
+  
+  /**
+   * Method to veiw the Student's profile
+   */
+  public void viewProfile()
+  {
+   this.sc.viewProfile(this.student); 
+  }
   
   /**
    * Method to edit the Student's profile 
    */
-  public void editProfile();
+  public void editProfile()
+  {
+   this.sc.editProfile(this.student); 
+  }
   
   /**
    * Method to view the Student's saved universities
    */
-  public void viewSavedUniversities();
+  public void viewSavedUniversities()
+  {
+   this.suc.viewSavedUniversities(this.student);
+  }
   
   /**
    * TODO: possible boolean return type
    * Method to view a specific university
+   * @param university the University to be viewed 
    */
-  public void viewUniversity(University university);
-  
+  public void viewUniversity(University university)
+  {
+    this.suc.viewUniversity(this.student, university);
+  }
+
   /**
    * TODO: possible boolean return type
-   * Method to save a new university to the Student's saved universities
+   * Method to save a university to the Student's current list of saved universities
+   * @param university the University to be saved to the Student
    */
-  public void viewUniversity(University university);
+  public void saveUniversity(University university)
+  {
+   this.sc.saveUniversity(university);
+   this.student.addSchool(university);
+  }
   
   /**
    * TODO: possible boolean return type
    * Method to remove a university from the Student's saved universities
+   * @param university the University to be removed from the student
    */
-  public void removeUniversity();
+  public void removeUniversity(University university)
+  {
+    this.suc.removeUniversity(this.student, university);
+    this.student.removeUniversity(university);
+  }
   
   /**
    * TODO: possible boolean return type
    * Method to search the database for universities based on search criteria
    */
-  public void searchUniversities();
-  
-  /**
-   * TODO: possible boolean return type
-   * Method to search the database for universities based on search criteria
-   */
-  public void searchUniversities();
+  public void searchUniversities()
+  {
+   sc.searchUniversities(); 
+  }
   
   /**
    * TODO: possible boolean return type
    * Method to log the student out
    */
-  public void logout();
+  public void logout()
+  {
+    lc.logout(this.student);
+  }
 }  
 
