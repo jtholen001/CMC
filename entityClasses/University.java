@@ -142,7 +142,7 @@ public class University
    * 
    * @return the name of this university as a String
    */
-  public String getName()
+  public String getSchoolName()
   {
     return this.name;
   }
@@ -312,7 +312,7 @@ public class University
    * 
    * @param newName the new name for this university
    */
-  public void setName(String newName)
+  public void setSchoolName(String newName)
   {
     this.name = newName;
   }
