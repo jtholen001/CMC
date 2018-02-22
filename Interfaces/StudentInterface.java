@@ -16,9 +16,32 @@ public class StudentInterface
   private Student student;
   
   /**
-   * TODO: Constructor
+   * ProfileController that will be associated with the StudentInterface
    */
-  public StudentInterface();
+  private ProfileController pc;
+  
+   /**
+   * SearchController that will be associated with the StudentInterface
+   */
+  private SearchController sc;
+  
+  /**
+   * StudentUniversitiesController that will be associated with the StudentInterface
+   */
+  private StudentUniversitiesController suc;
+  
+  /**
+   * Constructor for a StudentInterface
+   * @param student the student that will be associated with the StudentInterface
+   */
+  public StudentInterface(Student student)
+  {
+   this.student = student;
+   this.pc = new ProfileController();
+   this.sc = new SearchController();
+   this.suc = new StudentUniversitiesController();
+   
+  }
     
     /**
      * Method to veiw the Student's profile
