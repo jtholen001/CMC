@@ -12,7 +12,15 @@ public class Student extends User
   private University [] savedUniversities;
   
   /**
-   * Constructor that takes a first name, last name,  username, password, type ,activation status, logged in status, and currently saved schools
+   * Constructor for a Student
+   * @param firstName the first name for the Student
+   * @param lastName the last name for the Student
+   * @param username the username for the Student
+   * @param password the password for the Student
+   * @param type the type of User the Student is
+   * @param activated the current activation status of the Student
+   * @param logged a boolean to show if the Student is logged in
+   * @param universities the saved universities for the Student
    */
   public Student(String firstName, String lastName, String username, String password, char type, boolean activated, boolean logged, University[] universities)
   {
