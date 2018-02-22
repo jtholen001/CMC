@@ -462,7 +462,7 @@ public class University
    *
    * @param newQualityOfLifeScale the new rating of the quality of life at the university
    */
-  private void getQualityOfLifeScale(int newQualityOfLifeScale)
+  private void setQualityOfLifeScale(int newQualityOfLifeScale)
   {
     this.qualityOfLifeScale = newQualityOfLifeScale;
   }
@@ -472,7 +472,7 @@ public class University
    * 
    * @param newEmphases the new emphases of this university
    */
-  private void getEmphases(ArrayList<String> newEmphases)
+  private void setEmphases(ArrayList<String> newEmphases)
   {
     this.emphases = newEmphases;
   }
