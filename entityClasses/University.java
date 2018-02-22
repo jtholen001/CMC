@@ -4,6 +4,7 @@
  * @Version 2/20/2020
  */
 import java.util.ArrayList;
+
 public class University
 {
   /**
@@ -110,5 +111,164 @@ public class University
    this.SATVerbal = SATVerbal;
    this.SATMath = SATMath;
    this.expenses = expenses;
+   this.percentFinancialAid = percentFinancialAid;
+   this.numApplicants = numApplicants;
+   this.percentAdmitted = percentAdmitted;
+   this.percentEnrolled = percentEnrolled;
+   this.academicScale = academicScale;
+   this.socialScale = socialScale;
+   this.qualityOfLifeScale = qualityOfLifeScale;
+   this.emphases = emphases;
+  }
+  
+  /**
+   * This method gets the name of the university for use elsewhere
+   * 
+   * @return the name of this university as a String
+   */
+  private String getName()
+  {
+    return this.name;
+  }
+  /**
+   * This method gets the state where this university is located
+   * 
+   * @return the state this university is located in as a String
+   */
+  private String getState()
+  {
+    return this.state;
+  }
+  /**
+   * This method returns what setting the university is located in
+   * 
+   * @return the location of the university (Urban or rural) as a String
+   */
+  private String getLocation()
+  {
+    return this.location;
+  }
+  /**
+   * This method gets the control of the university
+   * 
+   * @param the control of the university (public, private, etc) as a String
+   */
+  private String getControl()
+  {
+    return this.control;
+  }
+  /**
+   * This method gets the number of students enrolled at the university
+   * 
+   * @return the number of students enrolled at the university as an integer
+   */
+  private int getNumStudents()
+  {
+    return this.numStudents;
+  }
+  /**
+   * This method gets the percentage of enrolled students that are female
+   * 
+   * @return the percentage of students that are female as an int
+   */
+  private int getPercentFemale()
+  {
+    return this.percentFemale;
+  }
+  /**
+   * This method gets the average SAT Verbal score of students at the university
+   * 
+   * @return the average SAT Verbal score of students enrolled at the university as an int
+   */
+  private int getSATVerbal()
+  {
+    return this.SATVerbal;
+  }
+  /**
+   * This method gets the average SAT Math score of students enrolled at the university
+   * 
+   * @return the average SAT Math score of students enrolled at the university as an int
+   */
+  private int getSATMath()
+  {
+    return this.SATMath;
+  }
+  /**
+   * This method get the average expenses to attend the university
+   * 
+   * @return the average expenses to attend the university as an int
+   */
+  private int getExpenses()
+  {
+    return this.expenses;
+  }
+  /**
+   * This method gets the percentage of students enrolled at this university that recieve financial aid
+   * 
+   * @return the percentage of students  enrolled at this university that recieve financial aid as a double
+   */
+  private double getPercentFinancialAid()
+  {
+    return this.percentFinancialAid;
+  }
+  /**
+   * This method get the number of students that applied to study at the university
+   * 
+   * @return the number of students that applied to study at this university as an int
+   */
+  private int getNumApplicants()
+  {
+    return this.numApplicants;
+  }
+  /**
+   * This method gets the number of applicants that were addmitted to the university
+   * 
+   * @return the percentage of applicants that were accepted to the university as a double
+   */
+  private double percentAdmitted;
+  /**
+   * This method gets the percentage of accepted applicants that enroll at the university
+   * 
+   * @param the percentage of accepted applicants that there enrolled at the university as a double
+   */
+  private double getPercentEnrolled()
+  {
+    return this.getPercentEnrolled;
+  }
+  /**
+   * This method gets how the university rates academically
+   * 
+   * @return the academic rating of this university as an integer
+   */
+  private int getAcademicScale()
+  {
+    return this.academicScale;
+  }
+  /**
+   * This method gets how the university rates socially
+   * 
+   * @return the social rating of this school as an integer
+   */
+  private int getSocialScale()
+  {
+    return this.socialScale;
+  }
+  /**
+   * This method gets how the quality of life rates at the university
+   *
+   * @return the rating of the quality of life at the university as an integer
+   */
+  private int getQualityOfLifeScale()
+  {
+    return this.qualityOfLifeScale;
+  }
+  /**
+   * This method gets the areas of study that this university emphasizes in
+   * 
+   * @return the emphases of this university as an ArrayList of Strings
+   */
+  private ArrayList<String> getEmphases()
+  {
+    return this.emphases;
   }
 }
