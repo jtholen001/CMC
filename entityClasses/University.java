@@ -11,66 +11,82 @@ public class University
    * The name of this university
    */
   private String name;
+  
   /**
    * The state this university is located in
    */
   private String state;
+  
   /**
    * Whether this university is in an urban or rural location
    */
   private String location;
+  
   /**
    * Whether this university is publicly or privatley or owned
    */
   private String control;
+  
   /**
    * The number of students enrolled at this university
    */
   private int numStudents;
+  
   /**
    * The percentage of enrolled students that are female
    */
   private int percentFemale;
+  
   /**
    * The average SAT Verbal score of students enrolled at the university
    */
   private int SATVerbal;
+  
   /**
    * The average SAT Math score of students enrolled at the university
    */
   private int SATMath;
+  
   /**
    * The average cost to attend the university
    */
   private int expenses;
+  
   /**
    * The percentage of students enrolled at the university that recieve financial aid
    */
   private double percentFinancialAid;
+  
   /**
    * The number of people who apply to the university
    */
   private int numApplicants;
+  
   /**
    * The percentage of applicants who are admitted to the university
    */
   private double percentAdmitted;
+  
   /**
    * The percentage of accepted applicants who enroll at the university
    */
   private double percentEnrolled;
+  
   /**
    * How the university rates academically
    */
   private int academicScale;
+  
   /**
    * How the university rates socially
    */
   private int socialScale;
+  
   /**
    * How the quality of life at the university rates compared to other universities
    */
   private int qualityOfLifeScale;
+  
   /**
    * The areas of study that the university emphasizes in
    */
@@ -130,6 +146,7 @@ public class University
   {
     return this.name;
   }
+  
   /**
    * This method gets the state where this university is located
    * 
@@ -139,8 +156,9 @@ public class University
   {
     return this.state;
   }
+  
   /**
-   * This method returns what setting the university is located in
+   * This method gets what setting the university is located in
    * 
    * @return the location of the university (Urban or rural) as a String
    */
@@ -148,6 +166,7 @@ public class University
   {
     return this.location;
   }
+  
   /**
    * This method gets the control of the university
    * 
@@ -157,6 +176,7 @@ public class University
   {
     return this.control;
   }
+  
   /**
    * This method gets the number of students enrolled at the university
    * 
@@ -166,6 +186,7 @@ public class University
   {
     return this.numStudents;
   }
+  
   /**
    * This method gets the percentage of enrolled students that are female
    * 
@@ -175,6 +196,7 @@ public class University
   {
     return this.percentFemale;
   }
+  
   /**
    * This method gets the average SAT Verbal score of students at the university
    * 
@@ -184,6 +206,7 @@ public class University
   {
     return this.SATVerbal;
   }
+  
   /**
    * This method gets the average SAT Math score of students enrolled at the university
    * 
@@ -193,8 +216,9 @@ public class University
   {
     return this.SATMath;
   }
+  
   /**
-   * This method get the average expenses to attend the university
+   * This method gets the average expenses to attend the university
    * 
    * @return the average expenses to attend the university as an int
    */
@@ -202,6 +226,7 @@ public class University
   {
     return this.expenses;
   }
+  
   /**
    * This method gets the percentage of students enrolled at this university that recieve financial aid
    * 
@@ -211,8 +236,9 @@ public class University
   {
     return this.percentFinancialAid;
   }
+  
   /**
-   * This method get the number of students that applied to study at the university
+   * This method gets the number of students that applied to study at the university
    * 
    * @return the number of students that applied to study at this university as an int
    */
@@ -220,12 +246,17 @@ public class University
   {
     return this.numApplicants;
   }
+  
   /**
    * This method gets the number of applicants that were addmitted to the university
    * 
    * @return the percentage of applicants that were accepted to the university as a double
    */
-
+  private double percentAdmitted()
+  {
+    return this.percentAdmitted;
+  }
+  
   /**
    * This method gets the percentage of accepted applicants that enroll at the university
    * 
@@ -235,6 +266,7 @@ public class University
   {
     return this.percentEnrolled;
   }
+  
   /**
    * This method gets how the university rates academically
    * 
@@ -244,6 +276,7 @@ public class University
   {
     return this.academicScale;
   }
+  
   /**
    * This method gets how the university rates socially
    * 
@@ -253,6 +286,7 @@ public class University
   {
     return this.socialScale;
   }
+  
   /**
    * This method gets how the quality of life rates at the university
    *
@@ -262,6 +296,7 @@ public class University
   {
     return this.qualityOfLifeScale;
   }
+  
   /**
    * This method gets the areas of study that this university emphasizes in
    * 
@@ -270,5 +305,175 @@ public class University
   private ArrayList<String> getEmphases()
   {
     return this.emphases;
+  }
+  
+    /**
+   * This method sets the name of this university
+   * 
+   * @param newName the new name for this university
+   */
+  private void setName(String newName)
+  {
+    this.name = newName;
+  }
+  
+  /**
+   * This method sets the state where this university is located
+   * 
+   * @param newState the new state this university is located in
+   */
+  private void setState(String newState)
+  {
+    this.state = newState;
+  }
+  
+  /**
+   * This method sets what setting the university is located in
+   * 
+   * @param newLocation the new location of the university (Urban or rural)
+   */
+  private void setLocation(String newLocation)
+  {
+    this.location = newLocation;
+  }
+  
+  /**
+   * This method sets the control of the university
+   * 
+   * @param the new control of the university (public, private, etc)
+   */
+  private void setControl(String newControl)
+  {
+    this.control = newControl;
+  }
+  
+  /**
+   * This method sets the number of students enrolled at the university
+   * 
+   * @param newNumStudents the  new number of students enrolled at the university
+   */
+  private void setNumStudents(int newNumStudents)
+  {
+    this.numStudents = newNumStudents;
+  }
+  
+  /**
+   * This method sets the percentage of enrolled students that are female
+   * 
+   * @param the new percentage of students that are female
+   */
+  private  void setPercentFemale(int newPercentFemale)
+  {
+    this.percentFemale = newPercentFemale;
+  }
+  
+  /**
+   * This method sets the average SAT Verbal score of students at the university
+   * 
+   * @param newSATVerbal the new average SAT Verbal score of students enrolled at the university
+   */
+  private void setSATVerbal(int newSATVerbal)
+  {
+    this.SATVerbal = newSATVerbal;
+  }
+  
+  /**
+   * This method sets the average SAT Math score of students enrolled at the university
+   * 
+   * @param newSATMath the new average SAT Math score of students enrolled at the university
+   */
+  private void setSATMath(int newSATMath)
+  {
+    this.SATMath = newSATMath;
+  }
+  
+  /**
+   * This method sets the average expenses to attend the university
+   * 
+   * @param newExpenses the average expenses to attend the university
+   */
+  private void setExpenses(int newExpenses)
+  {
+    this.expenses = newExpenses;
+  }
+  
+  /**
+   * This method sets the percentage of students enrolled at this university that recieve financial aid
+   * 
+   * @param newPercentFinancialAid the new percentage of students  enrolled at this university that recieve financial aid
+   */
+  private void setPercentFinancialAid(double newPercentFinancialAid)
+  {
+    this.percentFinancialAid = newPercentFinancialAid;
+  }
+  
+  /**
+   * This method sets the number of students that applied to study at the university
+   * 
+   * @param newNumApplicants the new number of students that applied to study at this university
+   */
+  private void setNumApplicants(int newNumApplicants)
+  {
+    this.numApplicants = newNumApplicants;
+  }
+  
+  /**
+   * This method sets the number of applicants that were addmitted to the university
+   * 
+   * @param newPercentAdmitted the new percentage of applicants that were accepted to the university
+   */
+  private void percentAdmitted(double newPercentAdmitted) 
+  {
+    this.percentAdmitted = newPercentAdmitted;
+  }
+  
+  /**
+   * This method sets the percentage of accepted applicants that enroll at the university
+   * 
+   * @param newPercentEnrolled the new percentage of accepted applicants that there enrolled at the university
+   */
+  private void setPercentEnrolled(double newPercentEnrolled)
+  {
+    this.percentEnrolled = newPercentEnrolled;
+  }
+  
+  /**
+   * This method sets how the university rates academically
+   * 
+   * @param newAcademicScale the new academic rating of this university
+   */
+  private void setAcademicScale(int newAcademicScale)
+  {
+    this.academicScale = newAcademicScale;
+  }
+  
+  /**
+   * This method sets how the university rates socially
+   * 
+   * @param newSocialScale the new social rating of this school
+   */
+  private void setSocialScale(int newSocialScale)
+  {
+    this.socialScale = newSocialScale;
+  }
+  
+  /**
+   * This method sets how the quality of life rates at the university
+   *
+   * @param newQualityOfLifeScale the new rating of the quality of life at the university
+   */
+  private void setQualityOfLifeScale(int newQualityOfLifeScale)
+  {
+    this.qualityOfLifeScale = newQualityOfLifeScale;
+  }
+  
+  /**
+   * This method sets the areas of study that this university emphasizes in
+   * 
+   * @param newEmphases the new emphases of this university
+   */
+  private void setEmphases(ArrayList<String> newEmphases)
+  {
+    this.emphases = newEmphases;
   }
 }
