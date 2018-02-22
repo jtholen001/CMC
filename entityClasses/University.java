@@ -225,7 +225,7 @@ public class University
    * 
    * @return the percentage of applicants that were accepted to the university as a double
    */
-  private double percentAdmitted;
+
   /**
    * This method gets the percentage of accepted applicants that enroll at the university
    * 
@@ -233,7 +233,7 @@ public class University
    */
   private double getPercentEnrolled()
   {
-    return this.getPercentEnrolled;
+    return this.percentEnrolled;
   }
   /**
    * This method gets how the university rates academically
