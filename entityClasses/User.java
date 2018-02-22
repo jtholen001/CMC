@@ -42,10 +42,16 @@ public class User
    */
   private boolean isLoggedIn;
 
-  /** Default constructor: sets account name and owner to null
-   * and the total balance to 0
+  /**
+   * Constructor for an User
+   * @param firstName a string representing the first name of an User
+   * @param lastName a string representing the last name of an User
+   * @param username a string representing the username of an User
+   * @param password a string representing the password of an User
+   * @param type a char representing the type of User and User is
+   * @param activated a boolean representing the activation status of an User
+   * @param logged a boolean reperesenting the login status of an User
    */
-
    public User(String firstName, String lastName, String username, String password, char type, boolean activated, boolean logged)
    {
       this.firstName = firstName;
