@@ -110,37 +110,5 @@ public class University
    this.SATVerbal = SATVerbal;
    this.SATMath = SATMath;
    this.expenses = expenses;
-  /**
-   * The percentage of students enrolled at the university that recieve financial aid
-   */
-  private double percentFinancialAid;
-  /**
-   * The number of people who apply to the university
-   */
-  private int numApplicants;
-  /**
-   * The percentage of applicants who are admitted to the university
-   */
-  private double percentAdmitted;
-  /**
-   * The percentage of accepted applicants who enroll at the university
-   */
-  private double percentEnrolled;
-  /**
-   * How the university rates academically
-   */
-  private int academicScale;
-  /**
-   * How the university rates socially
-   */
-  private int socialScale;
-  /**
-   * How the quality of life at the university rates compared to other universities
-   */
-  private int qualityOfLifeScale;
-  /**
-   * The areas of study that the university emphasizes in
-   */
-  private ArrayList<String> emphases;
   }
 }
