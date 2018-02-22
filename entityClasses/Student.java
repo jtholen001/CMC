@@ -33,19 +33,28 @@ public class Student extends User
    * Method to return the University associated with the name passed
    * @return an University 
    */
-  public University getSpecificSchool(String universityName);
+  public University getSpecificSchool(String universityName)
+  {
+    return null;
+  }
   
    /**
    * TODO: possible boolean return type
    * Method to add a new University to a Student's saved universities
    */
-  public void addSchool(University newUniversity);
+  public void addSchool(University newUniversity)
+  {
+    
+  }
   
    /**
    * TODO: possible boolean return type
    * Method to remove a University from a Student's saved universities
    */
-  public void removeSchool(University oldUniversity);
+  public void removeSchool(University oldUniversity)
+  {
+    
+  }
 }  
 
  
