@@ -4,25 +4,48 @@
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
  * @version 2/19/18
 */
+
+/**
+ *  LoginController for the UserInterface
+ */
+private LoginController lc;
+
+/**
+ *  LoginController for the UserInterface
+ */
+private Student student;
+
+/**
+ *  LoginController for the UserInterface
+ */
+private Admin admin;
+
 public class UserInterface
 {
-
-  /** Default constructor
+  /**
+   * Default constructor
    */
-   public UserInterface(){};
-
-   /**
-    * This method logs the user in to the system
-    */
-   public void login(){};
-
-   /**
-    * This method gets the user's last lastName
-    * @return lastName the last name of this user as a String
-    */
-   public String getLastName()
+   public UserInterface()
    {
-     return this.lastName;
+     lc = new LoginController();
+   }
+
+   /**
+    * This method logs the user into the system
+    * @param username of the user
+    * @param password of the user
+    */
+   public void login(String username, String password)
+   {
+     lc.login(username, password);
+   }
+
+   /**
+    * This method passes the logged in Student to the StudentInterface
+    */
+   public void passToStudentInterface(Student student)
+   {
+
    }
 
    /**
