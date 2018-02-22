@@ -1,8 +1,8 @@
 /**
- * Class that represents a User
+ * UserInterface is the entry point for the user in the application
  *
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
- * @version 2/19/18
+ * @version 2/21/18
 */
 
 /**
@@ -34,14 +34,30 @@ public class UserInterface
     * This method logs the user into the system
     * @param username of the user
     * @param password of the user
+    * @return boolean successful
     */
-   public void login(String username, String password)
+   public boolean login(String username, String password)
    {
-     lc.login(username, password);
+     User user = lc.login(username, password);
+     if (user != null)
+     {
+       char type = user.getType();
+       if (type == 's')
+       {
+        this.passToStudentInterface((Student)user);
+       }
+       else
+       {
+        this.passToAdminInterface((Admin)user);
+       }
+       return true;
+     }
+     return false;
    }
 
    /**
     * This method passes the logged in Student to the StudentInterface
+    * @param student object to be passed
     */
    public void passToStudentInterface(Student student)
    {
@@ -50,9 +66,10 @@ public class UserInterface
 
    /**
     * This method passes the logged in Admin to the AdminInterface
+    * @param admin object to be passed
     */
-   public void passToStudentInterface(Student student)
+   public void passToAdminInterface(Admin admin)
    {
-     ai = new AdminInterface(student);
+     ai = new AdminInterface(admin);
    }
  }
