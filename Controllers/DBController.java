@@ -74,11 +74,17 @@ public class DBController
   /** 
    * method to to save an editied university
    * 
-   * @param University object
+   * @param university the university object to edit
    */
-  public void saveEditedUniversity(University u)
+  public void saveEditedUniversity(University university)
   {
-    
+    university_editUniversity(university.getName(), university.getState(), university.getLocation(), 
+                              university.getControl(), university.getNumStudents(), university.getPercentFemale(),
+                              university.getSATVerbal(), university.getSATMath(), university.getExpenses(),
+                              university.getPercentFinancialAid(), university.getNumApplicants(),
+                              university.percentAdmitted(), university.getPercentEnrolled(),
+                              university.getAcademicScale(), university.getSocialScale(),
+                              university.getQualityOfLifeScale(), university.getEmphases());
   }
   
   /** 

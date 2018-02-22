@@ -142,7 +142,7 @@ public class University
    * 
    * @return the name of this university as a String
    */
-  private String getName()
+  public String getName()
   {
     return this.name;
   }
@@ -152,7 +152,7 @@ public class University
    * 
    * @return the state this university is located in as a String
    */
-  private String getState()
+  public String getState()
   {
     return this.state;
   }
@@ -162,7 +162,7 @@ public class University
    * 
    * @return the location of the university (Urban or rural) as a String
    */
-  private String getLocation()
+  public String getLocation()
   {
     return this.location;
   }
@@ -172,7 +172,7 @@ public class University
    * 
    * @param the control of the university (public, private, etc) as a String
    */
-  private String getControl()
+  public String getControl()
   {
     return this.control;
   }
@@ -182,7 +182,7 @@ public class University
    * 
    * @return the number of students enrolled at the university as an integer
    */
-  private int getNumStudents()
+  public int getNumStudents()
   {
     return this.numStudents;
   }
@@ -192,7 +192,7 @@ public class University
    * 
    * @return the percentage of students that are female as an int
    */
-  private int getPercentFemale()
+  public int getPercentFemale()
   {
     return this.percentFemale;
   }
@@ -202,7 +202,7 @@ public class University
    * 
    * @return the average SAT Verbal score of students enrolled at the university as an int
    */
-  private int getSATVerbal()
+  public int getSATVerbal()
   {
     return this.SATVerbal;
   }
@@ -212,7 +212,7 @@ public class University
    * 
    * @return the average SAT Math score of students enrolled at the university as an int
    */
-  private int getSATMath()
+  public int getSATMath()
   {
     return this.SATMath;
   }
@@ -222,7 +222,7 @@ public class University
    * 
    * @return the average expenses to attend the university as an int
    */
-  private int getExpenses()
+  public int getExpenses()
   {
     return this.expenses;
   }
@@ -232,7 +232,7 @@ public class University
    * 
    * @return the percentage of students  enrolled at this university that recieve financial aid as a double
    */
-  private double getPercentFinancialAid()
+  public double getPercentFinancialAid()
   {
     return this.percentFinancialAid;
   }
@@ -242,7 +242,7 @@ public class University
    * 
    * @return the number of students that applied to study at this university as an int
    */
-  private int getNumApplicants()
+  public int getNumApplicants()
   {
     return this.numApplicants;
   }
@@ -252,7 +252,7 @@ public class University
    * 
    * @return the percentage of applicants that were accepted to the university as a double
    */
-  private double percentAdmitted()
+  public double percentAdmitted()
   {
     return this.percentAdmitted;
   }
@@ -262,7 +262,7 @@ public class University
    * 
    * @param the percentage of accepted applicants that there enrolled at the university as a double
    */
-  private double getPercentEnrolled()
+  public double getPercentEnrolled()
   {
     return this.percentEnrolled;
   }
@@ -272,7 +272,7 @@ public class University
    * 
    * @return the academic rating of this university as an integer
    */
-  private int getAcademicScale()
+  public int getAcademicScale()
   {
     return this.academicScale;
   }
@@ -282,7 +282,7 @@ public class University
    * 
    * @return the social rating of this school as an integer
    */
-  private int getSocialScale()
+  public int getSocialScale()
   {
     return this.socialScale;
   }
@@ -292,7 +292,7 @@ public class University
    *
    * @return the rating of the quality of life at the university as an integer
    */
-  private int getQualityOfLifeScale()
+  public int getQualityOfLifeScale()
   {
     return this.qualityOfLifeScale;
   }
@@ -302,7 +302,7 @@ public class University
    * 
    * @return the emphases of this university as an ArrayList of Strings
    */
-  private ArrayList<String> getEmphases()
+  public ArrayList<String> getEmphases()
   {
     return this.emphases;
   }
@@ -312,7 +312,7 @@ public class University
    * 
    * @param newName the new name for this university
    */
-  private void setName(String newName)
+  public void setName(String newName)
   {
     this.name = newName;
   }
@@ -322,7 +322,7 @@ public class University
    * 
    * @param newState the new state this university is located in
    */
-  private void setState(String newState)
+  public void setState(String newState)
   {
     this.state = newState;
   }
@@ -332,7 +332,7 @@ public class University
    * 
    * @param newLocation the new location of the university (Urban or rural)
    */
-  private void setLocation(String newLocation)
+  public void setLocation(String newLocation)
   {
     this.location = newLocation;
   }
@@ -342,7 +342,7 @@ public class University
    * 
    * @param the new control of the university (public, private, etc)
    */
-  private void setControl(String newControl)
+  public void setControl(String newControl)
   {
     this.control = newControl;
   }
@@ -352,7 +352,7 @@ public class University
    * 
    * @param newNumStudents the  new number of students enrolled at the university
    */
-  private void setNumStudents(int newNumStudents)
+  public void setNumStudents(int newNumStudents)
   {
     this.numStudents = newNumStudents;
   }
@@ -362,7 +362,7 @@ public class University
    * 
    * @param the new percentage of students that are female
    */
-  private  void setPercentFemale(int newPercentFemale)
+  public  void setPercentFemale(int newPercentFemale)
   {
     this.percentFemale = newPercentFemale;
   }
@@ -372,7 +372,7 @@ public class University
    * 
    * @param newSATVerbal the new average SAT Verbal score of students enrolled at the university
    */
-  private void setSATVerbal(int newSATVerbal)
+  public void setSATVerbal(int newSATVerbal)
   {
     this.SATVerbal = newSATVerbal;
   }
@@ -382,7 +382,7 @@ public class University
    * 
    * @param newSATMath the new average SAT Math score of students enrolled at the university
    */
-  private void setSATMath(int newSATMath)
+  public void setSATMath(int newSATMath)
   {
     this.SATMath = newSATMath;
   }
@@ -392,7 +392,7 @@ public class University
    * 
    * @param newExpenses the average expenses to attend the university
    */
-  private void setExpenses(int newExpenses)
+  public void setExpenses(int newExpenses)
   {
     this.expenses = newExpenses;
   }
@@ -402,7 +402,7 @@ public class University
    * 
    * @param newPercentFinancialAid the new percentage of students  enrolled at this university that recieve financial aid
    */
-  private void setPercentFinancialAid(double newPercentFinancialAid)
+  public void setPercentFinancialAid(double newPercentFinancialAid)
   {
     this.percentFinancialAid = newPercentFinancialAid;
   }
@@ -412,7 +412,7 @@ public class University
    * 
    * @param newNumApplicants the new number of students that applied to study at this university
    */
-  private void setNumApplicants(int newNumApplicants)
+  public void setNumApplicants(int newNumApplicants)
   {
     this.numApplicants = newNumApplicants;
   }
@@ -422,7 +422,7 @@ public class University
    * 
    * @param newPercentAdmitted the new percentage of applicants that were accepted to the university
    */
-  private void percentAdmitted(double newPercentAdmitted) 
+  public void percentAdmitted(double newPercentAdmitted) 
   {
     this.percentAdmitted = newPercentAdmitted;
   }
@@ -432,7 +432,7 @@ public class University
    * 
    * @param newPercentEnrolled the new percentage of accepted applicants that there enrolled at the university
    */
-  private void setPercentEnrolled(double newPercentEnrolled)
+  public void setPercentEnrolled(double newPercentEnrolled)
   {
     this.percentEnrolled = newPercentEnrolled;
   }
@@ -442,7 +442,7 @@ public class University
    * 
    * @param newAcademicScale the new academic rating of this university
    */
-  private void setAcademicScale(int newAcademicScale)
+  public void setAcademicScale(int newAcademicScale)
   {
     this.academicScale = newAcademicScale;
   }
@@ -452,7 +452,7 @@ public class University
    * 
    * @param newSocialScale the new social rating of this school
    */
-  private void setSocialScale(int newSocialScale)
+  public void setSocialScale(int newSocialScale)
   {
     this.socialScale = newSocialScale;
   }
@@ -462,7 +462,7 @@ public class University
    *
    * @param newQualityOfLifeScale the new rating of the quality of life at the university
    */
-  private void setQualityOfLifeScale(int newQualityOfLifeScale)
+  public void setQualityOfLifeScale(int newQualityOfLifeScale)
   {
     this.qualityOfLifeScale = newQualityOfLifeScale;
   }
@@ -472,7 +472,7 @@ public class University
    * 
    * @param newEmphases the new emphases of this university
    */
-  private void setEmphases(ArrayList<String> newEmphases)
+  public void setEmphases(ArrayList<String> newEmphases)
   {
     this.emphases = newEmphases;
   }
