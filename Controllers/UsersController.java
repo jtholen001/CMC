@@ -29,7 +29,15 @@ public class UsersController
    */
   public void viewUsers()
   {
-    
+    for (int i = 0; i <= users.length; i++)
+    {
+      char type = users[i].getType();
+      if (type == 'a')
+        (Admin)users[i].toString();
+      if (type == 's')
+        (Student)users[i].toString();
+      System.out.println("\n\n");
+    }
   }
   
   /**
@@ -39,7 +47,15 @@ public class UsersController
    */
   public void editUser(String username)
   {
+    User toEdit = dbCont.getUser(username);
     
+    //admin can edit anything except for username
+    toEdit.setFirstName(null);
+    toEdit.setLastName(null);
+    toEdit.setPassword(null);
+    toEdit.setType(null);
+    toEdit.setActivationStatus(null);
+    toEdit.setLoggedInStatus(null);
   }
   
   /**
@@ -47,7 +63,13 @@ public class UsersController
    */
   public void addUser()
   {
-    
+    String firstName;
+    String lastName;
+    String password;
+    char type;
+    boolean isActivated;
+    boolean isLoggedIn;
+    dbCont.addUser(new User(firstName, lastName, username, password, type, isActivated, isLoggedIn));
   }
   
   /**
@@ -57,5 +79,6 @@ public class UsersController
    */
   public void deactivate(User user)
   {
+    user.setActivationStatus(false);
   }
 }
