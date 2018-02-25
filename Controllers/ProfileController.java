@@ -21,7 +21,11 @@ public class ProfileController
    */
   public void editProfile(Student student)
   {
+    student.setFirstName(null);
+    student.setLastName(null);
+    student.setPassword(null);
 
+    dbc.saveEditedUser(student);
   }
 
   public void viewProfile(Student student)
