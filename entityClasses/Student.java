@@ -62,9 +62,9 @@ public class Student extends User
    * TODO: possible boolean return type
    * Method to remove a University from a Student's saved universities
    */
-  public void removeSchool(University oldUniversity)
+  public void removeUniversity(University oldUniversity)
   {
-    University removedUniversity = this.savedUniversities.remove(oldUniversity);
+    Boolean bool = this.savedUniversities.remove(oldUniversity);
   }
 
   public String toString()

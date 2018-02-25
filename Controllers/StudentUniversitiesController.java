@@ -4,6 +4,9 @@
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
  * @version 2/20/18
  */
+
+import java.util.ArrayList;
+
 public class StudentUniversitiesController
 {
   /**
@@ -25,7 +28,7 @@ public class StudentUniversitiesController
    */
   public void viewSavedUniversities(Student student)
   {
-    Array<University> universities = student.getSavedSchools(savedUniversities); 
+    ArrayList<University> universities = student.getSavedSchools(); 
     for (University u : universities)
     {
       System.out.println(u.getName());
@@ -39,7 +42,7 @@ public class StudentUniversitiesController
    */
   public void viewUniversity(Student student, University university)
   {
-    system.out.println(university.toString());
+    System.out.println(university.toString());
   }
   
   /**
@@ -48,9 +51,9 @@ public class StudentUniversitiesController
    * @param student the Student to whom the university needs to removed from
    * @param oldUniversity the University to be removed
    */
-  public void removeSchool(Student student, University oldUniversity)
+  public void removeUniversity(Student student, University oldUniversity)
   {
-    student.removeSchool(oldUniversity);
+    student.removeUniversity(oldUniversity);
     this.dbc.saveEditedStudent(student);
   }
 }  
