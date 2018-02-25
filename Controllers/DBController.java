@@ -80,11 +80,13 @@ public class DBController
     {
       universityMap.put(universities[index][0], new University(universities[index][0], universities[index][1],
                                                                universities[index][2],universities[index][3], 
-                                                               universities[index][4], universities[index][5],
-                                         universities[index][6], universities[index][7], universities[index][8],
-                                         universities[index][9], universities[index][10],universities[index][11],
-                                         universities[index][12], universities[index][13], universities[index][14],
-                                         universities[index][15], null)); //not sure how emphases are stored
+                                                               Integer.parseInt(universities[index][4]),
+                                                               Integer.parseInt(universities[index][5]),
+                                         Integer.parseInt(universities[index][6]), Integer.parseInt(universities[index][7]),
+                                                               Integer.parseInt(universities[index][8]),
+                                         Integer.parseInt(universities[index][9]), Integer.parseInt(universities[index][10]),Integer.parseInt(universities[index][11]),
+                                         Integer.parseInt(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
+                                         Integer.parseInt(universities[index][15]), null)); //not sure how emphases are stored
     }
     
     return universityMap.get(name);
@@ -100,11 +102,11 @@ public class DBController
    */
   public void saveEditedUniversity(University university)
   {
-    university_editUniversity(university.getName(), university.getState(), university.getLocation(), 
+    univDBlib.university_editUniversity(university.getName(), university.getState(), university.getLocation(), 
                               university.getControl(), university.getNumStudents(), university.getPercentFemale(),
                               university.getSATVerbal(), university.getSATMath(), university.getExpenses(),
                               university.getPercentFinancialAid(), university.getNumApplicants(),
-                              university.percentAdmitted(), university.getPercentEnrolled(),
+                              university.getPercentAdmitted(), university.getPercentEnrolled(),
                               university.getAcademicScale(), university.getSocialScale(),
                               university.getQualityOfLifeScale());
   }
@@ -116,11 +118,11 @@ public class DBController
    */
   public void addUniversity(University university)
   {
-    university_addUniversity(university.getName(), university.getState(), university.getLocation(), 
+    univDBlib.university_addUniversity(university.getName(), university.getState(), university.getLocation(), 
                               university.getControl(), university.getNumStudents(), university.getPercentFemale(),
                               university.getSATVerbal(), university.getSATMath(), university.getExpenses(),
                               university.getPercentFinancialAid(), university.getNumApplicants(),
-                              university.percentAdmitted(), university.getPercentEnrolled(),
+                              university.getPercentAdmitted(), university.getPercentEnrolled(),
                               university.getAcademicScale(), university.getSocialScale(),
                               university.getQualityOfLifeScale());
   }
