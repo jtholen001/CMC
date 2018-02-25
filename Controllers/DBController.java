@@ -1,10 +1,14 @@
 import java.util.ArrayList;
+import dblibrary.project.csci230.*;
+
 
 public class DBController
 {
   /** 
    * Construct a database controller 
    */
+   private UniversityDBLibrary univDBlib = new UniversityDBLibrary("byteme","byteme","csci230");
+  
   public DBController()
   {
   }
