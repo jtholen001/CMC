@@ -8,6 +8,12 @@
 //import ArrayList
 import java.util.ArrayList;
 
+//import HashMap
+import java.util.Hashmap;
+
+//import Set
+import java.util.Set;
+
 public class UniversityController
 {
   /**
@@ -28,14 +34,14 @@ public class UniversityController
    */
   public void viewUniversities()
   {
-    ArrayList<University> listAll = dbCont.viewUniversities();
+    HashMap<String, University> listAll = dbCont.viewUniversities();
     
-    for (int i = 0; i <= listAll.size(); i++)
+    Set<String> universities = listAll.ketSet();
+    
+    for (String u : universities)
     {
-      System.out.println((listAll.get(i)).getSchoolName());
-    }
-    
-    
+      (get(u)).toString();   
+    } 
   }
   
   /**
