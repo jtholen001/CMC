@@ -69,11 +69,11 @@ public class Student extends User
 
   public String toString()
   {
-    return ("First name: " + this.firstName +
-            "\nLast name: " + this.lastName +
-            "\nUsername: " + this.username +
-            "\nType: " + this.type +
-            "\nActivated: " + this.activated +
-            "\nUniversities: " + this.universities.toString());
+    return ("First name: " + this.getFirstName() +
+            "\nLast name: " + this.getLastName() +
+            "\nUsername: " + this.getUsername() +
+            "\nType: " + this.getType() +
+            "\nActivated: " + this.getActivationStatus() +
+            "\nUniversities: " + this.savedUniversities.toString());
   }
 }
