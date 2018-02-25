@@ -4,6 +4,9 @@
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
  * @version 2/21/18
  */
+
+import java.util.ArrayList;
+
 public class SearchController
 {
   /**
@@ -45,7 +48,7 @@ public class SearchController
    * Method to view Universitiess from searching
    * @param foundUniversities the universities to be viewed from searching
    */
-  public void viewSchools(ArrayList<Universit> foundUniversities)
+  public void viewSchools(ArrayList<University> foundUniversities)
   {
     for (University u : foundUniversities)
     {
@@ -60,7 +63,7 @@ public class SearchController
    */
   public void viewUniversity(University university)
   {
-    System.out.println(unviersity.toString());
+    System.out.println(university.toString());
   }
   
    /**

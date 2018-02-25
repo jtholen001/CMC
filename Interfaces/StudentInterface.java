@@ -50,7 +50,7 @@ public class StudentInterface
    */
   public void viewProfile()
   {
-   this.sc.viewProfile(this.student); 
+   this.pc.viewProfile(this.student); 
   }
   
   /**
@@ -58,7 +58,7 @@ public class StudentInterface
    */
   public void editProfile()
   {
-   this.sc.editProfile(this.student); 
+   this.pc.editProfile(this.student); 
   }
   
   /**
