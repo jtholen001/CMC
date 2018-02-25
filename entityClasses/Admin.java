@@ -1,6 +1,6 @@
 /**
  * An entity class that represents an Admin
- * 
+ *
  *  @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan StrelowTawil
  * @version 2/20/18
  */
@@ -16,8 +16,17 @@ public class Admin extends User
    * @param activated a boolean representing the activation status of an Admin
    * @param logged a boolean reperesenting the login status of an Admin
    */
-  public Admin (String firstName, String lastName, String username, String password, char type, boolean activated, boolean logged)
+  public Admin(String firstName, String lastName, String username, String password, char type, boolean activated, boolean logged)
   {
     super (firstName, lastName, username, password, type, activated, logged);
+  }
+
+  public String toString()
+  {
+    return ("First name: " + this.firstName +
+            "\nLast name: " + this.lastName +
+            "\nUsername: " + this.username +
+            "\nType: " + this.type +
+            "\nActivated: " + this.activated);
   }
 }
