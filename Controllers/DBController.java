@@ -36,7 +36,7 @@ public class DBController
   /** 
    * method to save an edited user to the database
    */
-  public void saveEditedUser()
+  public void saveEditedUser(User user)
   {
     
   }
@@ -56,7 +56,7 @@ public class DBController
    * 
    * @return an ArrayList of all universities
    */
-  public ArrayList<University> viewUniversities()
+  public HashMap<String, University> viewUniversities()
   {
     return null;
   }
