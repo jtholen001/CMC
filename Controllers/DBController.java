@@ -1,5 +1,7 @@
+
 import java.util.ArrayList;
 import dblibrary.project.csci230.*;
+import java.util.HashMap;
 
 
 public class DBController
@@ -72,7 +74,24 @@ public class DBController
    */
   public University getUniversity(String name)
   {
-    return null;
+    String[][] universities = university_getUniversities();
+    HashMap<String, University> universityMap = new HashMap<String, University>();
+    
+    for(int index = 0; index < universities.length; index++)
+    {
+      universityMap.put(universities[index][0], new University(universities[index][0], universities[index][1],
+                                                               universities[index][2],universities[index][3], 
+                                                               universities[index][4], universities[index][5],
+                                         universities[index][6], universities[index][7], universities[index][8],
+                                         universities[index][9], universities[index][10],universities[index][11],
+                                         universities[index][12], universities[index][13], universities[index][14],
+                                         universities[index][15], null)); //not sure how emphases are stored
+    }
+    
+    return universityMap.get(name);
+    
+    
+    
   }
   
   /** 
@@ -88,7 +107,7 @@ public class DBController
                               university.getPercentFinancialAid(), university.getNumApplicants(),
                               university.percentAdmitted(), university.getPercentEnrolled(),
                               university.getAcademicScale(), university.getSocialScale(),
-                              university.getQualityOfLifeScale(), university.getEmphases());
+                              university.getQualityOfLifeScale());
   }
   
   /** 
@@ -96,9 +115,15 @@ public class DBController
    * 
    * @param a University object to add
    */
-  public void addUniversity(University u)
+  public void addUniversity(University university)
   {
-    
+    university_addUniversity(university.getName(), university.getState(), university.getLocation(), 
+                              university.getControl(), university.getNumStudents(), university.getPercentFemale(),
+                              university.getSATVerbal(), university.getSATMath(), university.getExpenses(),
+                              university.getPercentFinancialAid(), university.getNumApplicants(),
+                              university.percentAdmitted(), university.getPercentEnrolled(),
+                              university.getAcademicScale(), university.getSocialScale(),
+                              university.getQualityOfLifeScale());
   }
   
   /** 

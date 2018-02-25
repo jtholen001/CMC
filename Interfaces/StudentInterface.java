@@ -86,8 +86,7 @@ public class StudentInterface
    */
   public void saveUniversity(University university)
   {
-   this.sc.saveUniversity(university);
-   this.student.addSchool(university);
+   this.sc.saveUniversity(this.student, university);
   }
   
   /**
@@ -98,7 +97,6 @@ public class StudentInterface
   public void removeUniversity(University university)
   {
     this.suc.removeUniversity(this.student, university);
-    this.student.removeUniversity(university);
   }
   
   /**
