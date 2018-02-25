@@ -252,7 +252,7 @@ public class University
    *
    * @return the percentage of applicants that were accepted to the university as a double
    */
-  public double percentAdmitted()
+  public double getPercentAdmitted()
   {
     return this.percentAdmitted;
   }
@@ -422,7 +422,7 @@ public class University
    *
    * @param newPercentAdmitted the new percentage of applicants that were accepted to the university
    */
-  public void percentAdmitted(double newPercentAdmitted)
+  public void setPercentAdmitted(double newPercentAdmitted)
   {
     this.percentAdmitted = newPercentAdmitted;
   }
@@ -479,22 +479,22 @@ public class University
 
   public String toString()
   {
-    return ("name: " + this.name + "\n" +
-           "state: " + this.state + "\n" +
-           "location: " + this.location + "\n" +
-           "control: " + this.control + "\n" +
-           "numStudents: " + this.numStudents + "\n" +
-           "percentFemale: " + this.percentFemale + "\n" +
-           "SATVerbal: " + this.SATVerbal + "\n" +
-           "SATMath: " + this.SATMath + "\n" +
-           "expenses: " + this.expenses + "\n" +
-           "percentFinancialAid: " + this.percentFinancialAid + "\n" +
-           "numApplicants: " + this.numApplicants + "\n" +
-           "percentAdmitted: " + this.percentAdmitted + "\n" +
-           "percentEnrolled: " + this.percentEnrolled + "\n" +
-           "academicScale: " + this.academicScale + "\n" +
-           "socialScale: " + this.socialScale + "\n" +
-           "qualityOfLifeScale: " + this.qualityOfLifeScale + "\n" +
-           "emphases: " + this.emphases);
+    return ("name: " + this.getSchoolName() + "\n" +
+           "state: " + this.getState() + "\n" +
+           "location: " + this.getLocation() + "\n" +
+           "control: " + this.getControl() + "\n" +
+           "numStudents: " + this.getNumStudents() + "\n" +
+           "percentFemale: " + this.getPercentFemale() + "\n" +
+           "SATVerbal: " + this.getSATVerbal() + "\n" +
+           "SATMath: " + this.getSATMath() + "\n" +
+           "expenses: " + this.getExpenses() + "\n" +
+           "percentFinancialAid: " + this.getPercentFinancialAid() + "\n" +
+           "numApplicants: " + this.getNumApplicants() + "\n" +
+           "percentAdmitted: " + this.getPercentAdmitted() + "\n" +
+           "percentEnrolled: " + this.getPercentEnrolled() + "\n" +
+           "academicScale: " + this.getAcademicScale() + "\n" +
+           "socialScale: " + this.getSocialScale() + "\n" +
+           "qualityOfLifeScale: " + this.getQualityOfLifeScale() + "\n" +
+           "emphases: " + this.getEmphases());
   }
 }

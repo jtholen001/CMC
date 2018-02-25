@@ -1,7 +1,7 @@
 /**
  * A controller class that handles University functionalities
  * 
- *  @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
+ * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
  * @version 2/20/18
  */
 
@@ -35,7 +35,7 @@ public class UniversityController
       System.out.println((listAll.get(i)).getSchoolName());
     }
     
-
+    
   }
   
   /**
@@ -47,9 +47,9 @@ public class UniversityController
   {
     // TODO: not sure how we are setting stuff yet, so right now everything will be null
     
-    // TODO: can we edit the name of an existing University already in the Database?
+    //setting school name cannot be set to the name of a University that already exists in the DB
+    //if the Admin tries to duplicate, do not allow changes to the University object
     university.setSchoolName(null);
-    
     university.setState(null);
     university.setLocation(null);
     university.setControl(null);
@@ -75,6 +75,27 @@ public class UniversityController
    */
   public void addUniversity()
   {
-    // TODO: this method
+    //TODO: variables to be set by the driver or something. Same as editUniversity method above^
+    String name;
+    String state;
+    String location;
+    String control;
+    int numStudents;
+    int percentFemale;
+    int satVerbal;
+    int satMath;
+    int expenses;
+    double percentFinancialAid;
+    int numApplicants;
+    double percentAdmitted;
+    double percentEnrolled;
+    int academicScale;
+    int socialScale;
+    int qualityOfLifeScale;
+    ArrayList<String> emphases;
+    
+    dbCont.addUniversity(new University(name, state, location, control, numStudents, percentFemale, satVerbal, satMath, 
+                                        expenses, percentFinancialAid, numApplicants, percentAdmitted, percentEnrolled, 
+                                        academicScale, socialScale, qualityOfLifeScale, emphasis));
   }
 }

@@ -21,11 +21,11 @@ public class ProfileController
    */
   public void editProfile(Student student)
   {
-    
+
   }
 
   public void viewProfile(Student student)
   {
-    return student.toString();
+    System.out.println(student.toString());
   }
 }
