@@ -142,7 +142,7 @@ public class University
    *
    * @return the name of this university as a String
    */
-  public String getSchoolName()
+  public String getName()
   {
     return this.name;
   }
@@ -479,7 +479,7 @@ public class University
 
   public String toString()
   {
-    return ("name: " + this.getSchoolName() + "\n" +
+    return ("name: " + this.getName() + "\n" +
            "state: " + this.getState() + "\n" +
            "location: " + this.getLocation() + "\n" +
            "control: " + this.getControl() + "\n" +
