@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import dblibrary.project.csci230.*;
 import java.util.HashMap;
@@ -74,7 +73,7 @@ public class DBController
    */
   public University getUniversity(String name)
   {
-    String[][] universities = university_getUniversities();
+    String[][] universities = univDBlib.university_getUniversities();
     HashMap<String, University> universityMap = new HashMap<String, University>();
     
     for(int index = 0; index < universities.length; index++)
