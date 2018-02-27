@@ -39,9 +39,9 @@ public class StudentInterface
   public StudentInterface(Student student)
   {
     this.student = student;
-    this.pc = new ProfileController();
+    this.pc = new ProfileController(this.student);
     this.sc = new SearchController();
-    this.suc = new StudentUniversitiesController();
+    this.suc = new StudentUniversitiesController(this.student);
     this.lc = new LoginController(); 
   }
   
@@ -50,7 +50,7 @@ public class StudentInterface
    */
   public void viewProfile()
   {
-   this.pc.viewProfile(this.student); 
+   this.pc.viewProfile(); 
   }
   
   /**
@@ -58,7 +58,7 @@ public class StudentInterface
    */
   public void editProfile()
   {
-   this.pc.editProfile(this.student); 
+   this.pc.editProfile(); 
   }
   
   /**
@@ -66,7 +66,7 @@ public class StudentInterface
    */
   public void viewSavedUniversities()
   {
-   this.suc.viewSavedUniversities(this.student);
+   this.suc.viewSavedUniversities();
   }
   
   /**
@@ -76,7 +76,7 @@ public class StudentInterface
    */
   public void viewUniversity(University university)
   {
-    this.suc.viewUniversity(this.student, university);
+    this.suc.viewUniversity(university);
   }
 
   /**
@@ -96,7 +96,7 @@ public class StudentInterface
    */
   public void removeUniversity(University university)
   {
-    this.suc.removeUniversity(this.student, university);
+    this.suc.removeUniversity(university);
   }
   
   /**

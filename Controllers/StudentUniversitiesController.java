@@ -15,20 +15,26 @@ public class StudentUniversitiesController
   private DBController dbc;
   
   /**
-   * Constructor for a StudentUniversitiesController
+   * Student that has the Universities to be controlled
    */
-  public StudentUniversitiesController()
+  private Student student;
+  
+  /**
+   * Constructor for a StudentUniversitiesController
+   * @param student the student that has the Universities to be controlled
+   */
+  public StudentUniversitiesController(Student student)
   {
+    this.student = student;
     this.dbc = new DBController(); 
   }
   
   /**
    * Method to view a Student's saved universities
-   * @param student the Student with the universities you are trying to view
    */
-  public void viewSavedUniversities(Student student)
+  public void viewSavedUniversities()
   {
-    ArrayList<University> universities = student.getSavedSchools(); 
+    ArrayList<University> universities = this.student.getSavedSchools(); 
     for (University u : universities)
     {
       System.out.println(u.getName());
@@ -37,10 +43,9 @@ public class StudentUniversitiesController
   
   /**
    * Method to view an University
-   * @param student the Student with the university you are trying to view
    * @param university the Universiy to be viewed
    */
-  public void viewUniversity(Student student, University university)
+  public void viewUniversity(University university)
   {
     System.out.println(university.toString());
   }
@@ -48,13 +53,12 @@ public class StudentUniversitiesController
   /**
    * TODO: possible boolean return type
    * Method to remove a University from a Student's saved universities
-   * @param student the Student to whom the university needs to removed from
    * @param oldUniversity the University to be removed
    */
-  public void removeUniversity(Student student, University oldUniversity)
+  public void removeUniversity(University oldUniversity)
   {
-    student.removeUniversity(oldUniversity);
-    this.dbc.saveEditedStudent(student);
+    this.student.removeUniversity(oldUniversity);
+    this.dbc.saveEditedStudent(this.student);
   }
 }  
 

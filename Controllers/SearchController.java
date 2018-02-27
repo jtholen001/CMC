@@ -4,7 +4,7 @@
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
  * @version 2/21/18
  */
-
+import java.util.HashMap;
 import java.util.ArrayList;
 
 public class SearchController
@@ -32,16 +32,41 @@ public class SearchController
    */
   public void searchUniversities()
   {
+    HashMap<String, University> universities = dbc.viewUniversities();
+    
+    
     String name, state, location, control;
     int numStudents, percentFemale, SATVerbal, SATMath, expenses, numApplicants, academicScale, socialScale, qualityOfLifeScale; 
     double percentFinancialAid, percentAdmitted, percentEnrolled; 
     ArrayList<String> emphases;
     
-    ArrayList<University> foundUniversities = dbc.searchUniversities(name, state, location, control, numStudents, 
-                    percentFemale, SATVerbal, SATMath, expenses, percentFinancialAid, 
-                    numApplicants, percentAdmitted, percentEnrolled, academicScale, socialScale,
-                    qualityOfLifeScale, emphases);
-    viewSchools(foundUniversities);
+    name = null;
+    state = null;    
+    location = null;
+    control = null;
+    numStudents = 0;
+    percentFemale = 0;
+    SATMath = 0;
+    expenses = 0;
+    numApplicants = 0;
+    academicScale = 0;
+    socialScale = 0;
+    qualityOfLifeScale = 0;
+    percentFinancialAid = 0.0;
+    percentAdmitted = 0.0;
+    percentEnrolled = 0.0;
+    emphases = new ArrayList<String>();
+
+    
+    
+    
+    //ArrayList<University> foundUniversities = dbc.searchUniversities(name, state, location, control, numStudents, 
+    //                percentFemale, SATVerbal, SATMath, expenses, percentFinancialAid, 
+    //                numApplicants, percentAdmitted, percentEnrolled, academicScale, socialScale,
+    //                qualityOfLifeScale, emphases);
+    
+    
+    //viewSchools(foundUniversities);
   }
 
   /**
