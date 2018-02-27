@@ -67,6 +67,10 @@ public class Student extends User
     Boolean bool = this.savedUniversities.remove(oldUniversity);
   }
 
+  /**
+   * toString() method to display a Student entity
+   * @return a concatenated string representing a Students and its attributes
+   */
   public String toString()
   {
     return ("First name: " + this.getFirstName() +
