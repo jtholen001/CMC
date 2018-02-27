@@ -5,9 +5,7 @@
  * @version 2/20/18
  */
 public class AdminInterface
-{
-  //TODO: give methods a return type so we can verify that they worked??maybe later
-  
+{  
   /**
    * an instance of UsersController
    */
