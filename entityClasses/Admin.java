@@ -22,7 +22,7 @@ public class Admin extends User
   }
 
   /**
-   * method to display a single Admin
+   * toString() method to display an Admin entity
    * @return a concatenated string representing an Admin and its attributes
    */
   public String toString()

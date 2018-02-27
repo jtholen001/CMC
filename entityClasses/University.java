@@ -477,6 +477,10 @@ public class University
     this.emphases = newEmphases;
   }
 
+  /**
+   * toString() method to display an University entity
+   * @return a concatenated string representing a University and its attributes
+   */
   public String toString()
   {
     return ("name: " + this.getName() + "\n" +
