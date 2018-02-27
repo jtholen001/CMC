@@ -1,7 +1,7 @@
 /**
  * This class represents a University
  * @Author Michael Carroll, Brandan Kalsow, Nicholas Tawil, Jordan Tholen, Ryan Strelow
- * @Version 2/20/2020
+ * @Version 2/26/2018
  */
 import java.util.ArrayList;
 
@@ -478,7 +478,11 @@ public class University
   }
 
   /**
+<<<<<<< HEAD
+   * method to display a single University
+=======
    * toString() method to display an University entity
+>>>>>>> ce7f5eeca497dcb5593e8c796d84525e64156add
    * @return a concatenated string representing a University and its attributes
    */
   public String toString()

@@ -2,7 +2,7 @@
  * A controller class that handles University functionalities
  * 
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
- * @version 2/20/18
+ * @version 2/26/18
  */
 
 //import ArrayList
