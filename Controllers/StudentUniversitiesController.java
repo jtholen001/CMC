@@ -58,7 +58,7 @@ public class StudentUniversitiesController
   public void removeUniversity(University oldUniversity)
   {
     this.student.removeUniversity(oldUniversity);
-    this.dbc.saveEditedStudent(this.student);
+    this.dbc.saveEditedUser(this.student);
   }
 }  
 

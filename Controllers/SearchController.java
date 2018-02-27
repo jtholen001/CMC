@@ -2,9 +2,10 @@
  * Class that will emcompass all the functionalities relating to searching
  * 
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
- * @version 2/21/18
+ * @version 2/26/18
  */
 import java.util.HashMap;
+import java.util.Set;
 import java.util.ArrayList;
 
 public class SearchController
@@ -36,27 +37,46 @@ public class SearchController
     
     
     String name, state, location, control;
-    int numStudents, percentFemale, SATVerbal, SATMath, expenses, numApplicants, academicScale, socialScale, qualityOfLifeScale; 
-    double percentFinancialAid, percentAdmitted, percentEnrolled; 
+    int numStudentsLower, numStudentsUpper, percentFemaleLower, percentFemaleUpper, SATVerbalLower, SATVerbalUpper, SATMathLower, SATMathUpper,
+      expensesLower, expensesUpper, numApplicantsLower, numApplicantsUpper, academicScaleLower, academicScaleUpper, socialScaleLower, socialScaleUpper, qualityOfLifeScaleLower, qualityOfLifeScaleUpper; 
+    double percentFinancialAidLower, percentFinancialAidUpper, percentAdmittedLower, percentAdmittedUpper, percentEnrolledLower, percentEnrolledUpper; 
     ArrayList<String> emphases;
     
     name = null;
     state = null;    
     location = null;
     control = null;
-    numStudents = 0;
-    percentFemale = 0;
-    SATMath = 0;
-    expenses = 0;
-    numApplicants = 0;
-    academicScale = 0;
-    socialScale = 0;
-    qualityOfLifeScale = 0;
-    percentFinancialAid = 0.0;
-    percentAdmitted = 0.0;
-    percentEnrolled = 0.0;
+    numStudentsLower = 0;
+    numStudentsUpper = 0;
+    percentFemaleLower = 0;
+    percentFemaleUpper = 0;
+    SATMathLower = 0;
+    SATMathUpper = 0;
+    expensesLower = 0;
+    expensesUpper = 0;
+    numApplicantsLower = 0;
+    numApplicantsUpper = 0;
+    academicScaleLower = 0;
+    academicScaleUpper = 0;
+    socialScaleLower = 0;
+    socialScaleUpper = 0;
+    qualityOfLifeScaleLower = 0;
+    qualityOfLifeScaleUpper = 0;
+    percentFinancialAidLower = 0.0;
+    percentFinancialAidUpper = 0.0;
+    percentAdmittedLower = 0.0;
+    percentAdmittedUpper = 0.0;
+    percentEnrolledLower = 0.0;
+    percentEnrolledUpper = 0.0;
     emphases = new ArrayList<String>();
-
+    
+    Set<String> universityNames = universities.keySet();
+    
+    for (String u : universityNames)
+    {
+      
+ 
+    }
     
     
     
