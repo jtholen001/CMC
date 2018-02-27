@@ -87,4 +87,17 @@ public class LoginController
    {
      System.err.println("Username or password is incorrect.");
    }
+
+   /**
+    * This method controls the log in logic of the system
+    * @param User user entity for the user
+    * @return user object that logged in
+    */
+   public void logout(User user)
+   {
+    User user = dbc.getUser(username);
+    user.setLoggedInStatus(false);
+    dbc.saveEditedUser(user);
+    System.out.println("Successfuly logged out.");
+   }
  }

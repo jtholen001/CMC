@@ -61,7 +61,20 @@ public class DBController
    */
   public HashMap<String, University> viewUniversities()
   {
-    return null;
+    String[][] universities = univDBlib.university_getUniversities();
+    HashMap<String, University> universityMap = new HashMap<String, University>();
+    
+    for(int index = 0; index < universities.length; index++)
+    {
+      universityMap.put(universities[index][0], new University(universities[index][0], universities[index][1],
+                                                               universities[index][2],universities[index][3], 
+                                                               Integer.parseInt(universities[index][4]), Integer.parseInt(universities[index][5]),
+                                         Integer.parseInt(universities[index][6]), Integer.parseInt(universities[index][7]), Integer.parseInt(universities[index][8]),
+                                         Integer.parseInt(universities[index][9]), Integer.parseInt(universities[index][10]),Integer.parseInt(universities[index][11]),
+                                         Integer.parseInt(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
+                                         Integer.parseInt(universities[index][15]), null)); //not sure how emphases are stored
+    }
+    return universityMap;
   }
   
   /** 
@@ -80,10 +93,8 @@ public class DBController
     {
       universityMap.put(universities[index][0], new University(universities[index][0], universities[index][1],
                                                                universities[index][2],universities[index][3], 
-                                                               Integer.parseInt(universities[index][4]),
-                                                               Integer.parseInt(universities[index][5]),
-                                         Integer.parseInt(universities[index][6]), Integer.parseInt(universities[index][7]),
-                                                               Integer.parseInt(universities[index][8]),
+                                                               Integer.parseInt(universities[index][4]), Integer.parseInt(universities[index][5]),
+                                         Integer.parseInt(universities[index][6]), Integer.parseInt(universities[index][7]), Integer.parseInt(universities[index][8]),
                                          Integer.parseInt(universities[index][9]), Integer.parseInt(universities[index][10]),Integer.parseInt(universities[index][11]),
                                          Integer.parseInt(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
                                          Integer.parseInt(universities[index][15]), null)); //not sure how emphases are stored
@@ -106,7 +117,7 @@ public class DBController
                               university.getControl(), university.getNumStudents(), university.getPercentFemale(),
                               university.getSATVerbal(), university.getSATMath(), university.getExpenses(),
                               university.getPercentFinancialAid(), university.getNumApplicants(),
-                              university.getPercentAdmitted(), university.getPercentEnrolled(),
+                              university.getPercentEnrolled(), university.getPercentEnrolled(),
                               university.getAcademicScale(), university.getSocialScale(),
                               university.getQualityOfLifeScale());
   }
@@ -122,7 +133,7 @@ public class DBController
                               university.getControl(), university.getNumStudents(), university.getPercentFemale(),
                               university.getSATVerbal(), university.getSATMath(), university.getExpenses(),
                               university.getPercentFinancialAid(), university.getNumApplicants(),
-                              university.getPercentAdmitted(), university.getPercentEnrolled(),
+                              university.getPercentEnrolled(), university.getPercentEnrolled(),
                               university.getAcademicScale(), university.getSocialScale(),
                               university.getQualityOfLifeScale());
   }
