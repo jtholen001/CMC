@@ -1,37 +1,38 @@
 public class ProfileController
 {
-  //Student variable to edit
+  // Student entity to edit
+  Student student;
+
+  // Database controller allows ProfileController to communicate with Database
   DBController dbc;
 
-  // Constructor
   /**
-   * Construct a Profile controller with the given student.
-   * @param queueName the name of this queue
+   * Default controller controller for the given student
+   * @param student the name of this student
    */
-  public ProfileController()
+  public ProfileController(Student student)
   {
+    this.student = student;
     dbc = new DBController();
   }
 
   /**
    * method to edit the profile of the given student
-   * @param Student the name of this student
    */
-  public void editProfile(Student student)
+  public void editProfile()
   {
-    student.setFirstName(null);
-    student.setLastName(null);
-    student.setPassword(null);
+    this.student.setFirstName(null);
+    this.student.setLastName(null);
+    this.student.setPassword(null);
 
-    dbc.saveEditedUser(student);
+    dbc.saveEditedUser(this.student);
   }
 
   /**
    * method to view the profile of the given student
-   * @param Student the name of this student
    */
-  public void viewProfile(Student student)
+  public void viewProfile()
   {
-    System.out.println(student.toString());
+    System.out.println(this.student.toString());
   }
 }
