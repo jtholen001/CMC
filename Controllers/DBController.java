@@ -23,7 +23,14 @@ public class DBController
    */
   public User getUser(String username)
   {
-    return null;
+    String[][] users = univDBlib.user_getUsers();
+    HashMap<String, User> userMap = new HashMap<String, User>();
+    
+    for(int index = 0; index < users.length; index++)
+    {
+//      userMap.put(users[index][0], users[index][]
+    }
+    return userMap.get(username);
   }
    
   /** 
@@ -57,7 +64,7 @@ public class DBController
   /** 
    * method to get all universities in the databse
    * 
-   * @return an ArrayList of all universities
+   * @return a hashmap of all universities where the univ name is the key and the University object is a value
    */
   public HashMap<String, University> viewUniversities()
   {
