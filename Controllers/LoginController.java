@@ -2,7 +2,7 @@
  * LoginController class controls the login logic for a user
  *
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
- * @version 2/21/18
+ * @version 2/26/18
 */
 
 public class LoginController

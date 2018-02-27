@@ -1,8 +1,8 @@
 /**
  * A controller class 1manages a User
  *
- *  @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
- * @version 2/20/18
+ * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
+ * @version 2/26/18
  */
 public class UsersController
 {

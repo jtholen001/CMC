@@ -1,8 +1,8 @@
 /**
  * An entity class that represents an Admin
  *
- *  @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan StrelowTawil
- * @version 2/20/18
+ *  @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
+ * @version 2/26/18
  */
 public class Admin extends User
 {
@@ -20,6 +20,8 @@ public class Admin extends User
   {
     super (firstName, lastName, username, password, type, activated, logged);
   }
+<<<<<<< HEAD
+=======
 
   /**
    * toString() method to display an Admin entity
@@ -33,4 +35,5 @@ public class Admin extends User
             "\nType: " + this.getType() +
             "\nActivated: " + this.getActivationStatus());
   }
+>>>>>>> ce7f5eeca497dcb5593e8c796d84525e64156add
 }

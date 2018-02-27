@@ -2,7 +2,7 @@
  * Class that represents a Student
  *
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
- * @version 2/20/18
+ * @version 2/26/18
  */
 
 import java.util.ArrayList;
@@ -68,8 +68,13 @@ public class Student extends User
   }
 
   /**
+<<<<<<< HEAD
+   * method to display a single Student
+   * @return a concatenated string representing a Student and its attributes
+=======
    * toString() method to display a Student entity
    * @return a concatenated string representing a Students and its attributes
+>>>>>>> ce7f5eeca497dcb5593e8c796d84525e64156add
    */
   public String toString()
   {
@@ -78,6 +83,7 @@ public class Student extends User
             "\nUsername: " + this.getUsername() +
             "\nType: " + this.getType() +
             "\nActivated: " + this.getActivationStatus() +
+            "\nLogged in: " + this.getLoggedInStatus() + 
             "\nUniversities: " + this.savedUniversities.toString());
   }
 }
