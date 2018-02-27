@@ -68,8 +68,13 @@ public class Student extends User
   }
 
   /**
+<<<<<<< HEAD
    * method to display a single Student
    * @return a concatenated string representing a Student and its attributes
+=======
+   * toString() method to display a Student entity
+   * @return a concatenated string representing a Students and its attributes
+>>>>>>> ce7f5eeca497dcb5593e8c796d84525e64156add
    */
   public String toString()
   {

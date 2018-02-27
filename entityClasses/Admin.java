@@ -20,4 +20,20 @@ public class Admin extends User
   {
     super (firstName, lastName, username, password, type, activated, logged);
   }
+<<<<<<< HEAD
+=======
+
+  /**
+   * toString() method to display an Admin entity
+   * @return a concatenated string representing an Admin and its attributes
+   */
+  public String toString()
+  {
+    return ("First name: " + this.getFirstName() +
+            "\nLast name: " + this.getLastName() +
+            "\nUsername: " + this.getUsername() +
+            "\nType: " + this.getType() +
+            "\nActivated: " + this.getActivationStatus());
+  }
+>>>>>>> ce7f5eeca497dcb5593e8c796d84525e64156add
 }
