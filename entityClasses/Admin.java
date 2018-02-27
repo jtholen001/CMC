@@ -1,8 +1,8 @@
 /**
  * An entity class that represents an Admin
  *
- *  @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan StrelowTawil
- * @version 2/20/18
+ *  @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
+ * @version 2/26/18
  */
 public class Admin extends User
 {
@@ -19,18 +19,5 @@ public class Admin extends User
   public Admin(String firstName, String lastName, String username, String password, char type, boolean activated, boolean logged)
   {
     super (firstName, lastName, username, password, type, activated, logged);
-  }
-
-  /**
-   * method to display a single Admin
-   * @return a concatenated string representing an Admin and its attributes
-   */
-  public String toString()
-  {
-    return ("First name: " + this.getFirstName() +
-            "\nLast name: " + this.getLastName() +
-            "\nUsername: " + this.getUsername() +
-            "\nType: " + this.getType() +
-            "\nActivated: " + this.getActivationStatus());
   }
 }

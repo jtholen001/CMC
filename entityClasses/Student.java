@@ -2,7 +2,7 @@
  * Class that represents a Student
  *
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
- * @version 2/20/18
+ * @version 2/26/18
  */
 
 import java.util.ArrayList;
@@ -67,6 +67,10 @@ public class Student extends User
     Boolean bool = this.savedUniversities.remove(oldUniversity);
   }
 
+  /**
+   * method to display a single Student
+   * @return a concatenated string representing a Student and its attributes
+   */
   public String toString()
   {
     return ("First name: " + this.getFirstName() +
@@ -74,6 +78,7 @@ public class Student extends User
             "\nUsername: " + this.getUsername() +
             "\nType: " + this.getType() +
             "\nActivated: " + this.getActivationStatus() +
+            "\nLogged in: " + this.getLoggedInStatus() + 
             "\nUniversities: " + this.savedUniversities.toString());
   }
 }
