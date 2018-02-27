@@ -33,9 +33,9 @@ public class UsersController
     {
       char type = users[i].getType();
       if (type == 'a')
-        (Admin)users[i].toString();
+        ((Admin)users[i]).toString();
       if (type == 's')
-        (Student)users[i].toString();
+        ((Student)users[i]).toString();
       System.out.println("\n\n");
     }
   }
@@ -53,9 +53,9 @@ public class UsersController
     toEdit.setFirstName(null);
     toEdit.setLastName(null);
     toEdit.setPassword(null);
-    toEdit.setType(null);
-    toEdit.setActivationStatus(null);
-    toEdit.setLoggedInStatus(null);
+    toEdit.setType('q'); //cannot set an empty char, for this purpose, set to q
+    toEdit.setActivationStatus(false);
+    toEdit.setLoggedInStatus(false);
 
     dbCont.saveEditedUser(toEdit);
   }
@@ -67,6 +67,7 @@ public class UsersController
   {
     String firstName;
     String lastName;
+    String username;
     String password;
     char type;
     boolean isActivated;

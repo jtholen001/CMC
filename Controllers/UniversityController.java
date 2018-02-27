@@ -9,7 +9,7 @@
 import java.util.ArrayList;
 
 //import HashMap
-import java.util.Hashmap;
+import java.util.HashMap;
 
 //import Set
 import java.util.Set;
@@ -36,11 +36,11 @@ public class UniversityController
   {
     HashMap<String, University> listAll = dbCont.viewUniversities();
     
-    Set<String> universities = listAll.ketSet();
+    Set<String> universityNames = listAll.keySet();
     
-    for (String u : universities)
+    for (String u : universityNames)
     {
-      (get(u)).toString();   
+      listAll.get(u).toString();   
     } 
   }
   
@@ -59,18 +59,18 @@ public class UniversityController
     university.setState(null);
     university.setLocation(null);
     university.setControl(null);
-    university.setNumStudents(null);
-    university.setPercentFemales(null);
-    university.setSATVerbal(null);
-    university.setSATMath(null);
-    university.setExpenses(null);
-    university.setPercentFinancialAid(null);
-    university.setNumApplicants(null);
-    university.setPercentAdmitted(null);
-    university.setPercentEnrolled(null);
-    university.setAcademicScale(null);
-    university.setSocialScale(null);
-    university.setQualityOfLifeScale(null);
+    university.setNumStudents(0);
+    university.setPercentFemale(0);
+    university.setSATVerbal(0);
+    university.setSATMath(0);
+    university.setExpenses(0);
+    university.setPercentFinancialAid(0);
+    university.setNumApplicants(0);
+    university.setPercentAdmitted(0);
+    university.setPercentEnrolled(0);
+    university.setAcademicScale(0);
+    university.setSocialScale(0);
+    university.setQualityOfLifeScale(0);
     university.setEmphases(null);
     
     dbCont.saveEditedUniversity(university);
@@ -102,6 +102,6 @@ public class UniversityController
     
     dbCont.addUniversity(new University(name, state, location, control, numStudents, percentFemale, satVerbal, satMath, 
                                         expenses, percentFinancialAid, numApplicants, percentAdmitted, percentEnrolled, 
-                                        academicScale, socialScale, qualityOfLifeScale, emphasis));
+                                        academicScale, socialScale, qualityOfLifeScale, emphases));
   }
 }

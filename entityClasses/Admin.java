@@ -21,6 +21,10 @@ public class Admin extends User
     super (firstName, lastName, username, password, type, activated, logged);
   }
 
+  /**
+   * method to display a single Admin
+   * @return a concatenated string representing an Admin and its attributes
+   */
   public String toString()
   {
     return ("First name: " + this.getFirstName() +
