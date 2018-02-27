@@ -95,7 +95,6 @@ public class LoginController
     */
    public void logout(User user)
    {
-    User user = dbc.getUser(username);
     user.setLoggedInStatus(false);
     dbc.saveEditedUser(user);
     System.out.println("Successfuly logged out.");
