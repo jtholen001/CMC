@@ -3,6 +3,8 @@
  * @Author Michael Carroll, Brandan Kalsow, Nicholas Tawil, Jordan Tholen, Ryan Strelow
  * @Version 2/26/2018
  */
+package entityClasses;
+
 import java.util.ArrayList;
 
 public class University
