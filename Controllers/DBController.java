@@ -203,15 +203,6 @@ public class DBController
     univDBlib.user_removeSchool(s.getUsername(),u.getName());
   }
 
-  /**
-   * method to save an edited university
-   *
-   * @param a university object to save
-   */
-  public void saveUniversity(University u)
-  {
-    
-  }
 
   /**
    * method to search all universities and return the mataching ones
