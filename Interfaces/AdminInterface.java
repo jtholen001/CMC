@@ -57,6 +57,14 @@ public class AdminInterface
   
   /**
    * A method that allows an Admin to edit a specific User
+   * 
+   * @param username the username of the user to edit
+   * @param newFirst the new first name for this user
+   * @param newLast the new last name for this user
+   * @param newPassword the new password for this user
+   * @param newType the new account type for this user
+   * @param newActivation the new activation status for this user
+   * @param newLoggedIn the new logged in status for this user
    */
   public void editUser(String username, String newFirst, String newLast, String newPassword, char newType, boolean newActivation, boolean newLoggedIn)
   {
