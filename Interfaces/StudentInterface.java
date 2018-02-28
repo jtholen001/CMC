@@ -58,7 +58,7 @@ public class StudentInterface
    */
   public void editProfile(String firstName, String lastName, String password)
   {
-   this.pc.editProfile(this.student, firstName, lastName, password); 
+   this.pc.editProfile(firstName, lastName, password); 
   }
   
   /**
