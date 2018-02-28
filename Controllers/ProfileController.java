@@ -18,12 +18,16 @@ public class ProfileController
 
   /**
    * method to edit the profile of the given student
+   * 
+   * @param firstName a String representing the edited first name of a Student
+   * @param lastName a String representing the edited last name of a Student
+   * @param password a String representing the edited password name of a Student
    */
-  public void editProfile()
+  public void editProfile(String firstName, String lastName, String password)
   {
-    this.student.setFirstName(null);
-    this.student.setLastName(null);
-    this.student.setPassword(null);
+    this.student.setFirstName(firstName);
+    this.student.setLastName(lastName);
+    this.student.setPassword(password);
 
     dbc.saveEditedUser(this.student);
   }
