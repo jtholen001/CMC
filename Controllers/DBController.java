@@ -79,7 +79,14 @@ public class DBController
    */
   public void saveEditedUser(User user)
   {
-
+    char temp;
+    if(user.getActivationStatus() == false)
+      temp = 'N';
+    else
+      temp = 'Y';
+    
+    univDBlib.user_editUser(user.getUsername(),user.getFirstName(),user.getLastName(),user.getPassword(),user.getType(),
+                            temp);
   }
 
   /**
