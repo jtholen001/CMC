@@ -4,6 +4,7 @@
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
  * @version 2/26/18
 */
+package Controllers;
 
 import java.lang.Math;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.Set;
 import java.util.List;
 import java.util.Collections;
 import java.util.Iterator;
+import entityClasses.*;
 
 public class DBController
 {

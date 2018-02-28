@@ -4,9 +4,12 @@
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
  * @version 2/27/18
  */
+package Controllers;
+
 import java.util.HashMap;
 import java.util.Set;
 import java.util.ArrayList;
+import entityClasses.*;
 
 public class SearchController
 { 

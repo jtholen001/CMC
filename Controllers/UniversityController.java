@@ -4,6 +4,7 @@
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
  * @version 2/26/18
  */
+package Controllers;
 
 //import ArrayList
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.HashMap;
 
 //import Set
 import java.util.Set;
+import entityClasses.*;
 
 public class UniversityController
 {

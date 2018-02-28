@@ -4,8 +4,12 @@
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
  * @version 2/27/18
  */
+package Interfaces;
 
 import java.util.ArrayList;
+import entityClasses.Student;
+import entityClasses.University;
+import Controllers.*;
 
 public class StudentInterface
 {

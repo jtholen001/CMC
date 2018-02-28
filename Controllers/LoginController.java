@@ -4,6 +4,9 @@
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
  * @version 2/26/18
 */
+package Controllers;
+
+import entityClasses.User;
 
 public class LoginController
 {

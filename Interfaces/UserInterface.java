@@ -4,6 +4,10 @@
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
  * @version 2/21/18
  */
+package Interfaces;
+
+import Controllers.LoginController;
+import entityClasses.*;
 
 public class UserInterface
 {  

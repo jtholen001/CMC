@@ -1,3 +1,13 @@
+/**
+ * This class represents a profile controller
+ * 
+ * @Author: Michael Carroll, Brandan Kalsow, Nicholas Tawil, Ryan Strelow, Jordan Tholen
+ */
+
+package Controllers;
+
+import entityClasses.*;
+
 public class ProfileController
 {
   // Student entity to edit
