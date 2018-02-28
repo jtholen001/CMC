@@ -77,7 +77,7 @@ public class DBController
   /**
    * method to save an edited user to the database
    */
-  public void saveEditedUser(User user)
+  public <t extends User> void saveEditedUser(t user)
   {
     char temp;
     if(user.getActivationStatus() == false)
@@ -85,6 +85,14 @@ public class DBController
     else
       temp = 'Y';
     
+    if(user instanceof Student)
+    {
+      Student stu = (Student)user;
+      for(University univ: stu.getSavedSchools())
+      {
+        univDBlib.user_saveSchool(user.getUsername(),univ.getName());
+      }
+    }
     univDBlib.user_editUser(user.getUsername(),user.getFirstName(),user.getLastName(),user.getPassword(),user.getType(),
                             temp);
   }
@@ -165,6 +173,11 @@ public class DBController
                               university.getPercentEnrolled(), university.getPercentEnrolled(),
                               university.getAcademicScale(), university.getSocialScale(),
                               university.getQualityOfLifeScale());
+    
+    for(String emphasis: university.getEmphases())
+    {
+      univDBlib.university_addUniversityEmphasis(university.getName(), emphasis);
+    }
   }
 
   /**
@@ -192,17 +205,7 @@ public class DBController
    */
   public void removeUniversityFromStudent(Student s, University u)
   {
-
-  }
-
-  /**
-   * method to save an edited university
-   *
-   * @param a university object to save
-   */
-  public void saveUniversity(University u)
-  {
-
+    univDBlib.user_removeSchool(s.getUsername(),u.getName());
   }
 
   /**
