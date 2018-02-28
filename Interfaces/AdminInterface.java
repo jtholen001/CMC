@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * An interaction/interface class that an Admin uses to perform its functionalities
  * 
@@ -74,9 +76,10 @@ public class AdminInterface
   /**
    * A method that allows an Admin to add a new User
    */
-  public void addUser()
+  public void addUser(String firstName, String lastName, String username, String password, char type ,boolean isActivated,
+                        boolean isLoggedIn)
   {
-    uCont.addUser();
+    uCont.addUser(firstName, lastName, username, password, type, isActivated, isLoggedIn);
   }
   
   /**
@@ -101,17 +104,25 @@ public class AdminInterface
    * A method that allows an Admin to edit a specific University
    */
   
-  public void editUniversity(University university)
+  public void editUniversity(University university, String name, String state, String location, String control, int numStudents, int percentFemale, int SATVerbal, int SATMath,
+                             int expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
+                             int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {
-    uniCont.editUniversity(university);
+    uniCont.editUniversity(university,name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
+                             expenses,percentFinancialAid,numApplicants,percentAdmitted,percentEnrolled,
+                             academicScale,socialScale,qualityOfLifeScale,emphases);
   }
   
   /**
    * A method that allows an Admin to add a new University
    */
-  public void addUniversity()
+  public void addUniversity(String name, String state, String location, String control, int numStudents, int percentFemale, int SATVerbal, int SATMath,
+                             int expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
+                             int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {
-    uniCont.addUniversity();
+    uniCont.addUniversity(name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
+                             expenses,percentFinancialAid,numApplicants,percentAdmitted,percentEnrolled,
+                             academicScale,socialScale,qualityOfLifeScale,emphases);
   }
   
   /**
