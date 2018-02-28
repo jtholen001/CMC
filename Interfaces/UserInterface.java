@@ -32,6 +32,7 @@ public class UserInterface
   
   /**
    * This method logs the user into the system
+   * 
    * @param username of the user
    * @param password of the user
    * @return boolean successful
@@ -57,6 +58,7 @@ public class UserInterface
   
   /**
    * This method passes the logged in Student to the StudentInterface
+   * 
    * @param student object to be passed
    */
   public void passToStudentInterface(Student student)
@@ -66,6 +68,7 @@ public class UserInterface
   
   /**
    * This method passes the logged in Admin to the AdminInterface
+   * 
    * @param admin object to be passed
    */
   public void passToAdminInterface(Admin admin)

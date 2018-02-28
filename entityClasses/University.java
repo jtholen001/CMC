@@ -478,11 +478,8 @@ public class University
   }
 
   /**
-<<<<<<< HEAD
-   * method to display a single University
-=======
-   * toString() method to display an University entity
->>>>>>> ce7f5eeca497dcb5593e8c796d84525e64156add
+   * toString() method to display a University entity
+   * 
    * @return a concatenated string representing a University and its attributes
    */
   public String toString()

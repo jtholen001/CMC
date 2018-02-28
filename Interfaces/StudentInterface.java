@@ -34,6 +34,7 @@ public class StudentInterface
   
   /**
    * Constructor for a StudentInterface
+   * 
    * @param student the student that will be associated with the StudentInterface
    */
   public StudentInterface(Student student)
@@ -76,6 +77,7 @@ public class StudentInterface
   /**
    * TODO: possible boolean return type
    * Method to view a specific university
+   * 
    * @param university the University to be viewed 
    */
   public void viewUniversity(University university)
@@ -86,6 +88,7 @@ public class StudentInterface
   /**
    * TODO: possible boolean return type
    * Method to save a university to the Student's current list of saved universities
+   * 
    * @param university the University to be saved to the Student
    */
   public void saveUniversity(University university)
@@ -96,6 +99,7 @@ public class StudentInterface
   /**
    * TODO: possible boolean return type
    * Method to remove a university from the Student's saved universities
+   * 
    * @param university the University to be removed from the student
    */
   public void removeUniversity(University university)

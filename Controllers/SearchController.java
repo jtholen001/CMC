@@ -26,6 +26,8 @@ public class SearchController
   
   /**
    * Method to search for universities
+   * 
+   * @param name the name of this university as a String
    * @param state the state this university is located in as a String
    * @param location  whether the university is located in and urban or rural setting
    * @param control  whether this university is publicly
@@ -351,6 +353,7 @@ public class SearchController
   
   /**
    * Method to view Universitiess from searching
+   * 
    * @param foundUniversities the universities to be viewed from searching
    */
   public void viewSchools(ArrayList<University> foundUniversities)

@@ -66,13 +66,13 @@ public class AdminInterface
   /**
    * A method that allows an Admin to add a new User
    * 
-   * @param username the username of the user to edit
-   * @param newFirst the new first name for this user
-   * @param newLast the new last name for this user
-   * @param newPassword the new password for this user
-   * @param newType the new account type for this user
-   * @param newActivation the new activation status for this user
-   * @param newLoggedIn the new logged in status for this user
+   * @param firstName the new user's first name
+   * @param lastName the new user's last name
+   * @param username the new user's username
+   * @param password the new user's password
+   * @param type the type of user this is
+   * @param isActivated the activation status of the new user
+   * @param isLoggedIn the logged-in status of the new user
    */
   public void addUser(String firstName, String lastName, String username, String password, char type ,boolean isActivated,
                         boolean isLoggedIn)
@@ -121,8 +121,10 @@ public class AdminInterface
    * @param emphases an ArrayList<String> representing the edited emphases of the 
    */
   
-  public void editUniversity(University university, String name, String state, String location, String control, int numStudents, int percentFemale, int SATVerbal, int SATMath,
-                             int expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
+  public void editUniversity(University university, String name, String state, String location, String control, 
+                             int numStudents, int percentFemale, int SATVerbal, int SATMath,
+                             int expenses, double percentFinancialAid, int numApplicants, double percentAdmitted,
+                             double percentEnrolled,
                              int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {
     uniCont.editUniversity(university,name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,

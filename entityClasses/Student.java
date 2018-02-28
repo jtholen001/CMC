@@ -16,6 +16,7 @@ public class Student extends User
 
   /**
    * Constructor for a Student
+   * 
    * @param firstName the first name for the Student
    * @param lastName the last name for the Student
    * @param username the username for the Student
@@ -33,6 +34,7 @@ public class Student extends User
 
   /**
    * Method to return an array of this Student's saved universities
+   * 
    * @return a University array
    */
   public ArrayList<University> getSavedSchools()
@@ -42,6 +44,7 @@ public class Student extends User
 
    /**
    * Method to return the University associated with the name passed
+   * 
    * @return an University
    */
   public University getSpecificSchool(String universityName)

@@ -22,6 +22,7 @@ public class LoginController
 
    /**
     * This method controls the log in logic of the system
+    * 
     * @param username of the user
     * @param password of the user
     * @return user object that logged in
@@ -89,9 +90,9 @@ public class LoginController
    }
 
    /**
-    * This method controls the log in logic of the system
-    * @param User user entity for the user
-    * @return user object that logged in
+    * This method controls the log off logic of the system
+    * 
+    * @param user the user to logg off
     */
    public void logout(User user)
    {
