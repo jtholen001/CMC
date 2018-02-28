@@ -52,11 +52,20 @@ public class DBController
   /**
    * method to get all users from the database
    *
-   * @return an ArrayList of all users
+   * @return a hashmap of all users
    */
-  public ArrayList<User> getUsers()
+  public HashMap<String, User> getUsers()
   {
-    return null;
+    String[][] users = univDBlib.user_getUsers();
+    HashMap<String, User> userMap = new HashMap<String, User>();
+
+    for(int index = 0; index < users.length; index++)
+    {
+      userMap.put(users[index][0], new User(users[index][1], users[index][2], users[index][0], users[index][3],
+                                            users[index][4].charAt(0), Boolean.valueOf(users[index][5]), false)); //not sure how emphases are stored
+    }
+    
+    return userMap;
   }
 
   /**
