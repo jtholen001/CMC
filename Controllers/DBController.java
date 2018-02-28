@@ -173,6 +173,7 @@ public class DBController
                               university.getPercentEnrolled(), university.getPercentEnrolled(),
                               university.getAcademicScale(), university.getSocialScale(),
                               university.getQualityOfLifeScale());
+    
   }
 
   /**
