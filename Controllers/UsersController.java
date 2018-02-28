@@ -37,7 +37,13 @@ public class UsersController
   /**
    * a method to edit a single User
    *
-   * @param String username a string representing the username of a User
+   * @param username the username of the user to edit
+   * @param newFirst the new first name for this user
+   * @param newLast the new last name for this user
+   * @param newPassword the new password for this user
+   * @param newType the new account type for this user
+   * @param newActivation the new activation status for this user
+   * @param newLoggedIn the new logged in status for this user
    */
   public void editUser(String username,String firstName, String lastName, String password, char type ,boolean isActivated,
                         boolean isLoggedIn)
@@ -57,6 +63,14 @@ public class UsersController
 
   /**
    * a method to add a User to the Database
+   * 
+   * @param username the username of the user to edit
+   * @param newFirst the new first name for this user
+   * @param newLast the new last name for this user
+   * @param newPassword the new password for this user
+   * @param newType the new account type for this user
+   * @param newActivation the new activation status for this user
+   * @param newLoggedIn the new logged in status for this user
    */
   public void addUser(String firstName, String lastName, String username, String password, char type ,boolean isActivated,
                         boolean isLoggedIn)
