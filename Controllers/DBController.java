@@ -72,9 +72,9 @@ public class DBController
    *
    * @param User to add to the database
    */
-  public void addUser(User u)
+  public void addUser(User user)
   {
-
+    univDBlib.user_addUser(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getType());
   }
 
   /**
