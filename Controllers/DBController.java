@@ -77,7 +77,7 @@ public class DBController
   /**
    * method to save an edited user to the database
    */
-  public void saveEditedUser(User user)
+  public <t extends User> void saveEditedUser(t user)
   {
     char temp;
     if(user.getActivationStatus() == false)
@@ -85,6 +85,13 @@ public class DBController
     else
       temp = 'Y';
     
+    if(user instanceof Student)
+    {
+      for(University univ: user.getSavedSchools().listIterator())
+      {
+        univDBlib.user_saveSchool(user.getUsername(),univ.getName());
+      }
+    }
     univDBlib.user_editUser(user.getUsername(),user.getFirstName(),user.getLastName(),user.getPassword(),user.getType(),
                             temp);
   }
@@ -192,7 +199,7 @@ public class DBController
    */
   public void removeUniversityFromStudent(Student s, University u)
   {
-
+    univDBlib.user_removeSchool(s.getUsername(),u.getName());
   }
 
   /**
@@ -202,7 +209,7 @@ public class DBController
    */
   public void saveUniversity(University u)
   {
-
+    
   }
 
   /**
