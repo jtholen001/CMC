@@ -50,15 +50,19 @@ public class StudentInterface
    */
   public void viewProfile()
   {
-   this.pc.viewProfile(); 
+   this.pc.viewProfile(this.student); 
   }
   
   /**
    * Method to edit the Student's profile 
+   * 
+   * @param firstName a String representing the first name of a Student
+   * @param lastName a String representing the last name of a Student
+   * @param password a String representing the password of a Student
    */
-  public void editProfile()
+  public void editProfile(String firstName, String lastName, String password)
   {
-   this.pc.editProfile(); 
+   this.pc.editProfile(firstName, lastName, password); 
   }
   
   /**
@@ -66,7 +70,7 @@ public class StudentInterface
    */
   public void viewSavedUniversities()
   {
-   this.suc.viewSavedUniversities();
+   this.suc.viewSavedUniversities(this.student);
   }
   
   /**
@@ -105,7 +109,8 @@ public class StudentInterface
    */
   public void searchUniversities()
   {
-   sc.searchUniversities(); 
+   ArrayList<University> foundUniversities = sc.searchUniversities(); 
+   sc.viewSchools(foundUniversities);
   }
   
   /**

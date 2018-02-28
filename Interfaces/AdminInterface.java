@@ -58,9 +58,9 @@ public class AdminInterface
   /**
    * A method that allows an Admin to edit a specific User
    */
-  public void editUser()
+  public void editUser(String username, String newFirst, String newLast, String newPassword, char newType, boolean newActivation, boolean newLoggedIn)
   {
-    uCont.editUser(admin.getUsername());
+    uCont.editUser(username, newFirst, newLast, newPassword, newType, newActivation, newLoggedIn);
   }
   
   /**

@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 /**
  * A controller class 1manages a User
  *
@@ -27,17 +29,9 @@ public class UsersController
   /**
    * a method to view all Users in the Database
    */
-  public void viewUsers()
+  public HashMap<String,User> viewUsers()
   {
-    for (int i = 0; i <= users.length; i++)
-    {
-      char type = users[i].getType();
-      if (type == 'a')
-        ((Admin)users[i]).toString();
-      if (type == 's')
-        ((Student)users[i]).toString();
-      System.out.println("\n\n");
-    }
+    return dbCont.getUsers();
   }
 
   /**
@@ -45,7 +39,8 @@ public class UsersController
    *
    * @param String username a string representing the username of a User
    */
-  public void editUser(String username)
+  public void editUser(String username,String firstName, String lastName, String password, char type ,boolean isActivated,
+                        boolean isLoggedIn)
   {
     User toEdit = dbCont.getUser(username);
 
@@ -63,16 +58,11 @@ public class UsersController
   /**
    * a method to add a User to the Database
    */
-  public void addUser()
+  public void addUser(String firstName, String lastName, String username, String password, char type ,boolean isActivated,
+                        boolean isLoggedIn)
   {
-    String firstName;
-    String lastName;
-    String username;
-    String password;
-    char type;
-    boolean isActivated;
-    boolean isLoggedIn;
-    dbCont.addUser(new User(firstName, lastName, username, password, type, isActivated, isLoggedIn));
+
+    dbCont.addUser(new User(firstName, lastName, username, password, type, isActivated, isLoggedIn));    
   }
 
   /**
@@ -83,5 +73,6 @@ public class UsersController
   public void deactivate(User user)
   {
     user.setActivationStatus(false);
+    
   }
 }
