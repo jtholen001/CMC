@@ -59,7 +59,7 @@ public class SearchController
                                  int SATVerbalLower, int SATVerbalUpper, int SATMathLower, int SATMathUpper, int expensesLower, int expensesUpper, int numApplicantsLower, int numApplicantsUpper,
                                  int academicScaleLower, int academicScaleUpper, int socialScaleLower, int socialScaleUpper, int qualityOfLifeScaleLower, int qualityOfLifeScaleUpper,  
                                  double percentFinancialAidLower, double percentFinancialAidUpper, double percentAdmittedLower, double percentAdmittedUpper, double percentEnrolledLower, 
-                                 double percentEnrolledUpper, ArrayList<String> searchEmphases;)
+                                 double percentEnrolledUpper, ArrayList<String> searchEmphases)
   {
     //HashMap containing all the universities in the database
     HashMap<String, University> universities = dbc.viewUniversities();
