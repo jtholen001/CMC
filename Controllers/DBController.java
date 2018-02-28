@@ -52,19 +52,49 @@ public class DBController
   /**
    * method to get all users from the database
    *
-   * @return an ArrayList of all users
+   * @return a hashmap of all users
    */
-  public ArrayList<User> getUsers()
+  public HashMap<String, User> getUsers()
   {
-    return null;
+    String[][] users = univDBlib.user_getUsers();
+    HashMap<String, User> userMap = new HashMap<String, User>();
+    boolean status;
+
+    for(int index = 0; index < users.length; index++)
+    {
+      //gets the char character of if they are activated and sets a bool value to be used when creating the user
+      if(users[index][5].equals("Y"))
+        status = true;
+      else
+        status = false;
+      //creates the user and puts it in the map
+      userMap.put(users[index][0], new User(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
+                                            status, false));
+    }
+    return userMap;
   }
 
   /**
    * method to save an edited user to the database
    */
-  public void saveEditedUser(User user)
+  public <t extends User> void saveEditedUser(t user)
   {
-
+    char temp;
+    if(user.getActivationStatus() == false)
+      temp = 'N';
+    else
+      temp = 'Y';
+    
+    if(user instanceof Student)
+    {
+      Student stu = (Student)user;
+      for(University univ: stu.getSavedSchools())
+      {
+        univDBlib.user_saveSchool(user.getUsername(),univ.getName());
+      }
+    }
+    univDBlib.user_editUser(user.getUsername(),user.getFirstName(),user.getLastName(),user.getPassword(),user.getType(),
+                            temp);
   }
 
   /**
@@ -72,9 +102,9 @@ public class DBController
    *
    * @param User to add to the database
    */
-  public void addUser(User u)
+  public void addUser(User user)
   {
-
+    univDBlib.user_addUser(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getType());
   }
 
   /**
@@ -143,6 +173,12 @@ public class DBController
                               university.getPercentEnrolled(), university.getPercentEnrolled(),
                               university.getAcademicScale(), university.getSocialScale(),
                               university.getQualityOfLifeScale());
+    
+
+    for(String emphasis: university.getEmphases())
+    {
+      univDBlib.university_addUniversityEmphasis(university.getName(), emphasis);
+    }
   }
 
   /**
@@ -170,18 +206,9 @@ public class DBController
    */
   public void removeUniversityFromStudent(Student s, University u)
   {
-
+    univDBlib.user_removeSchool(s.getUsername(),u.getName());
   }
 
-  /**
-   * method to save an edited university
-   *
-   * @param a university object to save
-   */
-  public void saveUniversity(University u)
-  {
-
-  }
 
   /**
    * method to search all universities and return the mataching ones
