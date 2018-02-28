@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import dblibrary.project.csci230.*;
 import java.util.HashMap;
 import java.util.Set;
+import java.util.List;
+import java.util.Collections;
+import java.util.Iterator;
 
 public class DBController
 {
@@ -21,32 +24,27 @@ public class DBController
   public DBController()
   {
   }
-
-  /**
-   * method to get a specific university based off of the given name
-   *
-   * @param universityname the universityname of the university
-   *
-   * @return a university object
+  
+  /* @return a user object
    */
-  public University getuniversity(String universityname)
+  public User getUser(String username)
   {
-    String[][] universitys = univDBlib.university_getUniversitys();
-    HashMap<String, university> universityMap = new HashMap<String, university>();
+    String[][] users = univDBlib.user_getUsers();
+    HashMap<String, User> userMap = new HashMap<String, User>();
     boolean status;
 
-    for(int index = 0; index < universitys.length; index++)
+    for(int index = 0; index < users.length; index++)
     {
-      //gets the char character of if they are activated and sets a bool value to be used when creating the university
-      if(universitys[index][5].equals("Y"))
+      //gets the char character of if they are activated and sets a bool value to be used when creating the user
+      if(users[index][5].equals("Y"))
         status = true;
       else
         status = false;
-      //creates the university and puts it in the map
-      universityMap.put(universitys[index][0], new university(universitys[index][0],universitys[index][1],universitys[index][2],universitys[index][3],universitys[index][4].charAt(0),
+      //creates the user and puts it in the map
+      userMap.put(users[index][0], new User(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
                                             status, false));
     }
-    return universityMap.get(universityname);
+    return userMap.get(username);
   }
 
 
@@ -313,7 +311,7 @@ public class DBController
       if (minPercentFinancialAid > university.getPercentFinancialAid())
         minPercentFinancialAid = university.getPercentFinancialAid();
 
-      if (maxPercentAdmitted < university.maxPercentAdmitted())
+      if (maxPercentAdmitted < university.getPercentAdmitted())
         maxPercentAdmitted = university.getPercentAdmitted();
       if (minPercentAdmitted > university.getPercentAdmitted())
         minPercentAdmitted = university.getPercentAdmitted();
@@ -421,20 +419,28 @@ public class DBController
 
     // sorts distance map by value in ascending order, adds universityNames to ArrayList to return
     HashMap<String, Double> sortedDistances = new HashMap<String, Double>();
-    ArrayList<Double> sortedValues = new ArrayList<Double>(distanceMap.keySet());
+    List<Double> sortedValues = new ArrayList<Double>(distanceMap.values());
     Collections.sort(sortedValues);
     Iterator<Double> values = sortedValues.iterator();
 
-    ArrayList<String> recommendedUniversities = new ArrayList<String>();
-    while ((values.hasNext()) && (recommendedUniversities.size() < 5))
+    ArrayList<String> recommendedUniversityNames = new ArrayList<String>();
+    while ((values.hasNext()) && (recommendedUniversityNames.size() < 5))
     {
-      int temp = values.next();
+      double temp = values.next();
       for (String universityName : keys)
       {
         if (distanceMap.get(universityName) == temp)
-          recommendedUniversities.add(universityName);
+          recommendedUniversityNames.add(universityName);
       }
     }
+    
+    // creates University objects from sorted University names to return
+    ArrayList<University> recommendedUniversities = new ArrayList<University>();
+    for (String universityName : recommendedUniversityNames)
+    {
+      recommendedUniversities.add(this.getUniversity(universityName));
+    }
+    
     return recommendedUniversities;
   }
 }

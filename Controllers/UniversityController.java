@@ -119,7 +119,7 @@ public class UniversityController
                              int expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
                              int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {    
-    dbCont.addUniversity(new University(name, state, location, control, numStudents, percentFemale, satVerbal, satMath, 
+    dbCont.addUniversity(new University(name, state, location, control, numStudents, percentFemale, SATVerbal, SATMath, 
                                         expenses, percentFinancialAid, numApplicants, percentAdmitted, percentEnrolled, 
                                         academicScale, socialScale, qualityOfLifeScale, emphases));
   }

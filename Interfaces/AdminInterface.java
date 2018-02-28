@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * An interaction/interface class that an Admin uses to perform its functionalities
  * 
@@ -38,16 +40,6 @@ public class AdminInterface
   }
   
   /**
-   * A method that sets the type of User to an Admin, specified by character 'a'
-   * 
-   * @param admin the Admin who's type is being set to Admin's type
-   */
-  public void setAdmin(Admin admin)
-  {
-    admin.setType('a');
-  }
-  
-  /**
    * A method that displays all User objects in the Database
    */
   public void viewUsers()
@@ -73,10 +65,19 @@ public class AdminInterface
   
   /**
    * A method that allows an Admin to add a new User
+   * 
+   * @param username the username of the user to edit
+   * @param newFirst the new first name for this user
+   * @param newLast the new last name for this user
+   * @param newPassword the new password for this user
+   * @param newType the new account type for this user
+   * @param newActivation the new activation status for this user
+   * @param newLoggedIn the new logged in status for this user
    */
-  public void addUser()
+  public void addUser(String firstName, String lastName, String username, String password, char type ,boolean isActivated,
+                        boolean isLoggedIn)
   {
-    uCont.addUser();
+    uCont.addUser(firstName, lastName, username, password, type, isActivated, isLoggedIn);
   }
   
   /**
@@ -99,19 +100,64 @@ public class AdminInterface
   
   /**
    * A method that allows an Admin to edit a specific University
+   * 
+   * @param university the University object to be edited
+   * @param name a String representing the edited name of the University
+   * @param state a String representing the edited state of the University
+   * @param location a String representing the edited location of the University
+   * @param control a String representing the edited control of the University
+   * @param numStudents an int representing the edited numStudents of the University
+   * @param percentFemale an int representing the edited percentFemale of the University
+   * @param SATVerbal an int representing the edited SATVerbal of the University
+   * @param SATMath an int representing the edited SATMath of the University
+   * @param expenses an int representing the edited expenses of the University
+   * @param percentFinancialAid a double representing the edited percentFinancialAid of the University
+   * @param numApplicants an int representing the edited numApplicants of the University
+   * @param percentAdmitted a double representing the edited percentAdmitted of the University
+   * @param percentEnrolled a double representing the edited percentEnrolled of the University
+   * @param academicScale an int representing the edited academicScale of the University
+   * @param socialScale an intrepresenting the edited socialScale of the University
+   * @param qualityOfLifeScale an int representing the edited qualityOfLifeScale of the University
+   * @param emphases an ArrayList<String> representing the edited emphases of the 
    */
   
-  public void editUniversity(University university)
+  public void editUniversity(University university, String name, String state, String location, String control, int numStudents, int percentFemale, int SATVerbal, int SATMath,
+                             int expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
+                             int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {
-    uniCont.editUniversity(university);
+    uniCont.editUniversity(university,name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
+                             expenses,percentFinancialAid,numApplicants,percentAdmitted,percentEnrolled,
+                             academicScale,socialScale,qualityOfLifeScale,emphases);
   }
   
   /**
    * A method that allows an Admin to add a new University
+   * 
+   * @param name a String representing the edited name of the University
+   * @param state a String representing the edited state of the University
+   * @param location a String representing the edited location of the University
+   * @param control a String representing the edited control of the University
+   * @param numStudents an int representing the edited numStudents of the University
+   * @param percentFemale an int representing the edited percentFemale of the University
+   * @param SATVerbal an int representing the edited SATVerbal of the University
+   * @param SATMath an int representing the edited SATMath of the University
+   * @param expenses an int representing the edited expenses of the University
+   * @param percentFinancialAid a double representing the edited percentFinancialAid of the University
+   * @param numApplicants an int representing the edited numApplicants of the University
+   * @param percentAdmitted a double representing the edited percentAdmitted of the University
+   * @param percentEnrolled a double representing the edited percentEnrolled of the University
+   * @param academicScale an int representing the edited academicScale of the University
+   * @param socialScale an intrepresenting the edited socialScale of the University
+   * @param qualityOfLifeScale an int representing the edited qualityOfLifeScale of the University
+   * @param emphases an ArrayList<String> representing the edited emphases of the 
    */
-  public void addUniversity()
+  public void addUniversity(String name, String state, String location, String control, int numStudents, int percentFemale, int SATVerbal, int SATMath,
+                             int expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
+                             int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {
-    uniCont.addUniversity();
+    uniCont.addUniversity(name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
+                             expenses,percentFinancialAid,numApplicants,percentAdmitted,percentEnrolled,
+                             academicScale,socialScale,qualityOfLifeScale,emphases);
   }
   
   /**
