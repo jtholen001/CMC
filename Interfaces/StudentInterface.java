@@ -105,7 +105,8 @@ public class StudentInterface
    */
   public void searchUniversities()
   {
-   sc.searchUniversities(); 
+   ArrayList<University> foundUniversities = sc.searchUniversities(); 
+   sc.viewSchools(foundUniversities);
   }
   
   /**
