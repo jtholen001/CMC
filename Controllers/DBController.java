@@ -29,9 +29,9 @@ public class DBController
    *
    * @return a university object
    */
-  public university getuniversity(String universityname)
+  public University getuniversity(String universityname)
   {
-    String[][] universitys = univDBlib.university_getuniversitys();
+    String[][] universitys = univDBlib.university_getUniversitys();
     HashMap<String, university> universityMap = new HashMap<String, university>();
     boolean status;
 
@@ -50,7 +50,7 @@ public class DBController
   }
 
 
-   * @return a hashmap of all users
+   /* @return a hashmap of all users
    */
   public HashMap<String, User> getUsers()
   {

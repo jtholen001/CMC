@@ -73,6 +73,6 @@ public class UsersController
   public void deactivate(User user)
   {
     user.setActivationStatus(false);
-    
+    dbCont.saveEditedUser(user);
   }
 }
