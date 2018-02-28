@@ -174,6 +174,7 @@ public class DBController
                               university.getAcademicScale(), university.getSocialScale(),
                               university.getQualityOfLifeScale());
     
+
     for(String emphasis: university.getEmphases())
     {
       univDBlib.university_addUniversityEmphasis(university.getName(), emphasis);
@@ -207,6 +208,7 @@ public class DBController
   {
     univDBlib.user_removeSchool(s.getUsername(),u.getName());
   }
+
 
   /**
    * method to search all universities and return the mataching ones
