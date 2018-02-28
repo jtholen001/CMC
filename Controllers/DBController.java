@@ -173,6 +173,11 @@ public class DBController
                               university.getPercentEnrolled(), university.getPercentEnrolled(),
                               university.getAcademicScale(), university.getSocialScale(),
                               university.getQualityOfLifeScale());
+    
+    for(String emphasis: university.getEmphases())
+    {
+      univDBlib.university_addUniversityEmphasis(university.getName(), emphasis);
+    }
   }
 
   /**
@@ -201,16 +206,6 @@ public class DBController
   public void removeUniversityFromStudent(Student s, University u)
   {
     univDBlib.user_removeSchool(s.getUsername(),u.getName());
-  }
-
-  /**
-   * method to save an edited university
-   *
-   * @param a university object to save
-   */
-  public void saveUniversity(University u)
-  {
-    
   }
 
   /**

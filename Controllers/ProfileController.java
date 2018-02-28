@@ -17,6 +17,7 @@ public class ProfileController
   }
 
   /**
+   * TODO: implement acquiring data to change
    * method to edit the profile of the given student
    */
   public void editProfile()
