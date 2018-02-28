@@ -55,6 +55,10 @@ public class StudentInterface
   
   /**
    * Method to edit the Student's profile 
+   * 
+   * @param firstName a String representing the first name of a Student
+   * @param lastName a String representing the last name of a Student
+   * @param password a String representing the password of a Student
    */
   public void editProfile(String firstName, String lastName, String password)
   {
