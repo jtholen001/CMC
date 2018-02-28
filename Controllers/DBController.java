@@ -174,6 +174,11 @@ public class DBController
                               university.getAcademicScale(), university.getSocialScale(),
                               university.getQualityOfLifeScale());
     
+
+    for(String emphasis: university.getEmphases())
+    {
+      univDBlib.university_addUniversityEmphasis(university.getName(), emphasis);
+    }
   }
 
   /**
