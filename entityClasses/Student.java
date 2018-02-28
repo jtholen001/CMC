@@ -49,12 +49,21 @@ public class Student extends User
    */
   public University getSpecificSchool(String universityName)
   {
+    for (University u : savedUniversities)
+    {
+     if (u.getName().equals(universityName))
+     {
+      return u; 
+     }
+    }
     return null;
   }
 
    /**
    * TODO: possible boolean return type
    * Method to add a new University to a Student's saved universities
+   * 
+   * @param newUniversity  the University to add to the Student
    */
   public void addSchool(University newUniversity)
   {
@@ -64,6 +73,8 @@ public class Student extends User
    /**
    * TODO: possible boolean return type
    * Method to remove a University from a Student's saved universities
+   * 
+   * @param oldUniversity  the University that is to be removed
    */
   public void removeUniversity(University oldUniversity)
   {
@@ -72,6 +83,7 @@ public class Student extends User
 
   /**
    * toString() method to display a Student entity
+   * 
    * @return a concatenated string representing a Students and its attributes
    */
   public String toString()
