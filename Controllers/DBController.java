@@ -87,7 +87,8 @@ public class DBController
     
     if(user instanceof Student)
     {
-      for(University univ: user.getSavedSchools().listIterator())
+      Student stu = (Student)user;
+      for(University univ: stu.getSavedSchools())
       {
         univDBlib.user_saveSchool(user.getUsername(),univ.getName());
       }
