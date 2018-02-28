@@ -54,9 +54,24 @@ public class DBController
    *
    * @return an ArrayList of all users
    */
-  public ArrayList<User> getUsers()
+  public HashMap<String,User> getUsers()
   {
-    return null;
+    String[][] users = univDBlib.user_getUsers();
+    HashMap<String, User> userMap = new HashMap<String, User>();
+    boolean status;
+
+    for(int index = 0; index < users.length; index++)
+    {
+      //gets the char character of if they are activated and sets a bool value to be used when creating the user
+      if(users[index][5].equals("Y"))
+        status = true;
+      else
+        status = false;
+      //creates the user and puts it in the map
+      userMap.put(users[index][0], new User(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
+                                            status, false));
+    }
+    return userMap;
   }
 
   /**
