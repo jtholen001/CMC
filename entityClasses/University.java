@@ -1,7 +1,7 @@
 /**
  * This class represents a University
  * @Author Michael Carroll, Brandan Kalsow, Nicholas Tawil, Jordan Tholen, Ryan Strelow
- * @Version 2/29/2018
+ * @Version 2/30/2018
  */
 import java.util.ArrayList;
 
