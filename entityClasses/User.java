@@ -4,6 +4,8 @@
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
  * @version 2/26/18
  */
+package entityClasses;
+
 public class User
 {
   /**
@@ -44,6 +46,7 @@ public class User
   
   /**
    * Constructor for an User
+   * 
    * @param firstName a string representing the first name of an User
    * @param lastName a string representing the last name of an User
    * @param username a string representing the username of an User
@@ -65,6 +68,7 @@ public class User
   
   /**
    * This method gets the user's first lastName
+   * 
    * @return firstName the first name of this user as a String
    */
   public String getFirstName()
@@ -74,6 +78,7 @@ public class User
   
   /**
    * This method gets the user's last lastName
+   * 
    * @return lastName the last name of this user as a String
    */
   public String getLastName()
@@ -92,6 +97,7 @@ public class User
   
   /**
    * This method gets the user's password
+   * 
    * @return password this user's password as a String
    */
   public String getPassword()
@@ -101,6 +107,7 @@ public class User
   
   /**
    * This method gets the user's type
+   * 
    * @return type the type of this user as a char
    */
   public char getType()
@@ -110,6 +117,7 @@ public class User
   
   /**
    * This method gets the user's activation status
+   * 
    * @return activationStatus the activation status of this user as a boolean
    */
   public boolean getActivationStatus()
@@ -119,6 +127,7 @@ public class User
   
   /**
    * This method gets the user's logged in status
+   * 
    * @return isLoggedIn this user's logged in status as a boolean
    */
   public boolean getLoggedInStatus()
@@ -128,6 +137,7 @@ public class User
   
   /**
    * This method sets the user's first lastName
+   * 
    * @param newFirstName the new first name for this user
    */
   public void setFirstName(String newFirstName)
@@ -137,6 +147,7 @@ public class User
   
   /**
    * This method sets the user's last lastName
+   * 
    * @param newLastName the new last name for this user
    */
   public void setLastName(String newLastName)
@@ -155,6 +166,7 @@ public class User
   
   /**
    * This method sets the user's password
+   * 
    * @param newPassword the new password for this user
    */
   public void setPassword(String newPassword)
@@ -164,6 +176,7 @@ public class User
   
   /**
    * This method gets the user's type
+   * 
    * @param newType the new type of this user as a char
    */
   public void setType(char newUserType)
@@ -173,6 +186,7 @@ public class User
   
   /**
    * This method gets the user's activation status
+   * 
    * @param newActivationStatus the new activation status of this user as a boolean
    */
   public void setActivationStatus(boolean newActivationStatus)
@@ -182,6 +196,7 @@ public class User
   
   /**
    * This method gets the user's logged in status
+   * 
    * @param newLoggedInStatus this user's new logged in status as a boolean
    */
   public void setLoggedInStatus(boolean newLoggedInStatus)
@@ -191,6 +206,7 @@ public class User
   
   /**
    * method to display a single User
+   * 
    * @return a concatenated string representing an User and its attributes
    */
   public String toString()

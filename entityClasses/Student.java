@@ -4,6 +4,7 @@
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
  * @version 2/26/18
  */
+package entityClasses;
 
 import java.util.ArrayList;
 
@@ -16,6 +17,7 @@ public class Student extends User
 
   /**
    * Constructor for a Student
+   * 
    * @param firstName the first name for the Student
    * @param lastName the last name for the Student
    * @param username the username for the Student
@@ -33,6 +35,7 @@ public class Student extends User
 
   /**
    * Method to return an array of this Student's saved universities
+   * 
    * @return a University array
    */
   public ArrayList<University> getSavedSchools()
@@ -42,16 +45,26 @@ public class Student extends User
 
    /**
    * Method to return the University associated with the name passed
+   * 
    * @return an University
    */
   public University getSpecificSchool(String universityName)
   {
+    for (University u : savedUniversities)
+    {
+     if (u.getName().equals(universityName))
+     {
+      return u; 
+     }
+    }
     return null;
   }
 
    /**
    * TODO: possible boolean return type
    * Method to add a new University to a Student's saved universities
+   * 
+   * @param newUniversity  the University to add to the Student
    */
   public void addSchool(University newUniversity)
   {
@@ -61,6 +74,8 @@ public class Student extends User
    /**
    * TODO: possible boolean return type
    * Method to remove a University from a Student's saved universities
+   * 
+   * @param oldUniversity  the University that is to be removed
    */
   public void removeUniversity(University oldUniversity)
   {
@@ -69,6 +84,7 @@ public class Student extends User
 
   /**
    * toString() method to display a Student entity
+   * 
    * @return a concatenated string representing a Students and its attributes
    */
   public String toString()

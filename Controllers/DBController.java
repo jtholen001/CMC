@@ -4,6 +4,7 @@
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
  * @version 2/26/18
 */
+package Controllers;
 
 import java.lang.Math;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.Set;
 import java.util.List;
 import java.util.Collections;
 import java.util.Iterator;
+import entityClasses.*;
 
 public class DBController
 {
@@ -25,7 +27,11 @@ public class DBController
   {
   }
   
-  /* @return a user object
+  /**
+   * This method gets a user's data based on their username
+   * 
+   * @param username the username of the user to find
+   * @return a user object
    */
   public User getUser(String username)
   {
@@ -48,7 +54,10 @@ public class DBController
   }
 
 
-   /* @return a hashmap of all users
+   /**
+    * This method gets a list of all users in the database
+    * 
+    * @return a hashmap of all users
    */
   public HashMap<String, User> getUsers()
   {
@@ -71,7 +80,9 @@ public class DBController
   }
 
   /**
-   * method to save an edited university to the database
+   * This method saves edits to a user to the data base
+   * 
+   * @param user the user who's profile was edited
    */
 
   public <t extends User> void saveEditedUser(t user)
@@ -95,9 +106,9 @@ public class DBController
   }
 
   /**
-   * method to add a university to the database
+   * method to add a user to the database
    *
-   * @param university to add to the database
+   * @param user the user to add to the database
    */
 
   public void addUser(User user)
@@ -200,43 +211,10 @@ public class DBController
    *
    * @param a Student object to remove from
    * @param a University object to remove from the student
-   *
    */
   public void removeUniversityFromStudent(Student s, University u)
   {
     univDBlib.user_removeSchool(s.getUsername(),u.getName());
-  }
-
-
-  /**
-   * method to search all universities and return the mataching ones
-   *
-   * @param name the name of this university as a String
-   * @param state the state this university is located in as a String
-   * @param location whether the university is located in and urban or rural setting
-   * @param control whether this university is publicly
-   * @param numStudents the number of students enrolled at this university
-   * @param percentFemale the percentage of enrolled students that are female
-   * @param SATVerbal the average SAT Verbal score of the students enrolled at this university
-   * @param SATMath the average SAT Math score of the students enrolled at this university
-   * @param expenses the cost to attend this university
-   * @param percentFinancialAid the percentage of enrolled students who recieve financial aid
-   * @param numApplicants the number of students that apply to this university
-   * @param percentAdmitted the percent of applicants that are addmitted to this university
-   * @param percentEnrolled the percent of addmitted students that enroll at this university
-   * @param academicScale how this university rates academically
-   * @param socialScale how this university rates socially
-   * @param qualityOfLifeScale the quality of life at this university
-   * @param emphases what areas of study this university emphasizes
-   *
-   * @return an ArrayList of all universities that match the criteria
-   */
-  public ArrayList<University> searchUniversities(String name,String state,String location, String control, int numStudents,
-                    int percentFemale, int SATVerbal, int SATMath, int expenses, double percentFinancialAid,
-                    int numApplicants, double percentAdmitted, double percentEnrolled, int academicScale, int socialScale,
-                    int qualityOfLifeScale, ArrayList<String> emphases)
-  {
-    return null;
   }
 
 

@@ -1,11 +1,14 @@
-import java.util.HashMap;
-
 /**
  * A controller class 1manages a User
  *
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
  * @version 2/26/18
  */
+package Controllers;
+
+import java.util.HashMap;
+import entityClasses.*;
+
 public class UsersController
 {
   /**

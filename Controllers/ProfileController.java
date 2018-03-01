@@ -1,3 +1,13 @@
+/**
+ * This class represents a profile controller
+ * 
+ * @Author: Michael Carroll, Brandan Kalsow, Nicholas Tawil, Ryan Strelow, Jordan Tholen
+ */
+
+package Controllers;
+
+import entityClasses.*;
+
 public class ProfileController
 {
   // Student entity to edit
@@ -8,6 +18,7 @@ public class ProfileController
 
   /**
    * Default controller controller for the given student
+   * 
    * @param student the name of this student
    */
   public ProfileController(Student student)
@@ -17,7 +28,6 @@ public class ProfileController
   }
 
   /**
-   * TODO: implement acquiring data to change
    * method to edit the profile of the given student
    * 
    * @param firstName a String representing the edited first name of a Student

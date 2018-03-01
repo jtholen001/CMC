@@ -4,8 +4,10 @@
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
  * @version 2/20/18
  */
+package Controllers;
 
 import java.util.ArrayList;
+import entityClasses.*;
 
 public class StudentUniversitiesController
 {
@@ -53,6 +55,7 @@ public class StudentUniversitiesController
   /**
    * TODO: possible boolean return type
    * Method to remove a University from a Student's saved universities
+   * 
    * @param oldUniversity the University to be removed
    */
   public void removeUniversity(University oldUniversity)
