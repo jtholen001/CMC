@@ -32,23 +32,23 @@ public class Driver {
 	 * U1 AND U20
 	 */
 	public void login() {
-		boolean status = userInt.login("johnmiller", "")
+		boolean status = userInt.login("johnmiller", "");
 		
 	}
 	
 	public void searchForUniversities() {
-		boolean status = userInt.login("johnmiller", "")
+		
 		
 	}	
 	//U6 and U7 and U10 maybe U11
 	public void viewMatchedSchools() {
-		boolean status = userInt.login("johnmiller", "")
+		
 		
 	}	
 	
 	//U4 and U7 probably U8
 	public void viewSavedSchools() {
-		boolean status = userInt.login("johnmiller", "")
+		
 		
 	}
 	
