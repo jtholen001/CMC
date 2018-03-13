@@ -1,5 +1,6 @@
 /**
- * 
+ * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
+ * @version 1/71/18
  */
 package drivers;
 import Interfaces.*;
@@ -8,7 +9,7 @@ import Controllers.*;
 import java.util.ArrayList;
 
 /**
- * @author @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
+ * 
  *
  */
 public class Driver {
