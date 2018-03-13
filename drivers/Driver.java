@@ -18,6 +18,10 @@ public class Driver {
 	public Admin admin = new Admin("John", "Miller", "jmiller", "password0", 'a', true, true);
 	public Student student;
 
+	public Driver() {
+		userInt = new UserInterface();
+		student = new StudentInterface(null);
+	}
 	
 	/**
 	 * 
@@ -36,10 +40,7 @@ public class Driver {
 	 */
 	public static void main(String[] args) 
 	{
-		userInt = new UserInterface();
-		
-		
-		studentInt = new StudentInterface(null);
+		Driver driver = new Driver();
 		// TODO Auto-generated method stub
 		
 		
