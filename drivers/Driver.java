@@ -12,7 +12,8 @@ import java.util.ArrayList;
  * 
  *
  */
-public class Driver {
+public class Driver 
+{
 	
 	public StudentInterface studentInt;
 	public AdminInterface adminInt;
@@ -20,7 +21,8 @@ public class Driver {
 	public Admin admin;
 	public Student student;
 
-	public Driver() {
+	public Driver() 
+	{
 		student = new Student("John", "User", "juser", "user", 'u', true, false, new ArrayList<University>());
 		admin = new Admin("Noreen", "Admin", "nadmin", "admin", 'a', true, false);
 		userInt = new UserInterface();
@@ -31,40 +33,52 @@ public class Driver {
 	/**
 	 * U1 AND U20
 	 */
-	public void login() {
-		boolean status = userInt.login("johnmiller", "");
+	public void login() 
+	{
+		System.out.println("User should be logged in correctly: " + userInt.login("juser", "user");
+		System.out.println("User should be logged out correctly" + userInt.logout((User)student));
+		System.out.println("User should fail to log in with incorrect username: " + userInt.login("john", "user"));
+		System.out.println("User should fail to log in with incorrect password: " + userInt.login("juser", "null"));
+		//TODO: Deactivate user for next test
+		System.out.println("User should fail to log in because account is deactivated" + userInt.login("juser", "user"));
 		
 	}
 	
-	public void searchForUniversities() {
+	public void searchForUniversities() 
+	{
 		
 		
 	}	
 	//U6 and U7 and U10 maybe U11
-	public void viewMatchedSchools() {
+	public void viewMatchedSchools() 
+	{
 		
 		
 	}	
 	
 	//U4 and U7 probably U8
-	public void viewSavedSchools() {
+	public void viewSavedSchools() 
+	{
 		
 		
 	}
 	
 	//U5 and U9
-	public void viewMyProfile() {
+	public void viewMyProfile() 
+	{
 
 		
 	}
 	
 	//U13 and U17, U18, U19
-	public void viewUsers() {
+	public void viewUsers() 
+	{
 		
 	}
 	
 	//U14 and U15 and U16
-	public void viewUniversities() {
+	public void viewUniversities() 
+	{
 
 		
 	}
