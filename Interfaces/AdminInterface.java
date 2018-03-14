@@ -62,9 +62,9 @@ public class AdminInterface
    * @param newActivation the new activation status for this user
    * @param newLoggedIn the new logged in status for this user
    */
-  public void editUser(String username, String newFirst, String newLast, String newPassword, char newType, boolean newActivation, boolean newLoggedIn)
+  public int editUser(String username, String newFirst, String newLast, String newPassword, char newType, boolean newActivation, boolean newLoggedIn)
   {
-    uCont.editUser(username, newFirst, newLast, newPassword, newType, newActivation, newLoggedIn);
+    return uCont.editUser(username, newFirst, newLast, newPassword, newType, newActivation, newLoggedIn);
   }
   
   /**
@@ -78,10 +78,10 @@ public class AdminInterface
    * @param isActivated the activation status of the new user
    * @param isLoggedIn the logged-in status of the new user
    */
-  public void addUser(String firstName, String lastName, String username, String password, char type ,boolean isActivated,
+  public int addUser(String firstName, String lastName, String username, String password, char type ,boolean isActivated,
                         boolean isLoggedIn)
   {
-    uCont.addUser(firstName, lastName, username, password, type, isActivated, isLoggedIn);
+    return uCont.addUser(firstName, lastName, username, password, type, isActivated, isLoggedIn);
   }
   
   /**
@@ -89,9 +89,9 @@ public class AdminInterface
    * 
    * @param u a User object to be deactivated
    */
-  public void deactivate(User u)
+  public int deactivate(User u)
   {
-    uCont.deactivate(u);
+    return uCont.deactivate(u);
   }
   
   /**

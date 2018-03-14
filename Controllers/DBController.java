@@ -85,7 +85,7 @@ public class DBController
    * @param user the user who's profile was edited
    */
 
-  public <t extends User> void saveEditedUser(t user)
+  public <t extends User> int saveEditedUser(t user)
   {
     char temp;
     if(user.getActivationStatus() == false)
@@ -101,7 +101,8 @@ public class DBController
         univDBlib.user_saveSchool(user.getUsername(),univ.getName());
       }
     }
-    univDBlib.user_editUser(user.getUsername(),user.getFirstName(),user.getLastName(),user.getPassword(),user.getType(),
+    //returns -1 if an error is encountered
+    return univDBlib.user_editUser(user.getUsername(),user.getFirstName(),user.getLastName(),user.getPassword(),user.getType(),
                             temp);
   }
 
@@ -111,9 +112,10 @@ public class DBController
    * @param user the user to add to the database
    */
 
-  public void addUser(User user)
+  public int addUser(User user)
   {
-    univDBlib.user_addUser(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getType());
+    int success = univDBlib.user_addUser(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getType());
+    return success;
   }
 
   /**

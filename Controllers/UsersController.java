@@ -48,7 +48,7 @@ public class UsersController
    * @param newActivation the new activation status for this user
    * @param newLoggedIn the new logged in status for this user
    */
-  public void editUser(String username,String firstName, String lastName, String password, char type ,boolean isActivated,
+  public int editUser(String username,String firstName, String lastName, String password, char type ,boolean isActivated,
                         boolean isLoggedIn)
   {
     User toEdit = dbCont.getUser(username);
@@ -61,7 +61,7 @@ public class UsersController
     toEdit.setActivationStatus(false);
     toEdit.setLoggedInStatus(false);
 
-    dbCont.saveEditedUser(toEdit);
+    return dbCont.saveEditedUser(toEdit);
   }
 
   /**
@@ -75,11 +75,11 @@ public class UsersController
    * @param newActivation the new activation status for this user
    * @param newLoggedIn the new logged in status for this user
    */
-  public void addUser(String firstName, String lastName, String username, String password, char type ,boolean isActivated,
+  public int addUser(String firstName, String lastName, String username, String password, char type ,boolean isActivated,
                         boolean isLoggedIn)
   {
 
-    dbCont.addUser(new User(firstName, lastName, username, password, type, isActivated, isLoggedIn));    
+    return dbCont.addUser(new User(firstName, lastName, username, password, type, isActivated, isLoggedIn));    
   }
 
   /**
@@ -87,9 +87,9 @@ public class UsersController
    *
    * @param user a User object to be deactivated
    */
-  public void deactivate(User user)
+  public int deactivate(User user)
   {
     user.setActivationStatus(false);
-    dbCont.saveEditedUser(user);
+    return dbCont.saveEditedUser(user);
   }
 }
