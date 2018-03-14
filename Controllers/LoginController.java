@@ -95,12 +95,14 @@ public class LoginController
    /**
     * This method controls the log off logic of the system
     * 
-    * @param user the user to logg off
+    * @param user the user to log off
+    * @return true if the user was successfully logged out
     */
-   public void logout(User user)
+   public boolean logout(User user)
    {
     user.setLoggedInStatus(false);
     dbc.saveEditedUser(user);
     System.out.println("Successfuly logged out.");
+    return true;
    }
  }

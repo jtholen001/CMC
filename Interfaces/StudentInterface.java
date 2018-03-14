@@ -11,7 +11,7 @@ import entityClasses.Student;
 import entityClasses.University;
 import Controllers.*;
 
-public class StudentInterface
+public class StudentInterface extends UserInterface
 {
   
   /**
@@ -160,12 +160,12 @@ public class StudentInterface
   }
   
   /**
-   * TODO: possible boolean return type
    * Method to log the student out
+   * @return true if successful log out
    */
-  public void logout()
+  public boolean logout()
   {
-    lc.logout(this.student);
+    return super.logout(this.student);
   }
 }  
 
