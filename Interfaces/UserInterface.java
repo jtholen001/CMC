@@ -79,4 +79,15 @@ public class UserInterface
   {
     ai = new AdminInterface(admin);
   }
+  
+  /**
+   * A method that logs out a user
+   * 
+   * @param user the user to log out
+   * @return true if successful log out
+   */
+  public boolean logout(User user)
+  {
+    return lc.logout(user);
+  }
 }

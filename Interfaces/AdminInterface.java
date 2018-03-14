@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import Controllers.*;
 import entityClasses.*;
 
-public class AdminInterface
+public class AdminInterface extends UserInterface
 {  
   /**
    * an instance of UsersController
@@ -168,9 +168,11 @@ public class AdminInterface
   
   /**
    * A method that logs out the Admin
+   * 
+   * @return true if successful log out
    */
-  public void logout()
+  public boolean logout()
   {
-    lc.logout(admin);
+    return super.logout(admin);
   }
 }
