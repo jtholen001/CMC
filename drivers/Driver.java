@@ -28,6 +28,7 @@ public class Driver
 		userInt = new UserInterface();
 		studentInt = new StudentInterface(student);
 		adminInt = new AdminInterface(admin);
+		this.login();
 	}
 	
 	/**
@@ -67,7 +68,7 @@ public class Driver
 	//U5 and U9
 	public void viewMyProfile() 
 	{
-		userInt.login("juser", "user")
+		userInt.login("juser", "user");
 		
 		
 	}
@@ -93,6 +94,7 @@ public class Driver
 	public static void main(String[] args)
 	{
 		Driver driver = new Driver();
+		
 		// TODO Auto-generated method stub
 		
 		
