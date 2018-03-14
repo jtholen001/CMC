@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Collections;
 import java.util.Iterator;
 import entityClasses.*;
+import entityClasses.Student;
 
 public class DBController
 {
@@ -40,26 +41,50 @@ public class DBController
     boolean status;
 
     for(int index = 0; index < users.length; index++)
-    {
-      //gets the char character of if they are activated and sets a bool value to be used when creating the user
-      if(users[index][5].equals("Y"))
-        status = true;
-      else
-        status = false;
-      //creates the user and puts it in the map
-      userMap.put(users[index][0], new User(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
-                                            status, false));
-    }
-    return userMap.get(username);
+      {
+    	if(users[index][0].equals(username)) {
+    		if(users[index][5].equals("Y"))
+    	        status = true;
+    		else
+    			status = false;
+    		if(users[index][4].equals('u'))
+    		{
+ 
+    			return new Student(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
+                      status, false, this.getUniversitiesForStudent(username));
+    		}
+    		else if(users[index][4].equals('a')) {
+    			return new Admin(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
+                        status, false);
+    		}
+    		else
+    			return null;
+    	}
+      }
+	return null;
+  }
+  
+  public ArrayList<University> getUniversitiesForStudent(String username){
+	  String[][] universities = univDBlib.user_getUsernamesWithSavedSchools();
+	  ArrayList<University> list = new ArrayList();
+	  
+	  for(int i = 0; i < universities.length; i++)
+	  {
+		  if(universities[i].equals(username))
+		  {
+			  list.add(this.getUniversity(universities[i][1]));
+		  }
+	  }
+	  return list;
   }
 
-
+   
    /**
     * This method gets a list of all users in the database
     * 
     * @return a hashmap of all users
    */
-  public HashMap<String, User> getUsers()
+  public <t extends User> Object getUsers()
   {
     String[][] users = univDBlib.user_getUsers();
     HashMap<String, User> userMap = new HashMap<String, User>();

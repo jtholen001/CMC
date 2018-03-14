@@ -81,7 +81,8 @@ public class Driver
 	//U14 and U15 and U16
 	public void viewUniversities() 
 	{
-
+		System.out.println("Viewing universities as an admin");
+		System.out.println(adminInt.viewUniversities()); 
 		
 	}
 	
@@ -89,7 +90,7 @@ public class Driver
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) 
+	public static void main(String[] args)
 	{
 		Driver driver = new Driver();
 		// TODO Auto-generated method stub

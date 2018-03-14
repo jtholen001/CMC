@@ -97,9 +97,9 @@ public class AdminInterface extends UserInterface
   /**
    * A method that displays all University objects in the Database
    */
-  public void viewUniversities()
+  public String viewUniversities()
   {
-    uniCont.viewUniversities();
+    return uniCont.viewUniversities();
   }
   
   /**
