@@ -35,20 +35,24 @@ public class Driver
 	 */
 	public void login() 
 	{
-		System.out.println("User should be logged in correctly: " + userInt.login("juser", "user"));
-		System.out.println("User should be logged out correctly");
-		userInt.logout((User)student);
-		System.out.println("User should fail to log in with incorrect username: " + userInt.login("john", "user"));
-		System.out.println("User should fail to log in with incorrect password: " + userInt.login("juser", "null"));
+		//System.out.println("User should be logged in correctly: " + userInt.login("juser", "user"));
+		//System.out.println("User should be logged out correctly");
+		//userInt.logout((User)student);
+		//System.out.println("User should fail to log in with incorrect username: " + userInt.login("john", "user"));
+		//System.out.println("User should fail to log in with incorrect password: " + userInt.login("juser", "null"));
 		//TODO: Deactivate user for next test
-		System.out.println("User should fail to log in because account is deactivated" + userInt.login("juser", "user"));
+		//System.out.println("User should fail to log in because account is deactivated" + userInt.login("juser", "user"));
 		
 	}
 	
 	public void searchForUniversities() 
 	{
-		
-		
+		ArrayList<University> foundUniversities = studentInt.searchUniversities("UNIVERSITY", null, "URBAN", "PRIVATE", 0, 15000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, new ArrayList<String>() );
+		if (foundUniversities.isEmpty())
+			System.out.println("Nothing Found");
+		for(University u : foundUniversities) {
+			System.out.println(u);
+		}
 	}	
 	//U6 and U7 and U10 maybe U11
 	public void viewMatchedSchools() 
@@ -67,7 +71,7 @@ public class Driver
 	//U5 and U9
 	public void viewMyProfile() 
 	{
-		userInt.login("juser", "user")
+		
 		
 		
 	}
@@ -92,6 +96,7 @@ public class Driver
 	public static void main(String[] args) 
 	{
 		Driver driver = new Driver();
+		driver.searchForUniversities();
 		// TODO Auto-generated method stub
 		
 		
