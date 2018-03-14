@@ -62,9 +62,9 @@ public class AdminInterface extends UserInterface
    * @param newActivation the new activation status for this user
    * @param newLoggedIn the new logged in status for this user
    */
-  public void editUser(String username, String newFirst, String newLast, String newPassword, char newType, boolean newActivation, boolean newLoggedIn)
+  public int editUser(String username, String newFirst, String newLast, String newPassword, char newType, boolean newActivation, boolean newLoggedIn)
   {
-    uCont.editUser(username, newFirst, newLast, newPassword, newType, newActivation, newLoggedIn);
+    return uCont.editUser(username, newFirst, newLast, newPassword, newType, newActivation, newLoggedIn);
   }
   
   /**
@@ -78,10 +78,10 @@ public class AdminInterface extends UserInterface
    * @param isActivated the activation status of the new user
    * @param isLoggedIn the logged-in status of the new user
    */
-  public void addUser(String firstName, String lastName, String username, String password, char type ,boolean isActivated,
+  public int addUser(String firstName, String lastName, String username, String password, char type ,boolean isActivated,
                         boolean isLoggedIn)
   {
-    uCont.addUser(firstName, lastName, username, password, type, isActivated, isLoggedIn);
+    return uCont.addUser(firstName, lastName, username, password, type, isActivated, isLoggedIn);
   }
   
   /**
@@ -89,9 +89,9 @@ public class AdminInterface extends UserInterface
    * 
    * @param u a User object to be deactivated
    */
-  public void deactivate(User u)
+  public int deactivate(User u)
   {
-    uCont.deactivate(u);
+    return uCont.deactivate(u);
   }
   
   /**
@@ -125,13 +125,13 @@ public class AdminInterface extends UserInterface
    * @param emphases an ArrayList<String> representing the edited emphases of the 
    */
   
-  public void editUniversity(University university, String name, String state, String location, String control, 
+  public int editUniversity(University university, String name, String state, String location, String control, 
                              int numStudents, int percentFemale, int SATVerbal, int SATMath,
                              int expenses, double percentFinancialAid, int numApplicants, double percentAdmitted,
                              double percentEnrolled,
                              int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {
-    uniCont.editUniversity(university,name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
+    return uniCont.editUniversity(university,name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
                              expenses,percentFinancialAid,numApplicants,percentAdmitted,percentEnrolled,
                              academicScale,socialScale,qualityOfLifeScale,emphases);
   }
@@ -157,11 +157,11 @@ public class AdminInterface extends UserInterface
    * @param qualityOfLifeScale an int representing the edited qualityOfLifeScale of the University
    * @param emphases an ArrayList<String> representing the edited emphases of the 
    */
-  public void addUniversity(String name, String state, String location, String control, int numStudents, int percentFemale, int SATVerbal, int SATMath,
+  public int addUniversity(String name, String state, String location, String control, int numStudents, int percentFemale, int SATVerbal, int SATMath,
                              int expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
                              int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {
-    uniCont.addUniversity(name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
+    return uniCont.addUniversity(name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
                              expenses,percentFinancialAid,numApplicants,percentAdmitted,percentEnrolled,
                              academicScale,socialScale,qualityOfLifeScale,emphases);
   }

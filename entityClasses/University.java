@@ -26,7 +26,7 @@ public class University
   private String location;
 
   /**
-   * Whether this university is publicly or privatley or owned
+   * Whether this university is publicly or privately or owned
    */
   private String control;
 

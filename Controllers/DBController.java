@@ -84,7 +84,7 @@ public class DBController
     * 
     * @return a hashmap of all users
    */
-  public <t extends User> Object getUsers()
+  public HashMap<String,User> getUsers()
   {
     String[][] users = univDBlib.user_getUsers();
     HashMap<String, User> userMap = new HashMap<String, User>();
@@ -98,8 +98,15 @@ public class DBController
       else
         status = false;
       //creates the user and puts it in the map
-      userMap.put(users[index][0], new User(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
-                                            status, false));
+      if(users[index][4].equals('u'))
+		{
+			 userMap.put(users[index][0],new Student(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
+                status, false, this.getUniversitiesForStudent(users[index][0])));
+		}
+		else if(users[index][4].equals('a')) {
+			 userMap.put(users[index][0],new Admin(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
+                  status, false));
+		}
     }
     return userMap;
   }
@@ -110,7 +117,7 @@ public class DBController
    * @param user the user who's profile was edited
    */
 
-  public <t extends User> void saveEditedUser(t user)
+  public <t extends User> int saveEditedUser(t user)
   {
     char temp;
     if(user.getActivationStatus() == false)
@@ -126,7 +133,8 @@ public class DBController
         univDBlib.user_saveSchool(user.getUsername(),univ.getName());
       }
     }
-    univDBlib.user_editUser(user.getUsername(),user.getFirstName(),user.getLastName(),user.getPassword(),user.getType(),
+    //returns -1 if an error is encountered
+    return univDBlib.user_editUser(user.getUsername(),user.getFirstName(),user.getLastName(),user.getPassword(),user.getType(),
                             temp);
   }
 
@@ -136,9 +144,10 @@ public class DBController
    * @param user the user to add to the database
    */
 
-  public void addUser(User user)
+  public int addUser(User user)
   {
-    univDBlib.user_addUser(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getType());
+    int success = univDBlib.user_addUser(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getType());
+    return success;
   }
 
   /**
@@ -198,9 +207,9 @@ public class DBController
    *
    * @param university the university object to edit
    */
-  public void saveEditedUniversity(University university)
+  public int saveEditedUniversity(University university)
   {
-    univDBlib.university_editUniversity(university.getName(), university.getState(), university.getLocation(),
+    int success = univDBlib.university_editUniversity(university.getName(), university.getState(), university.getLocation(),
                               university.getControl(), university.getNumStudents(), university.getPercentFemale(),
                               university.getSATVerbal(), university.getSATMath(), university.getExpenses(),
                               university.getPercentFinancialAid(), university.getNumApplicants(),
@@ -213,6 +222,8 @@ public class DBController
     {
       univDBlib.university_addUniversityEmphasis(university.getName(), emphasis);
     }
+    
+    return success;
   }
 
   /**
@@ -220,9 +231,9 @@ public class DBController
    *
    * @param a University object to add
    */
-  public void addUniversity(University university)
+  public int addUniversity(University university)
   {
-    univDBlib.university_addUniversity(university.getName(), university.getState(), university.getLocation(),
+    return univDBlib.university_addUniversity(university.getName(), university.getState(), university.getLocation(),
                               university.getControl(), university.getNumStudents(), university.getPercentFemale(),
                               university.getSATVerbal(), university.getSATMath(), university.getExpenses(),
                               university.getPercentFinancialAid(), university.getNumApplicants(),

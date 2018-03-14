@@ -72,7 +72,7 @@ public class UniversityController
    * @param qualityOfLifeScale an int representing the edited qualityOfLifeScale of the University
    * @param emphases an ArrayList<String> representing the edited emphases of the University
    */
-  public void editUniversity(University university, String name, String state, String location, String control, int numStudents, int percentFemale, int SATVerbal, int SATMath,
+  public int editUniversity(University university, String name, String state, String location, String control, int numStudents, int percentFemale, int SATVerbal, int SATMath,
                              int expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
                              int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {    
@@ -97,7 +97,7 @@ public class UniversityController
     university.setQualityOfLifeScale(qualityOfLifeScale);
     university.setEmphases(emphases);
     
-    dbCont.saveEditedUniversity(university);
+    return dbCont.saveEditedUniversity(university);
   }
   
   /**
@@ -121,11 +121,11 @@ public class UniversityController
    * @param qualityOfLifeScale an int representing the added qualityOfLifeScale of the University
    * @param emphases an ArrayList<String> representing the added emphases of the University
    */
-  public void addUniversity(String name, String state, String location, String control, int numStudents, int percentFemale, int SATVerbal, int SATMath,
+  public int addUniversity(String name, String state, String location, String control, int numStudents, int percentFemale, int SATVerbal, int SATMath,
                              int expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
                              int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {    
-    dbCont.addUniversity(new University(name, state, location, control, numStudents, percentFemale, SATVerbal, SATMath, 
+    return dbCont.addUniversity(new University(name, state, location, control, numStudents, percentFemale, SATVerbal, SATMath, 
                                         expenses, percentFinancialAid, numApplicants, percentAdmitted, percentEnrolled, 
                                         academicScale, socialScale, qualityOfLifeScale, emphases));
   }
