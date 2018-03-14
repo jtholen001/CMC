@@ -145,18 +145,18 @@ public class StudentInterface extends UserInterface
    * @param percentEnrolledUpper  the upper bound of the percent of addmitted students that enroll at this university
    * @param searchEmphases  areas of study
    */
-  public void searchUniversities(String name, String state, String location, String control, int numStudentsLower, int numStudentsUpper, int percentFemaleLower, int percentFemaleUpper,
+  public ArrayList<University> searchUniversities(String name, String state, String location, String control, int numStudentsLower, int numStudentsUpper, int percentFemaleLower, int percentFemaleUpper,
                                  int SATVerbalLower, int SATVerbalUpper, int SATMathLower, int SATMathUpper, int expensesLower, int expensesUpper, int numApplicantsLower, int numApplicantsUpper,
                                  int academicScaleLower, int academicScaleUpper, int socialScaleLower, int socialScaleUpper, int qualityOfLifeScaleLower, int qualityOfLifeScaleUpper,  
                                  double percentFinancialAidLower, double percentFinancialAidUpper, double percentAdmittedLower, double percentAdmittedUpper, double percentEnrolledLower, 
                                  double percentEnrolledUpper, ArrayList<String> searchEmphases)
   {
-    ArrayList<University> foundUniversities = sc.searchUniversities(name, state, location, control, numStudentsLower, numStudentsUpper, percentFemaleLower, percentFemaleUpper,
+    return sc.searchUniversities(name, state, location, control, numStudentsLower, numStudentsUpper, percentFemaleLower, percentFemaleUpper,
                                                                     SATVerbalLower, SATVerbalUpper, SATMathLower, SATMathUpper, expensesLower, expensesUpper, numApplicantsLower, numApplicantsUpper,
                                                                     academicScaleLower, academicScaleUpper, socialScaleLower, socialScaleUpper, qualityOfLifeScaleLower, qualityOfLifeScaleUpper,  
                                                                     percentFinancialAidLower, percentFinancialAidUpper, percentAdmittedLower, percentAdmittedUpper, percentEnrolledLower, 
                                                                     percentEnrolledUpper, searchEmphases); 
-    sc.viewSchools(foundUniversities);
+    //sc.viewSchools(foundUniversities);
   }
   
   /**

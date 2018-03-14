@@ -59,6 +59,7 @@ public class SearchController
    * @param percentEnrolledLower  the lower bound of the percent of addmitted students that enroll at this university
    * @param percentEnrolledUpper  the upper bound of the percent of addmitted students that enroll at this university
    * @param searchEmphases  areas of study
+   * @return ArrayList<University>  found Universities
    */
   public ArrayList<University> searchUniversities(String name, String state, String location, String control, int numStudentsLower, int numStudentsUpper, int percentFemaleLower, int percentFemaleUpper,
                                  int SATVerbalLower, int SATVerbalUpper, int SATMathLower, int SATMathUpper, int expensesLower, int expensesUpper, int numApplicantsLower, int numApplicantsUpper,
