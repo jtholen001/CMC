@@ -37,23 +37,22 @@ public class DBController
   public User getUser(String username)
   {
     String[][] users = univDBlib.user_getUsers();
-    HashMap<String, User> userMap = new HashMap<String, User>();
     boolean status;
 
     for(int index = 0; index < users.length; index++)
       {
-    	if(users[index][0].equals(username)) {
+    	if(users[index][2].equals(username)) {
     		if(users[index][5].equals("Y"))
     	        status = true;
     		else
     			status = false;
-    		if(users[index][4].equals('u'))
+    		if(users[index][4].equals("u"))
     		{
  
     			return new Student(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
                       status, false, this.getUniversitiesForStudent(username));
     		}
-    		else if(users[index][4].equals('a')) {
+    		else if(users[index][4].equals("a")) {
     			return new Admin(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
                         status, false);
     		}
