@@ -51,15 +51,9 @@ public class Driver
 		if (foundUniversities.isEmpty())
 			System.out.println("Nothing Found");
 		for(University u : foundUniversities) {
-			System.out.println(u);
+			System.out.println(u.toString() + '\n');
 		}
-	}	
-	//U6 and U7 and U10 maybe U11
-	public void viewMatchedSchools() 
-	{
-		
-		
-	}	
+	}
 	
 	//U4 and U7 probably U8
 	public void viewSavedSchools() 
