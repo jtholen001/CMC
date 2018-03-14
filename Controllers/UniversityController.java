@@ -34,16 +34,20 @@ public class UniversityController
   /**
    * A method that displays all University objects in the Database
    */
-  public void viewUniversities()
+  public String viewUniversities()
   {
     HashMap<String, University> listAll = dbCont.viewUniversities();
     
     Set<String> universityNames = listAll.keySet();
     
+    String listOfUniversities = "";
+    
     for (String u : universityNames)
     {
-      listAll.get(u).toString();   
-    } 
+      listOfUniversities.concat(listAll.get(u).toString() + "\n");
+    }
+    
+    return listOfUniversities;
   }
   
   /**
