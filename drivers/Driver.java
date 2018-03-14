@@ -81,9 +81,23 @@ public class Driver
 	//U14 and U15 and U16
 	public void viewUniversities() 
 	{
-		System.out.println("Viewing universities as an admin");
-		System.out.println(adminInt.viewUniversities()); 
+		System.out.println("Viewing Universities");
+		System.out.println(adminInt.viewUniversities());
 		
+		System.out.println("Adding a University: \"University of CMC\" with attributes \"University of CMC\", \"Arizona\", \"urban\", \"public\", 5, 0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>()");
+		int success = adminInt.addUniversity("University of CMC", "Arizona", "urban", "public", 5, 0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
+		if (success == 1)
+			System.out.println("\"University of CMC\" added to Database");
+		else
+			System.err.println("Adding University failed.");
+		
+		System.out.println("Editing a University: \"University of CMC\"");
+		University toBeEdited = new University("University of CMC", "Arizona", "urban", "public", 5, 0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
+		success = adminInt.editUniversity(toBeEdited, "University of ACM", "Arizona", "urban", "public", 5, 0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
+		if (success == 1)
+			System.out.println("Changed title of University: \"University of CMC\" to \"University of ACM\"");
+		else
+			System.err.println("Editing University failed.");
 	}
 	
 

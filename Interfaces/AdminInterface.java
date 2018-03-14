@@ -125,13 +125,13 @@ public class AdminInterface
    * @param emphases an ArrayList<String> representing the edited emphases of the 
    */
   
-  public void editUniversity(University university, String name, String state, String location, String control, 
+  public int editUniversity(University university, String name, String state, String location, String control, 
                              int numStudents, int percentFemale, int SATVerbal, int SATMath,
                              int expenses, double percentFinancialAid, int numApplicants, double percentAdmitted,
                              double percentEnrolled,
                              int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {
-    uniCont.editUniversity(university,name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
+    return uniCont.editUniversity(university,name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
                              expenses,percentFinancialAid,numApplicants,percentAdmitted,percentEnrolled,
                              academicScale,socialScale,qualityOfLifeScale,emphases);
   }
@@ -157,11 +157,11 @@ public class AdminInterface
    * @param qualityOfLifeScale an int representing the edited qualityOfLifeScale of the University
    * @param emphases an ArrayList<String> representing the edited emphases of the 
    */
-  public void addUniversity(String name, String state, String location, String control, int numStudents, int percentFemale, int SATVerbal, int SATMath,
+  public int addUniversity(String name, String state, String location, String control, int numStudents, int percentFemale, int SATVerbal, int SATMath,
                              int expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
                              int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {
-    uniCont.addUniversity(name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
+    return uniCont.addUniversity(name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
                              expenses,percentFinancialAid,numApplicants,percentAdmitted,percentEnrolled,
                              academicScale,socialScale,qualityOfLifeScale,emphases);
   }

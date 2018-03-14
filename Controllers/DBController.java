@@ -173,9 +173,9 @@ public class DBController
    *
    * @param university the university object to edit
    */
-  public void saveEditedUniversity(University university)
+  public int saveEditedUniversity(University university)
   {
-    univDBlib.university_editUniversity(university.getName(), university.getState(), university.getLocation(),
+    int success = univDBlib.university_editUniversity(university.getName(), university.getState(), university.getLocation(),
                               university.getControl(), university.getNumStudents(), university.getPercentFemale(),
                               university.getSATVerbal(), university.getSATMath(), university.getExpenses(),
                               university.getPercentFinancialAid(), university.getNumApplicants(),
@@ -188,6 +188,8 @@ public class DBController
     {
       univDBlib.university_addUniversityEmphasis(university.getName(), emphasis);
     }
+    
+    return success;
   }
 
   /**
@@ -195,9 +197,9 @@ public class DBController
    *
    * @param a University object to add
    */
-  public void addUniversity(University university)
+  public int addUniversity(University university)
   {
-    univDBlib.university_addUniversity(university.getName(), university.getState(), university.getLocation(),
+    return univDBlib.university_addUniversity(university.getName(), university.getState(), university.getLocation(),
                               university.getControl(), university.getNumStudents(), university.getPercentFemale(),
                               university.getSATVerbal(), university.getSATMath(), university.getExpenses(),
                               university.getPercentFinancialAid(), university.getNumApplicants(),
