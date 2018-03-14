@@ -35,8 +35,9 @@ public class Driver
 	 */
 	public void login() 
 	{
-		System.out.println("User should be logged in correctly: " + userInt.login("juser", "user");
-		System.out.println("User should be logged out correctly" + userInt.logout((User)student));
+		System.out.println("User should be logged in correctly: " + userInt.login("juser", "user"));
+		System.out.println("User should be logged out correctly");
+		userInt.logout((User)student);
 		System.out.println("User should fail to log in with incorrect username: " + userInt.login("john", "user"));
 		System.out.println("User should fail to log in with incorrect password: " + userInt.login("juser", "null"));
 		//TODO: Deactivate user for next test
@@ -66,7 +67,8 @@ public class Driver
 	//U5 and U9
 	public void viewMyProfile() 
 	{
-
+		userInt.login("juser", "user")
+		
 		
 	}
 	
