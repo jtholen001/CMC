@@ -69,7 +69,7 @@ public class DBController
 	  
 	  for(int i = 0; i < universities.length; i++)
 	  {
-		  if(universities[i].equals(username))
+		  if(universities[i][0].equals(username))
 		  {
 			  list.add(this.getUniversity(universities[i][1]));
 		  }
@@ -232,7 +232,7 @@ public class DBController
    */
   public int addUniversity(University university)
   {
-    return univDBlib.university_addUniversity(university.getName(), university.getState(), university.getLocation(),
+    return univDBlib.university_addUniversity(university.getName().toUpperCase(), university.getState(), university.getLocation(),
                               university.getControl(), university.getNumStudents(), university.getPercentFemale(),
                               university.getSATVerbal(), university.getSATMath(), university.getExpenses(),
                               university.getPercentFinancialAid(), university.getNumApplicants(),
