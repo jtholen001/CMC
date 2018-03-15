@@ -154,6 +154,7 @@ public class Driver
 	{
 		Driver driver = new Driver();
 		driver.viewUniversities();
+		driver.viewUsers();
 		// TODO Auto-generated method stub
 	}
 }
