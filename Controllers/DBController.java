@@ -69,7 +69,7 @@ public class DBController
 	  
 	  for(int i = 0; i < universities.length; i++)
 	  {
-		  if(universities[i].equals(username))
+		  if(universities[i][0].equals(username))
 		  {
 			  list.add(this.getUniversity(universities[i][1]));
 		  }
@@ -97,12 +97,12 @@ public class DBController
       else
         status = false;
       //creates the user and puts it in the map
-      if(users[index][4].equals('u'))
+      if(users[index][4].equals("u"))
 		{
 			 userMap.put(users[index][0],new Student(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
                 status, false, this.getUniversitiesForStudent(users[index][0])));
 		}
-		else if(users[index][4].equals('a')) {
+		else if(users[index][4].equals("a")) {
 			 userMap.put(users[index][0],new Admin(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
                   status, false));
 		}

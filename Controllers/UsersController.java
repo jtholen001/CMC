@@ -54,12 +54,12 @@ public class UsersController
     User toEdit = dbCont.getUser(username);
 
     //admin can edit anything except for username
-    toEdit.setFirstName(null);
-    toEdit.setLastName(null);
-    toEdit.setPassword(null);
-    toEdit.setType('q'); //cannot set an empty char, for this purpose, set to q
-    toEdit.setActivationStatus(false);
-    toEdit.setLoggedInStatus(false);
+    toEdit.setFirstName(firstName);
+    toEdit.setLastName(lastName);
+    toEdit.setPassword(password);
+    toEdit.setType(type);
+    toEdit.setActivationStatus(isActivated);
+    toEdit.setLoggedInStatus(isLoggedIn);
 
     return dbCont.saveEditedUser(toEdit);
   }

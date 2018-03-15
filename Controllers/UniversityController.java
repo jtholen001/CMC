@@ -76,9 +76,6 @@ public class UniversityController
                              int expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
                              int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {    
-    //TODO: setting school name cannot be set to the name of a University that already exists in the DB
-    //if the Admin tries to duplicate, do not allow changes to the University object
-    
     university.setSchoolName(name);
     university.setState(state);
     university.setLocation(location);
