@@ -46,8 +46,8 @@ public class ProfileController
   /**
    * method to view the profile of the given student
    */
-  public void viewProfile()
+  public String viewProfile()
   {
-    System.out.println(this.student.toString());
+    return this.student.toString();
   }
 }

@@ -56,9 +56,9 @@ public class StudentInterface extends UserInterface
   /**
    * Method to veiw the Student's profile
    */
-  public void viewProfile()
+  public String viewProfile()
   {
-   this.pc.viewProfile(); 
+   return this.pc.viewProfile(); 
   }
   
   /**
@@ -76,9 +76,9 @@ public class StudentInterface extends UserInterface
   /**
    * Method to view the Student's saved universities
    */
-  public void viewSavedUniversities()
+  public String viewSavedUniversities()
   {
-   this.suc.viewSavedUniversities();
+   return this.suc.viewSavedUniversities();
   }
   
   /**

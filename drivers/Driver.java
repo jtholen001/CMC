@@ -63,6 +63,7 @@ public class Driver
 	public void viewSavedSchools() 
 	{
 		System.out.println("Viewing John's saved schools");
+		System.out.println(studentInt.viewSavedUniversities());
 		
 	}
 	
@@ -70,7 +71,7 @@ public class Driver
 	public void viewMyProfile() 
 	{
 		System.out.println("Viewing John's profile");
-		studentInt.viewProfile();
+		System.out.println(studentInt.viewProfile());
 	}
 	
 	//U13, U17, U18, U19
