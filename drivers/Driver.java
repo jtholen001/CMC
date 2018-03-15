@@ -28,7 +28,7 @@ public class Driver
 		userInt = new UserInterface();
 		studentInt = new StudentInterface(student);
 		adminInt = new AdminInterface(admin);
-		this.viewUsers();
+		//this.viewUsers();
 	}
 	
 	/**
@@ -152,8 +152,8 @@ public class Driver
 	 */
 	public static void main(String[] args)
 	{
-		Driver driver = new Driver();		
-		driver.searchForUniversities();
+		Driver driver = new Driver();
+		driver.viewUniversities();
 		// TODO Auto-generated method stub
 	}
 }

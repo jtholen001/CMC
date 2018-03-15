@@ -34,13 +34,16 @@ public class StudentUniversitiesController
   /**
    * Method to view a Student's saved universities
    */
-  public void viewSavedUniversities()
+  public String viewSavedUniversities()
   {
     ArrayList<University> universities = this.student.getSavedSchools(); 
+    String output = "";
     for (University u : universities)
     {
-      System.out.println(u.getName());
+      output.concat(u.getName());
     }
+    
+    return output;
   }
   
   /**
