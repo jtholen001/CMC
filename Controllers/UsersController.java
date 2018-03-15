@@ -51,6 +51,10 @@ public class UsersController
   public int editUser(String username,String firstName, String lastName, String password, char type ,boolean isActivated,
                         boolean isLoggedIn)
   {
+	if (firstName.equals("") || lastName.equals("") || password.equals("") || type == ' ')
+		return -1;
+	else
+	{
     User toEdit = dbCont.getUser(username);
 
     //admin can edit anything except for username
@@ -61,7 +65,9 @@ public class UsersController
     toEdit.setActivationStatus(isActivated);
     toEdit.setLoggedInStatus(isLoggedIn);
 
+    
     return dbCont.saveEditedUser(toEdit);
+	}
   }
 
   /**

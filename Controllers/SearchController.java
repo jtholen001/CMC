@@ -356,26 +356,43 @@ public class SearchController
   }
   
   /**
-   * Method to view Universitiess from searching
+   * method to get the recommended universities based off of a university
+   *
+   * @param a university object to base the other schools off of
+   *
+   * @return an ArrayList of university objects
+   */
+  public ArrayList<University> getRecommendedUniversities(University u)
+  {
+	  return dbc.getRecommendedUniversities(u);
+	  
+  }
+  
+  /**
+   * Method to view Universities from searching
    * 
    * @param foundUniversities the universities to be viewed from searching
+   * @return a String representing all the schools to be viewed
    */
-  public void viewSchools(ArrayList<University> foundUniversities)
+  public String viewSchools(ArrayList<University> foundUniversities)
   {
+	String schools = ""; 
     for (University u : foundUniversities)
     {
-      System.out.println(u.toString()); 
+      schools += u.toString() + '\n';
     }
+    return schools;
   }
   
   /**
    * TODO: Method might be replaced with method in StudentUniversitiesController
    * Method to view a specific university from searching
    * @param university the University to be viewed
+   * @return a String representation of the University
    */
-  public void viewUniversity(University university)
+  public String viewUniversity(University university)
   {
-    System.out.println(university.toString());
+    return university.toString();
   }
   
   /**

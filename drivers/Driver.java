@@ -1,6 +1,6 @@
 /**
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
- * @version 3/12/18
+ * @version 3/14/18
  */
 package drivers;
 import Interfaces.*;
@@ -51,12 +51,29 @@ public class Driver
 	
 	public void searchForUniversities() 
 	{
-		ArrayList<University> foundUniversities = studentInt.searchUniversities("UNIVERSITY", null, "URBAN", "PRIVATE", 0, 15000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, new ArrayList<String>() );
+		//U3
+		ArrayList<University> foundUniversities = studentInt.searchUniversities("UNIVERSITY", null, "URBAN", "PRIVATE", 0, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, new ArrayList<String>() );
+		
+		//U6
 		if (foundUniversities.isEmpty())
 			System.out.println("Nothing Found");
 		for(University u : foundUniversities) {
-			System.out.println(u.toString() + '\n');
+			System.out.println(u.getName());
 		}
+		
+		System.out.println();
+		
+		University dummyUniversity = foundUniversities.get(0);
+		//U7
+		System.out.println(dummyUniversity);
+		System.out.println();
+		
+		//U10
+		ArrayList<University> recommendedUniversities = studentInt.getRecommendedUniversities(dummyUniversity);
+		for (University u : recommendedUniversities) {
+			System.out.println(u);
+		}
+		
 	}
 	
 	//U4 and U7 probably U8
@@ -87,34 +104,40 @@ public class Driver
 			System.out.println(nameOfUser);
 		
 		//showing add user functionality
-		System.out.println("Adding Student User with following attributes: Miss, Pelled, mpelled001, password0, 'u', true, false");
+		System.out.println("\nAdding Student User with following attributes: Miss, Pelled, mpelled001, password0, 'u', true, false");
 		success = adminInt.addUser("Miss", "Pelled", "mpelled001", "password0", 'u', true, false);
 		if (success == -1)
-			System.err.println("Add User failed");
+			System.out.println("Add User failed because Database returned -1");
 		else
-			System.out.println("Add User success");
-		
+			System.out.println("Add User successful, Database did not return -1");
 		
 		//creating temporary User object to show manipulating functionalities
 		User missPelled = new User("Miss", "Pelled", "mpelled001", "password0", 'u', true, false);
 		
-		
 		//showing deactivate User functionality
-		System.out.println("Deactivate the added User: Miss Pelled");
+		System.out.println("\nDeactivate the added User: Miss Pelled");
 		success = adminInt.deactivate(missPelled);
 		if (success == -1)
-			System.err.println("Deactivate User failed");
+			System.out.println("Deactivate User failed because Database returned -1");
 		else
-			System.out.println("Deactivate User success");
+			System.out.println("Deactivate User successful, Database did not return -1");
 		
 		
-		//showing edit User functionality
-		System.out.println("Edit User Miss Pelled's last name to 'Takes'");
+		//showing edit User functionality works
+		System.out.println("\nEdit User Miss Pelled's last name to 'Takes'");
 		success = adminInt.editUser("mpelled001", "Miss", "Takes", "mpelled001", 'u', false, false);
 		if (success == -1)
-			System.err.println("Edit User failed");
+			System.out.println("Edit User failed because Database returned -1");
 		else
-			System.out.println("Edit User success");
+			System.out.println("Edit User success, Database did not return -1");
+		
+		//showing edit User functionality does not work
+		System.out.println("\nEdit User Miss Pelled's last name to \"[Empty String]\"");
+		success = adminInt.editUser("mpelled001", "Miss", "", "mpelled001", 'u', false, false);
+		if (success == -1)
+			System.out.println("Edit User failed because Database returned -1");
+		else
+			System.out.println("Edit User success, Database did not return -1");
 			
 	}
 	
@@ -148,6 +171,8 @@ public class Driver
 	{
 		Driver driver = new Driver();
 		driver.viewUniversities();
+		driver.viewUsers();
+
 		// TODO Auto-generated method stub
 	}
 }
