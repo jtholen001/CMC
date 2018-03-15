@@ -28,7 +28,7 @@ public class Driver
 		userInt = new UserInterface();
 		studentInt = new StudentInterface(student);
 		adminInt = new AdminInterface(admin);
-		this.viewUsers();
+		//this.viewUsers();
 	}
 	
 	/**
@@ -39,12 +39,6 @@ public class Driver
 		System.out.println("User should be logged in correctly: " + userInt.login("juser", "user"));
 		System.out.println("User should be logged out correctly");
 		userInt.logout((User)student);
-<<<<<<< HEAD
-		System.out.println("User should fail to log in with incorrect username: " + userInt.login("john", "user"));
-		System.out.println("User should fail to log in with incorrect password: " + userInt.login("juser", "null"));
-		//TODO: Deactivate user for next test
-		System.out.println("User should fail to log in because account is deactivated" + userInt.login("juser", "user"));
-=======
 		System.out.println("User should fail to log in with incorrect username: ");
 		userInt.login("john", "user");
 		System.out.println("User should fail to log in with incorrect password: ");
@@ -52,7 +46,6 @@ public class Driver
 		//TODO: Deactivate user for next test
 		System.out.println("User should fail to log in because account is deactivated");
 		userInt.login("mcarroll001", "password0");
->>>>>>> a21ea332ffc9bf6f1582ac4c9b7ceb8d6113e1ac
 		
 	}
 	
@@ -153,8 +146,7 @@ public class Driver
 	 */
 	public static void main(String[] args)
 	{
-		Driver driver = new Driver();		
-		driver.searchForUniversities();
+		Driver driver = new Driver();
 		driver.viewUniversities();
 		// TODO Auto-generated method stub
 	}
