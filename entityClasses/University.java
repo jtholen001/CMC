@@ -38,22 +38,22 @@ public class University
   /**
    * The percentage of enrolled students that are female
    */
-  private int percentFemale;
+  private double percentFemale;
 
   /**
    * The average SAT Verbal score of students enrolled at the university
    */
-  private int SATVerbal;
+  private double SATVerbal;
 
   /**
    * The average SAT Math score of students enrolled at the university
    */
-  private int SATMath;
+  private double SATMath;
 
   /**
    * The average cost to attend the university
    */
-  private int expenses;
+  private double expenses;
 
   /**
    * The percentage of students enrolled at the university that recieve financial aid
@@ -117,7 +117,7 @@ public class University
    * @param emphases what areas of study this university emphasizes
    */
   public University(String name,String state,String location, String control, int numStudents,
-                    int percentFemale, int SATVerbal, int SATMath, int expenses, double percentFinancialAid,
+                    double percentFemale, double SATVerbal, double SATMath, double expenses, double percentFinancialAid,
                     int numApplicants, double percentAdmitted, double percentEnrolled, int academicScale, int socialScale,
                     int qualityOfLifeScale, ArrayList<String> emphases)
   {
@@ -193,9 +193,9 @@ public class University
   /**
    * This method gets the percentage of enrolled students that are female
    *
-   * @return the percentage of students that are female as an int
+   * @return the percentage of students that are female as a double
    */
-  public int getPercentFemale()
+  public double getPercentFemale()
   {
     return this.percentFemale;
   }
@@ -205,7 +205,7 @@ public class University
    *
    * @return the average SAT Verbal score of students enrolled at the university as an int
    */
-  public int getSATVerbal()
+  public double getSATVerbal()
   {
     return this.SATVerbal;
   }
@@ -215,7 +215,7 @@ public class University
    *
    * @return the average SAT Math score of students enrolled at the university as an int
    */
-  public int getSATMath()
+  public double getSATMath()
   {
     return this.SATMath;
   }
@@ -225,7 +225,7 @@ public class University
    *
    * @return the average expenses to attend the university as an int
    */
-  public int getExpenses()
+  public double getExpenses()
   {
     return this.expenses;
   }
@@ -292,7 +292,7 @@ public class University
 
   /**
    * This method gets how the quality of life rates at the university
-   *
+   *int, int, int, 
    * @return the rating of the quality of life at the university as an integer
    */
   public int getQualityOfLifeScale()
@@ -365,7 +365,7 @@ public class University
    *
    * @param the new percentage of students that are female
    */
-  public  void setPercentFemale(int newPercentFemale)
+  public void setPercentFemale(double newPercentFemale)
   {
     this.percentFemale = newPercentFemale;
   }
@@ -375,7 +375,7 @@ public class University
    *
    * @param newSATVerbal the new average SAT Verbal score of students enrolled at the university
    */
-  public void setSATVerbal(int newSATVerbal)
+  public void setSATVerbal(double newSATVerbal)
   {
     this.SATVerbal = newSATVerbal;
   }
@@ -385,7 +385,7 @@ public class University
    *
    * @param newSATMath the new average SAT Math score of students enrolled at the university
    */
-  public void setSATMath(int newSATMath)
+  public void setSATMath(double newSATMath)
   {
     this.SATMath = newSATMath;
   }
@@ -395,7 +395,7 @@ public class University
    *
    * @param newExpenses the average expenses to attend the university
    */
-  public void setExpenses(int newExpenses)
+  public void setExpenses(double newExpenses)
   {
     this.expenses = newExpenses;
   }
