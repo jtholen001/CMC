@@ -66,13 +66,7 @@ public class Driver
 	//U5 and U9
 	public void viewMyProfile() 
 	{
-<<<<<<< HEAD
 		userInt.login("juser", "user");
-=======
-		
->>>>>>> 7741d9c6c3c5fc0a01fecbea2922100a61898e5f
-		
-		
 	}
 	
 	//U13, U17, U18, U19
@@ -140,14 +134,8 @@ public class Driver
 	 */
 	public static void main(String[] args)
 	{
-		Driver driver = new Driver();
-<<<<<<< HEAD
-		
-=======
+		Driver driver = new Driver();		
 		driver.searchForUniversities();
->>>>>>> 7741d9c6c3c5fc0a01fecbea2922100a61898e5f
 		// TODO Auto-generated method stub
-		
-		
 	}
 }
