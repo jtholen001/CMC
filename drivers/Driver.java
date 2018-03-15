@@ -48,12 +48,29 @@ public class Driver
 	
 	public void searchForUniversities() 
 	{
-		ArrayList<University> foundUniversities = studentInt.searchUniversities("UNIVERSITY", null, "URBAN", "PRIVATE", 0, 15000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, new ArrayList<String>() );
+		//U3
+		ArrayList<University> foundUniversities = studentInt.searchUniversities("UNIVERSITY", null, "URBAN", "PRIVATE", 0, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, new ArrayList<String>() );
+		
+		//U6
 		if (foundUniversities.isEmpty())
 			System.out.println("Nothing Found");
 		for(University u : foundUniversities) {
-			System.out.println(u.toString() + '\n');
+			System.out.println(u.getName());
 		}
+		
+		System.out.println();
+		
+		University dummyUniversity = foundUniversities.get(0);
+		//U7
+		System.out.println(dummyUniversity);
+		System.out.println();
+		
+		//U10
+		ArrayList<University> recommendedUniversities = studentInt.getRecommendedUniversities(dummyUniversity);
+		for (University u : recommendedUniversities) {
+			System.out.println(u);
+		}
+		
 	}
 	
 	//U4 and U7 probably U8
@@ -136,6 +153,7 @@ public class Driver
 	{
 		Driver driver = new Driver();		
 		driver.searchForUniversities();
+		//driver.viewUsers();
 		// TODO Auto-generated method stub
 	}
 }

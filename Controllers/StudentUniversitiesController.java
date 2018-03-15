@@ -45,11 +45,12 @@ public class StudentUniversitiesController
   
   /**
    * Method to view an University
-   * @param university the Universiy to be viewed
+   * @param university the University to be viewed
+   * @return a String representation of the University
    */
-  public void viewUniversity(University university)
+  public String viewUniversity(University university)
   {
-    System.out.println(university.toString());
+    return university.toString();
   }
   
   /**
