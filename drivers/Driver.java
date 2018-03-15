@@ -148,6 +148,7 @@ public class Driver
 	{
 		Driver driver = new Driver();		
 		driver.searchForUniversities();
+		driver.viewUniversities();
 		// TODO Auto-generated method stub
 	}
 }
