@@ -111,10 +111,10 @@ public class AdminInterface extends UserInterface
    * @param location a String representing the edited location of the University
    * @param control a String representing the edited control of the University
    * @param numStudents an int representing the edited numStudents of the University
-   * @param percentFemale an int representing the edited percentFemale of the University
-   * @param SATVerbal an int representing the edited SATVerbal of the University
-   * @param SATMath an int representing the edited SATMath of the University
-   * @param expenses an int representing the edited expenses of the University
+   * @param percentFemale a double representing the edited percentFemale of the University
+   * @param SATVerbal an double representing the edited SATVerbal of the University
+   * @param SATMath an double representing the edited SATMath of the University
+   * @param expenses an double representing the edited expenses of the University
    * @param percentFinancialAid a double representing the edited percentFinancialAid of the University
    * @param numApplicants an int representing the edited numApplicants of the University
    * @param percentAdmitted a double representing the edited percentAdmitted of the University
@@ -126,8 +126,8 @@ public class AdminInterface extends UserInterface
    */
   
   public int editUniversity(University university, String name, String state, String location, String control, 
-                             int numStudents, int percentFemale, int SATVerbal, int SATMath,
-                             int expenses, double percentFinancialAid, int numApplicants, double percentAdmitted,
+                             int numStudents, double percentFemale, double SATVerbal, double SATMath,
+                             double expenses, double percentFinancialAid, int numApplicants, double percentAdmitted,
                              double percentEnrolled,
                              int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {
@@ -144,10 +144,10 @@ public class AdminInterface extends UserInterface
    * @param location a String representing the edited location of the University
    * @param control a String representing the edited control of the University
    * @param numStudents an int representing the edited numStudents of the University
-   * @param percentFemale an int representing the edited percentFemale of the University
-   * @param SATVerbal an int representing the edited SATVerbal of the University
-   * @param SATMath an int representing the edited SATMath of the University
-   * @param expenses an int representing the edited expenses of the University
+   * @param percentFemale an double representing the edited percentFemale of the University
+   * @param SATVerbal an double representing the edited SATVerbal of the University
+   * @param SATMath an double representing the edited SATMath of the University
+   * @param expenses an double representing the edited expenses of the University
    * @param percentFinancialAid a double representing the edited percentFinancialAid of the University
    * @param numApplicants an int representing the edited numApplicants of the University
    * @param percentAdmitted a double representing the edited percentAdmitted of the University
@@ -157,8 +157,8 @@ public class AdminInterface extends UserInterface
    * @param qualityOfLifeScale an int representing the edited qualityOfLifeScale of the University
    * @param emphases an ArrayList<String> representing the edited emphases of the 
    */
-  public int addUniversity(String name, String state, String location, String control, int numStudents, int percentFemale, int SATVerbal, int SATMath,
-                             int expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
+  public int addUniversity(String name, String state, String location, String control, int numStudents, double percentFemale, double SATVerbal, double SATMath,
+		  					double expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
                              int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {
     return uniCont.addUniversity(name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
