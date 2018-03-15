@@ -6,7 +6,7 @@ package drivers;
 import Interfaces.*;
 import entityClasses.*;
 import Controllers.*;
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * 
@@ -28,7 +28,7 @@ public class Driver
 		userInt = new UserInterface();
 		studentInt = new StudentInterface(student);
 		adminInt = new AdminInterface(admin);
-		this.login();
+		this.viewUsers();
 	}
 	
 	/**
@@ -76,7 +76,10 @@ public class Driver
 		int success;
 		//showing view users functionality
 		System.out.println("Showing all Users in the DataBase:\n");
-		adminInt.viewUsers();
+		HashMap<String, User> allUsers = adminInt.viewUsers();
+		
+		for (String nameOfUser : allUsers.keySet())
+			System.out.println(nameOfUser);
 		
 		//showing add user functionality
 		System.out.println("Adding Student User with following attributes: Miss, Pelled, mpelled001, password0, 'u', true, false");
@@ -86,8 +89,10 @@ public class Driver
 		else
 			System.out.println("Add User success");
 		
+		
 		//creating temporary User object to show manipulating functionalities
 		User missPelled = new User("Miss", "Pelled", "mpelled001", "password0", 'u', true, false);
+		
 		
 		//showing deactivate User functionality
 		System.out.println("Deactivate the added User: Miss Pelled");
@@ -97,6 +102,7 @@ public class Driver
 		else
 			System.out.println("Deactivate User success");
 		
+		
 		//showing edit User functionality
 		System.out.println("Edit User Miss Pelled's last name to 'Takes'");
 		success = adminInt.editUser("mpelled001", "Miss", "Takes", "mpelled001", 'u', false, false);
@@ -104,6 +110,7 @@ public class Driver
 			System.err.println("Edit User failed");
 		else
 			System.out.println("Edit User success");
+			
 	}
 	
 	//U14 and U15 and U16
