@@ -59,20 +59,15 @@ public class Driver
 	//U4 and U7 probably U8
 	public void viewSavedSchools() 
 	{
-		
+		System.out.println("Viewing John's saved schools");
 		
 	}
 	
 	//U5 and U9
 	public void viewMyProfile() 
 	{
-<<<<<<< HEAD
-		userInt.login("juser", "user");
-=======
-		
->>>>>>> 7741d9c6c3c5fc0a01fecbea2922100a61898e5f
-		
-		
+		System.out.println("Viewing John's profile");
+		studentInt.viewProfile();
 	}
 	
 	//U13, U17, U18, U19
@@ -120,7 +115,7 @@ public class Driver
 		
 		System.out.println("Adding a University: \"University of CMC\" with attributes \"University of CMC\", \"Arizona\", \"urban\", \"public\", 5, 0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>()");
 		int success = adminInt.addUniversity("University of CMC", "Arizona", "urban", "public", 5, 0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
-		if (success == 1)
+		if (success != -1)
 			System.out.println("\"University of CMC\" added to Database");
 		else
 			System.err.println("Adding University failed.");
@@ -128,7 +123,7 @@ public class Driver
 		System.out.println("Editing a University: \"University of CMC\"");
 		University toBeEdited = new University("University of CMC", "Arizona", "urban", "public", 5, 0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
 		success = adminInt.editUniversity(toBeEdited, "University of ACM", "Arizona", "urban", "public", 5, 0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
-		if (success == 1)
+		if (success != -1)
 			System.out.println("Changed title of University: \"University of CMC\" to \"University of ACM\"");
 		else
 			System.err.println("Editing University failed.");
