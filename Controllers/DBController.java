@@ -279,7 +279,7 @@ public class DBController
    *
    * @param a university object to base the other schools off of
    *
-   * @return an ArrayList of univerity objects
+   * @return an ArrayList of university objects
    */
   public ArrayList<University> getRecommendedUniversities(University u)
   {
@@ -345,15 +345,20 @@ public class DBController
       if (minPercentFinancialAid > university.getPercentFinancialAid())
         minPercentFinancialAid = university.getPercentFinancialAid();
 
+      if (maxNumApplicants < university.getNumApplicants())
+    	  maxNumApplicants = university.getNumApplicants();
+      if (minNumApplicants > university.getNumApplicants())
+    	  minNumApplicants = university.getNumApplicants();
+
       if (maxPercentAdmitted < university.getPercentAdmitted())
         maxPercentAdmitted = university.getPercentAdmitted();
       if (minPercentAdmitted > university.getPercentAdmitted())
         minPercentAdmitted = university.getPercentAdmitted();
-
-      if (maxPercentEnrolled < university.getPercentAdmitted())
-        maxPercentAdmitted = university.getPercentAdmitted();
-      if (minPercentAdmitted > university.getPercentAdmitted())
-        minPercentAdmitted = university.getPercentAdmitted();
+      
+      if (maxPercentEnrolled < university.getPercentEnrolled())
+    	  maxPercentEnrolled = university.getPercentEnrolled();
+        if (minPercentEnrolled > university.getPercentEnrolled())
+        	minPercentEnrolled = university.getPercentEnrolled();
 
       if (maxAcademicScale < university.getAcademicScale())
         maxAcademicScale = university.getAcademicScale();
