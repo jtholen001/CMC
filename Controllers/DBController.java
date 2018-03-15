@@ -69,7 +69,7 @@ public class DBController
 	  
 	  for(int i = 0; i < universities.length; i++)
 	  {
-		  if(universities[i].equals(username))
+		  if(universities[i][0].equals(username))
 		  {
 			  list.add(this.getUniversity(universities[i][1]));
 		  }
@@ -97,12 +97,12 @@ public class DBController
       else
         status = false;
       //creates the user and puts it in the map
-      if(users[index][4].equals('u'))
+      if(users[index][4].equals("u"))
 		{
 			 userMap.put(users[index][0],new Student(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
                 status, false, this.getUniversitiesForStudent(users[index][0])));
 		}
-		else if(users[index][4].equals('a')) {
+		else if(users[index][4].equals("a")) {
 			 userMap.put(users[index][0],new Admin(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
                   status, false));
 		}
@@ -167,7 +167,7 @@ public class DBController
                                          Integer.parseInt(universities[index][6]), Integer.parseInt(universities[index][7]), Integer.parseInt(universities[index][8]),
                                          Integer.parseInt(universities[index][9]), Integer.parseInt(universities[index][10]),Integer.parseInt(universities[index][11]),
                                          Integer.parseInt(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
-                                         Integer.parseInt(universities[index][15]), null)); //not sure how emphases are stored
+                                         Integer.parseInt(universities[index][15]), getUniversityEmphases(universities[index][0]))); //not sure how emphases are stored
     }
     return universityMap;
   }
@@ -192,13 +192,27 @@ public class DBController
                                          Integer.parseInt(universities[index][6]), Integer.parseInt(universities[index][7]), Integer.parseInt(universities[index][8]),
                                          Integer.parseInt(universities[index][9]), Integer.parseInt(universities[index][10]),Integer.parseInt(universities[index][11]),
                                          Integer.parseInt(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
-                                         Integer.parseInt(universities[index][15]), null)); //not sure how emphases are stored
+                                         Integer.parseInt(universities[index][15]), getUniversityEmphases(name)));  
     }
 
     return universityMap.get(name);
 
 
 
+  }
+  
+  private ArrayList<String> getUniversityEmphases(String universityName) {
+	   
+	  ArrayList<String>  retList = new ArrayList<String>();
+	  String[][] emphases = univDBlib.university_getEmphases();
+	  
+	  for(int i = 0; i < emphases.length; i++)
+	  {
+		  if(emphases[i][0].equals(universityName)) {
+			  retList.add(emphases[i][1]);
+		  }	  
+	  }
+	  return retList;
   }
 
   /**
@@ -216,12 +230,13 @@ public class DBController
                               university.getAcademicScale(), university.getSocialScale(),
                               university.getQualityOfLifeScale());
 
-
-    for(String emphasis: university.getEmphases())
+    ArrayList<String> storedVals = getUniversityEmphases(university.getName());
+    for(String emphases: university.getEmphases())
     {
-      univDBlib.university_addUniversityEmphasis(university.getName(), emphasis);
+    	if(!(storedVals.contains(emphases))){
+    		univDBlib.university_addUniversityEmphasis(university.getName(), emphases);
+    	}
     }
-    
     return success;
   }
 
@@ -232,13 +247,19 @@ public class DBController
    */
   public int addUniversity(University university)
   {
-    return univDBlib.university_addUniversity(university.getName(), university.getState(), university.getLocation(),
+    int ret =  univDBlib.university_addUniversity(university.getName(), university.getState(), university.getLocation(),
                               university.getControl(), university.getNumStudents(), university.getPercentFemale(),
                               university.getSATVerbal(), university.getSATMath(), university.getExpenses(),
                               university.getPercentFinancialAid(), university.getNumApplicants(),
                               university.getPercentEnrolled(), university.getPercentEnrolled(),
                               university.getAcademicScale(), university.getSocialScale(),
                               university.getQualityOfLifeScale());
+    
+    for(int i = 0; i < university.getEmphases().size(); i++)
+    {
+    	univDBlib.university_addUniversityEmphasis(university.getName(), university.getEmphases().get(i));
+    }
+    return ret;
   }
 
   /**

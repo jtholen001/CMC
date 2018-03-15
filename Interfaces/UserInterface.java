@@ -47,7 +47,7 @@ public class UserInterface
     if (user != null)
     {
       char type = user.getType();
-      if (type == 's')
+      if (type == 'u')
       {
         this.passToStudentInterface((Student)user);
       }

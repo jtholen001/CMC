@@ -6,7 +6,7 @@
  */
 package Interfaces;
 
-import java.util.ArrayList;
+import java.util.*;
 import Controllers.*;
 import entityClasses.*;
 
@@ -46,9 +46,9 @@ public class AdminInterface extends UserInterface
   /**
    * A method that displays all User objects in the Database
    */
-  public void viewUsers()
+  public HashMap<String, User> viewUsers()
   {
-    uCont.viewUsers();
+    return uCont.viewUsers();
   }
   
   /**
