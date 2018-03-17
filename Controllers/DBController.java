@@ -471,8 +471,11 @@ public class DBController
       double temp = values.next();
       for (String universityName : keys)
       {
-        if (distanceMap.get(universityName) == temp)
-          recommendedUniversityNames.add(universityName);
+    	if (!(u.getName().equals(universityName)))
+    	{
+    		if (distanceMap.get(universityName) == temp)
+    			recommendedUniversityNames.add(universityName);
+    	}
       }
     }
     

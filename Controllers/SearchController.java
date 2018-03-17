@@ -109,240 +109,54 @@ public class SearchController
         }
           //checks the number of students bound 
         case 4:
-          if ((numStudentsLower <= currentUniversity.getNumStudents()) && (numStudentsUpper >= currentUniversity.getNumStudents()))
-        {        
-          match++;
-        }      
-          else if (numStudentsLower == 0 && numStudentsUpper >=  currentUniversity.getNumStudents())
-          {
-            match++; 
-          }
-          else if (numStudentsUpper == 0 && numStudentsLower <=  currentUniversity.getNumStudents())
-          {
-            match++; 
-          }
-          else if (numStudentsLower == 0 && numStudentsUpper == 0)
-          {
-            match++; 
-          }
+        	match += compareStats(currentUniversity.getNumStudents(), numStudentsLower, numStudentsUpper);
           //checks the percent female bound 
         case 5:
-          if ((percentFemaleLower <= currentUniversity.getPercentFemale()) && (percentFemaleUpper >= currentUniversity.getPercentFemale()))
-        {        
-          match++;
-        }      
-          else if (percentFemaleLower == 0 && percentFemaleUpper >=  currentUniversity.getPercentFemale())
-          {
-            match++; 
-          }
-          else if (percentFemaleUpper == 0 && percentFemaleLower <=  currentUniversity.getPercentFemale())
-          {
-            match++; 
-          }
-          else if (percentFemaleLower == 0 && percentFemaleUpper == 0)
-          {
-            match++; 
-          }
+        	match += compareStats(currentUniversity.getPercentFemale(), percentFemaleLower, percentFemaleUpper);        
           //checks the SAT Verbal bound 
         case 6:
-          if ((SATVerbalLower <= currentUniversity.getSATVerbal()) && (SATVerbalUpper >= currentUniversity.getSATVerbal()))
-        {        
-          match++;
-        }      
-          else if (SATVerbalLower == 0 && SATVerbalUpper >=  currentUniversity.getSATVerbal())
-          {
-            match++; 
-          }
-          else if (SATVerbalUpper == 0 && SATVerbalLower <=  currentUniversity.getSATVerbal())
-          {
-            match++; 
-          }
-          else if (SATVerbalLower == 0 && SATVerbalUpper == 0)
-          {
-            match++; 
-          }
+        	match += compareStats(currentUniversity.getSATVerbal(), SATVerbalLower, SATVerbalUpper);
           //checks the SAT Math bound 
         case 7:
-          if ((SATMathLower <= currentUniversity.getSATMath()) && (SATMathUpper >= currentUniversity.getSATMath()))
-        {        
-          match++;
-        }      
-          else if (SATMathLower == 0 && SATMathUpper >=  currentUniversity.getSATMath())
-          {
-            match++; 
-          }
-          else if (SATMathUpper == 0 && SATMathLower <=  currentUniversity.getSATMath())
-          {
-            match++; 
-          }
-          else if (SATMathLower == 0 && SATMathUpper == 0)
-          {
-            match++; 
-          }
+        	match += compareStats(currentUniversity.getSATMath(), SATMathLower, SATMathUpper);
           //checks the expenses bound 
         case 8:
-          if ((expensesLower <= currentUniversity.getExpenses()) && (expensesUpper >= currentUniversity.getExpenses()))
-        {        
-          match++;
-        }      
-          else if (expensesLower == 0 && expensesUpper >=  currentUniversity.getExpenses())
-          {
-            match++; 
-          }
-          else if (expensesUpper == 0 && expensesLower <=  currentUniversity.getExpenses())
-          {
-            match++; 
-          }
-          else if (expensesLower == 0 && expensesUpper == 0)
-          {
-            match++; 
-          }
+            match += compareStats(currentUniversity.getExpenses(), expensesLower, expensesUpper);
           //checks the percent financial aid bound 
         case 9:
-          if ((percentFinancialAidLower <= currentUniversity.getPercentFinancialAid()) && (percentFinancialAidUpper >= currentUniversity.getPercentFinancialAid()))
-        {        
-          match++;
-        }      
-          else if (percentFinancialAidLower == 0 && percentFinancialAidUpper >=  currentUniversity.getPercentFinancialAid())
-          {
-            match++; 
-          }
-          else if (percentFinancialAidUpper == 0 && percentFinancialAidLower <=  currentUniversity.getPercentFinancialAid())
-          {
-            match++; 
-          }
-          else if (percentFinancialAidLower == 0 && percentFinancialAidUpper == 0)
-          {
-            match++; 
-          }
+            match += compareStats(currentUniversity.getPercentFinancialAid(), percentFinancialAidLower, percentFinancialAidUpper);
           //checks the number of applicants bound 
         case 10:
-          if ((numApplicantsLower <= currentUniversity.getNumApplicants()) && (numApplicantsUpper >= currentUniversity.getNumApplicants()))
-        {        
-          match++;
-        }      
-          else if (numApplicantsLower == 0 && numApplicantsUpper >=  currentUniversity.getNumApplicants())
-          {
-            match++; 
-          }
-          else if (numApplicantsUpper == 0 && numApplicantsLower <=  currentUniversity.getNumApplicants())
-          {
-            match++; 
-          }
-          else if (numApplicantsLower == 0 && numApplicantsUpper == 0)
-          {
-            match++; 
-          }
+            match += compareStats(currentUniversity.getNumApplicants(), numApplicantsLower, numApplicantsUpper);
           //checks the percent admitted bound 
         case 11:
-          if ((percentAdmittedLower <= currentUniversity.getPercentAdmitted()) && (percentAdmittedUpper >= currentUniversity.getPercentAdmitted()))
-        {        
-          match++;
-        }      
-          else if (percentAdmittedLower == 0 && percentAdmittedUpper >=  currentUniversity.getPercentAdmitted())
-          {
-            match++; 
-          }
-          else if (percentAdmittedUpper == 0 && percentAdmittedLower <=  currentUniversity.getPercentAdmitted())
-          {
-            match++; 
-          }
-          else if (percentAdmittedLower == 0 && percentAdmittedUpper == 0)
-          {
-            match++; 
-          }
+            match += compareStats(currentUniversity.getPercentAdmitted(), percentAdmittedLower, percentAdmittedUpper);
           //checks the percent enrolled bound 
         case 12:
-          if ((percentEnrolledLower <= currentUniversity.getPercentEnrolled()) && (percentEnrolledUpper >= currentUniversity.getPercentEnrolled()))
-        {        
-          match++;
-        }      
-          else if (percentEnrolledLower == 0 && percentEnrolledUpper >=  currentUniversity.getPercentEnrolled())
-          {
-            match++; 
-          }
-          else if (percentEnrolledUpper == 0 && percentEnrolledLower <=  currentUniversity.getPercentEnrolled())
-          {
-            match++; 
-          }
-          else if (percentEnrolledLower == 0 && percentEnrolledUpper == 0)
-          {
-            match++; 
-          }
+            match += compareStats(currentUniversity.getPercentEnrolled(), percentEnrolledLower, percentEnrolledUpper);
           //checks the academic scale bound 
         case 13:
-          if ((academicScaleLower <= currentUniversity.getAcademicScale()) && (academicScaleUpper >= currentUniversity.getAcademicScale()))
-        {        
-          match++;
-        }      
-          else if (academicScaleLower == 0 && academicScaleUpper >=  currentUniversity.getAcademicScale())
-          {
-            match++; 
-          }
-          else if (academicScaleUpper == 0 && academicScaleLower <=  currentUniversity.getAcademicScale())
-          {
-            match++; 
-          }
-          else if (academicScaleLower == 0 && academicScaleUpper == 0)
-          {
-            match++; 
-          }
+            match += compareStats(currentUniversity.getAcademicScale(), academicScaleLower, academicScaleUpper);
           //checks the social scale bound 
         case 14:
-          if ((socialScaleLower <= currentUniversity.getSocialScale()) && (academicScaleUpper >= currentUniversity.getSocialScale()))
-        {        
-          match++;
-        }      
-          else if (socialScaleLower == 0 && socialScaleUpper >=  currentUniversity.getSocialScale())
-          {
-            match++; 
-          }
-          else if (socialScaleUpper == 0 && socialScaleLower <=  currentUniversity.getSocialScale())
-          {
-            match++; 
-          }
-          else if (socialScaleLower == 0 && socialScaleUpper == 0)
-          {
-            match++; 
-          }
+            match += compareStats(currentUniversity.getSocialScale(), socialScaleLower, socialScaleUpper);
           //checks the quality of life scale bound 
         case 15:
-          if ((qualityOfLifeScaleLower <= currentUniversity.getQualityOfLifeScale()) && (qualityOfLifeScaleUpper >= currentUniversity.getQualityOfLifeScale()))
-        {        
-          match++;
-        }      
-          else if (qualityOfLifeScaleLower == 0 && qualityOfLifeScaleUpper >=  currentUniversity.getQualityOfLifeScale())
-          {
-            match++; 
-          }
-          else if (qualityOfLifeScaleUpper == 0 && qualityOfLifeScaleLower <=  currentUniversity.getQualityOfLifeScale())
-          {
-            match++; 
-          }
-          else if (qualityOfLifeScaleLower == 0 && qualityOfLifeScaleUpper == 0)
-          {
-            match++; 
-          }
+            match += compareStats(currentUniversity.getQualityOfLifeScale(), qualityOfLifeScaleLower, qualityOfLifeScaleUpper);
           //checks the emphases
         case 16:
           ArrayList<String> currentEmphases = currentUniversity.getEmphases();
           boolean atleastOneFound = false;
           if (searchEmphases.isEmpty())
-          {
             match++; 
-          }
           else
           {
             for (String emphasis : searchEmphases)
             {
               if (currentEmphases.contains(emphasis) && !atleastOneFound)
-              {
-                match++;
-              } 
+                match++; 
             }
           }   
-        default:
-          break;
       }  
       //only if a university 'matches' all criteria will it be added
       //if the user does not put anything in a field it counts as a match for that particular field
@@ -352,8 +166,48 @@ public class SearchController
       }  
     }
     return foundUniversities;
-
   }
+  
+  /**
+   * helper method for comparing search criteria to universities in the database
+   * @param currentSchoolValue  the value associated with the current university you are comparing
+   * @param lower  the lower bound entered in the search criteria
+   * @param upper  the upper bound entered in the search criteria
+   * @return an int if the university matches the criteria
+   */
+  private int compareStats(double currentSchoolValue, double lower, double upper)
+  {
+      if ((lower <= currentSchoolValue) && (upper >= currentSchoolValue))       
+    	  return 1;          
+      else if (lower == 0 && upper >=  currentSchoolValue)    
+    	  return 1;      					
+      else if (upper == 0 && lower <=  currentSchoolValue)
+    	  return 1; 
+      else if (lower == 0 && upper == 0)
+    	  return 1;
+	  return 0;
+  }
+  
+  /**
+   * helper method for comparing search criteria to universities in the database
+   * @param currentSchoolValue  the value associated with the current university you are comparing
+   * @param lower  the lower bound entered in the search criteria
+   * @param upper  the upper bound entered in the search criteria
+   * @return an int if the university matches the criteria
+   */ 
+  private int compareStats(int currentSchoolValue, int lower, int upper)
+  {
+      if ((lower <= currentSchoolValue) && (upper >= currentSchoolValue))       
+    	  return 1;          
+      else if (lower == 0 && upper >=  currentSchoolValue)    
+    	  return 1;      					
+      else if (upper == 0 && lower <=  currentSchoolValue)
+    	  return 1; 
+      else if (lower == 0 && upper == 0)
+    	  return 1;
+	  return 0;
+  }
+  
   
   /**
    * method to get the recommended universities based off of a university

@@ -72,6 +72,7 @@ public class Driver
 		ArrayList<University> recommendedUniversities = studentInt.getRecommendedUniversities(dummyUniversity);
 		for (University u : recommendedUniversities) {
 			System.out.println(u);
+			System.out.println();
 		}
 		
 	}
