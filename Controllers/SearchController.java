@@ -67,6 +67,16 @@ public class SearchController
                                  double percentFinancialAidLower, double percentFinancialAidUpper, double percentAdmittedLower, double percentAdmittedUpper, double percentEnrolledLower, 
                                  double percentEnrolledUpper, ArrayList<String> searchEmphases)
   {
+	if (name == null && state == null && location == null && control == null &&
+			numStudentsLower == 0 && numStudentsUpper == 0 && percentFemaleLower == 0 && percentFemaleUpper == 0 &&
+			SATVerbalLower == 0 && SATVerbalUpper==0 && SATMathLower == 0 && SATMathUpper == 0 && expensesLower == 0 &&
+			expensesUpper ==0 && numApplicantsLower == 0 && numApplicantsUpper == 0 && academicScaleLower == 0 && academicScaleUpper == 0 &&
+			socialScaleLower == 0 && socialScaleUpper == 0 && qualityOfLifeScaleLower == 0 && qualityOfLifeScaleUpper == 0 &&
+			percentFinancialAidLower == 0 && percentFinancialAidUpper == 0 && percentAdmittedLower == 0 && percentAdmittedUpper == 0 &&
+			percentEnrolledLower == 0 && percentEnrolledUpper == 0 && searchEmphases == null)
+	{
+		return null;	
+	}
     //HashMap containing all the universities in the database
     HashMap<String, University> universities = dbc.viewUniversities();
     
@@ -147,7 +157,7 @@ public class SearchController
         case 16:
           ArrayList<String> currentEmphases = currentUniversity.getEmphases();
           boolean atleastOneFound = false;
-          if (searchEmphases.isEmpty())
+          if (searchEmphases == null || searchEmphases.isEmpty())
             match++; 
           else
           {
