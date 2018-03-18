@@ -246,17 +246,20 @@ public class DBController
    */
   public int addUniversity(University university)
   {
-    int ret =  univDBlib.university_addUniversity(university.getName(), university.getState(), university.getLocation(),
-                              university.getControl(), university.getNumStudents(), university.getPercentFemale(),
+    int ret =  univDBlib.university_addUniversity(university.getName().toUpperCase(), university.getState().toUpperCase(), university.getLocation().toUpperCase(),
+                              university.getControl().toUpperCase(), university.getNumStudents(), university.getPercentFemale(),
                               university.getSATVerbal(), university.getSATMath(), university.getExpenses(),
                               university.getPercentFinancialAid(), university.getNumApplicants(),
                               university.getPercentEnrolled(), university.getPercentEnrolled(),
                               university.getAcademicScale(), university.getSocialScale(),
                               university.getQualityOfLifeScale());
     
-    for(int i = 0; i < university.getEmphases().size(); i++)
+    if (!(university.getEmphases().equals(null)))
     {
-    	univDBlib.university_addUniversityEmphasis(university.getName(), university.getEmphases().get(i));
+	    for(int i = 0; i < university.getEmphases().size(); i++)
+	    {
+	    	univDBlib.university_addUniversityEmphasis(university.getName(), university.getEmphases().get(i));
+	    }
     }
     return ret;
   }
@@ -278,7 +281,7 @@ public class DBController
    *
    * @param a university object to base the other schools off of
    *
-   * @return an ArrayList of univerity objects
+   * @return an ArrayList of university objects
    */
   public ArrayList<University> getRecommendedUniversities(University u)
   {
@@ -288,14 +291,14 @@ public class DBController
 
     int maxNumStudents = u.getNumStudents();
     int minNumStudents = u.getNumStudents();
-    int maxPercentFemale = u.getPercentFemale();
-    int minPercentFemale = u.getPercentFemale();
-    int maxSATVerbal = u.getSATVerbal();
-    int minSATVerbal = u.getSATVerbal();
-    int maxSATMath = u.getSATMath();
-    int minSATMath = u.getSATMath();
-    int maxExpenses = u.getExpenses();
-    int minExpenses = u.getExpenses();
+    double maxPercentFemale = u.getPercentFemale();
+    double minPercentFemale = u.getPercentFemale();
+    double maxSATVerbal = u.getSATVerbal();
+    double minSATVerbal = u.getSATVerbal();
+    double maxSATMath = u.getSATMath();
+    double minSATMath = u.getSATMath();
+    double maxExpenses = u.getExpenses();
+    double minExpenses = u.getExpenses();
     double maxPercentFinancialAid = u.getPercentFinancialAid();
     double minPercentFinancialAid = u.getPercentFinancialAid();
     int maxNumApplicants = u.getNumApplicants();
@@ -344,15 +347,20 @@ public class DBController
       if (minPercentFinancialAid > university.getPercentFinancialAid())
         minPercentFinancialAid = university.getPercentFinancialAid();
 
+      if (maxNumApplicants < university.getNumApplicants())
+    	  maxNumApplicants = university.getNumApplicants();
+      if (minNumApplicants > university.getNumApplicants())
+    	  minNumApplicants = university.getNumApplicants();
+
       if (maxPercentAdmitted < university.getPercentAdmitted())
         maxPercentAdmitted = university.getPercentAdmitted();
       if (minPercentAdmitted > university.getPercentAdmitted())
         minPercentAdmitted = university.getPercentAdmitted();
-
-      if (maxPercentEnrolled < university.getPercentAdmitted())
-        maxPercentAdmitted = university.getPercentAdmitted();
-      if (minPercentAdmitted > university.getPercentAdmitted())
-        minPercentAdmitted = university.getPercentAdmitted();
+      
+      if (maxPercentEnrolled < university.getPercentEnrolled())
+    	  maxPercentEnrolled = university.getPercentEnrolled();
+        if (minPercentEnrolled > university.getPercentEnrolled())
+        	minPercentEnrolled = university.getPercentEnrolled();
 
       if (maxAcademicScale < university.getAcademicScale())
         maxAcademicScale = university.getAcademicScale();
@@ -462,8 +470,11 @@ public class DBController
       double temp = values.next();
       for (String universityName : keys)
       {
-        if (distanceMap.get(universityName) == temp)
-          recommendedUniversityNames.add(universityName);
+    	if (!(u.getName().equals(universityName)))
+    	{
+    		if (distanceMap.get(universityName) == temp)
+    			recommendedUniversityNames.add(universityName);
+    	}
       }
     }
     

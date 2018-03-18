@@ -85,11 +85,12 @@ public class StudentInterface extends UserInterface
    * TODO: possible boolean return type
    * Method to view a specific university
    * 
-   * @param university the University to be viewed 
+   * @param university the University to be viewed
+   * @return a String representation of the University 
    */
-  public void viewUniversity(University university)
+  public String viewUniversity(University university)
   {
-    this.suc.viewUniversity(university);
+    return this.suc.viewUniversity(university);
   }
 
   /**
@@ -157,6 +158,19 @@ public class StudentInterface extends UserInterface
                                                                     percentFinancialAidLower, percentFinancialAidUpper, percentAdmittedLower, percentAdmittedUpper, percentEnrolledLower, 
                                                                     percentEnrolledUpper, searchEmphases); 
     //sc.viewSchools(foundUniversities);
+  }
+  
+  /**
+   * method to get the recommended universities based off of a university
+   *
+   * @param a university object to base the other schools off of
+   *
+   * @return an ArrayList of university objects
+   */
+  public ArrayList<University> getRecommendedUniversities(University u)
+  {
+	  return sc.getRecommendedUniversities(u);
+	  
   }
   
   /**
