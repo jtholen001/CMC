@@ -95,6 +95,16 @@ public class AdminInterface extends UserInterface
   }
   
   /**
+   * a method to delete a user'
+   * @param username the user to delete
+   * @return an integer representing the success/fail of the method
+   */
+  public int deleteUser(String username)
+  {
+	  return uCont.deleteUser(username);
+  }
+  
+  /**
    * A method that displays all University objects in the Database
    */
   public String viewUniversities()

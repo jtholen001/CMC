@@ -98,4 +98,14 @@ public class UsersController
     user.setActivationStatus(false);
     return dbCont.saveEditedUser(user);
   }
+  
+  /**
+   * a method to delete a user
+   * @param username the user to delete from the Database
+   * @return an integer representing the success/fail of the method
+   */
+  public int deleteUser(String username)
+  {
+	  return dbCont.deleteUser(username);
+  }
 }

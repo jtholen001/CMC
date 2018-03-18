@@ -155,6 +155,16 @@ public class DBController
   }
 
   /**
+   * method to delete a user from the database
+   * 
+   * @param username the user to be deleted
+   */
+  public int deleteUser(String username)
+  {
+  return univDBlib.user_deleteUser(username);
+  }
+  
+  /**
    * method to get all universities in the databse
    *
    * @return a hashmap of all universities where the univ name is the key and the University object is a value
