@@ -69,27 +69,27 @@ public class LoginController
    }
 
    /**
-    * This method prints a login error message indicating that the account is already logged in
+    * This method prints a login outor message indicating that the account is already logged in
     */
    public void loggedInAccount()
    {
-     System.err.println("Account already logged in from a different location.");
+     System.out.println("Account already logged in from a different location.");
    }
 
    /**
-    * This method prints a login error message indicating that the account is deactivated
+    * This method prints a login outor message indicating that the account is deactivated
     */
    public void deactivatedAccount()
    {
-     System.err.println("Account deactivated. Contact system administrator.");
+     System.out.println("Account deactivated. Contact system administrator.");
    }
 
    /**
-    * This method prints a login error message indicating that the credentials are invalid
+    * This method prints a login outor message indicating that the credentials are invalid
     */
    public void invalidCredentials()
    {
-     System.err.println("Username or password is incorrect.");
+     System.out.println("Username or password is incorrect.");
    }
 
    /**

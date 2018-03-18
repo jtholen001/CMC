@@ -28,7 +28,6 @@ public class Driver
 		userInt = new UserInterface();
 		studentInt = new StudentInterface(student);
 		adminInt = new AdminInterface(admin);
-		//this.viewUsers();
 	}
 	
 	/**
@@ -36,16 +35,21 @@ public class Driver
 	 */
 	public void login() 
 	{
-		System.out.println("User should be logged in correctly: " + userInt.login("juser", "user"));
+		System.out.println("Test U1: Login");
+		System.out.println("User should be logged in correctly: " + userInt.login("juser", "user") + "\n");
 		System.out.println("User should be logged out correctly");
 		userInt.logout((User)student);
+		System.out.println("\n");
 		System.out.println("User should fail to log in with incorrect username: ");
 		userInt.login("john", "user");
+		System.out.println("\n");
 		System.out.println("User should fail to log in with incorrect password: ");
 		userInt.login("juser", "null");
+		System.out.println("\n");
 		//TODO: Deactivate user for next test
 		System.out.println("User should fail to log in because account is deactivated");
 		userInt.login("mcarroll001", "password0");
+		System.out.println("\n");
 		
 	}
 	
@@ -173,9 +177,23 @@ public class Driver
 	public static void main(String[] args)
 	{
 		Driver driver = new Driver();
-		//driver.viewUniversities();
-		//driver.viewUsers();
+		System.out.println("Testing login method:");
+		driver.login();
+		System.out.println("----------------------------------------------");
+		System.out.println("Testing Search Method");
 		driver.searchForUniversities();
+		System.out.println("----------------------------------------------");
+		System.out.println("Testing Saved Schools");
+		driver.viewSavedSchools();
+		System.out.println("----------------------------------------------");
+		System.out.println("Testing View Profile:");
+		driver.viewMyProfile();
+		System.out.println("----------------------------------------------");
+		System.out.println("Testing View Users");
+		driver.viewUsers();
+		System.out.println("----------------------------------------------");
+		System.out.println("Testing View Universities");
+		driver.viewUniversities();
 
 		// TODO Auto-generated method stub
 	}
