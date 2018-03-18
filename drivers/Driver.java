@@ -259,16 +259,7 @@ public class Driver
 	public static void main(String[] args)
 	{
 		Driver driver = new Driver();
-<<<<<<< HEAD
 		System.out.println("Testing U1: Login, U20: Logout");
-=======
-<<<<<<< HEAD
-		//driver.viewUniversities();
-		driver.viewUsers();
-		//driver.searchForUniversities();
-=======
-		System.out.println("Testing login method:");
->>>>>>> e44fd13adc02e08a87cdb2f1f2246f4b91809cef
 		driver.login();
 		System.out.println("----------------------------------------------");
 		System.out.println("Testing U3: Search For Schools, U6: View Matched Schools, U7: View Specific School, U10 View Recommended Schools");
@@ -285,7 +276,6 @@ public class Driver
 		System.out.println("----------------------------------------------");
 		System.out.println("Testing U14: View Universities");
 		driver.viewUniversities();
->>>>>>> 57a1f78bf3c888f3c6e314d3b928ca39ac1e92a3
 
 		// TODO Auto-generated method stub
 	}
