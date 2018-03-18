@@ -252,10 +252,11 @@ public class SearchController
    * Method to add a new University to a Student's saved universities
    * @param student the Student to whom the university needs to be added
    * @param newUniversity the University to add the a Student's saved universities
+   * @return integer representing success of save
    */
-  public void saveUniversity(Student student, University newUniversity)
+  public int saveUniversity(Student student, University newUniversity)
   {
     student.addSchool(newUniversity);
-    dbc.saveEditedUser(student);
+    return dbc.saveEditedUser(student);
   }
 }
