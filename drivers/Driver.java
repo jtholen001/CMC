@@ -28,7 +28,6 @@ public class Driver
 		userInt = new UserInterface();
 		studentInt = new StudentInterface(student);
 		adminInt = new AdminInterface(admin);
-		//this.viewUsers();
 	}
 	
 	/**
@@ -171,9 +170,23 @@ public class Driver
 	public static void main(String[] args)
 	{
 		Driver driver = new Driver();
-		//driver.viewUniversities();
-		//driver.viewUsers();
+		System.out.println("Testing login method:");
+		driver.login();
+		System.out.println("----------------------------------------------");
+		System.out.println("Testing Search Method");
 		driver.searchForUniversities();
+		System.out.println("----------------------------------------------");
+		System.out.println("Testing Saved Schools");
+		driver.viewSavedSchools();
+		System.out.println("----------------------------------------------");
+		System.out.println("Testing View Profile:");
+		driver.viewMyProfile();
+		System.out.println("----------------------------------------------");
+		System.out.println("Testing View Users");
+		driver.viewUsers();
+		System.out.println("----------------------------------------------");
+		System.out.println("Testing View Universities");
+		driver.viewUniversities();
 
 		// TODO Auto-generated method stub
 	}
