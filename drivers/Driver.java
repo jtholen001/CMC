@@ -133,14 +133,21 @@ public class Driver
 	public void viewUsers() 
 	{
 		int success;
-		//showing view users functionality
-		System.out.println("Showing all Users in the DataBase:\n");
+		/*
+		 * U13
+		 * showing view users functionality
+		 */
+		System.out.println("Showing U13: View Users\n");
 		HashMap<String, User> allUsers = adminInt.viewUsers();
 		
 		for (String nameOfUser : allUsers.keySet())
 			System.out.println(nameOfUser);
 		
-		//showing add user functionality
+		/*
+		 * U18
+		 * showing add user functionality
+		 */
+		System.out.println("\nShowing U18: Add User");
 		System.out.println("\nAdding Student User with following attributes: Miss, Pelled, mpelled001, password0, 'u', true, false");
 		success = adminInt.addUser("Miss", "Pelled", "mpelled001", "password0", 'u', true, false);
 		if (success == -1)
@@ -148,34 +155,89 @@ public class Driver
 		else
 			System.out.println("Added User successfully");
 		
+		//showing add user functionality fails if the username already exists
+		System.out.println("\nTry to add User with following attributes: Pant, Olones, mpelled001, password0, 'u', true, false");
+		success = adminInt.addUser("Pant", "Olones", "mpelled001", "password0", 'u', true, false);
+		if (success == -1)
+			System.out.println("Add User failed; username already exists in the Database");
+		else
+			System.out.println("Add User successful, Database did not return -1");
+		
 		//creating temporary User object to show manipulating functionalities
 		User missPelled = new User("Miss", "Pelled", "mpelled001", "password0", 'u', true, false);
 		
-		//showing deactivate User functionality
+		/*
+		 * U17
+		 * showing deactivate User functionality
+		 */
 		System.out.println("\nDeactivate the added User: Miss Pelled");
+		boolean initialStatus = missPelled.getActivationStatus();
 		success = adminInt.deactivate(missPelled);
 		if (success == -1)
 			System.out.println("Deactivate User failed - database returned -1");
 		else
+<<<<<<< HEAD
 			System.out.println("Deactivated User successfully");
 		
+=======
+		{
+			if (initialStatus == true)
+				System.out.println("Deactivate User successful, Database did not return -1 and the User was initially activated");
+			else
+				System.out.println("Deactivate User failed, User is already deactivated");
+		}
+		System.out.println("\nTry to deactivate the added User: Miss Pelled");
+		initialStatus = missPelled.getActivationStatus();
+		success = adminInt.deactivate(missPelled);
+		if (success == -1)
+			System.out.println("Deactivate User failed because Database returned -1");
+		else
+		{
+			if (initialStatus == true)
+				System.out.println("Deactivate User successful, Database did not return -1 and the User was initally activated");
+			else
+				System.out.println("Deactivate User failed, User is already deactivated");
+		}
+>>>>>>> e44fd13adc02e08a87cdb2f1f2246f4b91809cef
 		
-		//showing edit User functionality works
-		System.out.println("\nEdit User Miss Pelled's last name to 'Takes'");
-		success = adminInt.editUser("mpelled001", "Miss", "Takes", "mpelled001", 'u', false, false);
+		/*
+		 * U19
+		 * showing edit User functionality
+		 */
+		System.out.println("\nEdit User Miss Pelled's last name to \"Takes\"");
+		success = adminInt.editUser("mpelled001", "Miss", "Takes", "password0", 'u', false, false);
 		if (success == -1)
 			System.out.println("Edit User failed - database returned -1");
 		else
 			System.out.println("Edited User successfully");
 		
-		//showing edit User functionality does not work
-		System.out.println("\nEdit User Miss Pelled's last name to \"[Empty String]\"");
+		//showing edit User functionality does not work when feeding an empty attribute
+		System.out.println("\nTry to edit User Miss Pelled's last name to \"[Empty String]\"");
 		success = adminInt.editUser("mpelled001", "Miss", "", "mpelled001", 'u', false, false);
 		if (success == -1)
+<<<<<<< HEAD
 			System.out.println("Edit User failed - database returned -1");
 		else
 			System.out.println("Edited User successfully");
 			
+=======
+			System.out.println("Edit User failed because an attribute was left blank");
+		else
+			System.out.println("Edit User success, Database did not return -1");
+		
+		/*
+		 * U13
+		 * show updated list of Users
+		 */
+		System.out.println("\nShowing updated list of users:\n");
+		allUsers = adminInt.viewUsers();
+		
+		for (String nameOfUser : allUsers.keySet())
+			System.out.println(nameOfUser);
+		
+		//reset changes to Database
+		adminInt.deleteUser("misspelled001");
+>>>>>>> e44fd13adc02e08a87cdb2f1f2246f4b91809cef
 	}
 	
 	//U14 and U15 and U16
@@ -209,7 +271,16 @@ public class Driver
 	public static void main(String[] args)
 	{
 		Driver driver = new Driver();
+<<<<<<< HEAD
 		System.out.println("Testing U1: Login, U20: Logout");
+=======
+<<<<<<< HEAD
+		//driver.viewUniversities();
+		driver.viewUsers();
+		//driver.searchForUniversities();
+=======
+		System.out.println("Testing login method:");
+>>>>>>> e44fd13adc02e08a87cdb2f1f2246f4b91809cef
 		driver.login();
 		System.out.println("----------------------------------------------");
 		System.out.println("Testing U3: Search For Schools, U6: View Matched Schools, U7: View Specific School, U10 View Recommended Schools");
@@ -226,6 +297,7 @@ public class Driver
 		System.out.println("----------------------------------------------");
 		System.out.println("Testing U14: View Universities");
 		driver.viewUniversities();
+>>>>>>> 57a1f78bf3c888f3c6e314d3b928ca39ac1e92a3
 
 		// TODO Auto-generated method stub
 	}

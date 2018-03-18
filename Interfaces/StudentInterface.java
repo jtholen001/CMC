@@ -83,7 +83,6 @@ public class StudentInterface extends UserInterface
   }
   
   /**
-   * TODO: possible boolean return type
    * Method to view a specific university
    * 
    * @param university the University to be viewed
@@ -95,7 +94,6 @@ public class StudentInterface extends UserInterface
   }
 
   /**
-   * TODO: possible boolean return type
    * Method to save a university to the Student's current list of saved universities
    * 
    * @param university the University to be saved to the Student
@@ -107,7 +105,6 @@ public class StudentInterface extends UserInterface
   }
   
   /**
-   * TODO: possible boolean return type
    * Method to remove a university from the Student's saved universities
    * 
    * @param university the University to be removed from the student
@@ -160,20 +157,19 @@ public class StudentInterface extends UserInterface
                                                                     academicScaleLower, academicScaleUpper, socialScaleLower, socialScaleUpper, qualityOfLifeScaleLower, qualityOfLifeScaleUpper,  
                                                                     percentFinancialAidLower, percentFinancialAidUpper, percentAdmittedLower, percentAdmittedUpper, percentEnrolledLower, 
                                                                     percentEnrolledUpper, searchEmphases); 
-    //sc.viewSchools(foundUniversities);
   }
   
   /**
    * method to get the recommended universities based off of a university
    *
-   * @param a university object to base the other schools off of
+   * @param university the university object to base the other schools off of
    *
    * @return an ArrayList of university objects
    */
-  public ArrayList<University> getRecommendedUniversities(University u)
+  public ArrayList<University> getRecommendedUniversities(University university)
   {
-	  return sc.getRecommendedUniversities(u);
-	  
+   return sc.getRecommendedUniversities(university);
+   
   }
   
   /**

@@ -26,8 +26,8 @@ public class LoginController
    /**
     * This method controls the log in logic of the system
     * 
-    * @param username of the user
-    * @param password of the user
+    * @param username the username of the user
+    * @param password the user's password of the user
     * @return user object that logged in
     */
    public User login(String username, String password)
@@ -96,7 +96,7 @@ public class LoginController
     * This method controls the log off logic of the system
     * 
     * @param user the user to log off
-    * @return true if the user was successfully logged out
+    * @return true if the user was successfully logged out, false otherwise
     */
    public boolean logout(User user)
    {

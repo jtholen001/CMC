@@ -87,11 +87,21 @@ public class AdminInterface extends UserInterface
   /**
    * A method that allows an Admin to deactivate a User
    * 
-   * @param u a User object to be deactivated
+   * @param user a User object to be deactivated
    */
-  public int deactivate(User u)
+  public int deactivate(User user)
   {
-    return uCont.deactivate(u);
+    return uCont.deactivate(user);
+  }
+  
+  /**
+   * a method to delete a user'
+   * @param username the user to delete
+   * @return an integer representing the success/fail of the method
+   */
+  public int deleteUser(String username)
+  {
+	  return uCont.deleteUser(username);
   }
   
   /**
@@ -158,7 +168,7 @@ public class AdminInterface extends UserInterface
    * @param emphases an ArrayList<String> representing the edited emphases of the 
    */
   public int addUniversity(String name, String state, String location, String control, int numStudents, double percentFemale, double SATVerbal, double SATMath,
-		  					double expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
+         double expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
                              int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {
     return uniCont.addUniversity(name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
