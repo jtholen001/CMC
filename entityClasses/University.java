@@ -173,7 +173,7 @@ public class University
   /**
    * This method gets the control of the university
    *
-   * @param the control of the university (public, private, etc) as a String
+   * @return the control of the university (public, private, etc) as a String
    */
   public String getControl()
   {
@@ -343,7 +343,7 @@ public class University
   /**
    * This method sets the control of the university
    *
-   * @param the new control of the university (public, private, etc)
+   * @param newControl the new control of the university (public, private, etc)
    */
   public void setControl(String newControl)
   {
@@ -481,11 +481,7 @@ public class University
   }
 
   /**
-<<<<<<< HEAD
-   * method to display a single University
-=======
-   * toString() method to display an University entity
->>>>>>> ce7f5eeca497dcb5593e8c796d84525e64156add
+   * Method to display a University's data
    * @return a concatenated string representing a University and its attributes
    */
   public String toString()
