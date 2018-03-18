@@ -51,6 +51,8 @@ public class Driver
 	
 	public void searchForUniversities() 
 	{
+		System.out.println("U3: Searching database for Universities:"
+				+ "");
 		//U3
 		ArrayList<University> foundUniversities = studentInt.searchUniversities("UNIVERSITY", null, "URBAN", "PRIVATE", 0, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, new ArrayList<String>() );
 		
