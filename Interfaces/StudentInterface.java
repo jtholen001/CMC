@@ -67,10 +67,11 @@ public class StudentInterface extends UserInterface
    * @param firstName a String representing the first name of a Student
    * @param lastName a String representing the last name of a Student
    * @param password a String representing the password of a Student
+   * @return integer representing success of edit
    */
-  public void editProfile(String firstName, String lastName, String password)
+  public int editProfile(String firstName, String lastName, String password)
   {
-   this.pc.editProfile(firstName, lastName, password); 
+   return this.pc.editProfile(firstName, lastName, password); 
   }
   
   /**
@@ -98,10 +99,11 @@ public class StudentInterface extends UserInterface
    * Method to save a university to the Student's current list of saved universities
    * 
    * @param university the University to be saved to the Student
+   * @return integer representing success of save
    */
-  public void saveUniversity(University university)
+  public int saveUniversity(University university)
   {
-   this.sc.saveUniversity(this.student, university);
+   return this.sc.saveUniversity(this.student, university);
   }
   
   /**
@@ -109,10 +111,11 @@ public class StudentInterface extends UserInterface
    * Method to remove a university from the Student's saved universities
    * 
    * @param university the University to be removed from the student
+   * @return university 
    */
-  public void removeUniversity(University university)
+  public int removeUniversity(University university)
   {
-    this.suc.removeUniversity(university);
+    return this.suc.removeUniversity(university);
   }
   
   /**

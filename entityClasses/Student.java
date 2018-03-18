@@ -61,7 +61,6 @@ public class Student extends User
   }
 
    /**
-   * TODO: possible boolean return type
    * Method to add a new University to a Student's saved universities
    * 
    * @param newUniversity  the University to add to the Student

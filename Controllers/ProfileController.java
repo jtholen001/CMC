@@ -33,14 +33,15 @@ public class ProfileController
    * @param firstName a String representing the edited first name of a Student
    * @param lastName a String representing the edited last name of a Student
    * @param password a String representing the edited password name of a Student
+   * @return integer representing success of edit
    */
-  public void editProfile(String firstName, String lastName, String password)
+  public int editProfile(String firstName, String lastName, String password)
   {
     this.student.setFirstName(firstName);
     this.student.setLastName(lastName);
     this.student.setPassword(password);
 
-    dbc.saveEditedUser(this.student);
+    return dbc.saveEditedUser(this.student);
   }
 
   /**

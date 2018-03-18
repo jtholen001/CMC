@@ -18,12 +18,13 @@ public class Driver
 	public StudentInterface studentInt;
 	public AdminInterface adminInt;
 	public UserInterface userInt;
+	public DBController dbCont;
 	public Admin admin;
 	public Student student;
 
 	public Driver() 
 	{
-		student = new Student("John", "User", "juser", "user", 'u', true, false, new ArrayList<University>());
+		student = new Student("John", "User", "juser", "password", 'u', true, false, new ArrayList<University>());
 		admin = new Admin("Noreen", "Admin", "nadmin", "admin", 'a', true, false);
 		userInt = new UserInterface();
 		studentInt = new StudentInterface(student);
@@ -35,7 +36,6 @@ public class Driver
 	 */
 	public void login() 
 	{
-		System.out.println("Test U1: Login");
 		System.out.println("User should be logged in correctly: " + userInt.login("juser", "user") + "\n");
 		System.out.println("User should be logged out correctly");
 		userInt.logout((User)student);
@@ -81,19 +81,51 @@ public class Driver
 		
 	}
 	
-	//U4 and U7 probably U8
+	//U11, U4, U8
 	public void viewSavedSchools() 
 	{
-		System.out.println("Viewing John's saved schools");
+		int success;
+		System.out.println("Saving school 'ARIZONA STATE' to John's profile");
+		success = studentInt.saveUniversity(dbCont.getUniversity("ARIZONA STATE"));
+		if (success == -1)
+			System.out.println("Saving school failed - database returned -1");
+		else
+			System.out.println("Saved school successfully");
+		System.out.println("\nViewing John's saved schools");
 		System.out.println(studentInt.viewSavedUniversities());
+		System.out.println("\n Removing school 'ARIZONA STATE' from John's profile");
+		success = studentInt.removeUniversity(dbCont.getUniversity("ARIZONA STATE"));
+		if (success == -1)
+			System.out.println("Removing university failed - database returned -1");
+		else
+			System.out.println("Removed successfully");
+		
 		
 	}
 	
 	//U5 and U9
 	public void viewMyProfile() 
 	{
+		// U5
 		System.out.println("Viewing John's profile");
-		System.out.println(studentInt.viewProfile());
+		System.out.println(studentInt.viewProfile() + "\n");
+		
+		// U9
+		int success;
+		System.out.println("Editing John's profile - updating name");
+		success = studentInt.editProfile("John", "Miller", "password");
+		if (success == -1)
+			System.out.println("Edit failed - database returned -1");
+		else
+			System.out.println("Edited successfully");
+		System.out.println("Displaying edited profile - name should be updated:");
+		System.out.println(studentInt.viewProfile() + "\n");
+		
+		System.out.println("Editing user using empty paramater - should fail");
+		success = studentInt.editProfile("", "Miller", "password");
+		if (success == -1)
+			System.out.println("Edit failed - database returned -1");
+		
 	}
 	
 	//U13, U17, U18, U19
@@ -112,9 +144,9 @@ public class Driver
 		System.out.println("\nAdding Student User with following attributes: Miss, Pelled, mpelled001, password0, 'u', true, false");
 		success = adminInt.addUser("Miss", "Pelled", "mpelled001", "password0", 'u', true, false);
 		if (success == -1)
-			System.out.println("Add User failed because Database returned -1");
+			System.out.println("Add User failed - database returned -1");
 		else
-			System.out.println("Add User successful, Database did not return -1");
+			System.out.println("Added User successfully");
 		
 		//creating temporary User object to show manipulating functionalities
 		User missPelled = new User("Miss", "Pelled", "mpelled001", "password0", 'u', true, false);
@@ -123,26 +155,26 @@ public class Driver
 		System.out.println("\nDeactivate the added User: Miss Pelled");
 		success = adminInt.deactivate(missPelled);
 		if (success == -1)
-			System.out.println("Deactivate User failed because Database returned -1");
+			System.out.println("Deactivate User failed - database returned -1");
 		else
-			System.out.println("Deactivate User successful, Database did not return -1");
+			System.out.println("Deactivated User successfully");
 		
 		
 		//showing edit User functionality works
 		System.out.println("\nEdit User Miss Pelled's last name to 'Takes'");
 		success = adminInt.editUser("mpelled001", "Miss", "Takes", "mpelled001", 'u', false, false);
 		if (success == -1)
-			System.out.println("Edit User failed because Database returned -1");
+			System.out.println("Edit User failed - database returned -1");
 		else
-			System.out.println("Edit User success, Database did not return -1");
+			System.out.println("Edited User successfully");
 		
 		//showing edit User functionality does not work
 		System.out.println("\nEdit User Miss Pelled's last name to \"[Empty String]\"");
 		success = adminInt.editUser("mpelled001", "Miss", "", "mpelled001", 'u', false, false);
 		if (success == -1)
-			System.out.println("Edit User failed because Database returned -1");
+			System.out.println("Edit User failed - database returned -1");
 		else
-			System.out.println("Edit User success, Database did not return -1");
+			System.out.println("Edited User successfully");
 			
 	}
 	
@@ -166,6 +198,8 @@ public class Driver
 			System.out.println("Changed title of University: \"University of CMC\" to \"University of ACM\"");
 		else
 			System.err.println("Editing University failed.");
+		
+		//TODO: force remove school at the end of this method so Driver successfuly runs next time
 	}
 	
 
@@ -175,22 +209,22 @@ public class Driver
 	public static void main(String[] args)
 	{
 		Driver driver = new Driver();
-		System.out.println("Testing login method:");
+		System.out.println("Testing U1: Login, U20: Logout");
 		driver.login();
 		System.out.println("----------------------------------------------");
-		System.out.println("Testing Search Method");
+		System.out.println("Testing U3: Search For Schools, U6: View Matched Schools, U7: View Specific School, U10 View Recommended Schools");
 		driver.searchForUniversities();
 		System.out.println("----------------------------------------------");
-		System.out.println("Testing Saved Schools");
+		System.out.println("Testing U11: Save School, U4: View Saved Schools, U8: Remove Specific School");
 		driver.viewSavedSchools();
 		System.out.println("----------------------------------------------");
-		System.out.println("Testing View Profile:");
+		System.out.println("Testing U5: View My Profile, U9: Edit My Profile");
 		driver.viewMyProfile();
 		System.out.println("----------------------------------------------");
-		System.out.println("Testing View Users");
+		System.out.println("Testing U13: View Users, U18: Add User, U19: Edit User");
 		driver.viewUsers();
 		System.out.println("----------------------------------------------");
-		System.out.println("Testing View Universities");
+		System.out.println("Testing U14: View Universities");
 		driver.viewUniversities();
 
 		// TODO Auto-generated method stub
