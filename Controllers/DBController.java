@@ -216,7 +216,7 @@ public class DBController
                                          Integer.parseInt(universities[index][15]), getUniversityEmphases(name)));  
     }
 
-    return universityMap.get(name);
+    return universityMap.get(name.toUpperCase());
 
 
 

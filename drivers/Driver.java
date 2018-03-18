@@ -36,7 +36,7 @@ public class Driver
 	 */
 	public void login() 
 	{
-		System.out.println("User should be logged in correctly: " + userInt.login("juser", "user") + "\n");
+		System.out.println("User should be logged in correctly: " + userInt.login("juser", "password") + "\n");
 		System.out.println("User should be logged out correctly");
 		userInt.logout((User)student);
 		System.out.println("\n");
@@ -48,7 +48,7 @@ public class Driver
 		System.out.println("\n");
 		//TODO: Deactivate user for next test
 		System.out.println("User should fail to log in because account is deactivated");
-		userInt.login("mcarroll001", "password0");
+		userInt.login("jtest", "password0");
 		System.out.println("\n");
 		
 	}
