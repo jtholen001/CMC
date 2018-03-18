@@ -55,16 +55,39 @@ public class Driver
 	
 	public void searchForUniversities() 
 	{
-		System.out.println("U3: Searching database for Universities:"
-				+ "");
+		//U3 with no search Criteria
+		System.out.println("U3 with no input criteria (Alternative Scenario):  "
+				+ "null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "
+				+ "0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, null");
+
+		ArrayList<University> noSearchCriteria = studentInt.searchUniversities(null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+				0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, null );
+	
+		if (noSearchCriteria == null)
+			System.out.println("Search failed: No criteria was specified");
+		else if (noSearchCriteria.isEmpty())
+			System.out.println("Search succeeded: Nothing Found");
+		else {
+			for(University u : noSearchCriteria) 
+				System.out.println(u.getName());	
+		}
+
+		
+		System.out.println("U3 Main Scenario with parameters:  "
+				+ "\"UNIVERSITY\", null, \"URBAN\", \"PRIVATE\", 0, 10000, 0, "
+				+ "0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, new ArrayList<String>() ");
 		//U3
-		ArrayList<University> foundUniversities = studentInt.searchUniversities("UNIVERSITY", null, "URBAN", "PRIVATE", 0, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, new ArrayList<String>() );
+		ArrayList<University> foundUniversities = studentInt.searchUniversities("UNIVERSITY", null, "URBAN", "PRIVATE", 0, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 
+				0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, new ArrayList<String>() );
 		
 		//U6
-		if (foundUniversities.isEmpty())
-			System.out.println("Nothing Found");
-		for(University u : foundUniversities) {
-			System.out.println(u.getName());
+		if (foundUniversities == null)
+			System.out.println("Search failed: No criteria was specified");
+		else if (foundUniversities.isEmpty())
+			System.out.println("Search succeeded: Nothing Found");
+		else {
+			for(University u : foundUniversities) 
+				System.out.println(u.getName());	
 		}
 		
 		System.out.println();
@@ -177,23 +200,23 @@ public class Driver
 	public static void main(String[] args)
 	{
 		Driver driver = new Driver();
-		System.out.println("Testing login method:");
-		driver.login();
-		System.out.println("----------------------------------------------");
+//		System.out.println("Testing login method:");
+//		driver.login();
+//		System.out.println("----------------------------------------------");
 		System.out.println("Testing Search Method");
 		driver.searchForUniversities();
-		System.out.println("----------------------------------------------");
-		System.out.println("Testing Saved Schools");
-		driver.viewSavedSchools();
-		System.out.println("----------------------------------------------");
-		System.out.println("Testing View Profile:");
-		driver.viewMyProfile();
-		System.out.println("----------------------------------------------");
-		System.out.println("Testing View Users");
-		driver.viewUsers();
-		System.out.println("----------------------------------------------");
-		System.out.println("Testing View Universities");
-		driver.viewUniversities();
+//		System.out.println("----------------------------------------------");
+//		System.out.println("Testing Saved Schools");
+//		driver.viewSavedSchools();
+//		System.out.println("----------------------------------------------");
+//		System.out.println("Testing View Profile:");
+//		driver.viewMyProfile();
+//		System.out.println("----------------------------------------------");
+//		System.out.println("Testing View Users");
+//		driver.viewUsers();
+//		System.out.println("----------------------------------------------");
+//		System.out.println("Testing View Universities");
+//		driver.viewUniversities();
 
 		// TODO Auto-generated method stub
 	}
