@@ -33,6 +33,8 @@ public class StudentUniversitiesController
   
   /**
    * Method to view a Student's saved universities
+   * 
+   * @return a string representation of all the universities saved by this student
    */
   public String viewSavedUniversities()
   {

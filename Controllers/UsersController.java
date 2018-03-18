@@ -31,6 +31,8 @@ public class UsersController
 
   /**
    * a method to view all Users in the Database
+   * 
+   * @return a HashMap containing all the users in the database
    */
   public HashMap<String,User> viewUsers()
   {
@@ -41,20 +43,22 @@ public class UsersController
    * a method to edit a single User
    *
    * @param username the username of the user to edit
-   * @param newFirst the new first name for this user
-   * @param newLast the new last name for this user
-   * @param newPassword the new password for this user
-   * @param newType the new account type for this user
-   * @param newActivation the new activation status for this user
-   * @param newLoggedIn the new logged in status for this user
+   * @param firstName the new first name for this user
+   * @param lastName the new last name for this user
+   * @param password the new password for this user
+   * @param type the new account type for this user
+   * @param isActivated the new activation status for this user
+   * @param isLoggedIn the new logged in status for this user
+   * 
+   * @return -1 if unsucessfull, 0 otherwise
    */
   public int editUser(String username,String firstName, String lastName, String password, char type ,boolean isActivated,
                         boolean isLoggedIn)
   {
-	if (firstName.equals("") || lastName.equals("") || password.equals("") || type == ' ')
-		return -1;
-	else
-	{
+ if (firstName.equals("") || lastName.equals("") || password.equals("") || type == ' ')
+  return -1;
+ else
+ {
     User toEdit = dbCont.getUser(username);
 
     //admin can edit anything except for username
@@ -67,19 +71,21 @@ public class UsersController
 
     
     return dbCont.saveEditedUser(toEdit);
-	}
+ }
   }
 
   /**
    * a method to add a User to the Database
    * 
    * @param username the username of the user to edit
-   * @param newFirst the new first name for this user
-   * @param newLast the new last name for this user
-   * @param newPassword the new password for this user
-   * @param newType the new account type for this user
-   * @param newActivation the new activation status for this user
-   * @param newLoggedIn the new logged in status for this user
+   * @param firstName the new first name for this user
+   * @param lastName the new last name for this user
+   * @param password the new password for this user
+   * @param type the new account type for this user
+   * @param isActivated the new activation status for this user
+   * @param isLoggedIn the new logged in status for this user
+   * 
+   * @return -1 if unsucessfull, 0 otherwise
    */
   public int addUser(String firstName, String lastName, String username, String password, char type ,boolean isActivated,
                         boolean isLoggedIn)
@@ -92,6 +98,8 @@ public class UsersController
    * a method to deactivate a User
    *
    * @param user a User object to be deactivated
+   * 
+   * @return -1 if unsucessfull, 0 otherwise
    */
   public int deactivate(User user)
   {
@@ -106,6 +114,6 @@ public class UsersController
    */
   public int deleteUser(String username)
   {
-	  return dbCont.deleteUser(username);
+   return dbCont.deleteUser(username);
   }
 }

@@ -46,6 +46,8 @@ public class Student extends User
    /**
    * Method to return the University associated with the name passed
    * 
+   * @param universityName the name of the university to get information for
+   * 
    * @return an University
    */
   public University getSpecificSchool(String universityName)

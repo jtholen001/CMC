@@ -66,6 +66,8 @@ public class DBController
    * This method gets the list of schools that the given user has saved.
    * 
    * @param username the username of the user to get the saved schools for
+   * 
+   * @return an ArrayList of universities the student has saved
    */
   public ArrayList<University> getUniversitiesForStudent(String username)
   {
@@ -146,6 +148,8 @@ public class DBController
    * method to add a user to the database
    *
    * @param user the user to add to the database
+   * 
+   * @return -1 if unsucessfull, 0 otherwise
    */
 
   public int addUser(User user)
@@ -158,6 +162,8 @@ public class DBController
    * method to delete a user from the database
    * 
    * @param username the user to be deleted
+   * 
+   * @return -1 if unsucessfull, 0 otherwise
    */
   public int deleteUser(String username)
   {
@@ -234,6 +240,8 @@ public class DBController
    * method to to save an editied university
    *
    * @param university the university object to edit
+   * 
+   * @return -1 if unsucessfull, 0 otherwise
    */
   public int saveEditedUniversity(University university)
   {

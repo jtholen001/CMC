@@ -45,6 +45,7 @@ public class ProfileController
 
   /**
    * method to view the profile of the given student
+   * @return a String representation of this student
    */
   public String viewProfile()
   {

@@ -264,6 +264,8 @@ public class University
    * This method gets the percentage of accepted applicants that enroll at the university
    *
    * @param the percentage of accepted applicants that there enrolled at the university as a double
+   * 
+   * @return the percentage of applicants that enroll as a double
    */
   public double getPercentEnrolled()
   {
@@ -363,7 +365,7 @@ public class University
   /**
    * This method sets the percentage of enrolled students that are female
    *
-   * @param the new percentage of students that are female
+   * @param newPercentFemale the new percentage of students that are female
    */
   public void setPercentFemale(double newPercentFemale)
   {

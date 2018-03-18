@@ -169,7 +169,7 @@ public class User
   /**
    * This method gets the user's type
    * 
-   * @param newType the new type of this user as a char
+   * @param newUserType the new type of this user as a char
    */
   public void setType(char newUserType)
   {

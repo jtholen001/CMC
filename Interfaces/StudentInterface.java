@@ -55,6 +55,8 @@ public class StudentInterface extends UserInterface
   
   /**
    * Method to veiw the Student's profile
+   * 
+   * @return a string representation of this student's profile
    */
   public String viewProfile()
   {
@@ -75,6 +77,8 @@ public class StudentInterface extends UserInterface
   
   /**
    * Method to view the Student's saved universities
+   * 
+   * @return a String representation of this student's saved universities
    */
   public String viewSavedUniversities()
   {
@@ -114,6 +118,7 @@ public class StudentInterface extends UserInterface
   
   /**
    * Method to search for universities
+   * @param name
    * @param state the state this university is located in as a String
    * @param location  whether the university is located in and urban or rural setting
    * @param control  whether this university is publicly
@@ -142,6 +147,8 @@ public class StudentInterface extends UserInterface
    * @param percentEnrolledLower  the lower bound of the percent of addmitted students that enroll at this university
    * @param percentEnrolledUpper  the upper bound of the percent of addmitted students that enroll at this university
    * @param searchEmphases  areas of study
+   * 
+   * @return an ArrayList of universities matching the search criteria
    */
   public ArrayList<University> searchUniversities(String name, String state, String location, String control, int numStudentsLower, int numStudentsUpper, int percentFemaleLower, int percentFemaleUpper,
                                  int SATVerbalLower, int SATVerbalUpper, int SATMathLower, int SATMathUpper, int expensesLower, int expensesUpper, int numApplicantsLower, int numApplicantsUpper,
