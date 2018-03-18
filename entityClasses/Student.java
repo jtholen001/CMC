@@ -46,6 +46,8 @@ public class Student extends User
    /**
    * Method to return the University associated with the name passed
    * 
+   * @param universityName the name of the university to get information for
+   * 
    * @return an University
    */
   public University getSpecificSchool(String universityName)
@@ -61,7 +63,6 @@ public class Student extends User
   }
 
    /**
-   * TODO: possible boolean return type
    * Method to add a new University to a Student's saved universities
    * 
    * @param newUniversity  the University to add to the Student
@@ -72,14 +73,13 @@ public class Student extends User
   }
 
    /**
-   * TODO: possible boolean return type
    * Method to remove a University from a Student's saved universities
    * 
    * @param oldUniversity  the University that is to be removed
    */
   public void removeUniversity(University oldUniversity)
   {
-    Boolean bool = this.savedUniversities.remove(oldUniversity);
+    this.savedUniversities.remove(oldUniversity);
   }
 
   /**

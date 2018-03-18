@@ -33,6 +33,8 @@ public class StudentUniversitiesController
   
   /**
    * Method to view a Student's saved universities
+   * 
+   * @return a string representation of all the universities saved by this student
    */
   public String viewSavedUniversities()
   {
@@ -61,11 +63,12 @@ public class StudentUniversitiesController
    * Method to remove a University from a Student's saved universities
    * 
    * @param oldUniversity the University to be removed
+   * @return integer representing success of remove
    */
-  public void removeUniversity(University oldUniversity)
+  public int removeUniversity(University oldUniversity)
   {
     this.student.removeUniversity(oldUniversity);
-    this.dbc.saveEditedUser(this.student);
+    return this.dbc.saveEditedUser(this.student);
   }
 }  
 

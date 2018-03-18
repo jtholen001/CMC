@@ -55,6 +55,8 @@ public class StudentInterface extends UserInterface
   
   /**
    * Method to veiw the Student's profile
+   * 
+   * @return a string representation of this student's profile
    */
   public String viewProfile()
   {
@@ -67,14 +69,17 @@ public class StudentInterface extends UserInterface
    * @param firstName a String representing the first name of a Student
    * @param lastName a String representing the last name of a Student
    * @param password a String representing the password of a Student
+   * @return integer representing success of edit
    */
-  public void editProfile(String firstName, String lastName, String password)
+  public int editProfile(String firstName, String lastName, String password)
   {
-   this.pc.editProfile(firstName, lastName, password); 
+   return this.pc.editProfile(firstName, lastName, password); 
   }
   
   /**
    * Method to view the Student's saved universities
+   * 
+   * @return a String representation of this student's saved universities
    */
   public String viewSavedUniversities()
   {
@@ -82,7 +87,6 @@ public class StudentInterface extends UserInterface
   }
   
   /**
-   * TODO: possible boolean return type
    * Method to view a specific university
    * 
    * @param university the University to be viewed
@@ -94,29 +98,30 @@ public class StudentInterface extends UserInterface
   }
 
   /**
-   * TODO: possible boolean return type
    * Method to save a university to the Student's current list of saved universities
    * 
    * @param university the University to be saved to the Student
+   * @return integer representing success of save
    */
-  public void saveUniversity(University university)
+  public int saveUniversity(University university)
   {
-   this.sc.saveUniversity(this.student, university);
+   return this.sc.saveUniversity(this.student, university);
   }
   
   /**
-   * TODO: possible boolean return type
    * Method to remove a university from the Student's saved universities
    * 
    * @param university the University to be removed from the student
+   * @return university 
    */
-  public void removeUniversity(University university)
+  public int removeUniversity(University university)
   {
-    this.suc.removeUniversity(university);
+    return this.suc.removeUniversity(university);
   }
   
   /**
    * Method to search for universities
+   * @param name
    * @param state the state this university is located in as a String
    * @param location  whether the university is located in and urban or rural setting
    * @param control  whether this university is publicly
@@ -145,6 +150,8 @@ public class StudentInterface extends UserInterface
    * @param percentEnrolledLower  the lower bound of the percent of addmitted students that enroll at this university
    * @param percentEnrolledUpper  the upper bound of the percent of addmitted students that enroll at this university
    * @param searchEmphases  areas of study
+   * 
+   * @return an ArrayList of universities matching the search criteria
    */
   public ArrayList<University> searchUniversities(String name, String state, String location, String control, int numStudentsLower, int numStudentsUpper, int percentFemaleLower, int percentFemaleUpper,
                                  int SATVerbalLower, int SATVerbalUpper, int SATMathLower, int SATMathUpper, int expensesLower, int expensesUpper, int numApplicantsLower, int numApplicantsUpper,
@@ -157,20 +164,19 @@ public class StudentInterface extends UserInterface
                                                                     academicScaleLower, academicScaleUpper, socialScaleLower, socialScaleUpper, qualityOfLifeScaleLower, qualityOfLifeScaleUpper,  
                                                                     percentFinancialAidLower, percentFinancialAidUpper, percentAdmittedLower, percentAdmittedUpper, percentEnrolledLower, 
                                                                     percentEnrolledUpper, searchEmphases); 
-    //sc.viewSchools(foundUniversities);
   }
   
   /**
    * method to get the recommended universities based off of a university
    *
-   * @param a university object to base the other schools off of
+   * @param university the university object to base the other schools off of
    *
    * @return an ArrayList of university objects
    */
-  public ArrayList<University> getRecommendedUniversities(University u)
+  public ArrayList<University> getRecommendedUniversities(University university)
   {
-	  return sc.getRecommendedUniversities(u);
-	  
+   return sc.getRecommendedUniversities(university);
+   
   }
   
   /**

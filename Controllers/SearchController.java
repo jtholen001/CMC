@@ -119,16 +119,16 @@ public class SearchController
         }
           //checks the number of students bound 
         case 4:
-        	match += compareStats(currentUniversity.getNumStudents(), numStudentsLower, numStudentsUpper);
+         match += compareStats(currentUniversity.getNumStudents(), numStudentsLower, numStudentsUpper);
           //checks the percent female bound 
         case 5:
-        	match += compareStats(currentUniversity.getPercentFemale(), percentFemaleLower, percentFemaleUpper);        
+         match += compareStats(currentUniversity.getPercentFemale(), percentFemaleLower, percentFemaleUpper);        
           //checks the SAT Verbal bound 
         case 6:
-        	match += compareStats(currentUniversity.getSATVerbal(), SATVerbalLower, SATVerbalUpper);
+         match += compareStats(currentUniversity.getSATVerbal(), SATVerbalLower, SATVerbalUpper);
           //checks the SAT Math bound 
         case 7:
-        	match += compareStats(currentUniversity.getSATMath(), SATMathLower, SATMathUpper);
+         match += compareStats(currentUniversity.getSATMath(), SATMathLower, SATMathUpper);
           //checks the expenses bound 
         case 8:
             match += compareStats(currentUniversity.getExpenses(), expensesLower, expensesUpper);
@@ -188,14 +188,14 @@ public class SearchController
   private int compareStats(double currentSchoolValue, double lower, double upper)
   {
       if ((lower <= currentSchoolValue) && (upper >= currentSchoolValue))       
-    	  return 1;          
+       return 1;          
       else if (lower == 0 && upper >=  currentSchoolValue)    
-    	  return 1;      					
+       return 1;           
       else if (upper == 0 && lower <=  currentSchoolValue)
-    	  return 1; 
+       return 1; 
       else if (lower == 0 && upper == 0)
-    	  return 1;
-	  return 0;
+       return 1;
+   return 0;
   }
   
   /**
@@ -208,28 +208,28 @@ public class SearchController
   private int compareStats(int currentSchoolValue, int lower, int upper)
   {
       if ((lower <= currentSchoolValue) && (upper >= currentSchoolValue))       
-    	  return 1;          
+       return 1;          
       else if (lower == 0 && upper >=  currentSchoolValue)    
-    	  return 1;      					
+       return 1;           
       else if (upper == 0 && lower <=  currentSchoolValue)
-    	  return 1; 
+       return 1; 
       else if (lower == 0 && upper == 0)
-    	  return 1;
-	  return 0;
+       return 1;
+   return 0;
   }
   
   
   /**
    * method to get the recommended universities based off of a university
    *
-   * @param a university object to base the other schools off of
+   * @param university the university object to base the other schools off of
    *
    * @return an ArrayList of university objects
    */
-  public ArrayList<University> getRecommendedUniversities(University u)
+  public ArrayList<University> getRecommendedUniversities(University university)
   {
-	  return dbc.getRecommendedUniversities(u);
-	  
+   return dbc.getRecommendedUniversities(university);
+   
   }
   
   /**
@@ -240,7 +240,7 @@ public class SearchController
    */
   public String viewSchools(ArrayList<University> foundUniversities)
   {
-	String schools = ""; 
+ String schools = ""; 
     for (University u : foundUniversities)
     {
       schools += u.toString() + '\n';
@@ -249,7 +249,6 @@ public class SearchController
   }
   
   /**
-   * TODO: Method might be replaced with method in StudentUniversitiesController
    * Method to view a specific university from searching
    * @param university the University to be viewed
    * @return a String representation of the University
@@ -263,10 +262,11 @@ public class SearchController
    * Method to add a new University to a Student's saved universities
    * @param student the Student to whom the university needs to be added
    * @param newUniversity the University to add the a Student's saved universities
+   * @return integer representing success of save
    */
-  public void saveUniversity(Student student, University newUniversity)
+  public int saveUniversity(Student student, University newUniversity)
   {
     student.addSchool(newUniversity);
-    dbc.saveEditedUser(student);
+    return dbc.saveEditedUser(student);
   }
 }

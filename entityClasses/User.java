@@ -155,14 +155,6 @@ public class User
     this.lastName = newLastName;
   }
   
-  /**
-   * This method sets the user's username
-   * @param newUsername the new username for this user
-   */
-  public void setUsername(String newUsername)
-  {
-    this.username = newUsername;
-  }
   
   /**
    * This method sets the user's password
@@ -177,7 +169,7 @@ public class User
   /**
    * This method gets the user's type
    * 
-   * @param newType the new type of this user as a char
+   * @param newUserType the new type of this user as a char
    */
   public void setType(char newUserType)
   {

@@ -173,7 +173,7 @@ public class University
   /**
    * This method gets the control of the university
    *
-   * @param the control of the university (public, private, etc) as a String
+   * @return the control of the university (public, private, etc) as a String
    */
   public String getControl()
   {
@@ -264,6 +264,8 @@ public class University
    * This method gets the percentage of accepted applicants that enroll at the university
    *
    * @param the percentage of accepted applicants that there enrolled at the university as a double
+   * 
+   * @return the percentage of applicants that enroll as a double
    */
   public double getPercentEnrolled()
   {
@@ -343,7 +345,7 @@ public class University
   /**
    * This method sets the control of the university
    *
-   * @param the new control of the university (public, private, etc)
+   * @param newControl the new control of the university (public, private, etc)
    */
   public void setControl(String newControl)
   {
@@ -363,7 +365,7 @@ public class University
   /**
    * This method sets the percentage of enrolled students that are female
    *
-   * @param the new percentage of students that are female
+   * @param newPercentFemale the new percentage of students that are female
    */
   public void setPercentFemale(double newPercentFemale)
   {
@@ -481,11 +483,7 @@ public class University
   }
 
   /**
-<<<<<<< HEAD
-   * method to display a single University
-=======
-   * toString() method to display an University entity
->>>>>>> ce7f5eeca497dcb5593e8c796d84525e64156add
+   * Method to display a University's data
    * @return a concatenated string representing a University and its attributes
    */
   public String toString()

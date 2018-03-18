@@ -34,6 +34,8 @@ public class AdminInterface extends UserInterface
   
   /**
    * Constructor for an AdminInterface
+   * 
+   * @param admin the admin object to use
    */
   public AdminInterface(Admin admin)
   {
@@ -45,6 +47,8 @@ public class AdminInterface extends UserInterface
   
   /**
    * A method that displays all User objects in the Database
+   * 
+   * @return a hashmap containing all users in the database
    */
   public HashMap<String, User> viewUsers()
   {
@@ -61,6 +65,8 @@ public class AdminInterface extends UserInterface
    * @param newType the new account type for this user
    * @param newActivation the new activation status for this user
    * @param newLoggedIn the new logged in status for this user
+   * 
+   * @return -1 if unsucessfull, 0 otherwise
    */
   public int editUser(String username, String newFirst, String newLast, String newPassword, char newType, boolean newActivation, boolean newLoggedIn)
   {
@@ -77,6 +83,8 @@ public class AdminInterface extends UserInterface
    * @param type the type of user this is
    * @param isActivated the activation status of the new user
    * @param isLoggedIn the logged-in status of the new user
+   * 
+   * @return -1 if unsucessfull, 0 otherwise
    */
   public int addUser(String firstName, String lastName, String username, String password, char type ,boolean isActivated,
                         boolean isLoggedIn)
@@ -87,15 +95,31 @@ public class AdminInterface extends UserInterface
   /**
    * A method that allows an Admin to deactivate a User
    * 
-   * @param u a User object to be deactivated
+   * @param user a User object to be deactivated
+   * 
+   * @return -1 if unsucessfull, 0 otherwise
    */
-  public int deactivate(User u)
+  public int deactivate(User user)
   {
-    return uCont.deactivate(u);
+    return uCont.deactivate(user);
+  }
+  
+  /**
+   * a method to delete a user'
+   * @param username the user to delete
+   * @return an integer representing the success/fail of the method
+   * 
+   * @return -1 if unsucessfull, 0 otherwise
+   */
+  public int deleteUser(String username)
+  {
+   return uCont.deleteUser(username);
   }
   
   /**
    * A method that displays all University objects in the Database
+   * 
+   * @return a string representation of all universities in the database
    */
   public String viewUniversities()
   {
@@ -123,6 +147,8 @@ public class AdminInterface extends UserInterface
    * @param socialScale an intrepresenting the edited socialScale of the University
    * @param qualityOfLifeScale an int representing the edited qualityOfLifeScale of the University
    * @param emphases an ArrayList<String> representing the edited emphases of the 
+   * 
+   * @return -1 if unsucessfull, 0 otherwise
    */
   
   public int editUniversity(University university, String name, String state, String location, String control, 
@@ -156,9 +182,11 @@ public class AdminInterface extends UserInterface
    * @param socialScale an intrepresenting the edited socialScale of the University
    * @param qualityOfLifeScale an int representing the edited qualityOfLifeScale of the University
    * @param emphases an ArrayList<String> representing the edited emphases of the 
+   * 
+   * @return -1 if unsucessfull, 0 otherwise
    */
   public int addUniversity(String name, String state, String location, String control, int numStudents, double percentFemale, double SATVerbal, double SATMath,
-		  					double expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
+         double expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
                              int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {
     return uniCont.addUniversity(name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,

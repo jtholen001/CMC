@@ -33,6 +33,7 @@ public class UniversityController
   
   /**
    * A method that displays all University objects in the Database
+   * @return a string representation of all the universities in the database
    */
   public String viewUniversities()
   {
@@ -71,9 +72,11 @@ public class UniversityController
    * @param socialScale an intrepresenting the edited socialScale of the University
    * @param qualityOfLifeScale an int representing the edited qualityOfLifeScale of the University
    * @param emphases an ArrayList<String> representing the edited emphases of the University
+   * 
+   * @return -1 if unsucessfull, 0 otherwise
    */
   public int editUniversity(University university, String name, String state, String location, String control, int numStudents, double percentFemale, double SATVerbal, double SATMath,
-		  					double expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
+         double expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
                              int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {    
     university.setSchoolName(name);
@@ -117,9 +120,11 @@ public class UniversityController
    * @param socialScale an intrepresenting the added socialScale of the University
    * @param qualityOfLifeScale an int representing the added qualityOfLifeScale of the University
    * @param emphases an ArrayList<String> representing the added emphases of the University
+   * 
+   * @return -1 if unsucessfull, 0 otherwise
    */
   public int addUniversity(String name, String state, String location, String control, int numStudents, double percentFemale, double SATVerbal, double SATMath,
-		  					double expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
+         double expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
                              int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {    
     return dbCont.addUniversity(new University(name, state, location, control, numStudents, percentFemale, SATVerbal, SATMath, 

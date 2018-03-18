@@ -40,40 +40,48 @@ public class DBController
 
     for(int index = 0; index < users.length; index++)
       {
-    	if(users[index][2].equals(username)) {
-    		if(users[index][5].equals("Y"))
-    	        status = true;
-    		else
-    			status = false;
-    		if(users[index][4].equals("u"))
-    		{
+     if(users[index][2].equals(username)) {
+      if(users[index][5].equals("Y"))
+             status = true;
+      else
+       status = false;
+      if(users[index][4].equals("u"))
+      {
  
-    			return new Student(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
+       return new Student(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
                       status, false, this.getUniversitiesForStudent(username));
-    		}
-    		else if(users[index][4].equals("a")) {
-    			return new Admin(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
-                        status, false);
-    		}
-    		else
-    			return null;
-    	}
       }
-	return null;
+      else if(users[index][4].equals("a")) {
+       return new Admin(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
+                        status, false);
+      }
+      else
+       return null;
+     }
+      }
+ return null;
   }
   
-  public ArrayList<University> getUniversitiesForStudent(String username){
-	  String[][] universities = univDBlib.user_getUsernamesWithSavedSchools();
-	  ArrayList<University> list = new ArrayList();
-	  
-	  for(int i = 0; i < universities.length; i++)
-	  {
-		  if(universities[i][0].equals(username))
-		  {
-			  list.add(this.getUniversity(universities[i][1]));
-		  }
-	  }
-	  return list;
+  /**
+   * This method gets the list of schools that the given user has saved.
+   * 
+   * @param username the username of the user to get the saved schools for
+   * 
+   * @return an ArrayList of universities the student has saved
+   */
+  public ArrayList<University> getUniversitiesForStudent(String username)
+  {
+   String[][] universities = univDBlib.user_getUsernamesWithSavedSchools();
+   ArrayList<University> list = new ArrayList();
+   
+   for(int i = 0; i < universities.length; i++)
+   {
+    if(universities[i][0].equals(username))
+    {
+     list.add(this.getUniversity(universities[i][1]));
+    }
+   }
+   return list;
   }
 
    
@@ -97,14 +105,14 @@ public class DBController
         status = false;
       //creates the user and puts it in the map
       if(users[index][4].equals("u"))
-		{
-			 userMap.put(users[index][0],new Student(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
+  {
+    userMap.put(users[index][0],new Student(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
                 status, false, this.getUniversitiesForStudent(users[index][0])));
-		}
-		else if(users[index][4].equals("a")) {
-			 userMap.put(users[index][0],new Admin(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
+  }
+  else if(users[index][4].equals("a")) {
+    userMap.put(users[index][0],new Admin(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
                   status, false));
-		}
+  }
     }
     return userMap;
   }
@@ -140,6 +148,8 @@ public class DBController
    * method to add a user to the database
    *
    * @param user the user to add to the database
+   * 
+   * @return -1 if unsucessfull, 0 otherwise
    */
 
   public int addUser(User user)
@@ -148,6 +158,18 @@ public class DBController
     return success;
   }
 
+  /**
+   * method to delete a user from the database
+   * 
+   * @param username the user to be deleted
+   * 
+   * @return -1 if unsucessfull, 0 otherwise
+   */
+  public int deleteUser(String username)
+  {
+  return univDBlib.user_deleteUser(username);
+  }
+  
   /**
    * method to get all universities in the databse
    *
@@ -174,7 +196,7 @@ public class DBController
   /**
    * method to get a specific university off of the name
    *
-   * @param a string of the university name
+   * @param name the string of the university to find
    *
    * @return a University object
    */
@@ -201,23 +223,25 @@ public class DBController
   }
   
   private ArrayList<String> getUniversityEmphases(String universityName) {
-	   
-	  ArrayList<String>  retList = new ArrayList<String>();
-	  String[][] emphases = univDBlib.university_getEmphases();
-	  
-	  for(int i = 0; i < emphases.length; i++)
-	  {
-		  if(emphases[i][0].equals(universityName)) {
-			  retList.add(emphases[i][1]);
-		  }	  
-	  }
-	  return retList;
+    
+   ArrayList<String>  retList = new ArrayList<String>();
+   String[][] emphases = univDBlib.university_getEmphases();
+   
+   for(int i = 0; i < emphases.length; i++)
+   {
+    if(emphases[i][0].equals(universityName)) {
+     retList.add(emphases[i][1]);
+    }   
+   }
+   return retList;
   }
 
   /**
    * method to to save an editied university
    *
    * @param university the university object to edit
+   * 
+   * @return -1 if unsucessfull, 0 otherwise
    */
   public int saveEditedUniversity(University university)
   {
@@ -232,9 +256,9 @@ public class DBController
     ArrayList<String> storedVals = getUniversityEmphases(university.getName());
     for(String emphases: university.getEmphases())
     {
-    	if(!(storedVals.contains(emphases))){
-    		univDBlib.university_addUniversityEmphasis(university.getName(), emphases);
-    	}
+     if(!(storedVals.contains(emphases))){
+      univDBlib.university_addUniversityEmphasis(university.getName(), emphases);
+     }
     }
     return success;
   }
@@ -242,7 +266,9 @@ public class DBController
   /**
    * method to add a university to the database
    *
-   * @param a University object to add
+   * @param university the University object to add to the database
+   * 
+   * @return -1 if unsucessful, 0 otherwise
    */
   public int addUniversity(University university)
   {
@@ -256,10 +282,10 @@ public class DBController
     
     if (!(university.getEmphases().equals(null)))
     {
-	    for(int i = 0; i < university.getEmphases().size(); i++)
-	    {
-	    	univDBlib.university_addUniversityEmphasis(university.getName(), university.getEmphases().get(i));
-	    }
+     for(int i = 0; i < university.getEmphases().size(); i++)
+     {
+      univDBlib.university_addUniversityEmphasis(university.getName(), university.getEmphases().get(i));
+     }
     }
     return ret;
   }
@@ -267,21 +293,21 @@ public class DBController
   /**
    * method to remove a university from a specific student
    *
-   * @param a Student object to remove from
-   * @param a University object to remove from the student
+   * @param student the Student object to remove the university from
+   * @param university the University object to remove from the student's list of saved schools
    */
-  public void removeUniversityFromStudent(Student s, University u)
+  public void removeUniversityFromStudent(Student student, University university)
   {
-    univDBlib.user_removeSchool(s.getUsername(),u.getName());
+    univDBlib.user_removeSchool(student.getUsername(),university.getName());
   }
 
 
   /**
    * method to get the recommended universities based off of a university
    *
-   * @param a university object to base the other schools off of
+   * @param u the university object to base the other schools off of
    *
-   * @return an ArrayList of university objects
+   * @return an ArrayList of university objects similar to the provided university
    */
   public ArrayList<University> getRecommendedUniversities(University u)
   {
@@ -348,9 +374,9 @@ public class DBController
         minPercentFinancialAid = university.getPercentFinancialAid();
 
       if (maxNumApplicants < university.getNumApplicants())
-    	  maxNumApplicants = university.getNumApplicants();
+       maxNumApplicants = university.getNumApplicants();
       if (minNumApplicants > university.getNumApplicants())
-    	  minNumApplicants = university.getNumApplicants();
+       minNumApplicants = university.getNumApplicants();
 
       if (maxPercentAdmitted < university.getPercentAdmitted())
         maxPercentAdmitted = university.getPercentAdmitted();
@@ -358,9 +384,9 @@ public class DBController
         minPercentAdmitted = university.getPercentAdmitted();
       
       if (maxPercentEnrolled < university.getPercentEnrolled())
-    	  maxPercentEnrolled = university.getPercentEnrolled();
+       maxPercentEnrolled = university.getPercentEnrolled();
         if (minPercentEnrolled > university.getPercentEnrolled())
-        	minPercentEnrolled = university.getPercentEnrolled();
+         minPercentEnrolled = university.getPercentEnrolled();
 
       if (maxAcademicScale < university.getAcademicScale())
         maxAcademicScale = university.getAcademicScale();
@@ -470,11 +496,11 @@ public class DBController
       double temp = values.next();
       for (String universityName : keys)
       {
-    	if (!(u.getName().equals(universityName)))
-    	{
-    		if (distanceMap.get(universityName) == temp)
-    			recommendedUniversityNames.add(universityName);
-    	}
+     if (!(u.getName().equals(universityName)))
+     {
+      if (distanceMap.get(universityName) == temp)
+       recommendedUniversityNames.add(universityName);
+     }
       }
     }
     
