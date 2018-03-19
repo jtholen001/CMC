@@ -100,6 +100,7 @@ public class Driver
 			System.out.println("Removing university failed - database returned -1");
 		else
 			System.out.println("Removed successfully");
+		System.out.println(studentInt.viewSavedUniversities());
 		
 		
 	}

@@ -506,4 +506,97 @@ public class University
            "qualityOfLifeScale: " + this.getQualityOfLifeScale() + "\n" +
            "emphases: " + this.getEmphases());
   }
+  
+  @Override
+public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	long temp;
+	temp = Double.doubleToLongBits(SATMath);
+	result = prime * result + (int) (temp ^ (temp >>> 32));
+	temp = Double.doubleToLongBits(SATVerbal);
+	result = prime * result + (int) (temp ^ (temp >>> 32));
+	result = prime * result + academicScale;
+	result = prime * result + ((control == null) ? 0 : control.hashCode());
+	result = prime * result + ((emphases == null) ? 0 : emphases.hashCode());
+	temp = Double.doubleToLongBits(expenses);
+	result = prime * result + (int) (temp ^ (temp >>> 32));
+	result = prime * result + ((location == null) ? 0 : location.hashCode());
+	result = prime * result + ((name == null) ? 0 : name.hashCode());
+	result = prime * result + numApplicants;
+	result = prime * result + numStudents;
+	temp = Double.doubleToLongBits(percentAdmitted);
+	result = prime * result + (int) (temp ^ (temp >>> 32));
+	temp = Double.doubleToLongBits(percentEnrolled);
+	result = prime * result + (int) (temp ^ (temp >>> 32));
+	temp = Double.doubleToLongBits(percentFemale);
+	result = prime * result + (int) (temp ^ (temp >>> 32));
+	temp = Double.doubleToLongBits(percentFinancialAid);
+	result = prime * result + (int) (temp ^ (temp >>> 32));
+	result = prime * result + qualityOfLifeScale;
+	result = prime * result + socialScale;
+	result = prime * result + ((state == null) ? 0 : state.hashCode());
+	return result;
+}
+
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (!(obj instanceof University))
+		return false;
+	University other = (University) obj;
+	if (Double.doubleToLongBits(SATMath) != Double.doubleToLongBits(other.SATMath))
+		return false;
+	if (Double.doubleToLongBits(SATVerbal) != Double.doubleToLongBits(other.SATVerbal))
+		return false;
+	if (academicScale != other.academicScale)
+		return false;
+	if (control == null) {
+		if (other.control != null)
+			return false;
+	} else if (!control.equals(other.control))
+		return false;
+	if (emphases == null) {
+		if (other.emphases != null)
+			return false;
+	} else if (!emphases.equals(other.emphases))
+		return false;
+	if (Double.doubleToLongBits(expenses) != Double.doubleToLongBits(other.expenses))
+		return false;
+	if (location == null) {
+		if (other.location != null)
+			return false;
+	} else if (!location.equals(other.location))
+		return false;
+	if (name == null) {
+		if (other.name != null)
+			return false;
+	} else if (!name.equals(other.name))
+		return false;
+	if (numApplicants != other.numApplicants)
+		return false;
+	if (numStudents != other.numStudents)
+		return false;
+	if (Double.doubleToLongBits(percentAdmitted) != Double.doubleToLongBits(other.percentAdmitted))
+		return false;
+	if (Double.doubleToLongBits(percentEnrolled) != Double.doubleToLongBits(other.percentEnrolled))
+		return false;
+	if (Double.doubleToLongBits(percentFemale) != Double.doubleToLongBits(other.percentFemale))
+		return false;
+	if (Double.doubleToLongBits(percentFinancialAid) != Double.doubleToLongBits(other.percentFinancialAid))
+		return false;
+	if (qualityOfLifeScale != other.qualityOfLifeScale)
+		return false;
+	if (socialScale != other.socialScale)
+		return false;
+	if (state == null) {
+		if (other.state != null)
+			return false;
+	} else if (!state.equals(other.state))
+		return false;
+	return true;
+}
 }

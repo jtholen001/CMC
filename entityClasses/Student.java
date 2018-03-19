@@ -97,4 +97,15 @@ public class Student extends User
             "\nLogged in: " + this.getLoggedInStatus() + 
             "\nUniversities: " + this.savedUniversities.toString());
   }
+  
+  public boolean equals(Object o)
+  {
+	  if(!(o instanceof Student))
+		  return false;
+	  Student other = (Student) o;
+	  if(other.getUsername().equals(this.getUsername())) {
+		  return true;
+	  }
+	  return false;
+  }
 }

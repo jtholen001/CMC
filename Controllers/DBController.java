@@ -149,7 +149,7 @@ public class DBController
    *
    * @param user the user to add to the database
    * 
-   * @return -1 if unsucessfull, 0 otherwise
+   * @return -1 if unsuccessful, 0 otherwise
    */
 
   public int addUser(User user)

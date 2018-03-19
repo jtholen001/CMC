@@ -67,7 +67,7 @@ public class StudentUniversitiesController
    */
   public int removeUniversity(University oldUniversity)
   {
-    //this.student.removeUniversity(oldUniversity);
+    this.student.removeUniversity(oldUniversity);
     return this.dbc.removeUniversityFromStudent(this.student, oldUniversity);
   }
 }  
