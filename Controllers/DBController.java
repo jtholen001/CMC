@@ -35,33 +35,33 @@ public class DBController
    */
   public User getUser(String username)
   {
-    String[][] users = univDBlib.user_getUsers();
-    boolean status;
+	  String[][] users = univDBlib.user_getUsers();
+	  boolean status;
 
-    for(int index = 0; index < users.length; index++)
-      {
-     if(users[index][2].equals(username)) {
-      if(users[index][5].equals("Y"))
-             status = true;
-      else
-       status = false;
-      if(users[index][4].equals("u"))
-      {
- 
-       return new Student(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
-                      status, false, this.getUniversitiesForStudent(username));
-      }
-      else if(users[index][4].equals("a")) {
-       return new Admin(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
-                        status, false);
-      }
-      else
-       return null;
-     }
-      }
- return null;
+	  for(int index = 0; index < users.length; index++)
+	  {
+		  if(users[index][2].equals(username)) {
+			  if(users[index][5].equals("Y"))
+				  status = true;
+			  else
+				  status = false;
+			  if(users[index][4].equals("u"))
+			  {
+
+				  return new Student(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
+						  status, false, this.getUniversitiesForStudent(username));
+			  }
+			  else if(users[index][4].equals("a")) {
+				  return new Admin(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
+						  status, false);
+			  }
+			  else
+				  return null;
+		  }
+	  }
+	  return null;
   }
-  
+
   /**
    * This method gets the list of schools that the given user has saved.
    * 
@@ -296,9 +296,9 @@ public class DBController
    * @param student the Student object to remove the university from
    * @param university the University object to remove from the student's list of saved schools
    */
-  public void removeUniversityFromStudent(Student student, University university)
+  public int removeUniversityFromStudent(Student student, University university)
   {
-    univDBlib.user_removeSchool(student.getUsername(),university.getName());
+    return univDBlib.user_removeSchool(student.getUsername(),university.getName());
   }
 
 

@@ -24,6 +24,7 @@ public class Driver
 
 	public Driver() 
 	{
+		dbCont = new DBController();
 		student = new Student("John", "User", "juser", "password", 'u', true, false, new ArrayList<University>());
 		admin = new Admin("Noreen", "Admin", "nadmin", "admin", 'a', true, false);
 		userInt = new UserInterface();
