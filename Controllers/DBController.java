@@ -163,7 +163,7 @@ public class DBController
    * 
    * @param username the user to be deleted
    * 
-   * @return -1 if unsucessfull, 0 otherwise
+   * @return -1 if unsuccessful, 0 otherwise
    */
   public int deleteUser(String username)
   {
@@ -276,7 +276,7 @@ public class DBController
                               university.getControl().toUpperCase(), university.getNumStudents(), university.getPercentFemale(),
                               university.getSATVerbal(), university.getSATMath(), university.getExpenses(),
                               university.getPercentFinancialAid(), university.getNumApplicants(),
-                              university.getPercentEnrolled(), university.getPercentEnrolled(),
+                              university.getPercentAdmitted(), university.getPercentEnrolled(),
                               university.getAcademicScale(), university.getSocialScale(),
                               university.getQualityOfLifeScale());
     
@@ -288,6 +288,17 @@ public class DBController
      }
     }
     return ret;
+  }
+  
+  /**
+   * this method removes a University from the database
+   * 
+   * @param university the university to remove from the database
+   * @return -1 if unsucessfull, 0 otherwise
+   */
+  public int deleteUniversity(University university)
+  {
+   return univDBlib.university_deleteUniversity(university.getName());
   }
 
   /**

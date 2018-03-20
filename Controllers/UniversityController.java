@@ -131,4 +131,15 @@ public class UniversityController
                                         expenses, percentFinancialAid, numApplicants, percentAdmitted, percentEnrolled, 
                                         academicScale, socialScale, qualityOfLifeScale, emphases));
   }
+  
+  /**
+   * this method removes a University from the database
+   * 
+   * @param university the university to remove from the database
+   * @return -1 if unsucessfull, 0 otherwise
+   */
+  public int deleteUniversity(University university)
+  {
+   return dbCont.deleteUniversity(university);
+  }
 }

@@ -189,9 +189,20 @@ public class AdminInterface extends UserInterface
          double expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
                              int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {
-    return uniCont.addUniversity(name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
+     return uniCont.addUniversity(name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
                              expenses,percentFinancialAid,numApplicants,percentAdmitted,percentEnrolled,
                              academicScale,socialScale,qualityOfLifeScale,emphases);
+  }
+  
+  /**
+   * this method removes a University from the database
+   * 
+   * @param university the university to remove from the database
+   * @return -1 if unsucessfull, 0 otherwise
+   */
+  public int deleteUniversity(University university)
+  {
+   return uniCont.deleteUniversity(university);
   }
   
   /**
