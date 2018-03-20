@@ -354,7 +354,7 @@ public class DBController
     for (String universityName : keys)
     {
       University university = universityMap.get(universityName);
-      if (maxNumStudents == -1 || minNumStudents == -1 || university.getNumStudents() == -1)
+      if (maxNumStudents != -1 || minNumStudents != -1 || university.getNumStudents() != -1)
       {
     	  if (maxNumStudents < university.getNumStudents())
     		  maxNumStudents = university.getNumStudents();

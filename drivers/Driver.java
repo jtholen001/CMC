@@ -100,7 +100,7 @@ public class Driver
 		//U10
 		ArrayList<University> recommendedUniversities = studentInt.getRecommendedUniversities(dummyUniversity);
 		System.out.println("\nShowing U10: View Recommended Schools\n");
-		System.out.println(dummyUniversity + "\n");
+		//System.out.println(dummyUniversity + "\n");
 		for (University u : recommendedUniversities) {
 			System.out.println(u + "\n");
 
