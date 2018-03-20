@@ -277,7 +277,8 @@ public class Driver
 		else
 			System.out.println("Editing University failed.");
 		
-		//TODO: force remove school at the end of this method so Driver successfully runs next time
+		System.out.println("Removing previously added university: University of ACM");
+	    adminInt.deleteUniversity(toBeEdited);
 	}
 	
 
@@ -287,6 +288,7 @@ public class Driver
 	public static void main(String[] args)
 	{
 		Driver driver = new Driver();
+		/*
 		System.out.println("Testing U1: Login, U20: Logout");
 		driver.login();
 		System.out.println("----------------------------------------------");
@@ -302,6 +304,7 @@ public class Driver
 		System.out.println("Testing U13: View Users, U18: Add User, U19: Edit User");
 		driver.viewUsers();
 		System.out.println("----------------------------------------------");
+		*/
 		System.out.println("Testing U14: View Universities");
 		driver.viewUniversities();
 
