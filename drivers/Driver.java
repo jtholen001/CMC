@@ -220,14 +220,14 @@ public class Driver
 		   * U13
 		   * show updated list of Users
 		   */
-		  System.out.println("\nShowing updated list of users:\n");
+		  System.out.println("\nShowing updated list of users:");
 		  allUsers = adminInt.viewUsers();
 		  
 		  for (String nameOfUser : allUsers.keySet())
 		   System.out.println(nameOfUser);
 		  
 		  //reset changes to Database
-		  adminInt.deleteUser("misspelled001");
+		  adminInt.deleteUser("mpelled001");
 	}
 	
 	//U14 and U15 and U16
