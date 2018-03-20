@@ -57,27 +57,53 @@ public class Driver
 	public void searchForUniversities() 
 	{
 		//U3
+		System.out.println("Showing U3: Search for Schools\n");
+		System.out.println("Searching with the following criteria: \"UNIVERSITY\", null, \"URBAN\", \"PRIVATE\", 0, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, new ArrayList<String>()");
 		ArrayList<University> foundUniversities = studentInt.searchUniversities("UNIVERSITY", null, "URBAN", "PRIVATE", 0, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, new ArrayList<String>() );
-		
-		//U6
-		if (foundUniversities.isEmpty())
-			System.out.println("Nothing Found");
-		for(University u : foundUniversities) {
-			System.out.println(u.getName());
+
+		if (foundUniversities == null)
+			System.out.println("Search Failed: No search criteria specified");
+		else if (foundUniversities.isEmpty())
+			System.out.println("Search Successful: Nothing Found");
+		else {
+			//U6
+			System.out.println("Search Successful: Showing U6: View Matched Schools\n");
+			for(University u : foundUniversities) 
+				System.out.println(u.getName());	
 		}
 		
-		System.out.println();
 		
-		University dummyUniversity = foundUniversities.get(0);
+		//U3 alt scenario
+		System.out.println("Showing U3: Search for Schools (Alternative Scenario)\n");
+		System.out.println("Searching with the following criteria: null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, null");
+		ArrayList<University> noSearchCriteria = studentInt.searchUniversities(null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, null);
+		
+
+		if (noSearchCriteria == null)
+			System.out.println("Search Failed: No search criteria specified");
+		else if (noSearchCriteria.isEmpty())
+			System.out.println("Search Successful: Nothing Found");
+		else {
+			//U6
+			System.out.println("Search Successful: Showing U6: View Matched Schools\n");
+			for(University u : noSearchCriteria) 
+				System.out.println(u.getName());	
+		}
+		
+
 		//U7
+		University dummyUniversity = foundUniversities.get(0);
+		System.out.println("\nShowing U7: View Specific School\n");
 		System.out.println(dummyUniversity);
-		System.out.println();
-		
+
+	
 		//U10
 		ArrayList<University> recommendedUniversities = studentInt.getRecommendedUniversities(dummyUniversity);
+		System.out.println("\nShowing U10: View Recommended Schools\n");
+		System.out.println(dummyUniversity + "\n");
 		for (University u : recommendedUniversities) {
-			System.out.println(u);
-			System.out.println();
+			System.out.println(u + "\n");
+
 		}
 		
 	}
@@ -87,7 +113,7 @@ public class Driver
 	{
 		int success;
 		System.out.println("Saving school 'ARIZONA STATE' to John's profile");
-		success = studentInt.saveUniversity(dbCont.getUniversity("ARIZONA STATE"));
+		success = studentInt.saveUniversity(dbCont.getUniversity("AUBURN"));
 		if (success == -1)
 			System.out.println("Saving school failed - database returned -1");
 		else
@@ -220,14 +246,14 @@ public class Driver
 		   * U13
 		   * show updated list of Users
 		   */
-		  System.out.println("\nShowing updated list of users:\n");
+		  System.out.println("\nShowing updated list of users:");
 		  allUsers = adminInt.viewUsers();
 		  
 		  for (String nameOfUser : allUsers.keySet())
 		   System.out.println(nameOfUser);
 		  
 		  //reset changes to Database
-		  adminInt.deleteUser("misspelled001");
+		  adminInt.deleteUser("mpelled001");
 	}
 	
 	//U14 and U15 and U16

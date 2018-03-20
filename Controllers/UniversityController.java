@@ -45,7 +45,7 @@ public class UniversityController
     
     for (String u : universityNames)
     {
-      listOfUniversities.concat(listAll.get(u).toString() + "\n");
+      listOfUniversities = listOfUniversities + (listAll.get(u).getName() + "\n");
     }
     
     return listOfUniversities;
