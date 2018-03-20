@@ -506,38 +506,6 @@ public class University
            "qualityOfLifeScale: " + this.getQualityOfLifeScale() + "\n" +
            "emphases: " + this.getEmphases());
   }
-  
-  @Override
-public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	long temp;
-	temp = Double.doubleToLongBits(SATMath);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	temp = Double.doubleToLongBits(SATVerbal);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	result = prime * result + academicScale;
-	result = prime * result + ((control == null) ? 0 : control.hashCode());
-	result = prime * result + ((emphases == null) ? 0 : emphases.hashCode());
-	temp = Double.doubleToLongBits(expenses);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	result = prime * result + ((location == null) ? 0 : location.hashCode());
-	result = prime * result + ((name == null) ? 0 : name.hashCode());
-	result = prime * result + numApplicants;
-	result = prime * result + numStudents;
-	temp = Double.doubleToLongBits(percentAdmitted);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	temp = Double.doubleToLongBits(percentEnrolled);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	temp = Double.doubleToLongBits(percentFemale);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	temp = Double.doubleToLongBits(percentFinancialAid);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	result = prime * result + qualityOfLifeScale;
-	result = prime * result + socialScale;
-	result = prime * result + ((state == null) ? 0 : state.hashCode());
-	return result;
-}
 
 @Override
 public boolean equals(Object obj) {
