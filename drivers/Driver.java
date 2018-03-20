@@ -294,7 +294,7 @@ public class Driver
 		Driver driver = new Driver();
 		System.out.println("Testing U1: Login, U20: Logout");
 		driver.login();
-		/*System.out.println("----------------------------------------------");
+		System.out.println("----------------------------------------------");
 		System.out.println("Testing U3: Search For Schools, U6: View Matched Schools, U7: View Specific School, U10 View Recommended Schools");
 		driver.searchForUniversities();
 		System.out.println("----------------------------------------------");
@@ -309,10 +309,8 @@ public class Driver
 		System.out.println("----------------------------------------------");
 		System.out.println("Testing U14: View Universities");
 		driver.viewUniversities();
-<<<<<<< HEAD
-*/
+
 		// TODO Auto-generated method stub
-=======
->>>>>>> 2c615fdbd70ede24511dbbb994619a049286200a
+
 	}
 }

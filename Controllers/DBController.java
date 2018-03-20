@@ -354,7 +354,7 @@ public class DBController
     for (String universityName : keys)
     {
       University university = universityMap.get(universityName);
-      if (maxNumStudents != -1 || minNumStudents != -1 || university.getNumStudents() != -1)
+      if (maxNumStudents != -1 && minNumStudents != -1 && university.getNumStudents() != -1)
       {
     	  if (maxNumStudents < university.getNumStudents())
     		  maxNumStudents = university.getNumStudents();
@@ -362,7 +362,7 @@ public class DBController
     		  minNumStudents = university.getNumStudents();
       }
 
-      if (maxPercentFemale != -1 || minPercentFemale != -1 || university.getPercentFemale() != -1)
+      if (maxPercentFemale != -1 && minPercentFemale != -1 && university.getPercentFemale() != -1)
       {
     	  if (maxPercentFemale < university.getPercentFemale())
     		  maxPercentFemale = university.getPercentFemale();
@@ -370,7 +370,7 @@ public class DBController
     		  minPercentFemale = university.getPercentFemale();
       }
 
-      if (maxSATVerbal != -1 || minSATVerbal != -1 || university.getSATVerbal() != -1)
+      if (maxSATVerbal != -1 && minSATVerbal != -1 && university.getSATVerbal() != -1)
       {
     	  if (maxSATVerbal < university.getSATVerbal())
     		  maxSATVerbal = university.getSATVerbal();
@@ -378,7 +378,7 @@ public class DBController
     		  minSATVerbal = university.getSATVerbal();
       }
 
-      if (maxSATMath != -1 || minSATMath != -1 || university.getSATMath() != -1)
+      if (maxSATMath != -1 && minSATMath != -1 && university.getSATMath() != -1)
       {
     	  if (maxSATMath < university.getSATMath())
     		  maxSATMath = university.getSATMath();
@@ -386,7 +386,7 @@ public class DBController
     		  minSATMath = university.getSATMath();
       }
 
-      if (maxExpenses != -1 || minExpenses != -1 || university.getExpenses() != -1)
+      if (maxExpenses != -1 && minExpenses != -1 && university.getExpenses() != -1)
       {
     	  if (maxExpenses < university.getExpenses())
     		  maxExpenses = university.getExpenses();
@@ -394,7 +394,7 @@ public class DBController
     		  minExpenses = university.getExpenses();
       }
 
-      if (maxPercentFinancialAid != -1 || minPercentFinancialAid != -1 || university.getPercentFinancialAid() != -1)
+      if (maxPercentFinancialAid != -1 && minPercentFinancialAid != -1 && university.getPercentFinancialAid() != -1)
       {
     	  if (maxPercentFinancialAid < university.getPercentFinancialAid())
     		  maxPercentFinancialAid = university.getPercentFinancialAid();
@@ -402,7 +402,7 @@ public class DBController
     		  minPercentFinancialAid = university.getPercentFinancialAid();
       }
 
-      if (maxNumApplicants != -1 || minNumApplicants != -1 || university.getNumApplicants() != -1)
+      if (maxNumApplicants != -1 && minNumApplicants != -1 && university.getNumApplicants() != -1)
       {
     	  if (maxNumApplicants < university.getNumApplicants())
     		  maxNumApplicants = university.getNumApplicants();
@@ -410,7 +410,7 @@ public class DBController
     		  minNumApplicants = university.getNumApplicants();
       }
 
-      if (maxPercentAdmitted != -1 || minPercentAdmitted != -1 || university.getPercentAdmitted() != -1)
+      if (maxPercentAdmitted != -1 && minPercentAdmitted != -1 && university.getPercentAdmitted() != -1)
       {
     	  if (maxPercentAdmitted < university.getPercentAdmitted())
     		  maxPercentAdmitted = university.getPercentAdmitted();
@@ -418,7 +418,7 @@ public class DBController
     		  minPercentAdmitted = university.getPercentAdmitted();
       }
       
-      if (maxPercentEnrolled != -1 || minPercentEnrolled != -1 || university.getPercentEnrolled() != -1)
+      if (maxPercentEnrolled != -1 && minPercentEnrolled != -1 && university.getPercentEnrolled() != -1)
       {
     	  if (maxPercentEnrolled < university.getPercentEnrolled())
     		  maxPercentEnrolled = university.getPercentEnrolled();
@@ -426,7 +426,7 @@ public class DBController
     		  minPercentEnrolled = university.getPercentEnrolled();
       }
 
-      if (maxAcademicScale != -1 || minAcademicScale != -1 || university.getAcademicScale() != -1)
+      if (maxAcademicScale != -1 && minAcademicScale != -1 && university.getAcademicScale() != -1)
       {
     	  if (maxAcademicScale < university.getAcademicScale())
     		  maxAcademicScale = university.getAcademicScale();
@@ -434,7 +434,7 @@ public class DBController
     		  minAcademicScale = university.getAcademicScale();
       }
 
-      if (maxSocialScale != -1 || minSocialScale != -1 || university.getSocialScale() != -1)
+      if (maxSocialScale != -1 && minSocialScale != -1 && university.getSocialScale() != -1)
       {
     	  if (maxSocialScale < university.getSocialScale())
     		  maxSocialScale = university.getSocialScale();
@@ -442,7 +442,7 @@ public class DBController
     		  minSocialScale = university.getSocialScale();
       }
 
-      if (maxQualityOfLifeScale != -1 || minQualityOfLifeScale != -1 || university.getQualityOfLifeScale() != -1)
+      if (maxQualityOfLifeScale != -1 && minQualityOfLifeScale != -1 && university.getQualityOfLifeScale() != -1)
       {
     	  if (maxQualityOfLifeScale < university.getQualityOfLifeScale())
     		  maxQualityOfLifeScale = university.getQualityOfLifeScale();
@@ -491,62 +491,71 @@ public class DBController
         double socialScaleDistance = 0;
         double qualityOfLifeScaleDistance = 0;
         
-        if (maxNumStudents != -1 || minNumStudents != -1)
+        if (maxNumStudents != -1 && minNumStudents != -1 && universityMap.get(universityName).getNumStudents() != -1)
           numStudentsDistance = (Math.abs(universityMap.get(universityName).getNumStudents() - u.getNumStudents()) /
                                         Math.abs(maxNumStudents - minNumStudents));
 
-        if (maxPercentFemale != -1 || minPercentFemale != -1)
+        if (maxPercentFemale != -1 && minPercentFemale != -1 && universityMap.get(universityName).getPercentFemale() != -1)
           percentFemaleDistance = (Math.abs(universityMap.get(universityName).getPercentFemale() - u.getPercentFemale()) /
                                           Math.abs(maxPercentFemale - minPercentFemale));
 
-        if (maxSATVerbal != -1 || minSATVerbal != -1)
+        if (maxSATVerbal != -1 && minSATVerbal != -1 && universityMap.get(universityName).getSATVerbal() != -1)
           SATVerbalDistance = (Math.abs(universityMap.get(universityName).getSATVerbal() - u.getSATVerbal()) /
                                       Math.abs(maxSATVerbal - minSATVerbal));
 
-        if (maxSATMath != -1 || minSATMath != -1)
+        if (maxSATMath != -1 && minSATMath != -1 && universityMap.get(universityName).getSATMath() != -1)
           SATMathDistance = (Math.abs(universityMap.get(universityName).getSATMath() - u.getSATMath()) /
                                     Math.abs(maxSATMath - minSATMath));
 
-        if (maxExpenses != -1 || minExpenses != -1)
+        if (maxExpenses != -1 && minExpenses != -1 && universityMap.get(universityName).getExpenses() != -1)
           expensesDistance = (Math.abs(universityMap.get(universityName).getExpenses() - u.getExpenses()) /
                                      Math.abs(maxExpenses - minExpenses));
 
-        if (maxPercentFinancialAid != -1 || minPercentFinancialAid != -1)
+        if (maxPercentFinancialAid != -1 && minPercentFinancialAid != -1 && universityMap.get(universityName).getPercentFinancialAid() != -1)
           percentFinancialAidDistance = (Math.abs(universityMap.get(universityName).getPercentFinancialAid() - u.getPercentFinancialAid()) /
                                                 Math.abs(maxPercentFinancialAid - minPercentFinancialAid));
 
-        if (maxNumApplicants != -1 || minNumApplicants != -1)
+        if (maxNumApplicants != -1 && minNumApplicants != -1 && universityMap.get(universityName).getNumApplicants() != -1)
           numApplicantsDistance = (Math.abs(universityMap.get(universityName).getNumApplicants() - u.getNumApplicants()) /
                                           Math.abs(maxNumApplicants - minNumApplicants));
 
-        if (maxPercentAdmitted != -1 || minPercentAdmitted != -1)
+        if (maxPercentAdmitted != -1 && minPercentAdmitted != -1 && universityMap.get(universityName).getPercentAdmitted() != -1)
           percentAdmittedDistance = (Math.abs(universityMap.get(universityName).getPercentAdmitted() - u.getPercentAdmitted()) /
                                           Math.abs(maxPercentAdmitted - minPercentAdmitted));
 
-        if (maxPercentEnrolled != -1 || minPercentEnrolled != -1)
+        if (maxPercentEnrolled != -1 && minPercentEnrolled != -1 && universityMap.get(universityName).getPercentEnrolled() != -1)
           percentEnrolledDistance = (Math.abs(universityMap.get(universityName).getPercentEnrolled() - u.getPercentEnrolled()) /
                                             Math.abs(maxPercentEnrolled - minPercentEnrolled));
 
-        if (maxAcademicScale != -1 || minAcademicScale != -1)
+        if (maxAcademicScale != -1 && minAcademicScale != -1 && universityMap.get(universityName).getAcademicScale() != -1)
           academicScaleDistance = (Math.abs(universityMap.get(universityName).getAcademicScale() - u.getAcademicScale()) /
                                           Math.abs(maxAcademicScale - minAcademicScale));
 
-        if (maxSocialScale != -1 || minSocialScale != -1)
+        if (maxSocialScale != -1 && minSocialScale != -1 && universityMap.get(universityName).getSocialScale() != -1)
           socialScaleDistance = (Math.abs(universityMap.get(universityName).getSocialScale() - u.getSocialScale()) /
                                         Math.abs(maxSocialScale - minSocialScale));
 
-        if (maxQualityOfLifeScale != -1 || minQualityOfLifeScale != -1)
+        if (maxQualityOfLifeScale != -1 && minQualityOfLifeScale != -1 && universityMap.get(universityName).getQualityOfLifeScale() != -1)
           qualityOfLifeScaleDistance = (Math.abs(universityMap.get(universityName).getQualityOfLifeScale() - u.getQualityOfLifeScale()) /
                                                Math.abs(maxQualityOfLifeScale - minQualityOfLifeScale));
 
-          ArrayList<String> emphases = universityMap.get(universityName).getEmphases();
-
-          int emphasesDistance = 0;
+          //ArrayList<String> emphases = universityMap.get(universityName).getEmphases();
+        ArrayList<String> emphases = u.getEmphases();
+        
+          int count = 0;
           for (String emphasis : emphases)
           {
-            if (!(u.getEmphases().contains(emphasis)))
-              emphasesDistance = emphasesDistance - 1;
+        	  //if the potentially recommended school does not contain an emphasis
+        	  if (!universityMap.get(universityName).getEmphases().contains(emphasis))
+        		  count++; 	  
           }
+          double emphasesDistance = count/emphases.size();
+          
+//          for (String emphasis : emphases)
+//          {
+//            if (!(u.getEmphases().contains(emphasis)))
+//              emphasesDistance = emphasesDistance - 1;
+//          }
 
           double totalDistance = stateDistance + locationDistance + controlDistance + numStudentsDistance + percentFemaleDistance + SATVerbalDistance +
           SATMathDistance + expensesDistance + percentFinancialAidDistance + numApplicantsDistance + percentAdmittedDistance + percentEnrolledDistance +
@@ -568,11 +577,15 @@ public class DBController
       double temp = values.next();
       for (String universityName : keys)
       {
-     if (!(u.getName().equals(universityName)))
-     {
-      if (distanceMap.get(universityName) == temp)
-       recommendedUniversityNames.add(universityName);
-     }
+    	  if (!(u.getName().equals(universityName)))
+    	  {
+    		  if (distanceMap.get(universityName) == temp)
+    		  {
+    			  recommendedUniversityNames.add(universityName);
+    			  distanceMap.put(universityName,  -1.0);
+    		  }
+    		  
+    	  }
       }
     }
     
