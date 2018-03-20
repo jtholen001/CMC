@@ -288,7 +288,6 @@ public class Driver
 	public static void main(String[] args)
 	{
 		Driver driver = new Driver();
-		/*
 		System.out.println("Testing U1: Login, U20: Logout");
 		driver.login();
 		System.out.println("----------------------------------------------");
@@ -304,10 +303,7 @@ public class Driver
 		System.out.println("Testing U13: View Users, U18: Add User, U19: Edit User");
 		driver.viewUsers();
 		System.out.println("----------------------------------------------");
-		*/
 		System.out.println("Testing U14: View Universities");
 		driver.viewUniversities();
-
-		// TODO Auto-generated method stub
 	}
 }

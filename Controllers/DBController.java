@@ -442,40 +442,65 @@ public class DBController
         else
           controlDistance = 1; // control not equal
 
-          double numStudentsDistance = (Math.abs(universityMap.get(universityName).getNumStudents() - u.getNumStudents()) /
+        double numStudentsDistance = 0;
+        double percentFemaleDistance = 0;
+        double SATVerbalDistance = 0;
+        double SATMathDistance = 0;
+        double expensesDistance = 0;
+        double percentFinancialAidDistance = 0;
+        double numApplicantsDistance = 0;
+        double percentAdmittedDistance  = 0;
+        double percentEnrolledDistance = 0;
+        double academicScaleDistance = 0;
+        double socialScaleDistance = 0;
+        double qualityOfLifeScaleDistance = 0;
+        
+        if (maxNumStudents != -1 || minNumStudents != -1)
+          numStudentsDistance = (Math.abs(universityMap.get(universityName).getNumStudents() - u.getNumStudents()) /
                                         Math.abs(maxNumStudents - minNumStudents));
 
-          double percentFemaleDistance = (Math.abs(universityMap.get(universityName).getPercentFemale() - u.getPercentFemale()) /
+        if (maxPercentFemale != -1 || minPercentFemale != -1)
+          percentFemaleDistance = (Math.abs(universityMap.get(universityName).getPercentFemale() - u.getPercentFemale()) /
                                           Math.abs(maxPercentFemale - minPercentFemale));
 
-          double SATVerbalDistance = (Math.abs(universityMap.get(universityName).getSATVerbal() - u.getSATVerbal()) /
+        if (maxSATVerbal != -1 || minSATVerbal != -1)
+          SATVerbalDistance = (Math.abs(universityMap.get(universityName).getSATVerbal() - u.getSATVerbal()) /
                                       Math.abs(maxSATVerbal - minSATVerbal));
 
-          double SATMathDistance = (Math.abs(universityMap.get(universityName).getSATMath() - u.getSATMath()) /
+        if (maxSATMath != -1 || minSATMath != -1)
+          SATMathDistance = (Math.abs(universityMap.get(universityName).getSATMath() - u.getSATMath()) /
                                     Math.abs(maxSATMath - minSATMath));
 
-          double expensesDistance = (Math.abs(universityMap.get(universityName).getExpenses() - u.getExpenses()) /
+        if (maxExpenses != -1 || minExpenses != -1)
+          expensesDistance = (Math.abs(universityMap.get(universityName).getExpenses() - u.getExpenses()) /
                                      Math.abs(maxExpenses - minExpenses));
 
-          double percentFinancialAidDistance = (Math.abs(universityMap.get(universityName).getPercentFinancialAid() - u.getPercentFinancialAid()) /
+        if (maxPercentFinancialAid != -1 || minPercentFinancialAid != -1)
+          percentFinancialAidDistance = (Math.abs(universityMap.get(universityName).getPercentFinancialAid() - u.getPercentFinancialAid()) /
                                                 Math.abs(maxPercentFinancialAid - minPercentFinancialAid));
 
-          double numApplicantsDistance = (Math.abs(universityMap.get(universityName).getNumApplicants() - u.getNumApplicants()) /
+        if (maxNumApplicants != -1 || minNumApplicants != -1)
+          numApplicantsDistance = (Math.abs(universityMap.get(universityName).getNumApplicants() - u.getNumApplicants()) /
                                           Math.abs(maxNumApplicants - minNumApplicants));
 
-          double percentAdmittedDistance = (Math.abs(universityMap.get(universityName).getPercentAdmitted() - u.getPercentAdmitted()) /
+        if (maxPercentAdmitted != -1 || minPercentAdmitted != -1)
+          percentAdmittedDistance = (Math.abs(universityMap.get(universityName).getPercentAdmitted() - u.getPercentAdmitted()) /
                                           Math.abs(maxPercentAdmitted - minPercentAdmitted));
 
-          double percentEnrolledDistance = (Math.abs(universityMap.get(universityName).getPercentEnrolled() - u.getPercentEnrolled()) /
+        if (maxPercentEnrolled != -1 || minPercentEnrolled != -1)
+          percentEnrolledDistance = (Math.abs(universityMap.get(universityName).getPercentEnrolled() - u.getPercentEnrolled()) /
                                             Math.abs(maxPercentEnrolled - minPercentEnrolled));
 
-          double academicScaleDistance = (Math.abs(universityMap.get(universityName).getAcademicScale() - u.getAcademicScale()) /
+        if (maxAcademicScale != -1 || minAcademicScale != -1)
+          academicScaleDistance = (Math.abs(universityMap.get(universityName).getAcademicScale() - u.getAcademicScale()) /
                                           Math.abs(maxAcademicScale - minAcademicScale));
 
-          double socialScaleDistance = (Math.abs(universityMap.get(universityName).getSocialScale() - u.getSocialScale()) /
+        if (maxSocialScale != -1 || minSocialScale != -1)
+          socialScaleDistance = (Math.abs(universityMap.get(universityName).getSocialScale() - u.getSocialScale()) /
                                         Math.abs(maxSocialScale - minSocialScale));
 
-          double qualityOfLifeScaleDistance = (Math.abs(universityMap.get(universityName).getQualityOfLifeScale() - u.getQualityOfLifeScale()) /
+        if (maxQualityOfLifeScale != -1 || minQualityOfLifeScale != -1)
+          qualityOfLifeScaleDistance = (Math.abs(universityMap.get(universityName).getQualityOfLifeScale() - u.getQualityOfLifeScale()) /
                                                Math.abs(maxQualityOfLifeScale - minQualityOfLifeScale));
 
           ArrayList<String> emphases = universityMap.get(universityName).getEmphases();
