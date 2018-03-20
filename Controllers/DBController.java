@@ -72,7 +72,7 @@ public class DBController
   public ArrayList<University> getUniversitiesForStudent(String username)
   {
    String[][] universities = univDBlib.user_getUsernamesWithSavedSchools();
-   ArrayList<University> list = new ArrayList();
+   ArrayList<University> list = new ArrayList<University>();
    
    for(int i = 0; i < universities.length; i++)
    {

@@ -42,7 +42,6 @@ public class LoginController
       if ((password.equals(correctPassword)) && (!loggedIn) && (activated)) // successful login
       {
         user.setLoggedInStatus(true);
-        dbc.saveEditedUser(user);
         return user;
       }
       else if (loggedIn) // user already logged in
