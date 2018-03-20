@@ -225,7 +225,7 @@ public class DBController
   private ArrayList<String> getUniversityEmphases(String universityName) {
     
    ArrayList<String>  retList = new ArrayList<String>();
-   String[][] emphases = univDBlib.university_getEmphases();
+   String[][] emphases = univDBlib.university_getNamesWithEmphases();
    
    for(int i = 0; i < emphases.length; i++)
    {

@@ -220,14 +220,14 @@ public class Driver
 		   * U13
 		   * show updated list of Users
 		   */
-		  System.out.println("\nShowing updated list of users:\n");
+		  System.out.println("\nShowing updated list of users:");
 		  allUsers = adminInt.viewUsers();
 		  
 		  for (String nameOfUser : allUsers.keySet())
 		   System.out.println(nameOfUser);
 		  
 		  //reset changes to Database
-		  adminInt.deleteUser("misspelled001");
+		  adminInt.deleteUser("mpelled001");
 	}
 	
 	//U14 and U15 and U16
@@ -261,23 +261,23 @@ public class Driver
 	public static void main(String[] args)
 	{
 		Driver driver = new Driver();
-		System.out.println("Testing U1: Login, U20: Logout");
-		driver.login();
-		System.out.println("----------------------------------------------");
+//		System.out.println("Testing U1: Login, U20: Logout");
+//		driver.login();
+//		System.out.println("----------------------------------------------");
 		System.out.println("Testing U3: Search For Schools, U6: View Matched Schools, U7: View Specific School, U10 View Recommended Schools");
 		driver.searchForUniversities();
-		System.out.println("----------------------------------------------");
-		System.out.println("Testing U11: Save School, U4: View Saved Schools, U8: Remove Specific School");
-		driver.viewSavedSchools();
-		System.out.println("----------------------------------------------");
-		System.out.println("Testing U5: View My Profile, U9: Edit My Profile");
-		driver.viewMyProfile();
-		System.out.println("----------------------------------------------");
-		System.out.println("Testing U13: View Users, U18: Add User, U19: Edit User");
-		driver.viewUsers();
-		System.out.println("----------------------------------------------");
-		System.out.println("Testing U14: View Universities");
-		driver.viewUniversities();
+//		System.out.println("----------------------------------------------");
+//		System.out.println("Testing U11: Save School, U4: View Saved Schools, U8: Remove Specific School");
+//		driver.viewSavedSchools();
+//		System.out.println("----------------------------------------------");
+//		System.out.println("Testing U5: View My Profile, U9: Edit My Profile");
+//		driver.viewMyProfile();
+//		System.out.println("----------------------------------------------");
+//		System.out.println("Testing U13: View Users, U18: Add User, U19: Edit User");
+//		driver.viewUsers();
+//		System.out.println("----------------------------------------------");
+//		System.out.println("Testing U14: View Universities");
+//		driver.viewUniversities();
 
 		// TODO Auto-generated method stub
 	}
