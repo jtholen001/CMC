@@ -42,7 +42,7 @@ public class StudentUniversitiesController
     String output = "";
     for (University u : universities)
     {
-      output.concat(u.getName());
+      output = output += (u.getName());
     }
     
     return output;
@@ -68,7 +68,7 @@ public class StudentUniversitiesController
   public int removeUniversity(University oldUniversity)
   {
     this.student.removeUniversity(oldUniversity);
-    return this.dbc.saveEditedUser(this.student);
+    return this.dbc.removeUniversityFromStudent(this.student, oldUniversity);
   }
 }  
 
