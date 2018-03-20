@@ -37,7 +37,11 @@ public class Driver
 	 */
 	public void login() 
 	{
-		System.out.println("User should be logged in correctly: " + userInt.login("juser", "password") + "\n");
+		System.out.println("User should be logged in correctly: ");
+		if(userInt.login("juser", "password") instanceof StudentInterface)
+			System.out.println(true);
+		else
+			System.out.println(false);
 		System.out.println("User should be logged out correctly");
 		userInt.logout((User)student);
 		System.out.println("\n");
@@ -288,10 +292,9 @@ public class Driver
 	public static void main(String[] args)
 	{
 		Driver driver = new Driver();
-		/*
 		System.out.println("Testing U1: Login, U20: Logout");
 		driver.login();
-		System.out.println("----------------------------------------------");
+		/*System.out.println("----------------------------------------------");
 		System.out.println("Testing U3: Search For Schools, U6: View Matched Schools, U7: View Specific School, U10 View Recommended Schools");
 		driver.searchForUniversities();
 		System.out.println("----------------------------------------------");
@@ -304,10 +307,9 @@ public class Driver
 		System.out.println("Testing U13: View Users, U18: Add User, U19: Edit User");
 		driver.viewUsers();
 		System.out.println("----------------------------------------------");
-		*/
 		System.out.println("Testing U14: View Universities");
 		driver.viewUniversities();
-
+*/
 		// TODO Auto-generated method stub
 	}
 }

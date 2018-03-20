@@ -41,7 +41,7 @@ public class UserInterface
    * @param password of the user
    * @return boolean successful
    */
-  public boolean login(String username, String password)
+  public <t extends UserInterface> UserInterface login(String username, String password)
   {
     User user = lc.login(username, password);
     if (user != null)
@@ -49,37 +49,15 @@ public class UserInterface
       char type = user.getType();
       if (type == 'u')
       {
-        this.passToStudentInterface((Student)user);
+        return new StudentInterface((Student) user);
       }
-      else
+      else if(type == 'a')
       {
-        this.passToAdminInterface((Admin)user);
+    	  return new AdminInterface((Admin) user);
       }
-      return true;
     }
-    return false;
+      return null;
   }
-  
-  /**
-   * This method passes the logged in Student to the StudentInterface
-   * 
-   * @param student object to be passed
-   */
-  public void passToStudentInterface(Student student)
-  {
-    si = new StudentInterface(student);
-  }
-  
-  /**
-   * This method passes the logged in Admin to the AdminInterface
-   * 
-   * @param admin object to be passed
-   */
-  public void passToAdminInterface(Admin admin)
-  {
-    ai = new AdminInterface(admin);
-  }
-  
   /**
    * A method that logs out a user
    * 
