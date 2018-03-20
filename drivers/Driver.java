@@ -86,7 +86,7 @@ public class Driver
 	{
 		int success;
 		System.out.println("Saving school 'ARIZONA STATE' to John's profile");
-		success = studentInt.saveUniversity(dbCont.getUniversity("ARIZONA STATE"));
+		success = studentInt.saveUniversity(dbCont.getUniversity("AUBURN"));
 		if (success == -1)
 			System.out.println("Saving school failed - database returned -1");
 		else
