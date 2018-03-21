@@ -89,13 +89,19 @@ public class Student extends User
    */
   public String toString()
   {
-    return ("First name: " + this.getFirstName() +
+	  String s = "First name: " + this.getFirstName() +
             "\nLast name: " + this.getLastName() +
             "\nUsername: " + this.getUsername() +
             "\nType: " + this.getType() +
             "\nActivated: " + this.getActivationStatus() +
             "\nLogged in: " + this.getLoggedInStatus() + 
-            "\nUniversities: " + this.savedUniversities.toString());
+            "\nUniversities: ";
+
+    for(University u : savedUniversities)
+    {
+    	s += u.getName() + ", ";   	
+    }
+    return s.substring(0, s.length()-2);
   }
   
   public boolean equals(Object o)

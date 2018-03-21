@@ -1,6 +1,6 @@
 /**
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
- * @version 3/14/18
+ * @version 3/20/18
  */
 package drivers;
 import Interfaces.*;
@@ -9,7 +9,7 @@ import Controllers.*;
 import java.util.*;
 
 /**
- * 
+ * Driver class we do not need to javadoc, but here is one anyways
  *
  */
 public class Driver 
@@ -115,21 +115,23 @@ public class Driver
 	//U11, U4, U8
 	public void viewSavedSchools() 
 	{
-		int success;
+		int success, otherSuccess;
 		System.out.println("Saving school 'ARIZONA STATE' to John's profile");
-		success = studentInt.saveUniversity(dbCont.getUniversity("AUBURN"));
+		success = studentInt.saveUniversity(dbCont.getUniversity("ARIZONA STATE"));
+		otherSuccess = studentInt.saveUniversity(dbCont.getUniversity("Auburn"));
 		if (success == -1)
 			System.out.println("Saving school failed - database returned -1");
 		else
 			System.out.println("Saved school successfully");
 		System.out.println("\nViewing John's saved schools");
 		System.out.println(studentInt.viewSavedUniversities());
-		System.out.println("\n Removing school 'ARIZONA STATE' from John's profile");
+		System.out.println("\nRemoving school 'ARIZONA STATE' from John's profile");
 		success = studentInt.removeUniversity(dbCont.getUniversity("ARIZONA STATE"));
 		if (success == -1)
 			System.out.println("Removing university failed - database returned -1");
 		else
 			System.out.println("Removed successfully");
+		System.out.println("\nViewing John's saved schools");
 		System.out.println(studentInt.viewSavedUniversities());
 		
 		
@@ -150,7 +152,7 @@ public class Driver
 			System.out.println("Edit failed - database returned -1");
 		else
 			System.out.println("Edited successfully");
-		System.out.println("Displaying edited profile - name should be updated:");
+		System.out.println("Displaying edited profile - last name should be updated to 'Miller':");
 		System.out.println(studentInt.viewProfile() + "\n");
 		
 		System.out.println("Editing user using empty paramater - should fail");
@@ -281,8 +283,9 @@ public class Driver
 		else
 			System.out.println("Editing University failed.");
 		
-		//System.out.println("Removing previously added university: University of ACM");
-	    //adminInt.deleteUniversity(toBeEdited);
+		System.out.println("Removing previously added university: University of CMC");
+	    adminInt.deleteUniversity(toBeEdited);
+
 	}
 	
 

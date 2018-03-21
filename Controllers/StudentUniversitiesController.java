@@ -42,10 +42,10 @@ public class StudentUniversitiesController
     String output = "";
     for (University u : universities)
     {
-      output = output += (u.getName());
+      output += u.getName() + ", ";
     }
     
-    return output;
+    return output.substring(0, output.length()-2);
   }
   
   /**
