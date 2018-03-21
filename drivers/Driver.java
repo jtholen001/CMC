@@ -1,6 +1,6 @@
 /**
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
- * @version 3/14/18
+ * @version 3/20/18
  */
 package drivers;
 import Interfaces.*;
@@ -9,7 +9,7 @@ import Controllers.*;
 import java.util.*;
 
 /**
- * 
+ * Driver class we do not need to javadoc, but here is one anyways
  *
  */
 public class Driver 
