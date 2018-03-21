@@ -44,8 +44,10 @@ public class StudentUniversitiesController
     {
       output += u.getName() + ", ";
     }
-    
-    return output.substring(0, output.length()-2);
+    if (output.length() < 2)
+    	return "";
+    else
+    	return output.substring(0, output.length()-2);
   }
   
   /**
