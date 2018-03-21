@@ -42,7 +42,7 @@ public class Driver
 			System.out.println("User successfully logged in because he was brought to a StudentInterface");
 		else
 			System.out.println("User failed to login because he was not brought to a StudentInterface");
-		System.out.println("User logs out correctly if the \"logout\" returns true:");
+		System.out.println("User logs out correctly if \"logout\" returns true:");
 		System.out.println("logout: " + userInt.logout((User)student));
 		System.out.println("\n");
 		System.out.println("User should fail to log in with incorrect username: ");
