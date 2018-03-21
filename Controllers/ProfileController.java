@@ -37,6 +37,9 @@ public class ProfileController
    */
   public int editProfile(String firstName, String lastName, String password)
   {
+	  if (firstName.equals("") || lastName.equals("") || password.equals(""))
+		  return -1;
+	  
     this.student.setFirstName(firstName);
     this.student.setLastName(lastName);
     this.student.setPassword(password);

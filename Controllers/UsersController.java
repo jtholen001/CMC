@@ -50,7 +50,7 @@ public class UsersController
    * @param isActivated the new activation status for this user
    * @param isLoggedIn the new logged in status for this user
    * 
-   * @return -1 if unsucessfull, 0 otherwise
+   * @return an int representing the success of editing a user
    */
   public int editUser(String username,String firstName, String lastName, String password, char type ,boolean isActivated,
                         boolean isLoggedIn)
@@ -85,7 +85,7 @@ public class UsersController
    * @param isActivated the new activation status for this user
    * @param isLoggedIn the new logged in status for this user
    * 
-   * @return -1 if unsucessfull, 0 otherwise
+   * @return an int representing the success of adding a user
    */
   public int addUser(String firstName, String lastName, String username, String password, char type ,boolean isActivated,
                         boolean isLoggedIn)
@@ -99,7 +99,7 @@ public class UsersController
    *
    * @param user a User object to be deactivated
    * 
-   * @return -1 if unsucessfull, 0 otherwise
+   * @return an int representing the success of deactivating a user
    */
   public int deactivate(User user)
   {
