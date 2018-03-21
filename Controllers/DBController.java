@@ -149,7 +149,7 @@ public class DBController
    *
    * @param user the user to add to the database
    * 
-   * @return -1 if unsuccessful, 0 otherwise
+   * @return an int representing the success of adding a user
    */
 
   public int addUser(User user)
@@ -163,7 +163,7 @@ public class DBController
    * 
    * @param username the user to be deleted
    * 
-   * @return -1 if unsuccessful, 0 otherwise
+   * @return an int representing the success of deleting a user
    */
   public int deleteUser(String username)
   {
@@ -241,7 +241,7 @@ public class DBController
    *
    * @param university the university object to edit
    * 
-   * @return -1 if unsucessfull, 0 otherwise
+   * @return an int representing the success of saving an edited university
    */
   public int saveEditedUniversity(University university)
   {

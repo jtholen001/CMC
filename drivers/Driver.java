@@ -77,7 +77,7 @@ public class Driver
 		
 		
 		//U3 alt scenario
-		System.out.println("Showing U3: Search for Schools (Alternative Scenario)\n");
+		System.out.println("\nShowing U3: Search for Schools (Alternative Scenario)\n");
 		System.out.println("Searching with the following criteria: null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, null");
 		ArrayList<University> noSearchCriteria = studentInt.searchUniversities(null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, null);
 		
@@ -284,16 +284,21 @@ public class Driver
 		
 		System.out.println("Adding a University: \"University of CMC\" with attributes \"University of CMC\", \"Arizona\", \"urban\", \"public\", 5, 0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>()");
 		int success = adminInt.addUniversity("University of CMC", "Arizona", "urban", "public", 5, 0.0, 500.0, 500.0, 100.0, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
-		if (success != -1)
-			System.out.println("\"University of CMC\" added to Database");
+		if (success != -1) {
+			System.out.println("\"University of CMC\" added to Database\n");
+			System.out.println(dbCont.getUniversity("University of CMC")+ "\n");
+		}
 		else
 			System.out.println("Adding University failed.");
+		
 		
 		System.out.println("Editing a University: \"University of CMC\"");
 		University toBeEdited = new University("University of CMC", "Arizona", "urban", "public", 5, 0.0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
 		success = adminInt.editUniversity(toBeEdited, "University of CMC", "Hawaii", "urban", "public", 5, 0.0, 500.0, 500.0, 100.0, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
-		if (success != -1)
-			System.out.println("Changed the state of University of CMC: \"Arizona\" to \"Hawaii\"");
+		if (success != -1) {
+			System.out.println("Changed the state of University of CMC: \"Arizona\" to \"Hawaii\"" + "\n");
+			System.out.println(dbCont.getUniversity("University of CMC")+ "\n");
+		}
 		else
 			System.out.println("Editing University failed.");
 		
