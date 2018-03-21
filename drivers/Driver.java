@@ -50,6 +50,7 @@ public class Driver
 		System.out.println("\"login\" should fail and return null: " + userInt.login("juser", "null"));
 		System.out.println("\nUser should fail to log in because account is deactivated");
 		System.out.println("\"login\" should fail and return null: " + userInt.login("jtest", "password0"));
+		System.out.println("\n");
 	}
 	
 	public void searchForUniversities() 
@@ -141,8 +142,6 @@ public class Driver
 			System.out.println("Removed successfully");
 		System.out.println("\nViewing John's saved schools");
 		System.out.println(studentInt.viewSavedUniversities());
-		
-		System.out.println("\n");
 	}
 	
 	//U5 and U9
@@ -168,6 +167,7 @@ public class Driver
 		if (success == -1)
 			System.out.println("Edit failed - database returned -1");
 		
+		System.out.println("\n");
 	}
 	
 	//U13, U17, U18, U19
@@ -268,15 +268,17 @@ public class Driver
 		  
 		  //reset changes to Database
 		  adminInt.deleteUser("mpelled001");
+		  
+		  System.out.println("\n");
 	}
 	
 	//U14 and U15 and U16
 	public void viewUniversities() 
 	{
-		System.out.println("\nViewing Universities");
+		System.out.println("Viewing Universities");
 		System.out.println(adminInt.viewUniversities());
 		
-		System.out.println("\nAdding a University: \"University of CMC\" with attributes \"University of CMC\", \"Arizona\", \"urban\", \"public\", 5, 0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>()");
+		System.out.println("Adding a University: \"University of CMC\" with attributes \"University of CMC\", \"Arizona\", \"urban\", \"public\", 5, 0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>()");
 		int success = adminInt.addUniversity("University of CMC", "Arizona", "urban", "public", 5, 0.0, 500.0, 500.0, 100.0, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
 		if (success != -1)
 			System.out.println("\"University of CMC\" added to Database");
