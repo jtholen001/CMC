@@ -42,19 +42,14 @@ public class Driver
 			System.out.println("User successfully logged in because he was brought to a StudentInterface");
 		else
 			System.out.println("User failed to login because he was not brought to a StudentInterface");
-		System.out.println("User logs out correctly if \"logout\" returns true:");
+		System.out.println("\nUser logs out correctly if \"logout\" returns true:");
 		System.out.println("logout: " + userInt.logout((User)student));
-		System.out.println("\n");
-		System.out.println("User should fail to log in with incorrect username: ");
+		System.out.println("\nUser should fail to log in with incorrect username: ");
 		System.out.println("\"login\" should fail and return null: " + userInt.login("john", "user"));
-		System.out.println("\n");
-		System.out.println("User should fail to log in with incorrect password: ");
+		System.out.println("\nUser should fail to log in with incorrect password: ");
 		System.out.println("\"login\" should fail and return null: " + userInt.login("juser", "null"));
-		System.out.println("\n");
-		System.out.println("User should fail to log in because account is deactivated");
+		System.out.println("\nUser should fail to log in because account is deactivated");
 		System.out.println("\"login\" should fail and return null: " + userInt.login("jtest", "password0"));
-		System.out.println("\n");
-		
 	}
 	
 	public void searchForUniversities() 
@@ -116,12 +111,11 @@ public class Driver
 	{
 		int success, otherSuccess;
 
-		
 		System.out.println("Viewing John's saved schools (there should be none):");
 		System.out.println(studentInt.viewSavedUniversities());
 		otherSuccess = studentInt.saveUniversity(dbCont.getUniversity("Auburn"));
 		
-		System.out.println("\nSaving school 'ARIZONA STATE' to John's profile");
+		System.out.println("Saving school 'ARIZONA STATE' to John's profile");
 		success = studentInt.saveUniversity(dbCont.getUniversity("ARIZONA STATE"));
 
 		if (success == -1)
@@ -148,7 +142,7 @@ public class Driver
 		System.out.println("\nViewing John's saved schools");
 		System.out.println(studentInt.viewSavedUniversities());
 		
-		
+		System.out.println("\n");
 	}
 	
 	//U5 and U9
@@ -185,7 +179,7 @@ public class Driver
 		   * U13
 		   * showing view users functionality
 		   */
-		  System.out.println("Showing U13: View Users\n");
+		  System.out.println("Showing U13: View Users");
 		  HashMap<String, User> allUsers = adminInt.viewUsers();
 		  
 		  for (String nameOfUser : allUsers.keySet())
@@ -316,25 +310,23 @@ public class Driver
 	public static void main(String[] args)
 	{
 		Driver driver = new Driver();
-		System.out.println("Testing U1: Login, U20: Logout");
+		System.out.println("Testing U1: Login, U20: Logout\n");
 		driver.login();
-		System.out.println("----------------------------------------------");
-		System.out.println("Testing U3: Search For Schools, U6: View Matched Schools, U7: View Specific School, U10 View Recommended Schools");
+		System.out.println("\n----------------------------------------------");
+		System.out.println("Testing U3: Search For Schools, U6: View Matched Schools, U7: View Specific School, U10 View Recommended Schools\n");
 		driver.searchForUniversities();
-		System.out.println("----------------------------------------------");
-		System.out.println("Testing U11: Save School, U4: View Saved Schools, U8: Remove Specific School");
+		System.out.println("\n----------------------------------------------");
+		System.out.println("Testing U11: Save School, U4: View Saved Schools, U8: Remove Specific School\n");
 		driver.viewSavedSchools();
-		System.out.println("----------------------------------------------");
-		System.out.println("Testing U5: View My Profile, U9: Edit My Profile");
+		System.out.println("\n----------------------------------------------");
+		System.out.println("Testing U5: View My Profile, U9: Edit My Profile\n");
 		driver.viewMyProfile();
-		System.out.println("----------------------------------------------");
-		System.out.println("Testing U13: View Users, U17: Deactivate User, U18: Add User, U19: Edit User");
+		System.out.println("\n----------------------------------------------");
+		System.out.println("Testing U13: View Users, U17: Deactivate User, U18: Add User, U19: Edit User\n ");
 		driver.viewUsers();
-		System.out.println("----------------------------------------------");
-		System.out.println("Testing U14: View Universities, U15: Add University, U16: Edit University");
+		System.out.println("\n----------------------------------------------");
+		System.out.println("Testing U14: View Universities, U15: Add University, U16: Edit University\n");
 		driver.viewUniversities();
-
-		// TODO Auto-generated method stub
-
+		System.out.println("\n ----------END OF DRIVER----------");
 	}
 }
