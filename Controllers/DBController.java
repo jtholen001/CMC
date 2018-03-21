@@ -268,7 +268,7 @@ public class DBController
    *
    * @param university the University object to add to the database
    * 
-   * @return -1 if unsucessful, 0 otherwise
+   * @return int representing success of adding university
    */
   public int addUniversity(University university)
   {
@@ -294,7 +294,7 @@ public class DBController
    * this method removes a University from the database
    * 
    * @param university the university to remove from the database
-   * @return -1 if unsucessfull, 0 otherwise
+   * @return int representing success of removing university
    */
   public int deleteUniversity(University university)
   {
