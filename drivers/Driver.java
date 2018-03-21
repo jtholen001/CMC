@@ -115,8 +115,11 @@ public class Driver
 	public void viewSavedSchools() 
 	{
 		int success, otherSuccess;
-		System.out.println("Saving school 'ARIZONA STATE' to John's profile");
-		success = studentInt.saveUniversity(dbCont.getUniversity("ARIZONA STATE"));		
+		System.out.println("Viewing John's saved schools (there should be none):");
+		System.out.println(studentInt.viewSavedUniversities());
+		
+		System.out.println("\nSaving school 'ARIZONA STATE' to John's profile");
+		success = studentInt.saveUniversity(dbCont.getUniversity("ARIZONA STATE"));
 		otherSuccess = studentInt.saveUniversity(dbCont.getUniversity("Auburn"));
 		if (success == -1)
 			System.out.println("Saving school failed - database returned -1");
