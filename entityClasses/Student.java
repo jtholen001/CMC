@@ -66,10 +66,16 @@ public class Student extends User
    * Method to add a new University to a Student's saved universities
    * 
    * @param newUniversity  the University to add to the Student
+   * 
+   * @return an int representing the success of adding a university to a student
    */
-  public void addSchool(University newUniversity)
+  public int addSchool(University newUniversity)
   {
     boolean added = this.savedUniversities.add(newUniversity);
+    if (added)
+    	return 1;
+    else
+    	return -1;
   }
 
    /**

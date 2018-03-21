@@ -266,7 +266,9 @@ public class SearchController
    */
   public int saveUniversity(Student student, University newUniversity)
   {
-    student.addSchool(newUniversity);
-    return dbc.saveEditedUser(student);
+    int success = student.addSchool(newUniversity);
+    if (success == 1)
+    	dbc.saveEditedUser(student);
+    return success;
   }
 }
