@@ -42,19 +42,14 @@ public class Driver
 			System.out.println("User successfully logged in because he was brought to a StudentInterface");
 		else
 			System.out.println("User failed to login because he was not brought to a StudentInterface");
-		System.out.println("User logs out correctly if \"logout\" returns true:");
+		System.out.println("\nUser logs out correctly if \"logout\" returns true:");
 		System.out.println("logout: " + userInt.logout((User)student));
-		System.out.println("\n");
-		System.out.println("User should fail to log in with incorrect username: ");
+		System.out.println("\nUser should fail to log in with incorrect username: ");
 		System.out.println("\"login\" should fail and return null: " + userInt.login("john", "user"));
-		System.out.println("\n");
-		System.out.println("User should fail to log in with incorrect password: ");
+		System.out.println("\nUser should fail to log in with incorrect password: ");
 		System.out.println("\"login\" should fail and return null: " + userInt.login("juser", "null"));
-		System.out.println("\n");
-		System.out.println("User should fail to log in because account is deactivated");
+		System.out.println("\nUser should fail to log in because account is deactivated");
 		System.out.println("\"login\" should fail and return null: " + userInt.login("jtest", "password0"));
-		System.out.println("\n");
-		
 	}
 	
 	public void searchForUniversities() 
@@ -116,12 +111,11 @@ public class Driver
 	{
 		int success, otherSuccess;
 
-		
 		System.out.println("Viewing John's saved schools (there should be none):");
 		System.out.println(studentInt.viewSavedUniversities());
 		otherSuccess = studentInt.saveUniversity(dbCont.getUniversity("Auburn"));
 		
-		System.out.println("\nSaving school 'ARIZONA STATE' to John's profile");
+		System.out.println("Saving school 'ARIZONA STATE' to John's profile");
 		success = studentInt.saveUniversity(dbCont.getUniversity("ARIZONA STATE"));
 
 		if (success == -1)
@@ -148,7 +142,7 @@ public class Driver
 		System.out.println("\nViewing John's saved schools");
 		System.out.println(studentInt.viewSavedUniversities());
 		
-		
+		System.out.println("\n");
 	}
 	
 	//U5 and U9
@@ -185,7 +179,7 @@ public class Driver
 		   * U13
 		   * showing view users functionality
 		   */
-		  System.out.println("Showing U13: View Users\n");
+		  System.out.println("Showing U13: View Users");
 		  HashMap<String, User> allUsers = adminInt.viewUsers();
 		  
 		  for (String nameOfUser : allUsers.keySet())
@@ -279,10 +273,10 @@ public class Driver
 	//U14 and U15 and U16
 	public void viewUniversities() 
 	{
-		System.out.println("Viewing Universities");
+		System.out.println("\nViewing Universities");
 		System.out.println(adminInt.viewUniversities());
 		
-		System.out.println("Adding a University: \"University of CMC\" with attributes \"University of CMC\", \"Arizona\", \"urban\", \"public\", 5, 0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>()");
+		System.out.println("\nAdding a University: \"University of CMC\" with attributes \"University of CMC\", \"Arizona\", \"urban\", \"public\", 5, 0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>()");
 		int success = adminInt.addUniversity("University of CMC", "Arizona", "urban", "public", 5, 0.0, 500.0, 500.0, 100.0, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
 		if (success != -1) {
 			System.out.println("\"University of CMC\" added to Database\n");
@@ -291,8 +285,15 @@ public class Driver
 		else
 			System.out.println("Adding University failed.");
 		
+		System.out.println("\nAttempting to add University that already exists: \"University of CMC\" with attributes \"University of CMC\", \"Arizona\", \"urban\", \"public\", 5, 0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>()");
+		success = adminInt.addUniversity("University of CMC", "Arizona", "urban", "public", 5, 0.0, 500.0, 500.0, 100.0, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
+		if (success != -1)
+			System.out.println("\"University of CMC\" added to Database");
+		else
+			System.out.println("Adding University failed.");
 		
-		System.out.println("Editing a University: \"University of CMC\"");
+		System.out.println("\nEditing a University: \"University of CMC\"");
+
 		University toBeEdited = new University("University of CMC", "Arizona", "urban", "public", 5, 0.0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
 		success = adminInt.editUniversity(toBeEdited, "University of CMC", "Hawaii", "urban", "public", 5, 0.0, 500.0, 500.0, 100.0, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
 		if (success != -1) {
@@ -302,7 +303,6 @@ public class Driver
 		else
 			System.out.println("Editing University failed.");
 		
-		System.out.println("Removing previously added university: University of CMC");
 	    adminInt.deleteUniversity(toBeEdited);
 
 	}
@@ -314,25 +314,23 @@ public class Driver
 	public static void main(String[] args)
 	{
 		Driver driver = new Driver();
-		System.out.println("Testing U1: Login, U20: Logout");
+		System.out.println("Testing U1: Login, U20: Logout\n");
 		driver.login();
-		System.out.println("----------------------------------------------");
-		System.out.println("Testing U3: Search For Schools, U6: View Matched Schools, U7: View Specific School, U10 View Recommended Schools");
+		System.out.println("\n----------------------------------------------");
+		System.out.println("Testing U3: Search For Schools, U6: View Matched Schools, U7: View Specific School, U10 View Recommended Schools\n");
 		driver.searchForUniversities();
-		System.out.println("----------------------------------------------");
-		System.out.println("Testing U11: Save School, U4: View Saved Schools, U8: Remove Specific School");
+		System.out.println("\n----------------------------------------------");
+		System.out.println("Testing U11: Save School, U4: View Saved Schools, U8: Remove Specific School\n");
 		driver.viewSavedSchools();
-		System.out.println("----------------------------------------------");
-		System.out.println("Testing U5: View My Profile, U9: Edit My Profile");
+		System.out.println("\n----------------------------------------------");
+		System.out.println("Testing U5: View My Profile, U9: Edit My Profile\n");
 		driver.viewMyProfile();
-		System.out.println("----------------------------------------------");
-		System.out.println("Testing U13: View Users, U17: Deactivate User, U18: Add User, U19: Edit User");
+		System.out.println("\n----------------------------------------------");
+		System.out.println("Testing U13: View Users, U17: Deactivate User, U18: Add User, U19: Edit User\n ");
 		driver.viewUsers();
-		System.out.println("----------------------------------------------");
-		System.out.println("Testing U14: View Universities, U15: Add University, U16: Edit University");
+		System.out.println("\n----------------------------------------------");
+		System.out.println("Testing U14: View Universities, U15: Add University, U16: Edit University\n");
 		driver.viewUniversities();
-
-		// TODO Auto-generated method stub
-
+		System.out.println("\n ----------END OF DRIVER----------");
 	}
 }
