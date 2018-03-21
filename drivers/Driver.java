@@ -39,21 +39,20 @@ public class Driver
 	{
 		System.out.println("User should be logged in correctly: ");
 		if(userInt.login("juser", "password") instanceof StudentInterface)
-			System.out.println(true);
+			System.out.println("User successfully logged in because he was brought to a StudentInterface");
 		else
-			System.out.println(false);
-		System.out.println("User should be logged out correctly");
-		userInt.logout((User)student);
+			System.out.println("User failed to login because he was not brought to a StudentInterface");
+		System.out.println("User logs out correctly if \"logout\" returns true:");
+		System.out.println("logout: " + userInt.logout((User)student));
 		System.out.println("\n");
 		System.out.println("User should fail to log in with incorrect username: ");
-		userInt.login("john", "user");
+		System.out.println("\"login\" should fail and return null: " + userInt.login("john", "user"));
 		System.out.println("\n");
 		System.out.println("User should fail to log in with incorrect password: ");
-		userInt.login("juser", "null");
+		System.out.println("\"login\" should fail and return null: " + userInt.login("juser", "null"));
 		System.out.println("\n");
-		//TODO: Deactivate user for next test
 		System.out.println("User should fail to log in because account is deactivated");
-		userInt.login("jtest", "password0");
+		System.out.println("\"login\" should fail and return null: " + userInt.login("jtest", "password0"));
 		System.out.println("\n");
 		
 	}
@@ -307,10 +306,10 @@ public class Driver
 		System.out.println("Testing U5: View My Profile, U9: Edit My Profile");
 		driver.viewMyProfile();
 		System.out.println("----------------------------------------------");
-		System.out.println("Testing U13: View Users, U18: Add User, U19: Edit User");
+		System.out.println("Testing U13: View Users, U17: Deactivate User, U18: Add User, U19: Edit User");
 		driver.viewUsers();
 		System.out.println("----------------------------------------------");
-		System.out.println("Testing U14: View Universities");
+		System.out.println("Testing U14: View Universities, U15: Add University, U16: Edit University");
 		driver.viewUniversities();
 
 		// TODO Auto-generated method stub
