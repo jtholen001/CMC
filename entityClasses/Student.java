@@ -71,11 +71,13 @@ public class Student extends User
    */
   public int addSchool(University newUniversity)
   {
-    boolean added = this.savedUniversities.add(newUniversity);
-    if (added)
-    	return 1;
-    else
+    if (this.savedUniversities.contains(newUniversity))
     	return -1;
+    else
+    {
+    	boolean added = this.savedUniversities.add(newUniversity);
+    	return 1;
+    }
   }
 
    /**

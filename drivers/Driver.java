@@ -115,16 +115,28 @@ public class Driver
 	public void viewSavedSchools() 
 	{
 		int success, otherSuccess;
+
+		
 		System.out.println("Viewing John's saved schools (there should be none):");
 		System.out.println(studentInt.viewSavedUniversities());
+		otherSuccess = studentInt.saveUniversity(dbCont.getUniversity("Auburn"));
 		
 		System.out.println("\nSaving school 'ARIZONA STATE' to John's profile");
 		success = studentInt.saveUniversity(dbCont.getUniversity("ARIZONA STATE"));
-		otherSuccess = studentInt.saveUniversity(dbCont.getUniversity("Auburn"));
+
 		if (success == -1)
 			System.out.println("Saving school failed - database returned -1");
 		else
 			System.out.println("Saved school successfully");
+		
+		System.out.println("\nTrying to save duplicate school 'ARIZONA STATE' to John's profile");
+		success = studentInt.saveUniversity(dbCont.getUniversity("ARIZONA STATE"));
+
+		if (success == -1)
+			System.out.println("Saving school failed - School already is saved to the student's profile");
+		else
+			System.out.println("Saved school successfully");
+		
 		System.out.println("\nViewing John's saved schools");
 		System.out.println(studentInt.viewSavedUniversities());
 		System.out.println("\nRemoving school 'ARIZONA STATE' from John's profile");
