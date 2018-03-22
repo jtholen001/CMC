@@ -36,27 +36,26 @@ public class DBController
   public User getUser(String username)
   {
 	  String[][] users = univDBlib.user_getUsers();
-	  boolean status;
+	  boolean status = false;
 
 	  for(int index = 0; index < users.length; index++)
 	  {
-		  if(users[index][2].equals(username)) {
+		  if(users[index][2].equals(username)) 
+		  {
 			  if(users[index][5].equals("Y"))
 				  status = true;
-			  else
-				  status = false;
+			  
 			  if(users[index][4].equals("u"))
 			  {
 
-				  return new Student(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
+				  return new Student(users[index][0],users[index][1],users[index][2],users[index][3],'u',
 						  status, false, this.getUniversitiesForStudent(username));
 			  }
-			  else if(users[index][4].equals("a")) {
-				  return new Admin(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
+			  else
+			  {
+				  return new Admin(users[index][0],users[index][1],users[index][2],users[index][3],'a',
 						  status, false);
 			  }
-			  else
-				  return null;
 		  }
 	  }
 	  return null;
