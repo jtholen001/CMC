@@ -67,7 +67,7 @@ public class User
   }
   
   /**
-   * This method gets the user's first lastName
+   * This method gets the user's firstName
    * 
    * @return firstName the first name of this user as a String
    */
@@ -77,7 +77,7 @@ public class User
   }
   
   /**
-   * This method gets the user's last lastName
+   * This method gets the user's lastName
    * 
    * @return lastName the last name of this user as a String
    */
