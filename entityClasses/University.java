@@ -116,11 +116,18 @@ public class University
    * @param qualityOfLifeScale the quality of life at this university
    * @param emphases what areas of study this university emphasizes
    */
+  @throws IllegalArgumentException
   public University(String name,String state,String location, String control, int numStudents,
                     double percentFemale, double SATVerbal, double SATMath, double expenses, double percentFinancialAid,
                     int numApplicants, double percentAdmitted, double percentEnrolled, int academicScale, int socialScale,
                     int qualityOfLifeScale, ArrayList<String> emphases)
   {
+	  if(name == null || state == null || location == null || control == null || numStudents == null || 
+			  percentFemale == null || SATVerbal == null || SATMath == null || expenses == null || 
+			  percentFinancialAid == null || numApplicants == null || percentAdmitted == null || 
+			  percentEnrolled == null || academicScale == null || socialScale == null || 
+			  qualityOfLifeScale == null || emphases == null)
+		  throw new IllegalArgumentException;
    this.name = name;
    this.state = state;
    this.location = location;
@@ -508,7 +515,8 @@ public class University
   }
 
 @Override
-public boolean equals(Object obj) {
+public boolean equals(Object obj)
+{
 	if (this == obj)
 		return true;
 	if (obj == null)
