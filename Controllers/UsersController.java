@@ -90,8 +90,12 @@ public class UsersController
   public int addUser(String firstName, String lastName, String username, String password, char type ,boolean isActivated,
                         boolean isLoggedIn)
   {
-
-    return dbCont.addUser(new User(firstName, lastName, username, password, type, isActivated, isLoggedIn));    
+	  if (firstName.equals("") || lastName.equals("") || password.equals("") || type == ' ')
+		  return -1;
+	  else
+	  {
+		  return dbCont.addUser(new User(firstName, lastName, username, password, type, isActivated, isLoggedIn));  
+	  }
   }
 
   /**
