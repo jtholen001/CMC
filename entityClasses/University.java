@@ -116,18 +116,25 @@ public class University
    * @param qualityOfLifeScale the quality of life at this university
    * @param emphases what areas of study this university emphasizes
    */
-  @throws IllegalArgumentException
+  
   public University(String name,String state,String location, String control, int numStudents,
                     double percentFemale, double SATVerbal, double SATMath, double expenses, double percentFinancialAid,
                     int numApplicants, double percentAdmitted, double percentEnrolled, int academicScale, int socialScale,
-                    int qualityOfLifeScale, ArrayList<String> emphases)
+                    int qualityOfLifeScale, ArrayList<String> emphases) throws IllegalArgumentException
   {
-	  if(name == null || state == null || location == null || control == null || numStudents == null || 
-			  percentFemale == null || SATVerbal == null || SATMath == null || expenses == null || 
-			  percentFinancialAid == null || numApplicants == null || percentAdmitted == null || 
-			  percentEnrolled == null || academicScale == null || socialScale == null || 
-			  qualityOfLifeScale == null || emphases == null)
-		  throw new IllegalArgumentException;
+	  if(name == null)
+		  throw new IllegalArgumentException("Name cannot be empty");
+	  if(state == null)
+		  throw new IllegalArgumentException("State cannot be empty");
+	  if(location == null)
+		  throw new IllegalArgumentException("Location cannot be empty");
+	  if(control == null)
+		  throw new IllegalArgumentException("Control cannot be empty");
+	  if(emphases == null)
+		  throw new IllegalArgumentException("emphases cannot be empty");
+	  if(percentAdmitted < 0 || percentAdmitted > 100 || percentFinancialAid < 0 || percentFinancialAid > 100 ||
+			  percentEnrolled < 0 || percentEnrolled > 100)
+		  throw new IllegalArgumentException("Percentage cannot be less than zero or greater than 100");
    this.name = name;
    this.state = state;
    this.location = location;
