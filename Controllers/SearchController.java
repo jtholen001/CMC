@@ -229,7 +229,7 @@ public class SearchController
   public ArrayList<University> getRecommendedUniversities(University university)
   {
    return dbc.getRecommendedUniversities(university);
-   
+ 
   }
   
   /**
