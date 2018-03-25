@@ -97,7 +97,7 @@ public class Driver
 
 	
 		//U10
-		ArrayList<University> recommendedUniversities = studentInt.getRecommendedUniversities(dummyUniversity);
+		ArrayList<University> recommendedUniversities = studentInt.getRecommendedUniversities(dbCont.getUniversity("YALE"));
 		System.out.println("\nShowing U10: View Recommended Schools\n");
 		//System.out.println(dummyUniversity + "\n");
 		for (University u : recommendedUniversities) {
@@ -279,7 +279,7 @@ public class Driver
 		System.out.println(adminInt.viewUniversities());
 		
 		System.out.println("Adding a University: \"University of CMC\" with attributes \"University of CMC\", \"Arizona\", \"urban\", \"public\", 5, 0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>()");
-		int success = adminInt.addUniversity("University of CMC", "Arizona", "urban", "public", 5, 0.0, 500.0, 500.0, 100.0, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
+		int success = adminInt.addUniversity("UniveAdd User failed; usrsity of CMC", "Arizona", "urban", "public", 5, 0.0, 500.0, 500.0, 100.0, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
 		if (success != -1) {
 			System.out.println("\"University of CMC\" added to Database\n");
 			System.out.println(dbCont.getUniversity("University of CMC")+ "\n");
@@ -311,28 +311,28 @@ public class Driver
 	
 
 	/**
-	 * @param args
+	 * @param argsAdd User failed; us
 	 */
 	public static void main(String[] args)
 	{
 		Driver driver = new Driver();
 		System.out.println("Testing U1: Login, U20: Logout\n");
-		driver.login();
+		//driver.login();
 		System.out.println("\n----------------------------------------------");
 		System.out.println("Testing U3: Search For Schools, U6: View Matched Schools, U7: View Specific School, U10 View Recommended Schools\n");
 		driver.searchForUniversities();
 		System.out.println("\n----------------------------------------------");
 		System.out.println("Testing U11: Save School, U4: View Saved Schools, U8: Remove Specific School\n");
-		driver.viewSavedSchools();
+		//driver.viewSavedSchools();
 		System.out.println("\n----------------------------------------------");
 		System.out.println("Testing U5: View My Profile, U9: Edit My Profile\n");
-		driver.viewMyProfile();
+		//driver.viewMyProfile();
 		System.out.println("\n----------------------------------------------");
 		System.out.println("Testing U13: View Users, U17: Deactivate User, U18: Add User, U19: Edit User\n ");
-		driver.viewUsers();
+		//driver.viewUsers();
 		System.out.println("\n----------------------------------------------");
 		System.out.println("Testing U14: View Universities, U15: Add University, U16: Edit University\n");
-		driver.viewUniversities();
+		//driver.viewUniversities();
 		System.out.println("\n ----------END OF DRIVER----------");
 	}
 }

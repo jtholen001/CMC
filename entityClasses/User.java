@@ -53,7 +53,7 @@ public class User
    * @param password a string representing the password of an User
    * @param type a char representing the type of User and User is
    * @param activated a boolean representing the activation status of an User
-   * @param logged a boolean reperesenting the login status of an User
+   * @param logged a boolean representing the login status of an User
    */
   public User(String firstName, String lastName, String username, String password, char type, boolean activated, boolean logged)
   {
