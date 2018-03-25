@@ -112,14 +112,30 @@ public class Student extends User
     return s.substring(0, s.length()-2);
   }
   
+  @Override
   public boolean equals(Object o)
   {
 	  if(!(o instanceof Student))
 		  return false;
 	  Student other = (Student) o;
-	  if(other.getUsername().equals(this.getUsername())) {
+	  if(!other.getUsername().equals(this.getUsername())) {
+		  return false;
+	  }
+	  else if(!other.getFirstName().equals(this.getFirstName())) {
+		  return false;
+	  }
+	  else if(!other.getLastName().equals(this.getLastName())) {
+		  return false;
+	  }
+	  else if(!other.getPassword().equals(this.getPassword())) {
+		  return false;
+	  }
+	  else if(!(other.getType() == this.getType())) {
+		  return false;
+	  }
+	  else
+	  {
 		  return true;
 	  }
-	  return false;
   }
 }

@@ -53,7 +53,7 @@ public class User
    * @param password a string representing the password of an User
    * @param type a char representing the type of User and User is
    * @param activated a boolean representing the activation status of an User
-   * @param logged a boolean reperesenting the login status of an User
+   * @param logged a boolean representing the login status of an User
    */
   public User(String firstName, String lastName, String username, String password, char type, boolean activated, boolean logged)
   {
@@ -209,5 +209,31 @@ public class User
             "\nType: " + this.getType() +
             "\nActivated: " + this.getActivationStatus() +
             "\nLoggedInStatus: " + this.getLoggedInStatus());
+  }
+  
+  public boolean equals(Object o)
+  {
+	  if(!(o instanceof User))
+		  return false;
+	  User other = (User) o;
+	  if(!other.getUsername().equals(this.getUsername())) {
+		  return false;
+	  }
+	  else if(!other.getFirstName().equals(this.getFirstName())) {
+		  return false;
+	  }
+	  else if(!other.getLastName().equals(this.getLastName())) {
+		  return false;
+	  }
+	  else if(!other.getPassword().equals(this.getPassword())) {
+		  return false;
+	  }
+	  else if(!(other.getType() == this.getType())) {
+		  return false;
+	  }
+	  else
+	  {
+		  return true;
+	  }
   }
 }
