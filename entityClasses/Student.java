@@ -112,6 +112,7 @@ public class Student extends User
     return s.substring(0, s.length()-2);
   }
   
+  @Override
   public boolean equals(Object o)
   {
 	  if(!(o instanceof Student))

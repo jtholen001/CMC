@@ -1,5 +1,5 @@
 /**
- * An interaction/interface class that an Admin uses to perform its functionalities
+` * An interaction/interface class that an Admin uses to perform its functionalities
  * 
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
  * @version 2/26/18
