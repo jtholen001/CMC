@@ -43,11 +43,11 @@ public class DBControllerTest {
 		Assert.assertTrue("get admin user " + admin.getFirstName() + " " + admin.getLastName() + " did not equal the same admin", testAdmin.equals(admin));
 	}
 	
-//	@Test
-//	public void testGetUserForStudentReturnsTrue()
-//	{
-//		Assert.assertEquals(student, (Student)dbController.getUser(student.getUsername()));
-//	}
+	@Test
+	public void testGetUserForStudentReturnsTrue()
+	{
+		Assert.assertEquals(student, (Student)dbController.getUser(student.getUsername()));
+	}
 	
 	@Test
 	public void testGetIncorrectUser()
@@ -55,14 +55,14 @@ public class DBControllerTest {
 		Assert.assertTrue("get non existent user returned something besides null",dbController.getUser("wrong") == null);
 	}
 	
-//	@Test
-//	public void testGetUniversitiesForValidStudent()
-//	{
-//		for(University univ : dbController.getUniversitiesForStudent(student.getUsername()))
-//		{
-//			Assert.assertTrue(student.getSpecificSchool(univ.getName()).equals(univ));
-//		}
-//	}
+	@Test
+	public void testGetUniversitiesForValidStudent()
+	{
+		for(University univ : dbController.getUniversitiesForStudent(student.getUsername()))
+		{
+			Assert.assertTrue(student.getSpecificSchool(univ.getName()).equals(univ));
+		}
+	}
 	
 	@Test
 	public void testSaveEditedStudent()
