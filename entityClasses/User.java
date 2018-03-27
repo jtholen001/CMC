@@ -216,24 +216,17 @@ public class User
 	  if(!(o instanceof User))
 		  return false;
 	  User other = (User) o;
-	  if(!other.getUsername().equals(this.getUsername())) {
+	  if(!other.getUsername().equals(this.getUsername()))
 		  return false;
-	  }
-	  else if(!other.getFirstName().equals(this.getFirstName())) {
+	  else if(!other.getFirstName().equals(this.getFirstName()))
 		  return false;
-	  }
-	  else if(!other.getLastName().equals(this.getLastName())) {
+	  else if(!other.getLastName().equals(this.getLastName()))
 		  return false;
-	  }
-	  else if(!other.getPassword().equals(this.getPassword())) {
+	  else if(!other.getPassword().equals(this.getPassword()))
 		  return false;
-	  }
-	  else if(!(other.getType() == this.getType())) {
+	  else if(!(other.getType() == this.getType()))
 		  return false;
-	  }
 	  else
-	  {
 		  return true;
-	  }
   }
 }
