@@ -134,7 +134,14 @@ public class University
 		  throw new IllegalArgumentException("emphases cannot be empty");
 	  if(percentAdmitted < -1 || percentAdmitted > 100 || percentFinancialAid < -1 || percentFinancialAid > 100 ||
 			  percentEnrolled < -1 || percentEnrolled > 100)
-		  throw new IllegalArgumentException("Percentage cannot be less than zero or greater than 100");
+		  throw new IllegalArgumentException("Percentage cannot be less than negative one or greater than 100");
+	  if(numStudents < 0)
+		  throw new IllegalArgumentException("Number of students cannot be less than 0");
+	  if(SATVerbal < -1 || SATMath < -1 || SATVerbal > 800 || SATMath > 800)
+		  throw new IllegalArgumentException("SAT scores cannot be less than negative one or greater than 800");
+	  if(academicScale < -1 || socialScale < -1 || qualityOfLifeScale < -1 ||
+			  academicScale > 5 || socialScale > 5 || qualityOfLifeScale > 5)
+		  throw new IllegalArgumentException("scales must be between negative 1 and five");
    this.name = name;
    this.state = state;
    this.location = location;
@@ -331,9 +338,12 @@ public class University
    *
    * @param newName the new name for this university
    */
-  public void setSchoolName(String newName)
+  public void setSchoolName(String newName) throws IllegalArgumentException
   {
-    this.name = newName;
+	  if(newName == null)
+		throw new IllegalArgumentException("University name cannot be null");
+	  else
+		this.name = newName;
   }
 
   /**
@@ -466,7 +476,7 @@ public class University
     this.academicScale = newAcademicScale;
   }
 
-  /**
+  /**equals
    * This method sets how the university rates socially
    *
    * @param newSocialScale the new social rating of this school

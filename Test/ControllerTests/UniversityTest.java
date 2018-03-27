@@ -119,8 +119,50 @@ public class UniversityTest
 	@Test
 	public void getPercentFinancialAidReturnsCorrectPercentFinancialAid()
 	{
-		Assert.assertTrue("PercentFinancialAid of University1 is 50%", University1.getPercentFinancialAid() == 50.0);
+		Assert.assertTrue("PercentFinancialAid of University1 is 75%", University1.getPercentFinancialAid() == 75.0);
 		Assert.assertTrue("Expenses for University2 is 25%", University2.getPercentFinancialAid() == 25.0);
+	}
+	
+	@Test
+	public void getNumApplicantsReturnsCorrectNumberOfApplicants()
+	{
+		Assert.assertTrue("numApplicants of University1 is 1000", University1.getNumApplicants() == 1000);
+		Assert.assertTrue("numApplicants for University2 is 25%", University2.getNumApplicants() == 7500);
+	}
+	
+	@Test
+	public void getPercentAdmittedReturnsCorrectPercentageOfAdmittedApplicants()
+	{
+		Assert.assertTrue("percentAdmitted of University1 is 75%", University1.getPercentAdmitted() == 75.0);
+		Assert.assertTrue("percentAdmitted for University2 is 25%", University2.getPercentAdmitted() == 50.0);
+	}
+	
+	@Test
+	public void getPercentEnrolledReturnsCorrectPercentageOfAcceptedApplicantsWhoEnroll()
+	{
+		Assert.assertTrue("percentEnrolled of University1 is 90%", University1.getPercentEnrolled() == 90.0);
+		Assert.assertTrue("percentEnrolled for University2 is 25%", University2.getPercentEnrolled() == 25.0);
+	}
+	
+	@Test
+	public void getAcademicScaleReturnsCorrectSocialScale()
+	{
+		Assert.assertTrue("socialScale of University1 is 4", University1.getAcademicScale() == 4);
+		Assert.assertTrue("socialScale for University2 is 2", University2.getAcademicScale() == 2);
+	}
+	
+	@Test
+	public void getSocialScaleReturnsCorrectAcademicScale()
+	{
+		Assert.assertTrue("academicScale of University1 is 2", University1.getSocialScale() == 2);
+		Assert.assertTrue("academicScale for University2 is 5", University2.getSocialScale() == 5);
+	}
+	
+	@Test
+	public void getQualityOfLifeScaleReturnsCorrectQualityOfLifeScale()
+	{
+		Assert.assertTrue("QualityOfLife of University1 is 4", University1.getQualityOfLifeScale() == 4);
+		Assert.assertTrue("QualityOfLife for University2 is 3", University2.getQualityOfLifeScale() == 3);
 	}
 	
 	@Test
