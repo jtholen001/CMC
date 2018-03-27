@@ -142,10 +142,10 @@ public class University
 	  if(academicScale < -1 || socialScale < -1 || qualityOfLifeScale < -1 ||
 			  academicScale > 5 || socialScale > 5 || qualityOfLifeScale > 5)
 		  throw new IllegalArgumentException("scales must be between negative 1 and five");
-   this.name = name;
-   this.state = state;
-   this.location = location;
-   this.control = control;
+   this.name = name.toUpperCase();
+   this.state = state.toUpperCase();
+   this.location = location.toUpperCase();
+   this.control = control.toUpperCase();
    this.numStudents = numStudents;
    this.percentFemale = percentFemale;
    this.SATVerbal = SATVerbal;
@@ -343,7 +343,7 @@ public class University
 	  if(newName == null)
 		throw new IllegalArgumentException("University name cannot be null");
 	  else
-		this.name = newName;
+		this.name = newName.toUpperCase();
   }
 
   /**
@@ -356,7 +356,7 @@ public class University
 	  if(newState == null)
 		throw new IllegalArgumentException("University state cannot be null");
 	  else
-		  this.state = newState;
+		  this.state = newState.toUpperCase();
   }
 
   /**
@@ -367,9 +367,9 @@ public class University
   public void setLocation(String newLocation) throws IllegalArgumentException
   {
 	  if(newLocation == null)
-		  throw new IllegalArgumentExecption("University Location cannot be null");
+		  throw new IllegalArgumentException("University Location cannot be null");
 	  else
-		  this.location = newLocation;
+		  this.location = newLocation.toUpperCase();
   }
 
   /**
@@ -382,7 +382,7 @@ public class University
 	  if(newControl == null)
 		  throw new IllegalArgumentException("University Control cannot be null");
 	  else
-		  this.control = newControl;
+		  this.control = newControl.toUpperCase();
   }
 
   /**
@@ -393,7 +393,7 @@ public class University
   public void setNumStudents(int newNumStudents) throws IllegalArgumentException
   {
 	  if(newNumStudents < 0)
-		  throw new IllegalArgumeneException("Number of students cannot be less than zero");
+		  throw new IllegalArgumentException("Number of students cannot be less than zero");
 	 else
 		 this.numStudents = newNumStudents;
   }
@@ -445,7 +445,7 @@ public class University
   public void setExpenses(double newExpenses) throws IllegalArgumentException
   {
 	  if(newExpenses < -1)
-		  throw enw IllegalArgumentException("expenses cannot be less than negative one");
+		  throw new IllegalArgumentException("expenses cannot be less than negative one");
     this.expenses = newExpenses;
   }
 
@@ -454,9 +454,12 @@ public class University
    *
    * @param newPercentFinancialAid the new percentage of students  enrolled at this university that recieve financial aid
    */
-  public void setPercentFinancialAid(double newPercentFinancialAid)
+  public void setPercentFinancialAid(double newPercentFinancialAid) throws IllegalArgumentException
   {
-    this.percentFinancialAid = newPercentFinancialAid;
+	  if(newPercentFinancialAid < -1 || newPercentFinancialAid > 100)
+		  throw new IllegalArgumentException("Percentages cannot be less than -1 or greater than 100");
+	  else
+		  this.percentFinancialAid = newPercentFinancialAid;
   }
 
   /**
@@ -464,9 +467,12 @@ public class University
    *
    * @param newNumApplicants the new number of students that applied to study at this university
    */
-  public void setNumApplicants(int newNumApplicants)
+  public void setNumApplicants(int newNumApplicants) throws IllegalArgumentException
   {
-    this.numApplicants = newNumApplicants;
+	  if(newNumApplicants < -1)
+		  throw new IllegalArgumentException("Number of applicants cannot be less than zero");
+	  else
+		  this.numApplicants = newNumApplicants;
   }
 
   /**
@@ -474,9 +480,12 @@ public class University
    *
    * @param newPercentAdmitted the new percentage of applicants that were accepted to the university
    */
-  public void setPercentAdmitted(double newPercentAdmitted)
+  public void setPercentAdmitted(double newPercentAdmitted) throws IllegalArgumentException
   {
-    this.percentAdmitted = newPercentAdmitted;
+	  if(newPercentAdmitted < -1 || newPercentAdmitted > 100)
+		  throw new IllegalArgumentException("percentages cannot be less than -1 or greater than 100");
+	  else
+		this.percentAdmitted = newPercentAdmitted;
   }
 
   /**
@@ -484,9 +493,12 @@ public class University
    *
    * @param newPercentEnrolled the new percentage of accepted applicants that there enrolled at the university
    */
-  public void setPercentEnrolled(double newPercentEnrolled)
+  public void setPercentEnrolled(double newPercentEnrolled) throws IllegalArgumentException
   {
-    this.percentEnrolled = newPercentEnrolled;
+	  if(newPercentEnrolled < -1 || newPercentEnrolled > 100)
+		  throw new IllegalArgumentException("Percentages must be between -1 and 100");
+	  else
+		  this.percentEnrolled = newPercentEnrolled;
   }
 
   /**
@@ -494,9 +506,12 @@ public class University
    *
    * @param newAcademicScale the new academic rating of this university
    */
-  public void setAcademicScale(int newAcademicScale)
+  public void setAcademicScale(int newAcademicScale) throws IllegalArgumentException
   {
-    this.academicScale = newAcademicScale;
+	  if(newAcademicScale < -1 || newAcademicScale > 5)
+		  throw new IllegalArgumentException("Scales must be between -1 and 5");
+	  else
+		  this.academicScale = newAcademicScale;
   }
 
   /**equals
@@ -504,9 +519,12 @@ public class University
    *
    * @param newSocialScale the new social rating of this school
    */
-  public void setSocialScale(int newSocialScale)
+  public void setSocialScale(int newSocialScale) throws IllegalArgumentException
   {
-    this.socialScale = newSocialScale;
+	  if(newSocialScale < -1 || newSocialScale > 5)
+		  throw new IllegalArgumentException("Scales must be between -1 and 5");
+	  else
+		  this.socialScale = newSocialScale;
   }
 
   /**
@@ -514,9 +532,12 @@ public class University
    *
    * @param newQualityOfLifeScale the new rating of the quality of life at the university
    */
-  public void setQualityOfLifeScale(int newQualityOfLifeScale)
+  public void setQualityOfLifeScale(int newQualityOfLifeScale) throws IllegalArgumentException
   {
-    this.qualityOfLifeScale = newQualityOfLifeScale;
+	  if(newQualityOfLifeScale < -1 || newQualityOfLifeScale > 5)
+		  throw new IllegalArgumentException("Scales must be between -1 and 5");
+	  else
+		  this.qualityOfLifeScale = newQualityOfLifeScale;
   }
 
   /**
@@ -524,9 +545,12 @@ public class University
    *
    * @param newEmphases the new emphases of this university
    */
-  public void setEmphases(ArrayList<String> newEmphases)
+  public void setEmphases(ArrayList<String> newEmphases) throws IllegalArgumentException
   {
-    this.emphases = newEmphases;
+	  if(newEmphases == null)
+		  throw new IllegalArgumentException("Emphases cannot be null");
+	  else
+		  this.emphases = newEmphases;
   }
 
   /**
