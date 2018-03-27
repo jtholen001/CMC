@@ -185,7 +185,7 @@ public class SearchController
    * @param upper  the upper bound entered in the search criteria
    * @return an int if the university matches the criteria
    */
-  private int compareStats(double currentSchoolValue, double lower, double upper)
+  public int compareStats(double currentSchoolValue, double lower, double upper)
   {
       if ((lower <= currentSchoolValue) && (upper >= currentSchoolValue))       
        return 1;          
@@ -205,7 +205,7 @@ public class SearchController
    * @param upper  the upper bound entered in the search criteria
    * @return an int if the university matches the criteria
    */ 
-  private int compareStats(int currentSchoolValue, int lower, int upper)
+  public int compareStats(int currentSchoolValue, int lower, int upper)
   {
       if ((lower <= currentSchoolValue) && (upper >= currentSchoolValue))       
        return 1;          

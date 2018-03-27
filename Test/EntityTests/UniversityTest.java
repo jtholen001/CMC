@@ -1,4 +1,5 @@
 /**
+
  * This class is used to test the University class
  * 
  * @author Michael Carroll, Brandan Kalsow, Nicholas Tawil, Jordan Tholen, Ryan Strelow
@@ -56,29 +57,29 @@ public class UniversityTest
 	@Test
 	public void getNameReturnsUniversityName()
 	{
-		Assert.assertTrue("Name for University1 is Saint John's University", University1.getName().equals("Saint John's University"));
-		Assert.assertTrue("Name for University2 is University of CMC", University2.getName().equals("University of CMC"));
+		Assert.assertTrue("Name for University1 is Saint John's University", University1.getName().equals("SAINT JOHN'S UNIVERSITY"));
+		Assert.assertTrue("Name for University2 is University of CMC", University2.getName().equals("UNIVERSITY OF CMC"));
 	}
 	
 	@Test
 	public void getStateReturnsCorrectState()
 	{
-		Assert.assertTrue("State of University1 is Minnesota", University1.getState().equals("Minnesota"));
-		Assert.assertTrue("State for University2 is Hawaii", University2.getState().equals("Hawaii"));
+		Assert.assertTrue("State of University1 is Minnesota", University1.getState().equals("MINNESOTA"));
+		Assert.assertTrue("State for University2 is Hawaii", University2.getState().equals("HAWAII"));
 	}
 	
 	@Test
 	public void getLocationReturnsCorrectLocation()
 	{
-		Assert.assertTrue("Location of University1 is Collegeville", University1.getLocation().equals("Collegeville"));
-		Assert.assertTrue("State for University2 is Honalulu", University2.getLocation().equals("Honalulu"));
+		Assert.assertTrue("Location of University1 is Collegeville", University1.getLocation().equals("COLLEGEVILLE"));
+		Assert.assertTrue("State for University2 is Honalulu", University2.getLocation().equals("HONALULU"));
 	}
 	
 	@Test
 	public void getControlReturnsCorrectControl()
 	{
-		Assert.assertTrue("Control of University1 is Minnesota", University1.getControl().equals("Private"));
-		Assert.assertTrue("Control for University2 is Hawaii", University2.getControl().equals("Public"));
+		Assert.assertTrue("Control of University1 is Minnesota", University1.getControl().equals("PRIVATE"));
+		Assert.assertTrue("Control for University2 is Hawaii", University2.getControl().equals("PUBLIC"));
 	}
 	
 	@Test
@@ -169,9 +170,9 @@ public class UniversityTest
 	public void setNameCorrectlyChangesUniversityName()
 	{
 		University1.setSchoolName("College of Saint Benedict");
-		Assert.assertTrue("Name for University1 is now College of Saint Benedict", University1.getName().equals("College of Saint Benedict"));
+		Assert.assertTrue("Name for University1 is now College of Saint Benedict", University1.getName().equals("COLLEGE OF SAINT BENEDICT"));
 		University2.setSchoolName("University of ACM");
-		Assert.assertTrue("Name for University2 is now University of ACM", University2.getName().equals("University of ACM"));
+		Assert.assertTrue("Name for University2 is now University of ACM", University2.getName().equals("UNIVERSITY OF ACM"));
 	}
 	
 	
