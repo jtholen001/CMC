@@ -208,10 +208,10 @@ public class DBController
     {
       universityMap.put(universities[index][0], new University(universities[index][0], universities[index][1],
                                                                universities[index][2],universities[index][3],
-                                                               Integer.parseInt(universities[index][4]), Integer.parseInt(universities[index][5]),
-                                         Integer.parseInt(universities[index][6]), Integer.parseInt(universities[index][7]), Integer.parseInt(universities[index][8]),
-                                         Integer.parseInt(universities[index][9]), Integer.parseInt(universities[index][10]),Integer.parseInt(universities[index][11]),
-                                         Integer.parseInt(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
+                                                               Integer.parseInt(universities[index][4]), new Double(universities[index][5]),
+                                         new Double(universities[index][6]), new Double(universities[index][7]), new Double(universities[index][8]),
+                                         new Double(universities[index][9]), Integer.parseInt(universities[index][10]),new Double(universities[index][11]),
+                                         new Double(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
                                          Integer.parseInt(universities[index][15]), getUniversityEmphases(name)));  
     }
 
@@ -297,6 +297,15 @@ public class DBController
    */
   public int deleteUniversity(University university)
   {
+	  if(!(this.deleteUniversityEmphases(university) == 1))
+	  {
+		  return -1;
+	  }
+	  
+	  if(!(this.deleteSavedUsersForUniversity(university) == 1))
+	  {
+		  return -1;
+	  }
    return univDBlib.university_deleteUniversity(university.getName());
   }
 
@@ -596,5 +605,34 @@ public class DBController
     }
     
     return recommendedUniversities;
+  }
+  
+  private int deleteUniversityEmphases(University university)
+  {
+	  ArrayList<String> emphases = this.getUniversityEmphases(university.getName());
+	  
+	  for(String str : emphases)
+	  {
+		  if(!(univDBlib.university_removeUniversityEmphasis(university.getName(), str) == 1))
+			  return -1;
+	  }
+	  
+	  return 1;
+  }
+  
+  private int deleteSavedUsersForUniversity(University university)
+  {
+	   String[][] universities = univDBlib.user_getUsernamesWithSavedSchools();
+	   
+	   for(int i = 0; i < universities.length; i++)
+	   {
+	    if(universities[i][1].equals(university.getName()))
+	    {
+	    	if(!(univDBlib.user_removeSchool(universities[i][0], universities[i][1]) == 1))
+	    		return -1;
+	    }
+	   }
+	  
+	  return 1;
   }
 }
