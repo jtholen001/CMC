@@ -5,7 +5,7 @@
  * 
  * @version Mar 25,2018
  */
-package Test.ControllerTests;
+package Test.EntityTests;
 import entityClasses.University;
 import org.junit.*;
 import java.util.ArrayList;

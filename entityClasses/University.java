@@ -351,9 +351,12 @@ public class University
    *
    * @param newState the new state this university is located in
    */
-  public void setState(String newState)
+  public void setState(String newState) throws IllegalArgumentException
   {
-    this.state = newState;
+	  if(newState == null)
+		throw new IllegalArgumentException("University state cannot be null");
+	  else
+		  this.state = newState;
   }
 
   /**
@@ -361,9 +364,12 @@ public class University
    *
    * @param newLocation the new location of the university (Urban or rural)
    */
-  public void setLocation(String newLocation)
+  public void setLocation(String newLocation) throws IllegalArgumentException
   {
-    this.location = newLocation;
+	  if(newLocation == null)
+		  throw new IllegalArgumentExecption("University Location cannot be null");
+	  else
+		  this.location = newLocation;
   }
 
   /**
@@ -371,9 +377,12 @@ public class University
    *
    * @param newControl the new control of the university (public, private, etc)
    */
-  public void setControl(String newControl)
+  public void setControl(String newControl) throws IllegalArgumentException
   {
-    this.control = newControl;
+	  if(newControl == null)
+		  throw new IllegalArgumentException("University Control cannot be null");
+	  else
+		  this.control = newControl;
   }
 
   /**
@@ -381,9 +390,12 @@ public class University
    *
    * @param newNumStudents the  new number of students enrolled at the university
    */
-  public void setNumStudents(int newNumStudents)
+  public void setNumStudents(int newNumStudents) throws IllegalArgumentException
   {
-    this.numStudents = newNumStudents;
+	  if(newNumStudents < 0)
+		  throw new IllegalArgumeneException("Number of students cannot be less than zero");
+	 else
+		 this.numStudents = newNumStudents;
   }
 
   /**
@@ -391,9 +403,12 @@ public class University
    *
    * @param newPercentFemale the new percentage of students that are female
    */
-  public void setPercentFemale(double newPercentFemale)
+  public void setPercentFemale(double newPercentFemale) throws IllegalArgumentException
   {
-    this.percentFemale = newPercentFemale;
+	  if(newPercentFemale < -1 || newPercentFemale > 100)
+		  	throw new IllegalArgumentException("Percentages must be between zero and one hundred");
+	  else
+		  this.percentFemale = newPercentFemale;
   }
 
   /**
@@ -401,9 +416,12 @@ public class University
    *
    * @param newSATVerbal the new average SAT Verbal score of students enrolled at the university
    */
-  public void setSATVerbal(double newSATVerbal)
+  public void setSATVerbal(double newSATVerbal) throws IllegalArgumentException
   {
-    this.SATVerbal = newSATVerbal;
+	  if(newSATVerbal < -1 || newSATVerbal > 800)
+		  throw new IllegalArgumentException("SAT Scores must be between negative one and 800");
+	  else
+		  this.SATVerbal = newSATVerbal;
   }
 
   /**
@@ -411,9 +429,12 @@ public class University
    *
    * @param newSATMath the new average SAT Math score of students enrolled at the university
    */
-  public void setSATMath(double newSATMath)
+  public void setSATMath(double newSATMath) throws IllegalArgumentException
   {
-    this.SATMath = newSATMath;
+	  if(newSATMath < -1 || newSATMath > 800)
+		  throw new IllegalArgumentException("SAT Scores must be between negative one and 800");
+	  else
+		  this.SATMath = newSATMath;
   }
 
   /**
@@ -421,8 +442,10 @@ public class University
    *
    * @param newExpenses the average expenses to attend the university
    */
-  public void setExpenses(double newExpenses)
+  public void setExpenses(double newExpenses) throws IllegalArgumentException
   {
+	  if(newExpenses < -1)
+		  throw enw IllegalArgumentException("expenses cannot be less than negative one");
     this.expenses = newExpenses;
   }
 
