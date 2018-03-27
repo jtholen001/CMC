@@ -1,19 +1,13 @@
 package Test.EntityTests;
 
 import entityClasses.*;
-import Controllers.DBController;
 import org.junit.*;
-
-import static org.junit.Assert.fail;
-
-import java.util.*;
 
 /**
  * for JUnit testing of ProfileController.java
  */
 
 public class UserTest{
-	private DBController dbc;
 	private User user1;
   
   // @Before annotation forces method to re-execute before each test method
