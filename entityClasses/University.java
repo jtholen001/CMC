@@ -132,8 +132,8 @@ public class University
 		  throw new IllegalArgumentException("Control cannot be empty");
 	  if(emphases == null)
 		  throw new IllegalArgumentException("emphases cannot be empty");
-	  if(percentAdmitted < 0 || percentAdmitted > 100 || percentFinancialAid < 0 || percentFinancialAid > 100 ||
-			  percentEnrolled < 0 || percentEnrolled > 100)
+	  if(percentAdmitted < -1 || percentAdmitted > 100 || percentFinancialAid < -1 || percentFinancialAid > 100 ||
+			  percentEnrolled < -1 || percentEnrolled > 100)
 		  throw new IllegalArgumentException("Percentage cannot be less than zero or greater than 100");
    this.name = name;
    this.state = state;
