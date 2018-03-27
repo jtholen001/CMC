@@ -36,9 +36,9 @@ public class UniversityTest
 	}
 	
 	@Test
-	public void constructorSucseedsForValidInput()
+	public void constructorSucceedsForValidInput()
 	{
-		Assert.assertTrue("Constructor suceeds for university with all fields meeting criteria:", new University("Saint John's University","Minnesota","Collegeville", "Private",
+		Assert.assertTrue("Constructor succeeds for university with all fields meeting criteria:", new University("Saint John's University","Minnesota","Collegeville", "Private",
                 10000, 50.0, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
 	}
 	
@@ -49,7 +49,7 @@ public class UniversityTest
                 10000, 50.0, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
 		Assert.assertTrue("Constructor fails for university with state field missing:", new University("Saint John's University", null,"Collegeville", "Private",
                 10000, 50.0, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
-		Assert.assertTrue("Constructor suceeds for university with all fields meeting criteria:", new University("Saint John's University","Minnesota","Collegeville", "Private",
+		Assert.assertTrue("Constructor succeeds for university with all fields meeting criteria:", new University("Saint John's University","Minnesota","Collegeville", "Private",
                 10000, 50.0, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
 	}
 	

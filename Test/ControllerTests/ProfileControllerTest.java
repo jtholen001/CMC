@@ -7,7 +7,7 @@ import org.junit.*;
 import java.util.*;
 
 /**
- * for JUnit testing of ProfileController.java
+ * JUnit testing of ProfileController.java
  */
 
 public class ProfileControllerTest{

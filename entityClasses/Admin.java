@@ -16,7 +16,7 @@ public class Admin extends User
    * @param password a string representing the password of an Admin
    * @param type a char representing the type of User and Admin is
    * @param activated a boolean representing the activation status of an Admin
-   * @param logged a boolean reperesenting the login status of an Admin
+   * @param logged a boolean representing the login status of an Admin
    */
   public Admin(String firstName, String lastName, String username, String password, char type, boolean activated, boolean logged)
   {
