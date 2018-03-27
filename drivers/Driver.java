@@ -279,7 +279,7 @@ public class Driver
 		System.out.println(adminInt.viewUniversities());
 		
 		System.out.println("Adding a University: \"University of CMC\" with attributes \"University of CMC\", \"Arizona\", \"urban\", \"public\", 5, 0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>()");
-		int success = adminInt.addUniversity("UniveAdd User failed; usrsity of CMC", "Arizona", "urban", "public", 5, 0.0, 500.0, 500.0, 100.0, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
+		int success = adminInt.addUniversity("University of CMC", "Arizona", "urban", "public", 5, 0.0, 500.0, 500.0, 100.0, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
 		if (success != -1) {
 			System.out.println("\"University of CMC\" added to Database\n");
 			System.out.println(dbCont.getUniversity("University of CMC")+ "\n");
