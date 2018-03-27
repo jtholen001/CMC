@@ -67,7 +67,7 @@ public class User
   }
   
   /**
-   * This method gets the user's first lastName
+   * This method gets the user's firstName
    * 
    * @return firstName the first name of this user as a String
    */
@@ -77,7 +77,7 @@ public class User
   }
   
   /**
-   * This method gets the user's last lastName
+   * This method gets the user's lastName
    * 
    * @return lastName the last name of this user as a String
    */
@@ -209,5 +209,31 @@ public class User
             "\nType: " + this.getType() +
             "\nActivated: " + this.getActivationStatus() +
             "\nLoggedInStatus: " + this.getLoggedInStatus());
+  }
+  
+  public boolean equals(Object o)
+  {
+	  if(!(o instanceof User))
+		  return false;
+	  User other = (User) o;
+	  if(!other.getUsername().equals(this.getUsername())) {
+		  return false;
+	  }
+	  else if(!other.getFirstName().equals(this.getFirstName())) {
+		  return false;
+	  }
+	  else if(!other.getLastName().equals(this.getLastName())) {
+		  return false;
+	  }
+	  else if(!other.getPassword().equals(this.getPassword())) {
+		  return false;
+	  }
+	  else if(!(other.getType() == this.getType())) {
+		  return false;
+	  }
+	  else
+	  {
+		  return true;
+	  }
   }
 }
