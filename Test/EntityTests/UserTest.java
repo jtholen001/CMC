@@ -144,7 +144,6 @@ public class UserTest{
 		Assert.assertTrue("Should return \'a\' for type variable", user1.getType() == expected);
 	}
 
-
 	/**
 	 * Test method for {@link entityClasses.User#setType(char)}.
 	 */
