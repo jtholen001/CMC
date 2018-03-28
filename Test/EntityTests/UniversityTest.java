@@ -42,9 +42,23 @@ public class UniversityTest
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForEmptyName()
+	{
+		Assert.assertTrue("Constructor fails for university with name null:", new University("","Minnesota","Collegeville", "Private",
+                10000, 50.0, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
 	public void constructorFailsForInvalidState()
 	{
 		Assert.assertTrue("Constructor fails for university with state field missing:", new University("Saint John's University", null,"Collegeville", "Private",
+            10000, 50.0, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForEmptyState()
+	{
+		Assert.assertTrue("Constructor fails for university with state field missing:", new University("Saint John's University", "","Collegeville", "Private",
             10000, 50.0, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
 	}
 	
@@ -56,9 +70,23 @@ public class UniversityTest
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForEmptyLocation()
+	{
+		Assert.assertTrue("Constructor fails for university with location field missing:", new University("Saint John's University","Minnesota","", "Private",
+            10000, 50.0, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
 	public void constructorFailsForInvalidControl()
 	{
 		Assert.assertTrue("Constructor fails for university with control field missing:", new University("Saint John's University","Minnesota", "Collegeville" , null,
+	            10000, 50.0, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForEmptyControl()
+	{
+		Assert.assertTrue("Constructor fails for university with control field missing:", new University("Saint John's University","Minnesota", "Collegeville" , "",
 	            10000, 50.0, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
 	}
 	
@@ -195,6 +223,13 @@ public class UniversityTest
 		
 	}
 	
+	@Test (expected = IllegalArgumentException.class)
+	public void setNameFailsForEmptyInput()
+	{
+		testingUniversity.setSchoolName("");
+		
+	}
+	
 	@Test
 	public void setStateCorrectlyChangesUniversityState()
 	{
@@ -206,6 +241,12 @@ public class UniversityTest
 	public void setStateFailsForInvalidInput()
 	{
 		testingUniversity.setState(null);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setStateFailsForEmptyInput()
+	{
+		testingUniversity.setState("");
 	}
 	
 	@Test
@@ -221,6 +262,12 @@ public class UniversityTest
 		testingUniversity.setLocation(null);	
 	}
 	
+	@Test (expected = IllegalArgumentException.class)
+	public void setLocationFailsForEmptyInput()
+	{
+		testingUniversity.setLocation("");	
+	}
+	
 	@Test
 	public void setControlCorrectlyChangesUniversityControl()
 	{
@@ -232,6 +279,12 @@ public class UniversityTest
 	public void setControlFailsForInvalidInput()
 	{
 		testingUniversity.setControl(null);	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setControlFailsForEmptyInput()
+	{
+		testingUniversity.setControl("");	
 	}
 	
 	@Test
