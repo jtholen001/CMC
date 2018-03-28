@@ -138,7 +138,6 @@ public class DBController
     	  return -1;
     }
     //returns -1 if an error is encountered
-    System.out.println("DBCont: " + user.getLoggedInStatus());
     return univDBlib.user_editUser(user.getUsername(),user.getFirstName(),user.getLastName(),user.getPassword(),user.getType(),
                             temp);
   }

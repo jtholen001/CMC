@@ -297,7 +297,7 @@ public class Driver
 		System.out.println("\nEditing a University: \"University of CMC\"");
 
 		University toBeEdited = new University("University of CMC", "Arizona", "urban", "public", 5, 0.0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
-		success = adminInt.editUniversity(toBeEdited, "University of CMC", "Hawaii", "urban", "public", 5, 0.0, 500.0, 500.0, 100.0, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
+		success = adminInt.editUniversity(toBeEdited, "University of CMC", "urban", "public", 5, 0.0, 500.0, 500.0, 100.0, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
 		if (success != -1) {
 			System.out.println("Changed the state of University of CMC: \"Arizona\" to \"Hawaii\"" + "\n");
 			System.out.println(dbCont.getUniversity("University of CMC")+ "\n");

@@ -151,13 +151,13 @@ public class AdminInterface extends UserInterface
    * @return -1 if unsucessfull, 0 otherwise
    */
   
-  public int editUniversity(University university, String name, String state, String location, String control, 
+  public int editUniversity(University university, String state, String location, String control, 
                              int numStudents, double percentFemale, double SATVerbal, double SATMath,
                              double expenses, double percentFinancialAid, int numApplicants, double percentAdmitted,
                              double percentEnrolled,
                              int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {
-    return uniCont.editUniversity(university,name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
+    return uniCont.editUniversity(university,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
                              expenses,percentFinancialAid,numApplicants,percentAdmitted,percentEnrolled,
                              academicScale,socialScale,qualityOfLifeScale,emphases);
   }
