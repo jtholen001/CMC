@@ -18,8 +18,8 @@ public class UserTest{
 
 	@Test
 	public void constructorSucseedsForValidInput() {
-		Assert.assertTrue("Constructor should succeed for user as all fields meet constructor criteria", new User("John","Miller","jmill", "password0",
-				'u', true, false) instanceof User);
+		Assert.assertTrue("Constructor should succeed for user as all fields meet constructor criteria",
+				new User("John","Miller","jmill", "password0", 'u', true, false) instanceof User);
 	}
 
 	@Test (expected = IllegalArgumentException.class)
@@ -164,7 +164,7 @@ public class UserTest{
 	 */
 	@Test (expected = IllegalArgumentException.class)
 	public void testSetTypeForInvalidParameter(){
-		char newType = ' ';
+		char newType = 'q';
 		user1.setType(newType);
 	}
 

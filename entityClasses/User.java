@@ -181,7 +181,7 @@ public class User
    */
   public void setType(char newUserType)
   {
-	if (newUserType == ' ')
+	if (newUserType != 'a' || newUserType != 'u')
 		throw new IllegalArgumentException();
     this.type = newUserType;
   }
