@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class UniversityTest 
 {
-	private University testingUniversity, University2;
+	private University testingUniversity;
 	ArrayList<String> emphases;
 	
 	@Before
