@@ -122,13 +122,13 @@ public class University
                     int numApplicants, double percentAdmitted, double percentEnrolled, int academicScale, int socialScale,
                     int qualityOfLifeScale, ArrayList<String> emphases) throws IllegalArgumentException
   {
-	  if(name == null)
+	  if(name == null || name.equals(""))
 		  throw new IllegalArgumentException("Name cannot be empty");
-	  if(state == null)
+	  if(state == null || state.equals(""))
 		  throw new IllegalArgumentException("State cannot be empty");
-	  if(location == null)
+	  if(location == null || location.equals(""))
 		  throw new IllegalArgumentException("Location cannot be empty");
-	  if(control == null)
+	  if(control == null || control.equals(""))
 		  throw new IllegalArgumentException("Control cannot be empty");
 	  if(emphases == null)
 		  throw new IllegalArgumentException("emphases cannot be empty");
@@ -333,19 +333,6 @@ public class University
     return this.emphases;
   }
 
-    /**
-   * This method sets the name of this university
-   *
-   * @param newName the new name for this university
-   */
-  public void setSchoolName(String newName) throws IllegalArgumentException
-  {
-	  if(newName == null)
-		throw new IllegalArgumentException("University name cannot be null");
-	  else
-		this.name = newName.toUpperCase();
-  }
-
   /**
    * This method sets the state where this university is located
    *
@@ -353,7 +340,7 @@ public class University
    */
   public void setState(String newState) throws IllegalArgumentException
   {
-	  if(newState == null)
+	  if(newState == null || newState.equals(""))
 		throw new IllegalArgumentException("University state cannot be null");
 	  else
 		  this.state = newState.toUpperCase();
@@ -366,7 +353,7 @@ public class University
    */
   public void setLocation(String newLocation) throws IllegalArgumentException
   {
-	  if(newLocation == null)
+	  if(newLocation == null || newLocation.equals(""))
 		  throw new IllegalArgumentException("University Location cannot be null");
 	  else
 		  this.location = newLocation.toUpperCase();
@@ -379,7 +366,7 @@ public class University
    */
   public void setControl(String newControl) throws IllegalArgumentException
   {
-	  if(newControl == null)
+	  if(newControl == null || newControl.equals(""))
 		  throw new IllegalArgumentException("University Control cannot be null");
 	  else
 		  this.control = newControl.toUpperCase();
@@ -514,7 +501,7 @@ public class University
 		  this.academicScale = newAcademicScale;
   }
 
-  /**equals
+  /**
    * This method sets how the university rates socially
    *
    * @param newSocialScale the new social rating of this school
@@ -557,6 +544,7 @@ public class University
    * Method to display a University's data
    * @return a concatenated string representing a University and its attributes
    */
+  @Override
   public String toString()
   {
     return ("name: " + this.getName() + "\n" +
