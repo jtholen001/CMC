@@ -57,7 +57,7 @@ public class User
    */
   public User(String firstName, String lastName, String username, String password, char type, boolean activated, boolean logged)
   {
-	if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() || password.isEmpty() || type == ' ')
+	if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() || password.isEmpty() || ((type != 'a') && (type != 'u')))
 		throw new IllegalArgumentException();
 	  
     this.firstName = firstName;
@@ -181,7 +181,7 @@ public class User
    */
   public void setType(char newUserType)
   {
-	if (newUserType != 'a' || newUserType != 'u')
+	if (newUserType != 'a' && newUserType != 'u')
 		throw new IllegalArgumentException();
     this.type = newUserType;
   }

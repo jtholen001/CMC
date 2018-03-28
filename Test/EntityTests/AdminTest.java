@@ -7,7 +7,7 @@ public class AdminTest {
 	 * Test that the default constructor works for correct/valid parameters
 	 */    
 	@Test
-	public void constructorSucseedsForValidInput() {
+	public void constructorSucceedsForValidInput() {
 		Assert.assertTrue("Constructor should succeed for admin as all fields meet constructor criteria", 
 				new Admin("John","Miller","jmill", "password0", 'a', true, false) instanceof Admin);
 	}

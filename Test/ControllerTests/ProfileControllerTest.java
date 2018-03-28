@@ -32,13 +32,17 @@ public class ProfileControllerTest{
     dbc.deleteUser("pct");
   }
   
-//  /**
-//   * Test that default construtor is successful at setting class fields properly
-//   */ 
-//  @Test
-//  public void testDefaultConstructor(){
-//    Assert.assertTrue("Instance variable student should be equal to student param",pc.student==0);
-//  }
+  /**
+   * Test that the default constructor works for correct/valid parameters
+   */ 
+  @Test
+  public void constructorSucceedsForValidInput(){
+	  stud1 = new Student("ProfileControllerTest", "lastName", "pct", "password", 'u', true, false, new ArrayList<University>());
+	  dbc = new DBController();
+	  dbc.addUser(stud1);
+		Assert.assertTrue("Constructor should succeed for ProfileController as all fields meet constructor criteria",
+				new ProfileController(stud1) instanceof ProfileController);
+  }
   
   /**
    * Test that method "editProfile" fails for empty firstName parameter

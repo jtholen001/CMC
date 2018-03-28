@@ -17,33 +17,29 @@ public class UserTest{
 	}
 
 	@Test
-	public void constructorSucseedsForValidInput() {
+	public void constructorSucceedsForValidInput() {
 		Assert.assertTrue("Constructor should succeed for user as all fields meet constructor criteria",
 				new User("John","Miller","jmill", "password0", 'u', true, false) instanceof User);
 	}
 
 	@Test (expected = IllegalArgumentException.class)
 	public void constructorFailsForInvalidFirstName() {
-		Assert.assertTrue("Constructor fails for user with empty firstName parameter:", new User("", "miller","jmill", "password0",
-				'u', true, false) instanceof User);
+		new User("", "miller","jmill", "password0", 'u', true, false);
 	}
 
 	@Test (expected = IllegalArgumentException.class)
 	public void constructorFailsForInvalidLastName() {
-		Assert.assertTrue("Constructor fails for user with empty lastName parameter:", new User("John", "","jmill", "password0",
-				'u', true, false) instanceof User);
+		new User("John", "","jmill", "password0", 'u', true, false);
 	}
 
 	@Test (expected = IllegalArgumentException.class)
 	public void constructorFailsForInvalidUsername() {
-		Assert.assertTrue("Constructor fails for user with empty username parameter:", new User("John","Miller", "", "password0",
-				'u', true, false) instanceof User);
+		new User("John","Miller", "", "password0", 'u', true, false);
 	}
 
 	@Test (expected = IllegalArgumentException.class)
 	public void constructorFailsForInvalidPassword() {
-		Assert.assertTrue("Constructor fails for user with empty password parameter:", new User("John","Miller", "jmill", "",
-				'u', true, false) instanceof User);
+		new User("John","Miller", "jmill", "", 'u', true, false);
 	}
 
 	/**
