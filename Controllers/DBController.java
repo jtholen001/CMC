@@ -138,7 +138,6 @@ public class DBController
     	  return -1;
     }
     //returns -1 if an error is encountered
-    System.out.println("DBCont: " + user.getLoggedInStatus());
     return univDBlib.user_editUser(user.getUsername(),user.getFirstName(),user.getLastName(),user.getPassword(),user.getType(),
                             temp);
   }
@@ -224,7 +223,7 @@ public class DBController
                                          new Double(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
                                          Integer.parseInt(universities[index][15]), getUniversityEmphases(name)));  
     }
-
+    
     return universityMap.get(name.toUpperCase());
 
 
@@ -654,6 +653,10 @@ public class DBController
 	  {
 		  if(!(databaseList.contains(uni)))
 		  {
+			  if(this.getUniversity(uni.getName()) == null)
+			  {
+				  throw new IllegalArgumentException("Saved schools in student contains a school not in the databse");
+			  }
 			  univDBlib.user_saveSchool(student.getUsername(), uni.getName());
 			  databaseList.add(uni);
 		  }
@@ -665,11 +668,13 @@ public class DBController
 		  if(!(studentList.contains(uni)))
 		  {
 			  univDBlib.user_removeSchool(student.getUsername(), uni.getName());
+			  databaseList.remove(uni);
 		  }
 	  }
 	  if(databaseList.size() != studentList.size())
 	  {
-		  return -1;
+		  throw new IndexOutOfBoundsException("Saved schools in student and database do not match in size "
+		  		+ "after an attempted save");
 	  }
   return 1;
   }

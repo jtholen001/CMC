@@ -179,6 +179,12 @@ public class TestDBController {
 		Assert.assertTrue("user was not save correctly " + student1.getUsername(), 
 				dbController.getUser(student1.getUsername()).equals(student1));
 	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testSaveEditedStudentForSchoolNotInDatabase() {
+		student1.addSchool(new University("Jordan", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>()));
+		dbController.saveEditedUser(student1);
+	}
 // 
 //	/**
 //	 * Test method for {@link Controllers.DBController#addUser(entityClasses.User)}.
@@ -209,9 +215,10 @@ public class TestDBController {
 //	 */
 //	@Test
 //	public void testGetUniversity() {
-//		fail("Not yet implemented");
+//		dbController.getUniversity("Jordan");
+//		dbController.getUniversity("Jordan");
 //	}
-//
+
 //	/**
 //	 * Test method for {@link Controllers.DBController#saveEditedUniversity(entityClasses.University)}.
 //	 */
