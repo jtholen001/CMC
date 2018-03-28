@@ -68,7 +68,6 @@ public class UsersController
     toEdit.setType(type);
     toEdit.setActivationStatus(isActivated);
     toEdit.setLoggedInStatus(isLoggedIn);
-
     
     return dbCont.saveEditedUser(toEdit);
  }
