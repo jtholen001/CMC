@@ -51,19 +51,17 @@ public class AdminInterfaceTest
 	{
 		int edit = adminInt.editUser("mpelled001", "Jessica", "Styles", "password1", 'a', false, true);
 		User editedUser = dbCont.getUser("mpelled001");
-		//System.out.println("AdminInterfaceTest: " + editedUser.getLoggedInStatus());
 		Assert.assertTrue("editedUser first name is: Jessica", editedUser.getFirstName().equals("Jessica"));
 		Assert.assertTrue("editedUser last name is: Styles", editedUser.getLastName().equals("Styles"));
 		Assert.assertTrue("editedUser password is: password1", editedUser.getPassword().equals("password1"));
 		Assert.assertTrue("editedUser type is: a", editedUser.getType() == 'a');
 		Assert.assertFalse("editedUser activation status is: false", editedUser.getActivationStatus());
-		
-		//Assert.assertTrue("editedUser logged status is: true", editedUser.getLoggedInStatus());
+		//assertFalse because DBCont is hardcoded to return false here
+		Assert.assertFalse("editedUser logged status is: true", editedUser.getLoggedInStatus());
 		//editUser back and save to DB
-		//adminInt.editUser("mpelled001", "Miss", "Pelled", "password0", 'u', true, false);
-		//System.out.println(editedUser.getLoggedInStatus());
+		adminInt.editUser("mpelled001", "Miss", "Pelled", "password0", 'u', true, false);
 	}
-}	
+	
 //	@Test
 //	/**
 //	 * void JUnit test method to test successful addUser()
@@ -72,7 +70,7 @@ public class AdminInterfaceTest
 //	{
 //		Assert.assertTrue("addUser method successful", successfullAddUser != -1);
 //	}
-//	
+}
 //	/**
 //	 * void JUnit test method to test conditions for addUser() to fail
 //	 */
