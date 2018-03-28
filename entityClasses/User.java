@@ -57,6 +57,9 @@ public class User
    */
   public User(String firstName, String lastName, String username, String password, char type, boolean activated, boolean logged)
   {
+	if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() || password.isEmpty() || type == ' ')
+		throw new IllegalArgumentException();
+	  
     this.firstName = firstName;
     this.lastName = lastName;
     this.username = username;
@@ -142,6 +145,8 @@ public class User
    */
   public void setFirstName(String newFirstName)
   {
+	if (newFirstName.equals(""))
+		throw new IllegalArgumentException();
     this.firstName = newFirstName;
   }
   
@@ -152,9 +157,10 @@ public class User
    */
   public void setLastName(String newLastName)
   {
+    if (newLastName.equals(""))
+    	throw new IllegalArgumentException();
     this.lastName = newLastName;
   }
-  
   
   /**
    * This method sets the user's password
@@ -163,6 +169,8 @@ public class User
    */
   public void setPassword(String newPassword)
   {
+	if (newPassword.equals(""))
+		throw new IllegalArgumentException();
     this.password = newPassword;
   }
   
@@ -173,6 +181,8 @@ public class User
    */
   public void setType(char newUserType)
   {
+	if (newUserType != 'a' || newUserType != 'u')
+		throw new IllegalArgumentException();
     this.type = newUserType;
   }
   

@@ -3,20 +3,52 @@ import org.junit.*;
 import entityClasses.*;
 
 public class AdminTest {
+	/**
+	 * Test that the default constructor works for correct/valid parameters
+	 */    
 	@Test
-	public void constructorSucseedsForValidInput()
-	{
-		Assert.assertTrue("Constructor should succeed for university as all fields meet constructor criteria", new Admin("John","Miller","jmill", "password0",
-                'a', true, false) instanceof Admin);
+	public void constructorSucseedsForValidInput() {
+		Assert.assertTrue("Constructor should succeed for admin as all fields meet constructor criteria", 
+				new Admin("John","Miller","jmill", "password0", 'a', true, false) instanceof Admin);
 	}
 	
+	/**
+	 * Test that the default constructor fails for empty firstName parameter
+	 */   
 	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForInvalidInput()
-	{
-		Assert.assertTrue("Constructor fails for university with name null:", new Admin(null, "miller","jmill", "password0",
-                'a', true, false) instanceof Admin);
-		Assert.assertTrue("Constructor fails for university with state field missing:", new Admin("John", null,"jmill", "password0",
-                'a', true, false) instanceof Admin);
-		Assert.assertTrue("Constructor suceeds for university with all fields meeting criteria:", new Admin("John","Miller", null, "password0",
-                'a', true, false) instanceof Admin);
+	public void constructorFailsForEmptyFirstNameParameter() {
+		new Admin("", "miller","jmill", "password0",'a', true, false);
+}
+
+	/**
+	 * Test that the default constructor fails for empty lastName parameter
+	 */   
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForEmptyLastNameParameter() {
+		new Admin("John", "","jmill", "password0", 'a', true, false);
+	}
+	
+	/**
+	 * Test that the default constructor fails for empty username parameter
+	 */   
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForEmptyUsernameParameter() {
+		new Admin("John","Miller", "", "password0", 'a', true, false);
+	}
+	
+	/**
+	 * Test that the default constructor fails for empty password parameter
+	 */   
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForEmptyPasswordParameter() {
+		new Admin("John","Miller", "jmill", "", 'a', true, false);
+	}
+
+	/**
+	 * Test that the default constructor fails for invalid type parameter
+	 */   
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForInvalidType() {
+		new Admin("John","Miller", "jmill", "password0", 'q', true, false);
+	}
 }
