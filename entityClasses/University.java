@@ -514,7 +514,7 @@ public class University
 		  this.academicScale = newAcademicScale;
   }
 
-  /**equals
+  /**
    * This method sets how the university rates socially
    *
    * @param newSocialScale the new social rating of this school
@@ -557,6 +557,7 @@ public class University
    * Method to display a University's data
    * @return a concatenated string representing a University and its attributes
    */
+  @Override
   public String toString()
   {
     return ("name: " + this.getName() + "\n" +

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class UniversityTest 
 {
-	private University University1, University2;
+	private University testingUniversity, University2;
 	ArrayList<String> emphases;
 	
 	@Before
@@ -23,15 +23,8 @@ public class UniversityTest
 		 emphases.add("Computer Science");
 		 emphases.add("Accounting");
 		 emphases.add("Nursing");
-		 University1 = new University("Saint John's University","Minnesota","Rural", "Private",
+		 testingUniversity = new University("Saint John's University","Minnesota","Rural", "Private",
 				                      10000, 50.0, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases);
-		 
-		 emphases = new ArrayList<String>();
-		 emphases.add("Chemistry");
-		 emphases.add("Music");
-		 emphases.add("Computer Science");
-		 University2 = new University("University of CMC","Hawaii","Urban", "Public", 20000, 75.0, 100.0, 100.0, 
-				                      30000.0, 25.0, 7500, 50.0, 25.0, 2, 5, 3, emphases);
 	}
 	
 	@Test
@@ -191,124 +184,261 @@ public class UniversityTest
 	@Test
 	public void setNameCorrectlyChangesUniversityName()
 	{
-		University1.setSchoolName("College of Saint Benedict");
-		Assert.assertTrue("Name for University1 is now College of Saint Benedict", University1.getName().equals("COLLEGE OF SAINT BENEDICT"));
+		testingUniversity.setSchoolName("College of Saint Benedict");
+		Assert.assertTrue("Name for University1 is now College of Saint Benedict", testingUniversity.getName().equals("COLLEGE OF SAINT BENEDICT"));
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void setNameFailsForInvalidInput()
 	{
-		University1.setSchoolName(null);
+		testingUniversity.setSchoolName(null);
 		
 	}
 	
 	@Test
 	public void setStateCorrectlyChangesUniversityState()
 	{
-		University1.setState("Wisconsin");
-		Assert.assertTrue("State for University1 is now Wisconsin", University1.getState().equals("WISCONSIN"));
+		testingUniversity.setState("Wisconsin");
+		Assert.assertTrue("State for University1 is now Wisconsin", testingUniversity.getState().equals("WISCONSIN"));
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void setStateFailsForInvalidInput()
 	{
-		University1.setState(null);
+		testingUniversity.setState(null);
 	}
 	
 	@Test
 	public void setLocationCorrectlyChangesUniversityLocation()
 	{
-		University1.setLocation("Urban");
-		Assert.assertTrue("Location for University1 is now Urban", University1.getLocation().equals("URBAN"));
+		testingUniversity.setLocation("Urban");
+		Assert.assertTrue("Location for University1 is now Urban", testingUniversity.getLocation().equals("URBAN"));
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void setLocationFailsForInvalidInput()
 	{
-		University1.setLocation(null);	
+		testingUniversity.setLocation(null);	
 	}
 	
 	@Test
 	public void setControlCorrectlyChangesUniversityControl()
 	{
-		University1.setControl("Public");
-		Assert.assertTrue("Control for University1 is now public", University1.getControl().equals("PUBLIC"));
+		testingUniversity.setControl("Public");
+		Assert.assertTrue("Control for University1 is now public", testingUniversity.getControl().equals("PUBLIC"));
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void setControlFailsForInvalidInput()
 	{
-		University1.setControl(null);	
+		testingUniversity.setControl(null);	
 	}
 	
 	@Test
 	public void setNumStudentsCorrectlyChangesUniversityNumStudents()
 	{
-		University1.setNumStudents(50);
-		Assert.assertTrue("numStudents for University1 is now 50", University1.getNumStudents() == 50);
+		testingUniversity.setNumStudents(50);
+		Assert.assertTrue("numStudents for University1 is now 50", testingUniversity.getNumStudents() == 50);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void setNumStudentsFailsForInvalidInput()
 	{
-		University1.setNumStudents(-1);	
+		testingUniversity.setNumStudents(-1);	
 	}
 	
 	@Test
 	public void setPercentFemaleCorrectlyChangesUniversityPercentFemale()
 	{
-		University1.setPercentFemale(10);
-		Assert.assertTrue("percentFemale for University1 is now 10%", University1.getPercentFemale() == 10);
+		testingUniversity.setPercentFemale(10);
+		Assert.assertTrue("percentFemale for University1 is now 10%", testingUniversity.getPercentFemale() == 10);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void setPercentFemaleFailsForInvalidInputLessthanNegOne()
 	{
-		University1.setPercentFemale(-2);	
+		testingUniversity.setPercentFemale(-2);	
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void setPercentFemaleFailsForInvalidInputGreaterthanOneHundred()
 	{
-		University1.setPercentFemale(110);	
+		testingUniversity.setPercentFemale(110);	
 	}
 	
 	@Test
 	public void setSATVerbalCorrectlyChangesUniversitySATVerbal()
 	{
-		University1.setSATVerbal(750);
-		Assert.assertTrue("SATVerbal for University1 is now 750", University1.getSATVerbal() == 750);
+		testingUniversity.setSATVerbal(750);
+		Assert.assertTrue("SATVerbal for University1 is now 750", testingUniversity.getSATVerbal() == 750);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void setSATVerbalFailsForInvalidInputLessthanNegOne()
 	{
-		University1.setSATVerbal(-2);	
+		testingUniversity.setSATVerbal(-2);	
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void setSATVerbalFailsForInvalidInputGreaterthanEightHundred()
 	{
-		University1.setSATVerbal(801);	
+		testingUniversity.setSATVerbal(801);	
 	}
 	
 	@Test
 	public void setSATMathCorrectlyChangesUniversitySATMath()
 	{
-		University1.setSATMath(200);
-		Assert.assertTrue("SATMath for University1 is now 200", University1.getSATMath() == 200);
+		testingUniversity.setSATMath(200);
+		Assert.assertTrue("SATMath for University1 is now 200", testingUniversity.getSATMath() == 200);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void setSATMathFailsForInvalidInputLessthanNegOne()
 	{
-		University1.setSATMath(-2);	
+		testingUniversity.setSATMath(-2);	
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void setSATMathFailsForInvalidInputGreaterthanOneHundred()
+	public void setSATMathFailsForInvalidInputGreaterthanEightHundred()
 	{
-		University1.setSATMath(801);	
+		testingUniversity.setSATMath(801);	
+	}
+	
+	@Test
+	public void setExpensesCorrectlyChangesUniversityExpenses()
+	{
+		testingUniversity.setExpenses(10);
+		Assert.assertTrue("Expenses for University1 is now $10", testingUniversity.getExpenses() == 10);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setExpensesFailsForInvalidInputLessthanNegOne()
+	{
+		testingUniversity.setExpenses(-2);	
+	}
+	
+	@Test
+	public void setNumApplicantsCorrectlyChangesUniversityNumApplicants()
+	{
+		testingUniversity.setNumApplicants(10);
+		Assert.assertTrue("NumApplicants for University1 is now 10", testingUniversity.getNumApplicants() == 10);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setNumApplicantsFailsForInvalidInputLessthanNegOne()
+	{
+		testingUniversity.setNumApplicants(-2);	
+	}
+	
+	@Test
+	public void setPercentAdmittedCorrectlyChangesUniversityPercentAdmitted()
+	{
+		testingUniversity.setPercentAdmitted(88);
+		Assert.assertTrue("PercentAdmitted for University1 is now 88", testingUniversity.getPercentAdmitted() == 88);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setPercentAdmittedFailsForInvalidInputLessthanNegOne()
+	{
+		testingUniversity.setPercentAdmitted(-2);	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setPercentAdmittedFailsForInvalidInputGreaterthanOneHundred()
+	{
+		testingUniversity.setPercentAdmitted(101);	
+	}
+	
+	@Test
+	public void setPercentEnrolledCorrectlyChangesUniversityPercentEnrolled()
+	{
+		testingUniversity.setPercentEnrolled(40);
+		Assert.assertTrue("PercentEnrolled for University1 is now 40", testingUniversity.getPercentEnrolled() == 40);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setPercentEnrolledFailsForInvalidInputLessthanNegOne()
+	{
+		testingUniversity.setPercentEnrolled(-2);	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setPercentEnrolledFailsForInvalidInputGreaterthanOneHundred()
+	{
+		testingUniversity.setPercentEnrolled(101);	
+	}
+	
+	@Test
+	public void setAcademicScaleCorrectlyChangesUniversityAcademicScale()
+	{
+		testingUniversity.setAcademicScale(4);
+		Assert.assertTrue("AcademicScale for University1 is now 4", testingUniversity.getQualityOfLifeScale() == 4);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setAcademicScaleFailsForInvalidInputLessthanNegOne()
+	{
+		testingUniversity.setAcademicScale(-2);	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setAcademicScaleFailsForInvalidInputGreaterthanFive()
+	{
+		testingUniversity.setAcademicScale(6);	
+	}
+	
+	@Test
+	public void setSocialCorrectlyChangesUniversitySocialScale()
+	{
+		testingUniversity.setSocialScale(3);
+		Assert.assertTrue("SocialScale for University1 is now 3", testingUniversity.getSocialScale() == 3);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setSocialScaleFailsForInvalidInputLessthanNegOne()
+	{
+		testingUniversity.setSocialScale(-2);	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setSocialScaleFailsForInvalidInputGreaterthanFive()
+	{
+		testingUniversity.setSocialScale(6);	
+	}
+	
+	@Test
+	public void setQualityOfLifeScaleCorrectlyChangesUniversityQualityOfLifeScale()
+	{
+		testingUniversity.setQualityOfLifeScale(3);
+		Assert.assertTrue("qualityOfLifeScale for University1 is now 3", testingUniversity.getQualityOfLifeScale() == 3);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setQualityOfLIfeScaleFailsForInvalidInputLessthanNegOne()
+	{
+		testingUniversity.setQualityOfLifeScale(-2);	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setQualityOfLifeScaleFailsForInvalidInputGreaterthanFive()
+	{
+		testingUniversity.setQualityOfLifeScale(6);	
+	}
+	
+	@Test
+	public void setEmphasesCorrectlyChangesUniversityEmphases()
+	{
+		ArrayList<String> newEmphases = new ArrayList<String>();
+		newEmphases.add("Music");
+		newEmphases.add("Computer Science");
+		testingUniversity.setEmphases(newEmphases);
+		Assert.assertTrue("Emphases for University1 are now Music and Computer Science", testingUniversity.getEmphases() == newEmphases);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setEmphasesFailsForInvalidInput()
+	{	
+		testingUniversity.setEmphases(null);	
 	}
 	
 	
