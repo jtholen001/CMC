@@ -133,6 +133,9 @@ public class Student extends User
 	  else if(!(other.getType() == this.getType())) {
 		  return false;
 	  }
+	  else if(!(other.getSavedSchools().equals(this.getSavedSchools()))) {
+		  return false;
+	  }
 	  else
 	  {
 		  return true;

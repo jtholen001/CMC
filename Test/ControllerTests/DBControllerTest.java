@@ -20,9 +20,9 @@ public class DBControllerTest {
 		ArrayList<String> al = new ArrayList<String>();
 		al.add("Computer Science");
 		university.setEmphases(al);
-		//student.addSchool(university);
+		student.addSchool(university);
 		dbController.addUser(student);
-		//dbController.saveEditedUser(student);
+		dbController.saveEditedUser(student);
 		admin = new Admin("Rahal","Imad","irahal","admin",'a',true,false);
 		dbController.addUser(admin);
 		dbController.addUniversity(university);
@@ -50,18 +50,31 @@ public class DBControllerTest {
 	}
 	
 	@Test
-	public void testGetIncorrectUser()
+	public void testGetUserFailsForIncorrectUser()
 	{
 		Assert.assertTrue("get non existent user returned something besides null",dbController.getUser("wrong") == null);
 	}
 	
 	@Test
-	public void testGetUniversitiesForValidStudent()
+	public void testGetSavedSchoolsForValidStudent()
 	{
-		for(University univ : dbController.getUniversitiesForStudent(student.getUsername()))
+		ArrayList<University> list = dbController.getUniversitiesForStudent(student.getUsername());
+		for(University univ : list)
 		{
 			Assert.assertTrue(student.getSpecificSchool(univ.getName()).equals(univ));
 		}
+	}
+	
+	@Test
+	public void testGetSavedSchoolsFailsForInvalidUser()
+	{
+		Assert.assertTrue(dbController.getUniversitiesForStudent("dlskjfd").isEmpty());
+	}
+	
+	@Test
+	public void testGetSavedSchoolsFailsForAdminUser()
+	{
+		Assert.assertTrue(dbController.getUniversitiesForStudent(admin.getUsername()).isEmpty());
 	}
 	
 	@Test
@@ -90,6 +103,42 @@ public class DBControllerTest {
 		student.setType('a');
 		dbController.saveEditedUser(student);
 		Assert.assertTrue(dbController.getUser(student.getUsername()).equals(student));
+		
+		student.removeUniversity(university);
+		dbController.saveEditedUser(student);
+		Assert.assertTrue(dbController.getUser(student.getUsername()).equals(student));
+		
+		student.addSchool(dbController.getUniversity("BOSTON COLLEGE"));
+		dbController.saveEditedUser(student);
+		Assert.assertTrue(dbController.getUser(student.getUsername()).equals(student));
 	}
-
+	
+	@Test
+	public void testSaveEditedAdmin()
+	{
+		admin.setActivationStatus(false);
+		dbController.saveEditedUser(admin);
+		Assert.assertTrue(dbController.getUser(admin.getUsername()).equals(admin));
+		
+		admin.setFirstName("John");
+		dbController.saveEditedUser(admin);
+		Assert.assertTrue(dbController.getUser(admin.getUsername()).equals(admin));
+		
+		admin.setLastName("newLastName");
+		dbController.saveEditedUser(admin);
+		Assert.assertTrue(dbController.getUser(admin.getUsername()).equals(admin));
+		
+		admin.setLoggedInStatus(true);
+		dbController.saveEditedUser(admin);
+		Assert.assertTrue(dbController.getUser(admin.getUsername()).equals(admin));
+		
+		admin.setPassword("sldkfjsal;kjfd");
+		dbController.saveEditedUser(admin);
+		Assert.assertTrue(dbController.getUser(admin.getUsername()).equals(admin));
+		
+		admin.setType('a');
+		dbController.saveEditedUser(admin);
+		Assert.assertTrue(dbController.getUser(admin.getUsername()).equals(admin));
+	}
+	
 }

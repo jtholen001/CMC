@@ -70,17 +70,18 @@ public class DBController
    */
   public ArrayList<University> getUniversitiesForStudent(String username)
   {
-   String[][] universities = univDBlib.user_getUsernamesWithSavedSchools();
-   ArrayList<University> list = new ArrayList<University>();
-   
-   for(int i = 0; i < universities.length; i++)
-   {
-    if(universities[i][0].equals(username))
-    {
-     list.add(this.getUniversity(universities[i][1]));
-    }
-   }
-   return list;
+	  String[][] universities = univDBlib.user_getUsernamesWithSavedSchools();
+	  ArrayList<University> list = new ArrayList<University>();
+
+
+	  for(int i = 0; i < universities.length; i++)
+	  {
+		  if(universities[i][0].equals(username))
+		  {
+			  list.add(this.getUniversity(universities[i][1]));
+		  }
+	  }
+	  return list;
   }
 
    
@@ -133,10 +134,8 @@ public class DBController
     if(user instanceof Student)
     {
       Student stu = (Student)user;
-      for(University univ: stu.getSavedSchools())
-      {
-        univDBlib.user_saveSchool(user.getUsername(),univ.getName());
-      }
+      if(this.checkSavedUniversities(stu) == -1)
+    	  return -1;
     }
     //returns -1 if an error is encountered
     return univDBlib.user_editUser(user.getUsername(),user.getFirstName(),user.getLastName(),user.getPassword(),user.getType(),
@@ -154,6 +153,16 @@ public class DBController
   public int addUser(User user)
   {
     int success = univDBlib.user_addUser(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getType());
+    
+    if(user instanceof Student)
+	  {
+		  user = (Student)user;
+		  if(!((Student) user).getSavedSchools().isEmpty())
+		  {
+			  this.saveEditedUser(user);
+		  }
+	  }
+    
     return success;
   }
 
@@ -634,5 +643,33 @@ public class DBController
 	   }
 	  
 	  return 1;
+  }
+  
+  private int checkSavedUniversities(Student student)
+  {
+	  ArrayList<University> databaseList = this.getUniversitiesForStudent(student.getUsername());
+	  
+	  for(University uni : student.getSavedSchools())
+	  {
+		  if(!(databaseList.contains(uni)))
+		  {
+			  univDBlib.user_saveSchool(student.getUsername(), uni.getName());
+			  databaseList.add(uni);
+		  }
+			  
+	  }
+	  ArrayList<University> studentList = student.getSavedSchools();
+	  for(University uni : this.getUniversitiesForStudent(student.getUsername()))
+	  {
+		  if(!(studentList.contains(uni)))
+		  {
+			  univDBlib.user_removeSchool(student.getUsername(), uni.getName());
+		  }
+	  }
+	  if(databaseList.size() != studentList.size())
+	  {
+		  return -1;
+	  }
+  return 1;
   }
 }
