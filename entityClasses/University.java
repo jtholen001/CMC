@@ -333,19 +333,6 @@ public class University
     return this.emphases;
   }
 
-    /**
-   * This method sets the name of this university
-   *
-   * @param newName the new name for this university
-   */
-  public void setSchoolName(String newName) throws IllegalArgumentException
-  {
-	  if(newName == null || newName.equals(""))
-		throw new IllegalArgumentException("University name cannot be null");
-	  else
-		this.name = newName.toUpperCase();
-  }
-
   /**
    * This method sets the state where this university is located
    *

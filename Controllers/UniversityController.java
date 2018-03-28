@@ -55,7 +55,6 @@ public class UniversityController
    * A method that allows an Admin to edit a University
    * 
    * @param university the University object to be edited
-   * @param name a String representing the edited name of the University
    * @param state a String representing the edited state of the University
    * @param location a String representing the edited location of the University
    * @param control a String representing the edited control of the University
@@ -75,11 +74,10 @@ public class UniversityController
    * 
    * @return -1 if unsucessfull, 0 otherwise
    */
-  public int editUniversity(University university, String name, String state, String location, String control, int numStudents, double percentFemale, double SATVerbal, double SATMath,
+  public int editUniversity(University university, String state, String location, String control, int numStudents, double percentFemale, double SATVerbal, double SATMath,
          double expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
                              int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {    
-    university.setSchoolName(name);
     university.setState(state);
     university.setLocation(location);
     university.setControl(control);
