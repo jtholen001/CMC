@@ -210,27 +210,6 @@ public class UniversityTest
 	}
 	
 	@Test
-	public void setNameCorrectlyChangesUniversityName()
-	{
-		testingUniversity.setSchoolName("College of Saint Benedict");
-		Assert.assertTrue("Name for University1 is now College of Saint Benedict", testingUniversity.getName().equals("COLLEGE OF SAINT BENEDICT"));
-	}
-	
-	@Test (expected = IllegalArgumentException.class)
-	public void setNameFailsForInvalidInput()
-	{
-		testingUniversity.setSchoolName(null);
-		
-	}
-	
-	@Test (expected = IllegalArgumentException.class)
-	public void setNameFailsForEmptyInput()
-	{
-		testingUniversity.setSchoolName("");
-		
-	}
-	
-	@Test
 	public void setStateCorrectlyChangesUniversityState()
 	{
 		testingUniversity.setState("Wisconsin");
