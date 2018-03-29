@@ -52,21 +52,10 @@ public class TestDBController {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		dbController.deleteUniversity(university);
-		try{
 			dbController.deleteUser(student1.getUsername());
-		}
-		catch(InterruptedException j)
-		{
-			fail();
-		}
-		try{
 			dbController.deleteUser(student.getUsername());
-		}
-		catch(InterruptedException j)
-		{
-			fail();
-		}
+			dbController.deleteUser(admin.getUsername());
+			dbController.deleteUniversity(university);
 	}
 
 
@@ -250,12 +239,12 @@ public class TestDBController {
 	
 	@Test
 	public void testAddAdmin() {
-		admin = new Admin("sdf","sdfsdf","irahal001","admin",'a',true,false);		
-		dbController.addUser(admin);
-		Assert.assertTrue("new user does not match the databse", dbController.getUser(admin.getUsername())
-				.equals(admin));
+		Admin ad = new Admin("sdf","sdfsdf","irahal001","admin",'a',true,false);		
+		dbController.addUser(ad);
+		Assert.assertTrue("new user does not match the databse", dbController.getUser(ad.getUsername())
+				.equals(ad));
 		try{
-			dbController.deleteUser(admin.getUsername());
+			dbController.deleteUser(ad.getUsername());
 		}
 		catch(InterruptedException j)
 		{
@@ -268,8 +257,46 @@ public class TestDBController {
 	 * Test method for {@link Controllers.DBController#deleteUser(java.lang.String)}.
 	 */
 	@Test
-	public void testDeleteUser() {
-		dbController.getUsers();
+	public void testDeleteStudent() {
+		Student stu = new Student("Jordan","Tholen","user001","password",'u',true,false,new ArrayList<University>());
+		dbController.addUser(stu);
+		try {
+			assertTrue("User was not deleted from the databse " + stu.getUsername(),
+				dbController.deleteUser(stu.getUsername()) == 1);
+		} catch (InterruptedException e) {
+			fail();
+		}
+	}
+	
+	@Test
+	public void testDeleteStudentWithSavedSchools() {
+		Student stu = new Student("Jordan","Tholen","user001","password",'u',true,false,new ArrayList<University>());
+		stu.addSchool(university);
+		dbController.addUser(stu);
+		try {
+			assertTrue("User was not deleted from the databse " + stu.getUsername(),
+				dbController.deleteUser(stu.getUsername()) == 1);
+		} catch (InterruptedException e) {
+			fail();
+		}
+	}
+	
+	@Test
+	public void testDeleteAdmin() {
+		Admin ad = new Admin("Imad","Rahal","irahal001","admin",'a',true,false);
+		dbController.addUser(ad);
+		try {
+			assertTrue("User was not deleted from the databse " + ad.getUsername(),
+				dbController.deleteUser(ad.getUsername()) == 1);
+		} catch (InterruptedException e) {
+			fail();
+		}
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testDeleteInvalidUser() {
+		Admin ad = new Admin("Imad","Rahal","irahal001","admin",'a',true,false);
+			dbController.deleteUser(ad.getUsername());
 	}
 //
 //	/**

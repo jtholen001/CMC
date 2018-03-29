@@ -173,7 +173,7 @@ public class DBController
    * 
    * @return an int representing the success of deleting a user
    */
-  public int deleteUser(String username) throws InterruptedException
+  public int deleteUser(String username)
   {
 	  User user = this.getUser(username);
 	  if(user instanceof Student) {
@@ -185,11 +185,16 @@ public class DBController
 		    if(universities[i][0].equals(stu.getUsername()))
 		    {
 		    	if(!(univDBlib.user_removeSchool(universities[i][0], universities[i][1]) == 1))
-		    		throw new InterruptedException("Database error removing saved schools for " + stu.getUsername());
+		    		throw new IllegalArgumentException("Database error removing saved schools for " + stu.getUsername());
 		    }
 		   }
+		   return univDBlib.user_deleteUser(stu.getUsername());
 	  }
-	  return 1;
+	  else if(user == null)
+	  {
+		  throw new IllegalArgumentException("user was not found in the database");
+	  }
+	  return univDBlib.user_deleteUser(username);
   }
   
   /**
