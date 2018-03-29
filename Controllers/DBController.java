@@ -106,11 +106,11 @@ public class DBController
       //creates the user and puts it in the map
       if(users[index][4].equals("u"))
   {
-    userMap.put(users[index][0],new Student(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
+    userMap.put(users[index][2],new Student(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
                 status, false, this.getUniversitiesForStudent(users[index][0])));
   }
   else if(users[index][4].equals("a")) {
-    userMap.put(users[index][0],new Admin(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
+    userMap.put(users[index][2],new Admin(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
                   status, false));
   }
     }
@@ -123,6 +123,7 @@ public class DBController
    * @param user the user who's profile was edited
    */
 
+  //TODO: change saveEditiedUser to not save schools and to create a save schools method
   public <t extends User> int saveEditedUser(t user)
   {
     char temp;
@@ -156,10 +157,10 @@ public class DBController
     
     if(user instanceof Student)
 	  {
-		  user = (Student)user;
-		  if(!((Student) user).getSavedSchools().isEmpty())
+		  Student temp = (Student)user;
+		  if(!((Student) temp).getSavedSchools().isEmpty())
 		  {
-			  this.saveEditedUser(user);
+			  this.checkSavedUniversities(temp);
 		  }
 	  }
     
@@ -175,7 +176,11 @@ public class DBController
    */
   public int deleteUser(String username)
   {
-  return univDBlib.user_deleteUser(username);
+	  User user = this.getUser(username);
+	  if(user instanceof Student) {
+		  return univDBlib.user_deleteUser(username);
+	  }
+	  return 1;
   }
   
   /**

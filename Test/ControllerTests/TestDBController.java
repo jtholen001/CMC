@@ -185,22 +185,56 @@ public class TestDBController {
 		student1.addSchool(new University("Jordan", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>()));
 		dbController.saveEditedUser(student1);
 	}
-// 
-//	/**
-//	 * Test method for {@link Controllers.DBController#addUser(entityClasses.User)}.
-//	 */
-//	@Test
-//	public void testAddUser() {
-//		fail("Not yet implemented");
-//	}
-//
-//	/**
-//	 * Test method for {@link Controllers.DBController#deleteUser(java.lang.String)}.
-//	 */
-//	@Test
-//	public void testDeleteUser() {
-//		fail("Not yet implemented");
-//	}
+ 
+	/**
+	 * Test method for {@link Controllers.DBController#addUser(entityClasses.User)}.
+	 */
+	@Test
+	public void testAddStudent() {
+		Student stu = new Student("Jordan","Tholen","a;lskjdf","password",'u',true,false,new ArrayList<University>());
+		dbController.addUser(stu);
+		Assert.assertTrue("new user does not match the databse", dbController.getUser(stu.getUsername())
+				.equals(stu));
+		dbController.deleteUser(stu.getUsername());
+	}
+	
+	@Test
+	public void testAddStudentWithSavedSchools() {
+		Student stu = new Student("Jordan","Tholen","a;lskjdf","password",'u',true,false,new ArrayList<University>());
+		stu.addSchool(university);
+		dbController.addUser(stu);
+		Assert.assertTrue("new user does not match the databse", dbController.getUser(stu.getUsername())
+				.equals(stu));
+		dbController.deleteUser(stu.getUsername());
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testAddStudentWithInvalidSavedSchools() {
+		Student stu = new Student("Jordan","Tholen","a;lskjdf","password",'u',true,false,new ArrayList<University>());
+		stu.addSchool(new University("Jordan", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>()));
+		dbController.addUser(stu);
+		Assert.assertTrue("new user does not match the databse", dbController.getUser(stu.getUsername())
+				.equals(stu));
+		dbController.deleteUser(stu.getUsername());
+	}
+	
+	@Test
+	public void testAddAdmin() {
+		admin = new Admin("sdf","sdfsdf","irahal001","admin",'a',true,false);		
+		dbController.addUser(admin);
+		Assert.assertTrue("new user does not match the databse", dbController.getUser(admin.getUsername())
+				.equals(admin));
+		dbController.deleteUser(admin.getUsername());
+	}
+	
+
+	/**
+	 * Test method for {@link Controllers.DBController#deleteUser(java.lang.String)}.
+	 */
+	@Test
+	public void testDeleteUser() {
+		dbController.getUsers();
+	}
 //
 //	/**
 //	 * Test method for {@link Controllers.DBController#viewUniversities()}.
