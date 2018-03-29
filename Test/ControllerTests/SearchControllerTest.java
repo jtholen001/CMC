@@ -36,6 +36,8 @@ public class SearchControllerTest {
 		universities1.add(u2);
 		student = new Student("Test", "Student", "user", "password", 'a', true, true, new ArrayList<University>());
 		dbc.addUser(student);
+		dbc.addUniversity(u1);
+		dbc.addUniversity(u2);
 	}
 
 	@Test
@@ -147,17 +149,20 @@ public class SearchControllerTest {
 
 	@Test
 	public void testGetRecommededSchools() {
-		//TODO: should not need to check much since this method doesn't do any work
+		//TODO: 
 	}
 
 	@Test
 	public void testSearchUniversities() {
-		//TODO: needs a hella work
+		ArrayList<University> foundUniversities = sc.searchUniversities("T", "MINNESOTA", "URBAN", "PRIVATE", 4000, 10000,0,0,0,0,0,0, 0, 0, 0,0,0,0,0,0,0, 0, 0.0,0.0,0.0,0.0,0.0,0.0, new ArrayList<String>());
+		Assert.assertTrue("TestUniversity1 should be found in the search", foundUniversities.contains(u1));		
 	}
 
 	@After
-	public void destroy() {		
+	public void destroy() {	
 		dbc.deleteUser("user");
+		dbc.deleteUniversity(u1);
+		dbc.deleteUniversity(u2);
 	}
 
 
