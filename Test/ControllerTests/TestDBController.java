@@ -53,8 +53,20 @@ public class TestDBController {
 	@After
 	public void tearDown() throws Exception {
 		dbController.deleteUniversity(university);
-		dbController.deleteUser(student1.getUsername());
-		dbController.deleteUser(student.getUsername());
+		try{
+			dbController.deleteUser(student1.getUsername());
+		}
+		catch(InterruptedException j)
+		{
+			fail();
+		}
+		try{
+			dbController.deleteUser(student.getUsername());
+		}
+		catch(InterruptedException j)
+		{
+			fail();
+		}
 	}
 
 
@@ -195,7 +207,13 @@ public class TestDBController {
 		dbController.addUser(stu);
 		Assert.assertTrue("new user does not match the databse", dbController.getUser(stu.getUsername())
 				.equals(stu));
-		dbController.deleteUser(stu.getUsername());
+		try{
+			dbController.deleteUser(stu.getUsername());
+		}
+		catch(InterruptedException j)
+		{
+			fail();
+		}
 	}
 	
 	@Test
@@ -205,7 +223,13 @@ public class TestDBController {
 		dbController.addUser(stu);
 		Assert.assertTrue("new user does not match the databse", dbController.getUser(stu.getUsername())
 				.equals(stu));
-		dbController.deleteUser(stu.getUsername());
+		try{
+			dbController.deleteUser(stu.getUsername());
+		}
+		catch(InterruptedException j)
+		{
+			fail();
+		}
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
@@ -215,7 +239,13 @@ public class TestDBController {
 		dbController.addUser(stu);
 		Assert.assertTrue("new user does not match the databse", dbController.getUser(stu.getUsername())
 				.equals(stu));
+		try {
 		dbController.deleteUser(stu.getUsername());
+		}
+		catch(InterruptedException j)
+		{
+			fail();
+		}
 	}
 	
 	@Test
@@ -224,7 +254,13 @@ public class TestDBController {
 		dbController.addUser(admin);
 		Assert.assertTrue("new user does not match the databse", dbController.getUser(admin.getUsername())
 				.equals(admin));
-		dbController.deleteUser(admin.getUsername());
+		try{
+			dbController.deleteUser(admin.getUsername());
+		}
+		catch(InterruptedException j)
+		{
+			fail();
+		}
 	}
 	
 

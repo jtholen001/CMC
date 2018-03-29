@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Collections;
 import java.util.Iterator;
 import entityClasses.*;
-import entityClasses.Student;
 
 public class DBController
 {
@@ -174,11 +173,21 @@ public class DBController
    * 
    * @return an int representing the success of deleting a user
    */
-  public int deleteUser(String username)
+  public int deleteUser(String username) throws InterruptedException
   {
 	  User user = this.getUser(username);
 	  if(user instanceof Student) {
-		  return univDBlib.user_deleteUser(username);
+		  Student stu = (Student) user;
+		  String[][] universities = univDBlib.user_getUsernamesWithSavedSchools();
+		   
+		   for(int i = 0; i < universities.length; i++)
+		   {
+		    if(universities[i][0].equals(stu.getUsername()))
+		    {
+		    	if(!(univDBlib.user_removeSchool(universities[i][0], universities[i][1]) == 1))
+		    		throw new InterruptedException("Database error removing saved schools for " + stu.getUsername());
+		    }
+		   }
 	  }
 	  return 1;
   }
