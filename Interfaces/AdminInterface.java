@@ -68,9 +68,9 @@ public class AdminInterface extends UserInterface
    * 
    * @return -1 if unsucessfull, 0 otherwise
    */
-  public int editUser(String username, String newFirst, String newLast, String newPassword, char newType, boolean newActivation, boolean newLoggedIn)
+  public void editUser(String username, String newFirst, String newLast, String newPassword, char newType, boolean newActivation, boolean newLoggedIn)
   {
-    return uCont.editUser(username, newFirst, newLast, newPassword, newType, newActivation, newLoggedIn);
+    uCont.editUser(username, newFirst, newLast, newPassword, newType, newActivation, newLoggedIn);
   }
   
   /**
@@ -86,10 +86,10 @@ public class AdminInterface extends UserInterface
    * 
    * @return -1 if unsucessfull, 0 otherwise
    */
-  public int addUser(String firstName, String lastName, String username, String password, char type ,boolean isActivated,
+  public void addUser(String firstName, String lastName, String username, String password, char type ,boolean isActivated,
                         boolean isLoggedIn)
   {
-    return uCont.addUser(firstName, lastName, username, password, type, isActivated, isLoggedIn);
+	  uCont.addUser(firstName, lastName, username, password, type, isActivated, isLoggedIn);
   }
   
   /**
