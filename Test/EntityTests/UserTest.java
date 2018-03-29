@@ -8,7 +8,7 @@ import org.junit.*;
  */
 
 public class UserTest{
-	private User user1;
+	private User user1, user2;
 
 	// @Before annotation forces method to re-execute before each test method
 	@Before
@@ -16,34 +16,49 @@ public class UserTest{
 		user1 = new User("Johnnie", "Miller", "jmill", "password1", 'a', true, false);
 	}
 
+	/**
+	 * Test that the default constructor works for correct/valid parameters
+	 */     
 	@Test
 	public void constructorSucceedsForValidInput() {
 		Assert.assertTrue("Constructor should succeed for user as all fields meet constructor criteria",
 				new User("John","Miller","jmill", "password0", 'u', true, false) instanceof User);
 	}
 
+	/**
+	 * Test that the default constructor fails for empty firstName parameter
+	 */   
 	@Test (expected = IllegalArgumentException.class)
 	public void constructorFailsForInvalidFirstName() {
 		new User("", "miller","jmill", "password0", 'u', true, false);
 	}
 
+	/**
+	 * Test that the default constructor fails for empty lastName parameter
+	 */   
 	@Test (expected = IllegalArgumentException.class)
 	public void constructorFailsForInvalidLastName() {
 		new User("John", "","jmill", "password0", 'u', true, false);
 	}
 
+	/**
+	 * Test that the default constructor fails for empty username parameter
+	 */   
 	@Test (expected = IllegalArgumentException.class)
 	public void constructorFailsForInvalidUsername() {
 		new User("John","Miller", "", "password0", 'u', true, false);
 	}
 
+	/**
+	 * Test that the default constructor fails for empty password parameter
+	 */   
 	@Test (expected = IllegalArgumentException.class)
 	public void constructorFailsForInvalidPassword() {
 		new User("John","Miller", "jmill", "", 'u', true, false);
 	}
 
 	/**
-	 * Test method for {@link entityClasses.User#getFirstName()}.
+	 * Test that the getUser() method returns expected value
 	 */
 	@Test
 	public void testGetFirstName(){
@@ -52,7 +67,7 @@ public class UserTest{
 	}
 
 	/**
-	 * Test method for {@link entityClasses.User#setFirstName(java.lang.String)}.
+	 * Test that the setUser() method sets correctly
 	 */
 	@Test
 	public void testSetFirstName(){
@@ -216,10 +231,65 @@ public class UserTest{
 	}
 
 	/**
-	 * Test method for {@link entityClasses.User#equals(java.lang.Object)}.
+	 * Test that equals method works with equal objects
 	 */
 	@Test
-	public void testEquals(){
-		//TODO: white box testing? if statements?
+	public void testEqualsTrue(){
+		user2 = this.user1;
+		Assert.assertTrue("Should return true as objects are equal", user1.equals(user2));
+	}
+	
+	/**
+	 * Test that equals method fails at first if statement (not instanceof user)
+	 */
+	@Test
+	public void testEqualsFalseNotInstance(){
+		boolean randomUnrelatedObject = false;
+		Assert.assertFalse("Should return false as objects are of different types", user1.equals(randomUnrelatedObject));
+	}
+	
+	/**
+	 * Test that equals method fails at second if statement (usernames not equal)
+	 */
+	@Test
+	public void testEqualsFalseDifferentUsernames(){
+		user2 = new User("Johnnie", "Miller", "mjill", "password1", 'a', true, false);
+		Assert.assertFalse("Should return false as objects have different usernames", user1.equals(user2));
+	}
+	
+	/**
+	 * Test that equals method fails at third if statement (firstNames not equal)
+	 */
+	@Test
+	public void testEqualsFalseDifferentFirstNames(){
+		user2 = new User("John", "Miller", "jmill", "password1", 'a', true, false);
+		Assert.assertFalse("Should return false as objects have different firstNames", user1.equals(user2));
+	}
+	
+	/**
+	 * Test that equals method fails at fourth if statement (lastNames not equal)
+	 */
+	@Test
+	public void testEqualsFalseDifferentLastNames(){
+		user2 = new User("John", "Killer", "jmill", "password1", 'a', true, false);
+		Assert.assertFalse("Should return false as objects have different lastNames", user1.equals(user2));
+	}
+	
+	/**
+	 * Test that equals method fails at fifth if statement (passwords not equal)
+	 */
+	@Test
+	public void testEqualsFalseDifferentPassword(){
+		user2 = new User("John", "Miller", "jmill", "password0", 'a', true, false);
+		Assert.assertFalse("Should return false as objects have different passwords", user1.equals(user2));
+	}
+	
+	/**
+	 * Test that equals method fails at sixth if statement (types not equal)
+	 */
+	@Test
+	public void testEqualsFalseDifferentType(){
+		user2 = new User("John", "Miller", "jmill", "password1", 'u', true, false);
+		Assert.assertFalse("Should return false as objects have different types", user1.equals(user2));
 	}
 }
