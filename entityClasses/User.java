@@ -221,6 +221,7 @@ public class User
             "\nLoggedInStatus: " + this.getLoggedInStatus());
   }
   
+  @Override
   public boolean equals(Object o)
   {
 	  if(!(o instanceof User))
