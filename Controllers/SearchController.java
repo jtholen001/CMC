@@ -243,291 +243,224 @@ public class SearchController
 	}
 
 
-	  /**
-	   * method to get the recommended universities based off of a university
-	   *
-	   * @param u the university object to base the other schools off of
-	   *
-	   * @return an ArrayList of university objects similar to the provided university
-	   */
-	  public ArrayList<University> getRecommendedUniversities(University u)
-	  {
-	    HashMap<String, University> universityMap = dbc.viewUniversities();
-	    Set<String> keys = universityMap.keySet();
-	    HashMap<String, Double> distanceMap = new HashMap<String, Double>();
+	/**
+	 * method to get the recommended universities based off of a university
+	 *
+	 * @param u the university object to base the other schools off of
+	 *
+	 * @return an ArrayList of university objects similar to the provided university
+	 */
+	public ArrayList<University> getRecommendedUniversities(University u)
+	{
+		HashMap<String, University> universityMap = dbc.viewUniversities();
+		Set<String> keys = universityMap.keySet();
+		HashMap<String, Double> distanceMap = new HashMap<String, Double>();
 
-	    int maxNumStudents = u.getNumStudents();
-	    int minNumStudents = u.getNumStudents();
-	    double maxPercentFemale = u.getPercentFemale();
-	    double minPercentFemale = u.getPercentFemale();
-	    double maxSATVerbal = u.getSATVerbal();
-	    double minSATVerbal = u.getSATVerbal();
-	    double maxSATMath = u.getSATMath();
-	    double minSATMath = u.getSATMath();
-	    double maxExpenses = u.getExpenses();
-	    double minExpenses = u.getExpenses();
-	    double maxPercentFinancialAid = u.getPercentFinancialAid();
-	    double minPercentFinancialAid = u.getPercentFinancialAid();
-	    int maxNumApplicants = u.getNumApplicants();
-	    int minNumApplicants = u.getNumApplicants();
-	    double maxPercentAdmitted = u.getPercentAdmitted();
-	    double minPercentAdmitted = u.getPercentAdmitted();
-	    double maxPercentEnrolled = u.getPercentEnrolled();
-	    double minPercentEnrolled = u.getPercentEnrolled();
-	    int maxAcademicScale = u.getAcademicScale();
-	    int minAcademicScale = u.getAcademicScale();
-	    int maxSocialScale = u.getSocialScale();
-	    int minSocialScale = u.getSocialScale();
-	    int maxQualityOfLifeScale = u.getQualityOfLifeScale();
-	    int minQualityOfLifeScale = u.getQualityOfLifeScale();
+		int maxNumStudents = u.getNumStudents();
+		int minNumStudents = u.getNumStudents();
+		double maxPercentFemale = u.getPercentFemale();
+		double minPercentFemale = u.getPercentFemale();
+		double maxSATVerbal = u.getSATVerbal();
+		double minSATVerbal = u.getSATVerbal();
+		double maxSATMath = u.getSATMath();
+		double minSATMath = u.getSATMath();
+		double maxExpenses = u.getExpenses();
+		double minExpenses = u.getExpenses();
+		double maxPercentFinancialAid = u.getPercentFinancialAid();
+		double minPercentFinancialAid = u.getPercentFinancialAid();
+		int maxNumApplicants = u.getNumApplicants();
+		int minNumApplicants = u.getNumApplicants();
+		double maxPercentAdmitted = u.getPercentAdmitted();
+		double minPercentAdmitted = u.getPercentAdmitted();
+		double maxPercentEnrolled = u.getPercentEnrolled();
+		double minPercentEnrolled = u.getPercentEnrolled();
+		int maxAcademicScale = u.getAcademicScale();
+		int minAcademicScale = u.getAcademicScale();
+		int maxSocialScale = u.getSocialScale();
+		int minSocialScale = u.getSocialScale();
+		int maxQualityOfLifeScale = u.getQualityOfLifeScale();
+		int minQualityOfLifeScale = u.getQualityOfLifeScale();
 
-	    for (String universityName : keys)
-	    {
-	      University university = universityMap.get(universityName);
-	      if (maxNumStudents != -1 && minNumStudents != -1 && university.getNumStudents() != -1)
-	      {
-	    	  if (maxNumStudents < university.getNumStudents())
-	    		  maxNumStudents = university.getNumStudents();
-	    	  if (minNumStudents > university.getNumStudents())
-	    		  minNumStudents = university.getNumStudents();
-	      }
 
-	      if (maxPercentFemale != -1 && minPercentFemale != -1 && university.getPercentFemale() != -1)
-	      {
-	    	  if (maxPercentFemale < university.getPercentFemale())
-	    		  maxPercentFemale = university.getPercentFemale();
-	    	  if (minPercentFemale > university.getPercentFemale())
-	    		  minPercentFemale = university.getPercentFemale();
-	      }
+		for (String universityName : keys)
+		{
+			University university = universityMap.get(universityName);
 
-	      if (maxSATVerbal != -1 && minSATVerbal != -1 && university.getSATVerbal() != -1)
-	      {
-	    	  if (maxSATVerbal < university.getSATVerbal())
-	    		  maxSATVerbal = university.getSATVerbal();
-	    	  if (minSATVerbal > university.getSATVerbal())
-	    		  minSATVerbal = university.getSATVerbal();
-	      }
+			maxNumStudents = (int)findMax(university.getNumStudents(), maxNumStudents);
+			minNumStudents = (int)findMin(university.getNumStudents(), minNumStudents);
 
-	      if (maxSATMath != -1 && minSATMath != -1 && university.getSATMath() != -1)
-	      {
-	    	  if (maxSATMath < university.getSATMath())
-	    		  maxSATMath = university.getSATMath();
-	    	  if (minSATMath > university.getSATMath())
-	    		  minSATMath = university.getSATMath();
-	      }
+			maxPercentFemale = findMax(university.getPercentFemale(), maxPercentFemale);
+			minPercentFemale = findMin(university.getPercentFemale(), minPercentFemale);
 
-	      if (maxExpenses != -1 && minExpenses != -1 && university.getExpenses() != -1)
-	      {
-	    	  if (maxExpenses < university.getExpenses())
-	    		  maxExpenses = university.getExpenses();
-	    	  if (minExpenses > university.getExpenses())
-	    		  minExpenses = university.getExpenses();
-	      }
+			maxSATVerbal = findMax(university.getSATVerbal(), maxSATVerbal);
+			minSATVerbal = findMin(university.getSATVerbal(), minSATVerbal);	      
 
-	      if (maxPercentFinancialAid != -1 && minPercentFinancialAid != -1 && university.getPercentFinancialAid() != -1)
-	      {
-	    	  if (maxPercentFinancialAid < university.getPercentFinancialAid())
-	    		  maxPercentFinancialAid = university.getPercentFinancialAid();
-	    	  if (minPercentFinancialAid > university.getPercentFinancialAid())
-	    		  minPercentFinancialAid = university.getPercentFinancialAid();
-	      }
+			maxSATMath = findMax(university.getSATMath(), maxSATMath);
+			minSATMath = findMin(university.getSATMath(), minSATMath);
 
-	      if (maxNumApplicants != -1 && minNumApplicants != -1 && university.getNumApplicants() != -1)
-	      {
-	    	  if (maxNumApplicants < university.getNumApplicants())
-	    		  maxNumApplicants = university.getNumApplicants();
-	    	  if (minNumApplicants > university.getNumApplicants())
-	    		  minNumApplicants = university.getNumApplicants();
-	      }
+			maxExpenses = findMax(university.getExpenses(), maxExpenses);
+			minExpenses = findMin(university.getExpenses(), minExpenses);
 
-	      if (maxPercentAdmitted != -1 && minPercentAdmitted != -1 && university.getPercentAdmitted() != -1)
-	      {
-	    	  if (maxPercentAdmitted < university.getPercentAdmitted())
-	    		  maxPercentAdmitted = university.getPercentAdmitted();
-	    	  if (minPercentAdmitted > university.getPercentAdmitted())
-	    		  minPercentAdmitted = university.getPercentAdmitted();
-	      }
-	      
-	      if (maxPercentEnrolled != -1 && minPercentEnrolled != -1 && university.getPercentEnrolled() != -1)
-	      {
-	    	  if (maxPercentEnrolled < university.getPercentEnrolled())
-	    		  maxPercentEnrolled = university.getPercentEnrolled();
-	    	  if (minPercentEnrolled > university.getPercentEnrolled())
-	    		  minPercentEnrolled = university.getPercentEnrolled();
-	      }
+			maxPercentFinancialAid = findMax(university.getPercentFinancialAid(), maxPercentFinancialAid);
+			minPercentFinancialAid = findMin(university.getPercentFinancialAid(), minPercentFinancialAid);	      
 
-	      if (maxAcademicScale != -1 && minAcademicScale != -1 && university.getAcademicScale() != -1)
-	      {
-	    	  if (maxAcademicScale < university.getAcademicScale())
-	    		  maxAcademicScale = university.getAcademicScale();
-	    	  if (minAcademicScale > university.getAcademicScale())
-	    		  minAcademicScale = university.getAcademicScale();
-	      }
+			maxNumApplicants = (int)findMax(university.getNumApplicants(), maxNumApplicants);
+			minNumApplicants = (int)findMin(university.getNumApplicants(), minNumApplicants);	      
 
-	      if (maxSocialScale != -1 && minSocialScale != -1 && university.getSocialScale() != -1)
-	      {
-	    	  if (maxSocialScale < university.getSocialScale())
-	    		  maxSocialScale = university.getSocialScale();
-	    	  if (minSocialScale > university.getSocialScale())
-	    		  minSocialScale = university.getSocialScale();
-	      }
+			maxPercentAdmitted = findMax(university.getPercentAdmitted(), maxPercentAdmitted);
+			minPercentAdmitted = findMin(university.getPercentAdmitted(), minPercentAdmitted);	      
 
-	      if (maxQualityOfLifeScale != -1 && minQualityOfLifeScale != -1 && university.getQualityOfLifeScale() != -1)
-	      {
-	    	  if (maxQualityOfLifeScale < university.getQualityOfLifeScale())
-	    		  maxQualityOfLifeScale = university.getQualityOfLifeScale();
-	    	  if (minQualityOfLifeScale > university.getQualityOfLifeScale())
-	    		  minQualityOfLifeScale = university.getQualityOfLifeScale();
-	      }
+			maxPercentEnrolled = findMax(university.getPercentEnrolled(), maxPercentEnrolled);
+			minPercentEnrolled = findMin(university.getPercentEnrolled(), minPercentEnrolled);	    	      
 
-	      // emphases
-	    }
+			maxAcademicScale = (int)findMax(university.getAcademicScale(), maxAcademicScale);
+			minAcademicScale = (int)findMin(university.getAcademicScale(), minAcademicScale);	  	      
 
-	    int stateDistance, locationDistance, controlDistance;
-	    // Finds distances between all instance variables in parameter University with corresponding variables of all universities in database
-	    for (String universityName : keys)
-	    {
-	       // if universityName != parameter?
-	      if (!(u.getName().equals(universityName))) // University u can't recommend itself
-	      {
-	        // Compares state name of parameter University with universities in database
-	        if (universityMap.get(universityName).getName().equals(u.getName()))
-	          stateDistance = 0; // state names equal
-	        else
-	          stateDistance = 1; // state names not equal
+			maxSocialScale = (int)findMax(university.getSocialScale(), maxSocialScale);
+			minSocialScale = (int)findMin(university.getSocialScale(), minSocialScale);	  	      
 
-	        // Compares location String of parameter University with universities in database
-	        if (universityMap.get(universityName).getState().equals(u.getState()))
-	          locationDistance = 0; // location equal
-	        else
-	          locationDistance = 1; // location not equal
+			maxQualityOfLifeScale = (int)findMax(university.getQualityOfLifeScale(), maxQualityOfLifeScale);
+			minQualityOfLifeScale = (int)findMin(university.getQualityOfLifeScale(), minQualityOfLifeScale);	  	      	      
 
-	        // Compares control String of parameter University with universities in database
-	        if (universityMap.get(universityName).getControl().equals(u.getControl()))
-	          controlDistance = 0; // control equal
-	        else
-	          controlDistance = 1; // control not equal
+			// emphases
+		}
 
-	        double numStudentsDistance = 0;
-	        double percentFemaleDistance = 0;
-	        double SATVerbalDistance = 0;
-	        double SATMathDistance = 0;
-	        double expensesDistance = 0;
-	        double percentFinancialAidDistance = 0;
-	        double numApplicantsDistance = 0;
-	        double percentAdmittedDistance  = 0;
-	        double percentEnrolledDistance = 0;
-	        double academicScaleDistance = 0;
-	        double socialScaleDistance = 0;
-	        double qualityOfLifeScaleDistance = 0;
-	        
-	        if (maxNumStudents != -1 && minNumStudents != -1 && universityMap.get(universityName).getNumStudents() != -1)
-	          numStudentsDistance = (Math.abs(universityMap.get(universityName).getNumStudents() - u.getNumStudents()) /
-	                                        Math.abs(maxNumStudents - minNumStudents));
+		int stateDistance, locationDistance, controlDistance;
+		// Finds distances between all instance variables in parameter University with corresponding variables of all universities in database
+		for (String universityName : keys)
+		{
+			// if universityName != parameter?
+			if (!(u.getName().equals(universityName))) // University u can't recommend itself
+			{
+				// Compares state name of parameter University with universities in database
+				if (universityMap.get(universityName).getName().equals(u.getName()))
+					stateDistance = 0; // state names equal
+				else
+					stateDistance = 1; // state names not equal
 
-	        if (maxPercentFemale != -1 && minPercentFemale != -1 && universityMap.get(universityName).getPercentFemale() != -1)
-	          percentFemaleDistance = (Math.abs(universityMap.get(universityName).getPercentFemale() - u.getPercentFemale()) /
-	                                          Math.abs(maxPercentFemale - minPercentFemale));
+				// Compares location String of parameter University with universities in database
+				if (universityMap.get(universityName).getState().equals(u.getState()))
+					locationDistance = 0; // location equal
+				else
+					locationDistance = 1; // location not equal
 
-	        if (maxSATVerbal != -1 && minSATVerbal != -1 && universityMap.get(universityName).getSATVerbal() != -1)
-	          SATVerbalDistance = (Math.abs(universityMap.get(universityName).getSATVerbal() - u.getSATVerbal()) /
-	                                      Math.abs(maxSATVerbal - minSATVerbal));
+				// Compares control String of parameter University with universities in database
+				if (universityMap.get(universityName).getControl().equals(u.getControl()))
+					controlDistance = 0; // control equal
+				else
+					controlDistance = 1; // control not equal
 
-	        if (maxSATMath != -1 && minSATMath != -1 && universityMap.get(universityName).getSATMath() != -1)
-	          SATMathDistance = (Math.abs(universityMap.get(universityName).getSATMath() - u.getSATMath()) /
-	                                    Math.abs(maxSATMath - minSATMath));
+				double numStudentsDistance, percentFemaleDistance, SATVerbalDistance, SATMathDistance,expensesDistance, percentFinancialAidDistance,
+				numApplicantsDistance, percentAdmittedDistance, percentEnrolledDistance, academicScaleDistance, socialScaleDistance, qualityOfLifeScaleDistance;
 
-	        if (maxExpenses != -1 && minExpenses != -1 && universityMap.get(universityName).getExpenses() != -1)
-	          expensesDistance = (Math.abs(universityMap.get(universityName).getExpenses() - u.getExpenses()) /
-	                                     Math.abs(maxExpenses - minExpenses));
+				numStudentsDistance = calculateDistance(u.getNumStudents(), universityMap.get(universityName).getNumStudents(), maxNumStudents, minNumStudents);
+				percentFemaleDistance = calculateDistance(u.getPercentFemale(), universityMap.get(universityName).getPercentFemale(), maxPercentFemale, minPercentFemale);
+				SATVerbalDistance = calculateDistance(u.getSATVerbal(), universityMap.get(universityName).getSATVerbal(), maxSATVerbal, minSATVerbal);
+				SATMathDistance = calculateDistance(u.getSATMath(), universityMap.get(universityName).getSATMath(), maxSATMath, minSATMath);
+				expensesDistance = calculateDistance(u.getExpenses(), universityMap.get(universityName).getExpenses(), maxExpenses, minExpenses);
+				percentFinancialAidDistance = calculateDistance(u.getPercentFinancialAid(), universityMap.get(universityName).getPercentFinancialAid(), maxPercentFinancialAid, minPercentFinancialAid);	        
+				numApplicantsDistance = calculateDistance(u.getNumApplicants(), universityMap.get(universityName).getNumApplicants(), maxNumApplicants, minNumApplicants);	        
+				percentAdmittedDistance = calculateDistance(u.getPercentAdmitted(), universityMap.get(universityName).getPercentAdmitted(), maxPercentAdmitted, minPercentAdmitted);	     
+				percentEnrolledDistance = calculateDistance(u.getPercentEnrolled(), universityMap.get(universityName).getPercentEnrolled(), maxPercentEnrolled, minPercentEnrolled);
+				academicScaleDistance = calculateDistance(u.getAcademicScale(), universityMap.get(universityName).getAcademicScale(), maxAcademicScale, minAcademicScale);
+				socialScaleDistance = calculateDistance(u.getSocialScale(), universityMap.get(universityName).getSocialScale(), maxSocialScale, minSocialScale);
+				qualityOfLifeScaleDistance = calculateDistance(u.getQualityOfLifeScale(), universityMap.get(universityName).getQualityOfLifeScale(), maxQualityOfLifeScale, minQualityOfLifeScale);
 
-	        if (maxPercentFinancialAid != -1 && minPercentFinancialAid != -1 && universityMap.get(universityName).getPercentFinancialAid() != -1)
-	          percentFinancialAidDistance = (Math.abs(universityMap.get(universityName).getPercentFinancialAid() - u.getPercentFinancialAid()) /
-	                                                Math.abs(maxPercentFinancialAid - minPercentFinancialAid));
+				ArrayList<String> emphases = u.getEmphases();
 
-	        if (maxNumApplicants != -1 && minNumApplicants != -1 && universityMap.get(universityName).getNumApplicants() != -1)
-	          numApplicantsDistance = (Math.abs(universityMap.get(universityName).getNumApplicants() - u.getNumApplicants()) /
-	                                          Math.abs(maxNumApplicants - minNumApplicants));
+				int count = 0;
+				for (String emphasis : emphases)
+				{
+					//if the potentially recommended school does not contain an emphasis
+					if (!universityMap.get(universityName).getEmphases().contains(emphasis))
+						count++; 	  
+				}
+				double emphasesDistance = count/emphases.size();
 
-	        if (maxPercentAdmitted != -1 && minPercentAdmitted != -1 && universityMap.get(universityName).getPercentAdmitted() != -1)
-	          percentAdmittedDistance = (Math.abs(universityMap.get(universityName).getPercentAdmitted() - u.getPercentAdmitted()) /
-	                                          Math.abs(maxPercentAdmitted - minPercentAdmitted));
+				double totalDistance = stateDistance + locationDistance + controlDistance + numStudentsDistance + percentFemaleDistance + SATVerbalDistance +
+						SATMathDistance + expensesDistance + percentFinancialAidDistance + numApplicantsDistance + percentAdmittedDistance + percentEnrolledDistance +
+						academicScaleDistance + socialScaleDistance + qualityOfLifeScaleDistance + emphasesDistance;
 
-	        if (maxPercentEnrolled != -1 && minPercentEnrolled != -1 && universityMap.get(universityName).getPercentEnrolled() != -1)
-	          percentEnrolledDistance = (Math.abs(universityMap.get(universityName).getPercentEnrolled() - u.getPercentEnrolled()) /
-	                                            Math.abs(maxPercentEnrolled - minPercentEnrolled));
+				distanceMap.put(universityName, totalDistance);
+			}
+		}
 
-	        if (maxAcademicScale != -1 && minAcademicScale != -1 && universityMap.get(universityName).getAcademicScale() != -1)
-	          academicScaleDistance = (Math.abs(universityMap.get(universityName).getAcademicScale() - u.getAcademicScale()) /
-	                                          Math.abs(maxAcademicScale - minAcademicScale));
+		// sorts distance map by value in ascending order, adds universityNames to ArrayList to return
+		List<Double> sortedValues = new ArrayList<Double>(distanceMap.values());
+		Collections.sort(sortedValues);
+		Iterator<Double> values = sortedValues.iterator();
 
-	        if (maxSocialScale != -1 && minSocialScale != -1 && universityMap.get(universityName).getSocialScale() != -1)
-	          socialScaleDistance = (Math.abs(universityMap.get(universityName).getSocialScale() - u.getSocialScale()) /
-	                                        Math.abs(maxSocialScale - minSocialScale));
+		ArrayList<String> recommendedUniversityNames = new ArrayList<String>();
+		while ((values.hasNext()) && (recommendedUniversityNames.size() < 5))
+		{
+			double temp = values.next();
+			for (String universityName : keys)
+			{
+				if (!(u.getName().equals(universityName)))
+				{
+					if (distanceMap.get(universityName) == temp)
+					{
+						recommendedUniversityNames.add(universityName);
+						distanceMap.put(universityName,  -1.0);
+					}
+				}
+			}
+		}
 
-	        if (maxQualityOfLifeScale != -1 && minQualityOfLifeScale != -1 && universityMap.get(universityName).getQualityOfLifeScale() != -1)
-	          qualityOfLifeScaleDistance = (Math.abs(universityMap.get(universityName).getQualityOfLifeScale() - u.getQualityOfLifeScale()) /
-	                                               Math.abs(maxQualityOfLifeScale - minQualityOfLifeScale));
+		// creates University objects from sorted University names to return
+		ArrayList<University> recommendedUniversities = new ArrayList<University>();
+		for (String universityName : recommendedUniversityNames)
+		{
+			recommendedUniversities.add(dbc.getUniversity(universityName));
+		}
+		return recommendedUniversities;
+	}
 
-	          //ArrayList<String> emphases = universityMap.get(universityName).getEmphases();
-	        ArrayList<String> emphases = u.getEmphases();
-	        
-	          int count = 0;
-	          for (String emphasis : emphases)
-	          {
-	        	  //if the potentially recommended school does not contain an emphasis
-	        	  if (!universityMap.get(universityName).getEmphases().contains(emphasis))
-	        		  count++; 	  
-	          }
-	          double emphasesDistance = count/emphases.size();
-	          
-//	          for (String emphasis : emphases)
-//	          {
-//	            if (!(u.getEmphases().contains(emphasis)))
-//	              emphasesDistance = emphasesDistance - 1;
-//	          }
+	/**
+	 * Method to find the min between two university values
+	 * 
+	 * @param possibleMin  a value that could replace the current min
+	 * @param currentMin  the current min value 
+	 * @return a int representing the new min
+	 */
+	private double findMin(double possibleMin, double currentMin)
+	{
+		if (currentMin == -1) 
+			return possibleMin;
+		else if (possibleMin != -1 && possibleMin < currentMin)
+			return possibleMin;	    
+		return currentMin;	    	
+	}
 
-	          double totalDistance = stateDistance + locationDistance + controlDistance + numStudentsDistance + percentFemaleDistance + SATVerbalDistance +
-	          SATMathDistance + expensesDistance + percentFinancialAidDistance + numApplicantsDistance + percentAdmittedDistance + percentEnrolledDistance +
-	          academicScaleDistance + socialScaleDistance + qualityOfLifeScaleDistance + emphasesDistance;
+	/**
+	 * Method to find the max between two university values
+	 * 
+	 * @param possibleMax  a value that could replace the current max
+	 * @param currentMax  the current max value 
+	 * @return a int representing the new max
+	 */
+	private double findMax(double possibleMax, double currentMax)
+	{
+		if (possibleMax > currentMax)
+			return possibleMax;
+		return currentMax;
+	}
 
-	          distanceMap.put(universityName, totalDistance);
-	    }
-	  }
-
-	    // sorts distance map by value in ascending order, adds universityNames to ArrayList to return
-	    HashMap<String, Double> sortedDistances = new HashMap<String, Double>();
-	    List<Double> sortedValues = new ArrayList<Double>(distanceMap.values());
-	    Collections.sort(sortedValues);
-	    Iterator<Double> values = sortedValues.iterator();
-
-	    ArrayList<String> recommendedUniversityNames = new ArrayList<String>();
-	    while ((values.hasNext()) && (recommendedUniversityNames.size() < 5))
-	    {
-	      double temp = values.next();
-	      for (String universityName : keys)
-	      {
-	    	  if (!(u.getName().equals(universityName)))
-	    	  {
-	    		  if (distanceMap.get(universityName) == temp)
-	    		  {
-	    			  recommendedUniversityNames.add(universityName);
-	    			  distanceMap.put(universityName,  -1.0);
-	    		  }
-	    		  
-	    	  }
-	      }
-	    }
-	    
-	    // creates University objects from sorted University names to return
-	    ArrayList<University> recommendedUniversities = new ArrayList<University>();
-	    for (String universityName : recommendedUniversityNames)
-	    {
-	      recommendedUniversities.add(dbc.getUniversity(universityName));
-	    }
-	    
-	    return recommendedUniversities;
-	  }
+	/**
+	 * Method to calculate the distance between two values
+	 * 
+	 * @param sourceValue  the value from the original University
+	 * @param matchValue  the value being calculated against the source value
+	 * @param max  the maximum value taken from all the Universities
+	 * @param min  the minimum value taken from all the Universities
+	 * @return a int representing the distance between the two values
+	 */	  
+	private double calculateDistance(double sourceValue, double matchValue, double max, double min)
+	{
+		if(matchValue != -1 && sourceValue != -1)
+			return (Math.abs(matchValue - sourceValue) / Math.abs(max - min));
+		return 0;
+	}	  
 
 	/**
 	 * Method to view Universities from searching
