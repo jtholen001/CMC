@@ -115,6 +115,8 @@ public class University
    * @param socialScale how this university rates socially
    * @param qualityOfLifeScale the quality of life at this university
    * @param emphases what areas of study this university emphasizes
+   * 
+   * @throws IllegalArgumentException
    */
   
   public University(String name,String state,String location, String control, int numStudents,
@@ -337,6 +339,8 @@ public class University
    * This method sets the state where this university is located
    *
    * @param newState the new state this university is located in
+   * 
+   * @throws IllegalArgumentException
    */
   public void setState(String newState) throws IllegalArgumentException
   {
@@ -350,6 +354,8 @@ public class University
    * This method sets what setting the university is located in
    *
    * @param newLocation the new location of the university (Urban or rural)
+   * 
+   * @throws IllegalArgumentException
    */
   public void setLocation(String newLocation) throws IllegalArgumentException
   {
@@ -363,6 +369,8 @@ public class University
    * This method sets the control of the university
    *
    * @param newControl the new control of the university (public, private, etc)
+   * 
+   * @throws IllegalArgumentException
    */
   public void setControl(String newControl) throws IllegalArgumentException
   {
@@ -376,6 +384,8 @@ public class University
    * This method sets the number of students enrolled at the university
    *
    * @param newNumStudents the  new number of students enrolled at the university
+   * 
+   * @throws IllegalArgumentException
    */
   public void setNumStudents(int newNumStudents) throws IllegalArgumentException
   {
@@ -389,6 +399,8 @@ public class University
    * This method sets the percentage of enrolled students that are female
    *
    * @param newPercentFemale the new percentage of students that are female
+   * 
+   * @throws IllegalArgumentException
    */
   public void setPercentFemale(double newPercentFemale) throws IllegalArgumentException
   {
@@ -402,6 +414,8 @@ public class University
    * This method sets the average SAT Verbal score of students at the university
    *
    * @param newSATVerbal the new average SAT Verbal score of students enrolled at the university
+   * 
+   * @throws IllegalArgumentException
    */
   public void setSATVerbal(double newSATVerbal) throws IllegalArgumentException
   {
@@ -415,6 +429,8 @@ public class University
    * This method sets the average SAT Math score of students enrolled at the university
    *
    * @param newSATMath the new average SAT Math score of students enrolled at the university
+   * 
+   * @throws IllegalArgumentException
    */
   public void setSATMath(double newSATMath) throws IllegalArgumentException
   {
@@ -428,6 +444,7 @@ public class University
    * This method sets the average expenses to attend the university
    *
    * @param newExpenses the average expenses to attend the university
+   * @throws IllegalArgumentException
    */
   public void setExpenses(double newExpenses) throws IllegalArgumentException
   {
@@ -440,6 +457,7 @@ public class University
    * This method sets the percentage of students enrolled at this university that recieve financial aid
    *
    * @param newPercentFinancialAid the new percentage of students  enrolled at this university that recieve financial aid
+   * @throws IllegalArgumentException
    */
   public void setPercentFinancialAid(double newPercentFinancialAid) throws IllegalArgumentException
   {
@@ -453,6 +471,7 @@ public class University
    * This method sets the number of students that applied to study at the university
    *
    * @param newNumApplicants the new number of students that applied to study at this university
+   * @throws IllegalArgumentException
    */
   public void setNumApplicants(int newNumApplicants) throws IllegalArgumentException
   {
@@ -466,6 +485,7 @@ public class University
    * This method sets the number of applicants that were addmitted to the university
    *
    * @param newPercentAdmitted the new percentage of applicants that were accepted to the university
+   * @throws IllegalArgumentException
    */
   public void setPercentAdmitted(double newPercentAdmitted) throws IllegalArgumentException
   {
@@ -479,6 +499,7 @@ public class University
    * This method sets the percentage of accepted applicants that enroll at the university
    *
    * @param newPercentEnrolled the new percentage of accepted applicants that there enrolled at the university
+   * @throws IllegalArgumentException
    */
   public void setPercentEnrolled(double newPercentEnrolled) throws IllegalArgumentException
   {
@@ -492,6 +513,7 @@ public class University
    * This method sets how the university rates academically
    *
    * @param newAcademicScale the new academic rating of this university
+   * @throws IllegalArgumentException
    */
   public void setAcademicScale(int newAcademicScale) throws IllegalArgumentException
   {
@@ -505,6 +527,7 @@ public class University
    * This method sets how the university rates socially
    *
    * @param newSocialScale the new social rating of this school
+   * @throws IllegalArgumentException
    */
   public void setSocialScale(int newSocialScale) throws IllegalArgumentException
   {
@@ -518,6 +541,7 @@ public class University
    * This method sets how the quality of life rates at the university
    *
    * @param newQualityOfLifeScale the new rating of the quality of life at the university
+   * @throws IllegalArgumentException
    */
   public void setQualityOfLifeScale(int newQualityOfLifeScale) throws IllegalArgumentException
   {
@@ -531,6 +555,7 @@ public class University
    * This method sets the areas of study that this university emphasizes in
    *
    * @param newEmphases the new emphases of this university
+   * @throws IllegalArgumentException
    */
   public void setEmphases(ArrayList<String> newEmphases) throws IllegalArgumentException
   {
