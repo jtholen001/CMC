@@ -77,5 +77,38 @@ public class UsersControllerTest
 	{
 		uCont.editUser("bkalsow", "Brian", "Coleslaw", "abcde", ' ', false, false);
 	}
+	
+	@Test
+	public void addUserSucceedsForValidInput()
+	{
+		uCont.addUser("Michael", "Carroller", "carols", "none", 'u', false, false);
+		uCont.deleteUser("carols");
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void addUserFailsForInvalidFirstName()
+	{
+		uCont.addUser("", "Carroller", "carols", "none", 'u', false, false);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void addUserFailsForInvalidLastName()
+	{
+		uCont.addUser("Michael", "", "carols", "none", 'u', false, false);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void addUserFailsForInvalidUsername()
+	{
+		uCont.addUser("Michael", "Carroller", "", "none", 'u', false, false);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void addUserFailsForInvalidPassword()
+	{
+		uCont.addUser("Michael", "Carroller", "carols", "", 'u', false, false);
+	}
+	
+	
 
 }
