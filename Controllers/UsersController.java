@@ -11,15 +11,12 @@ import entityClasses.*;
 
 public class UsersController
 {
-  /**
-   * an array of Users
-   */
-  private User[] users;
 
   /**
    * an instance of a DBController
    */
   private DBController dbCont;
+  private HashMap<String, User> users;
 
   /**
    * Constuctor for UsersController
@@ -27,6 +24,7 @@ public class UsersController
   public UsersController()
   {
     this.dbCont = new DBController();
+    users = dbCont.getUsers();
   }
 
   /**
@@ -36,7 +34,8 @@ public class UsersController
    */
   public HashMap<String,User> viewUsers()
   {
-    return dbCont.getUsers();
+    users = dbCont.getUsers();
+    return users;
   }
 
   /**
@@ -55,7 +54,7 @@ public class UsersController
   public void editUser(String username,String firstName, String lastName, String password, char type ,boolean isActivated,
                         boolean isLoggedIn)
   {
- if (username.equals("") || firstName.equals("") || lastName.equals("") || password.equals("") || type == ' ')
+ if (username.equals("") || firstName.equals("") || lastName.equals("") || password.equals("") || type != 'a' && type != 'u')
   throw new IllegalArgumentException("Fields cannot be empty");
  else
  {
@@ -100,13 +99,16 @@ public class UsersController
    * a method to deactivate a User
    *
    * @param user a User object to be deactivated
-   * 
+   * @throws IllegalArgumentException
    * @return an int representing the success of deactivating a user
    */
-  public int deactivate(User user)
+  public int deactivate(User user) throws IllegalArgumentException
   {
-    user.setActivationStatus(false);
-    return dbCont.saveEditedUser(user);
+	  if(users.get(user.getUsername()).getActivationStatus() == false)
+		  throw new IllegalArgumentException("User is already deactivated");
+	  else
+		  user.setActivationStatus(false);
+	  	  return dbCont.saveEditedUser(user);
   }
   
   /**
