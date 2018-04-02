@@ -95,6 +95,7 @@ public class UniversityControllerTest
 		university2 = new University("CSCI College", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
 		int result = uniCont.addUniversity("CSCI College", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, (new ArrayList<String>()));
 		Assert.assertTrue(result != -1);
+		uniCont.deleteUniversity(university2);
 	}
 	
 	/**
@@ -118,12 +119,5 @@ public class UniversityControllerTest
 		university4 = new University("MY NEW COLLEGE", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
 		int result = uniCont.deleteUniversity(university4);
 		Assert.assertTrue(result != -1);
-	}
-		
-	@After
-	public void destroy()
-	{
-		dbCont.deleteUniversity(university);
-		dbCont.deleteUniversity(university2);
 	}
 }
