@@ -7,12 +7,14 @@ import org.junit.*;
 
 public class UniversityControllerTest 
 {
-	
 	private UniversityController uniCont;
-	private University university;
+	private University university, university2, university3, university4;
 	private DBController dbCont;
 	private HashMap<String, University> listAll; 
 	
+	/**
+	 * Method that sets up the tests
+	 */
 	@Before
 	public void init() 
 	{
@@ -23,6 +25,36 @@ public class UniversityControllerTest
 		dbCont.addUniversity(university);
 	}
 	
+	/**
+	 * Test method to test viewing universities
+	 */
+	@Test
+	public void testViewUniversities()
+	{
+		Set<String> names = listAll.keySet();
+		boolean contains1 = false;
+		boolean contains2 = false;
+		boolean contains3 = false;
+
+		for(String name : names)
+		{
+			
+			if (name.equals("ABILENE CHRISTIAN UNIVERSITY"))
+				contains1 = true;
+			if (name.equals("MICHIGAN STATE"))
+				contains2 = true;
+			if (name.equals("YANKTOWN COLLEGE"))
+				contains3 = true;	
+		}
+		
+		Assert.assertTrue(contains1);
+		Assert.assertTrue(contains2);
+		Assert.assertTrue(contains3);
+	}
+	
+	/**
+	 * Test method to test editing a university
+	 */
 	@Test
 	public void testEditUniversity()
 	{
@@ -45,9 +77,47 @@ public class UniversityControllerTest
 		Assert.assertTrue("QualityOfLifeScale : 2", temp.getQualityOfLifeScale() == 2);	
 	}
 	
-	@After
-	public void destroy()
+	/**
+	 * Test method to test editing a university
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void testEditUniversityFails_invalidInput()
 	{
-		dbCont.deleteUniversity(university);
+		uniCont.editUniversity(university, "", "CITY", "PRIVATE", 4, 20.0, 100.0, 100.0, 80.0, 1.0, 6, 60.0, 60.0, 2, 2, 2, new ArrayList<String>());
+	}
+	
+	/**
+	 * Test method to test adding a university
+	 */
+	@Test
+	public void testAddUniversitySuccess()
+	{
+		university2 = new University("CSCI College", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
+		int result = uniCont.addUniversity("CSCI College", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, (new ArrayList<String>()));
+		Assert.assertTrue(result != -1);
+		uniCont.deleteUniversity(university2);
+	}
+	
+	/**
+	 * Test method to test adding a university
+	 */
+	@Test
+	public void testAddUniversityFailsForDuplicateName()
+	{
+		university3 = new University("AUBURN", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
+		int result = uniCont.addUniversity("AUBURN", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
+		Assert.assertTrue(result == -1);
+	}
+	
+	/**
+	 * Test method to delete a university
+	 */
+	@Test
+	public void testDeleteUniversity()
+	{
+		uniCont.addUniversity("MY NEW COLLEGE", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
+		university4 = new University("MY NEW COLLEGE", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
+		int result = uniCont.deleteUniversity(university4);
+		Assert.assertTrue(result != -1);
 	}
 }
