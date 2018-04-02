@@ -2,6 +2,8 @@
  * 
  */
 package Test.EntityTests;
+import static org.junit.Assert.*;
+
 import java.util.ArrayList;
 
 import org.junit.*;
@@ -99,7 +101,7 @@ public class StudentTest {
 	 */
 	@Test
 	public void testEqualsFalseDifferentStudentnames(){
-		student2 = new Student("Johnnie", "Miller", "mjill", "password1", 'a', true, false);
+		student2 = new Student("Johnnie", "Miller", "mjill", "password1", 'a', true, false, new ArrayList<University>());
 		Assert.assertFalse("Should return false as objects have different studentnames", student1.equals(student2));
 	}
 	
@@ -108,7 +110,7 @@ public class StudentTest {
 	 */
 	@Test
 	public void testEqualsFalseDifferentFirstNames(){
-		student2 = new Student("John", "Miller", "jmill", "password1", 'a', true, false);
+		student2 = new Student("John", "Miller", "jmill", "password1", 'a', true, false, new ArrayList<University>());
 		Assert.assertFalse("Should return false as objects have different firstNames", student1.equals(student2));
 	}
 	
@@ -117,7 +119,7 @@ public class StudentTest {
 	 */
 	@Test
 	public void testEqualsFalseDifferentLastNames(){
-		student2 = new Student("John", "Killer", "jmill", "password1", 'a', true, false);
+		student2 = new Student("John", "Killer", "jmill", "password1", 'a', true, false, new ArrayList<University>());
 		Assert.assertFalse("Should return false as objects have different lastNames", student1.equals(student2));
 	}
 	
@@ -126,7 +128,7 @@ public class StudentTest {
 	 */
 	@Test
 	public void testEqualsFalseDifferentPassword(){
-		student2 = new Student("John", "Miller", "jmill", "password0", 'a', true, false);
+		student2 = new Student("John", "Miller", "jmill", "password0", 'a', true, false, new ArrayList<University>());
 		Assert.assertFalse("Should return false as objects have different passwords", student1.equals(student2));
 	}
 	
@@ -135,7 +137,7 @@ public class StudentTest {
 	 */
 	@Test
 	public void testEqualsFalseDifferentType(){
-		student2 = new Student("John", "Miller", "jmill", "password1", 'u', true, false);
+		student2 = new Student("John", "Miller", "jmill", "password1", 'u', true, false, new ArrayList<University>());
 		Assert.assertFalse("Should return false as objects have different types", student1.equals(student2));
 	}
 
