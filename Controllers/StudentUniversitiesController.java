@@ -38,10 +38,10 @@ public class StudentUniversitiesController
    * 
    * @return a HashMap representing of all the universities saved by this student
    */
-  public HashMap<String, University> viewSavedUniversities()
+  public HashMap<String, University> viewSavedUniversities() //throws NoSuchElementException
   {
 	HashMap<String, University> universities = new HashMap<String, University>();
-	ArrayList<University> savedUniversities = student.getSavedSchools();
+	ArrayList<University> savedUniversities = this.student.getSavedSchools();
 	for (University u : savedUniversities)
 	{
 		universities.put(u.getName(), u);
@@ -56,7 +56,7 @@ public class StudentUniversitiesController
    */
   public University viewUniversity(String universityName)
   {
-    return dbc.getUniversity(universityName);
+    return this.dbc.getUniversity(universityName);
   }
   
   /**

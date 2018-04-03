@@ -83,30 +83,16 @@ public class SearchControllerTest {
 
 	@Test
 	public void testViewUniversity() {
-		Assert.assertTrue("returned string should match expected result for viewing a university", sc.viewUniversity(u1).equals("name: " + u1.getName() + "\n" +
-				"state: " + u1.getState() + "\n" +
-				"location: " + u1.getLocation() + "\n" +
-				"control: " + u1.getControl() + "\n" +
-				"numStudents: " + u1.getNumStudents() + "\n" +
-				"percentFemale: " + u1.getPercentFemale() + "\n" +
-				"SATVerbal: " + u1.getSATVerbal() + "\n" +
-				"SATMath: " + u1.getSATMath() + "\n" +
-				"expenses: " + u1.getExpenses() + "\n" +
-				"percentFinancialAid: " + u1.getPercentFinancialAid() + "\n" +
-				"numApplicants: " + u1.getNumApplicants() + "\n" +
-				"percentAdmitted: " + u1.getPercentAdmitted() + "\n" +
-				"percentEnrolled: " + u1.getPercentEnrolled() + "\n" +
-				"academicScale: " + u1.getAcademicScale() + "\n" +
-				"socialScale: " + u1.getSocialScale() + "\n" +
-				"qualityOfLifeScale: " + u1.getQualityOfLifeScale() + "\n" +
-				"emphases: " + u1.getEmphases()));
+		Assert.assertTrue("returned university should match expected result for viewing a university", sc.viewUniversity(u1.getName()).equals(u1));
 	}
 
 	@Test
 	public void testViewUniversities() {
-		
+		HashMap<String, University> universities = sc.viewUniversities(universities1);
+		Assert.assertTrue("TestUniversity1 should be saved to the student", universities.containsKey(u1.getName()));
+		Assert.assertTrue("TestUniversity2 should be saved to the student", universities.containsKey(u2.getName()));
+		Assert.assertTrue("Saved Universities size should be 2", universities.size() == 2);
 	}
-
 
 	@Test
 	public void testSaveUniversityReturns1() {
@@ -119,9 +105,6 @@ public class SearchControllerTest {
 		sc.saveUniversity(student, u1);
 		Assert.assertTrue("saving school to student should return -1", sc.saveUniversity(student, u1) == -1);
 	}
-
-
-
 
 	@Test
 	public void testSearchUniversities() {
@@ -146,7 +129,6 @@ public class SearchControllerTest {
 		
 	}
 	
-
 	@After
 	public void destroy() {	
 		dbc.deleteUser("user");
@@ -157,18 +139,4 @@ public class SearchControllerTest {
 		dbc.deleteUniversity(u5);
 		dbc.deleteUniversity(u6);
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

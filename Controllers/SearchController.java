@@ -82,7 +82,7 @@ public class SearchController
 			throw new IllegalArgumentException("All fields cannot be empty");
 		}
 		//HashMap containing all the universities in the database
-		HashMap<String, University> universities = dbc.viewUniversities();
+		HashMap<String, University> universities = this.dbc.viewUniversities();
 
 		//Set containing all the names of the universities in the database
 		Set<String> universityNames = universities.keySet();
@@ -252,7 +252,7 @@ public class SearchController
 	 */
 	public ArrayList<University> getRecommendedUniversities(University u)
 	{
-		HashMap<String, University> universityMap = dbc.viewUniversities();
+		HashMap<String, University> universityMap = this.dbc.viewUniversities();
 		Set<String> keys = universityMap.keySet();
 		HashMap<String, Double> distanceMap = new HashMap<String, Double>();
 
@@ -485,7 +485,7 @@ public class SearchController
 	 */
 	public University viewUniversity(String universityName)
 	{
-		return dbc.getUniversity(universityName);
+		return this.dbc.getUniversity(universityName);
 	}
 
 	/**
@@ -498,7 +498,7 @@ public class SearchController
 	{
 		int success = student.addSchool(newUniversity);
 		if (success == 1)
-			return dbc.saveEditedUser(student);
+			return this.dbc.saveEditedUser(student);
 		return success;
 	}
 }
