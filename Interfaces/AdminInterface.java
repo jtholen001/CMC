@@ -121,7 +121,7 @@ public class AdminInterface extends UserInterface
    * 
    * @return a string representation of all universities in the database
    */
-  public String viewUniversities()
+  public HashMap<String, University> viewUniversities()
   {
     return uniCont.viewUniversities();
   }
