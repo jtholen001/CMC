@@ -136,10 +136,13 @@ public class DBController
 		if(user instanceof Student)
 		{
 			Student stu = (Student)user;
-			if(this.checkSavedUniversities(stu) == -1)
-				return -1;
+			try{
+				this.checkSavedUniversities(stu);
+			}catch(IllegalArgumentException j)
+			{
+				throw j;
+			}
 		}
-		//returns -1 if an error is encountered
 		return univDBlib.user_editUser(user.getUsername(),user.getFirstName(),user.getLastName(),user.getPassword(),user.getType(),
 				temp);
 	}
