@@ -18,7 +18,7 @@ public class SearchControllerTest {
 
 	private ArrayList<University> universities1, universities2;
 
-	private University u1, u2;
+	private University u1, u2, u3, u4, u5, u6;
 
 	private Student student;
 
@@ -30,14 +30,22 @@ public class SearchControllerTest {
 		emphases.add("MATH");
 		universities1 = new ArrayList<University>();
 		universities2 = new ArrayList<University>();
-		u1 = new University("TestUniversity1", "Minnesota", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, emphases );
-		u2 = new University("TestUniversity2", "IOWA", "SUBURBAN", "PRIVATE", 5000, 65.0, 800, 800, 15000, 50, 25000, 50, 40, 2, 1, 4, emphases );
+		u1 = new University("TestUniversity1", "MINNESOTA", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, emphases );
+		u2 = new University("TestUniversity2", "MINNESOTA", "URBAN", "PRIVATE", 5000, 65.0, 701, 600, 40000, 50, 49000, 31, 25, 4, 3, 2, emphases );
+		u3 = new University("TestUniversity3", "MINNESOTA", "URBAN", "PRIVATE", 5000, 54.0, 702, 601, 39000, 51, 48000, 32, 40, 3, 4, 2, emphases );
+		u4 = new University("TestUniversity4", "MINNESOTA", "URBAN", "PRIVATE", 5000, 53.0, 703, 602, 38000, 52, 47000, 33, 40, 2, 4, 3, emphases );
+		u5 = new University("TestUniversity5", "MINNESOTA", "URBAN", "PRIVATE", 5000, 62.0, 704, 603, 37000, 53, 46000, 34, 40, 1, 5, 4, emphases );
+		u6 = new University("TestUniversity6", "IOWA", "URBAN", "PRIVATE", 5000, 63.0, 705, 604, 36000, 54, 45000, 35, 40, 4, 5, 5, emphases );
 		universities1.add(u1);
 		universities1.add(u2);
 		student = new Student("Test", "Student", "user", "password", 'a', true, true, new ArrayList<University>());
 		dbc.addUser(student);
 		dbc.addUniversity(u1);
 		dbc.addUniversity(u2);
+		dbc.addUniversity(u3);
+		dbc.addUniversity(u4);
+		dbc.addUniversity(u5);
+		dbc.addUniversity(u6);
 	}
 
 	@Test
@@ -95,42 +103,8 @@ public class SearchControllerTest {
 	}
 
 	@Test
-	public void testViewSchools() {
-		Assert.assertTrue("returned string should match expected result", sc.viewSchools(universities1).equals("name: " + u1.getName() + "\n" +
-				"state: " + u1.getState() + "\n" +
-				"location: " + u1.getLocation() + "\n" +
-				"control: " + u1.getControl() + "\n" +
-				"numStudents: " + u1.getNumStudents() + "\n" +
-				"percentFemale: " + u1.getPercentFemale() + "\n" +
-				"SATVerbal: " + u1.getSATVerbal() + "\n" +
-				"SATMath: " + u1.getSATMath() + "\n" +
-				"expenses: " + u1.getExpenses() + "\n" +
-				"percentFinancialAid: " + u1.getPercentFinancialAid() + "\n" +
-				"numApplicants: " + u1.getNumApplicants() + "\n" +
-				"percentAdmitted: " + u1.getPercentAdmitted() + "\n" +
-				"percentEnrolled: " + u1.getPercentEnrolled() + "\n" +
-				"academicScale: " + u1.getAcademicScale() + "\n" +
-				"socialScale: " + u1.getSocialScale() + "\n" +
-				"qualityOfLifeScale: " + u1.getQualityOfLifeScale() + "\n" +
-				"emphases: " + u1.getEmphases()+ '\n' +
-				"name: " + u2.getName() + "\n" +
-				"state: " + u2.getState() + "\n" +
-				"location: " + u2.getLocation() + "\n" +
-				"control: " + u2.getControl() + "\n" +
-				"numStudents: " + u2.getNumStudents() + "\n" +
-				"percentFemale: " + u2.getPercentFemale() + "\n" +
-				"SATVerbal: " + u2.getSATVerbal() + "\n" +
-				"SATMath: " + u2.getSATMath() + "\n" +
-				"expenses: " + u2.getExpenses() + "\n" +
-				"percentFinancialAid: " + u2.getPercentFinancialAid() + "\n" +
-				"numApplicants: " + u2.getNumApplicants() + "\n" +
-				"percentAdmitted: " + u2.getPercentAdmitted() + "\n" +
-				"percentEnrolled: " + u2.getPercentEnrolled() + "\n" +
-				"academicScale: " + u2.getAcademicScale() + "\n" +
-				"socialScale: " + u2.getSocialScale() + "\n" +
-				"qualityOfLifeScale: " + u2.getQualityOfLifeScale() + "\n" +
-				"emphases: " + u2.getEmphases() + '\n'));
-		Assert.assertTrue("empty ArrayList should not display any universities", sc.viewSchools(universities2).equals(""));
+	public void testViewUniversities() {
+		
 	}
 
 
@@ -147,22 +121,41 @@ public class SearchControllerTest {
 	}
 
 
-	@Test
-	public void testGetRecommededSchools() {
-		//TODO: 
-	}
+
 
 	@Test
 	public void testSearchUniversities() {
 		ArrayList<University> foundUniversities = sc.searchUniversities("T", "MINNESOTA", "URBAN", "PRIVATE", 4000, 10000,0,0,0,0,0,0, 0, 0, 0,0,0,0,0,0,0, 0, 0.0,0.0,0.0,0.0,0.0,0.0, new ArrayList<String>());
-		Assert.assertTrue("TestUniversity1 should be found in the search", foundUniversities.contains(u1));		
+		Assert.assertTrue("TestUniversity1 should be found in the search", foundUniversities.contains(u1));
+		Assert.assertFalse("TestUniversity2 should NOT be found in the search", foundUniversities.contains(u6));
 	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testSearchUniversitiesNoInput() {
+		ArrayList<University> foundUniversities = sc.searchUniversities(null, null, null, null, 0, 0,0,0,0,0,0,0, 0, 0, 0,0,0,0,0,0,0, 0, 0.0,0.0,0.0,0.0,0.0,0.0, null);
+	}
+	
+	@Test
+	public void testGetRecommendedUniversities() {
+		ArrayList<University> recommendedUniversities = sc.getRecommendedUniversities(u1);
+		Assert.assertTrue("TestUniversity2 should be recommended first", recommendedUniversities.get(0).equals(u2));
+		Assert.assertTrue("TestUniversity3 should be recommended second", recommendedUniversities.get(1).equals(u3));
+		Assert.assertTrue("TestUniversity4 should be recommended third", recommendedUniversities.get(2).equals(u4));
+		Assert.assertTrue("TestUniversity5 should be recommended fourth", recommendedUniversities.get(3).equals(u5));
+		Assert.assertTrue("TestUniversity6 should be recommended fifth", recommendedUniversities.get(4).equals(u6));
+		
+	}
+	
 
 	@After
 	public void destroy() {	
 		dbc.deleteUser("user");
 		dbc.deleteUniversity(u1);
 		dbc.deleteUniversity(u2);
+		dbc.deleteUniversity(u3);
+		dbc.deleteUniversity(u4);
+		dbc.deleteUniversity(u5);
+		dbc.deleteUniversity(u6);
 	}
 
 
