@@ -162,7 +162,13 @@ public class DBController
 			if(!(temp).getSavedSchools().isEmpty())
 			{
 				int success = univDBlib.user_addUser(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getType());
-				this.checkSavedUniversities(temp);
+				try{
+					this.checkSavedUniversities(temp);
+				}catch(IllegalArgumentException j)
+				{
+					this.deleteUser(user.getUsername());
+					throw j;
+				}
 				return success;
 			}
 		}
@@ -294,7 +300,7 @@ public class DBController
 
 		for(int index = 0; index < universities.length; index++)
 		{
-			if(universities[index][0].equals(name))
+			if(universities[index][0].toUpperCase().equals(name.toUpperCase()))
 			{
 				universityMap.put(universities[index][0], new University(universities[index][0], universities[index][1],
 						universities[index][2],universities[index][3],
@@ -420,7 +426,14 @@ public class DBController
 	 */
 	public int removeUniversityFromStudent(Student student, University university)
 	{
-		return univDBlib.user_removeSchool(student.getUsername(),university.getName());
+		if(this.getUniversity(university.getName()) == null)
+			throw new IllegalArgumentException("University does not exist in the database");
+		if(this.getUser(student.getUsername()) == null)
+			throw new IllegalArgumentException("University does not exist in the database");
+		int temp = univDBlib.user_removeSchool(student.getUsername(),university.getName());
+		if(temp == -1)
+			throw new IllegalArgumentException("Deleting saved school returned an error");
+		return temp;
 	}
 
 
