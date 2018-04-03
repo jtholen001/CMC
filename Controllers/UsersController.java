@@ -91,8 +91,8 @@ public class UsersController
 	  if (firstName.equals("") || lastName.equals("") || username.equals("") || password.equals("") || type == ' ')
 		  throw new IllegalArgumentException("Fields cannot be empty");
 	  else
-		  dbCont.addUser(new User(firstName, lastName, username, password, type, isActivated, isLoggedIn));  
-
+		  dbCont.addUser(new User(firstName, lastName, username, password, type, isActivated, isLoggedIn));
+	      users.put(username, new User(firstName, lastName, username, password, type ,isActivated, isLoggedIn));
   }
 
   /**
@@ -108,6 +108,7 @@ public class UsersController
 		  throw new IllegalArgumentException("User is already deactivated");
 	  else
 		  user.setActivationStatus(false);
+	  		users.get(user.getUsername()).setActivationStatus(false);
 	  	  return dbCont.saveEditedUser(user);
   }
   
