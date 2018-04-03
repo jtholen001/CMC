@@ -114,7 +114,7 @@ public class TestDBController {
 		public void testGetUsers() {
 			HashMap<String,User> temp = dbController.getUsers();
 			Assert.assertNotNull("User object was null",temp.get("juser"));
-			Assert.assertNotNull("User object was null",temp.get("luser"));
+			Assert.assertNotNull("User object was null",temp.get("nadmin"));
 		}
 	
 	/**
@@ -226,6 +226,11 @@ public class TestDBController {
 		Assert.assertTrue("new user does not match the databse", dbController.getUser(ad.getUsername())
 				.equals(ad));
 		dbController.deleteUser(ad.getUsername());
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testAddNull() {
+		dbController.addUser(null);
 	}
 
 
