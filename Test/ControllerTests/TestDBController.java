@@ -6,6 +6,7 @@ package Test.ControllerTests;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -16,6 +17,7 @@ import Controllers.DBController;
 import entityClasses.Admin;
 import entityClasses.Student;
 import entityClasses.University;
+import entityClasses.User;
 
 /**
  * @author jtholen001
@@ -50,7 +52,7 @@ public class TestDBController {
 	 * @throws java.lang.Exception
 	 */
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown() throws Exception{
 		dbController.deleteUser(student1.getUsername());
 		dbController.deleteUser(student.getUsername());
 		dbController.deleteUser(admin.getUsername());
@@ -104,15 +106,17 @@ public class TestDBController {
 		Assert.assertTrue("did not return and empty list for " +admin.getUsername(),
 				dbController.getUniversitiesForStudent(admin.getUsername()).isEmpty());
 	}
-	//
-	//	/**
-	//	 * Test method for {@link Controllers.DBController#getUsers()}.
-	//	 */
-	//	@Test
-	//	public void testGetUsers() {
-	//		fail("Not yet implemented");
-	//	}
-	//
+	
+		/**
+		 * Test method for {@link Controllers.DBController#getUsers()}.
+		 */
+		@Test
+		public void testGetUsers() {
+			HashMap<String,User> temp = dbController.getUsers();
+			Assert.assertNotNull("User object was null",temp.get("juser"));
+			Assert.assertNotNull("User object was null",temp.get("luser"));
+		}
+	
 	/**
 	 * Test method for {@link Controllers.DBController#saveEditedUser(entityClasses.User)}.
 	 */
@@ -213,9 +217,6 @@ public class TestDBController {
 		Student stu = new Student("Jordan","Tholen","a;lskjdf","password",'u',true,false,new ArrayList<University>());
 		stu.addSchool(new University("Jordan", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>()));
 		dbController.addUser(stu);
-		Assert.assertTrue("new user does not match the databse", dbController.getUser(stu.getUsername())
-				.equals(stu));
-		dbController.deleteUser(stu.getUsername());
 	}
 
 	@Test
@@ -267,7 +268,9 @@ public class TestDBController {
 		 */
 		@Test
 		public void testViewUniversities() {
-			Assert.assertTrue(dbController.viewUniversities() != null);
+			HashMap<String,University> temp = dbController.viewUniversities();
+			Assert.assertNotNull("University object was null", temp.get("ABILENE CHRISTIAN UNIVERSITY"));
+			Assert.assertNotNull("University object was null", temp.get("YANKTOWN COLLEGE"));
 		}
 	
 		/**
@@ -477,21 +480,27 @@ public class TestDBController {
 			University university1 = new University("JORDAN", "MINNESOTA", "RURAL", "PRIVATE", 10, 55.0, 100.0, 120.0, 85.0, 25.0, 10, 50.0, 20.0, 2, 1, 4, new ArrayList<String>());
 			dbController.deleteUniversity(university1);
 		}
-	//
-	//	/**
-	//	 * Test method for {@link Controllers.DBController#removeUniversityFromStudent(entityClasses.Student, entityClasses.University)}.
-	//	 */
-	//	@Test
-	//	public void testRemoveUniversityFromStudent() {
-	//		fail("Not yet implemented");
-	//	}
-	//
-	//	/**
-	//	 * Test method for {@link Controllers.DBController#getRecommendedUniversities(entityClasses.University)}.
-	//	 */
-	//	@Test
-	//	public void testGetRecommendedUniversities() {
-	//		fail("Not yet implemented");
-	//	}
+	
+		/**
+		 * Test method for {@link Controllers.DBController#removeUniversityFromStudent(entityClasses.Student, entityClasses.University)}.
+		 */
+		@Test
+		public void testRemoveUniversityFromStudent() {
+			student1.removeUniversity(university);
+			dbController.removeUniversityFromStudent(student1, university);
+			Assert.assertTrue("School was not removed", dbController.getUser(student1.getUsername()).equals(student1));
+		}
+		
+		@Test (expected = IllegalArgumentException.class)
+		public void testRemoveUniversityFromStudentForStudentNotInDatabase() {
+			Student temp = new Student("Donald","Trump","fakeNews","password",'u',true,false,new ArrayList<University>());
+			dbController.removeUniversityFromStudent(temp, university);
+		}
+		
+		@Test (expected = IllegalArgumentException.class)
+		public void testRemoveUniversityFromStudentForUniveristyNotInDatabase() {
+			University temp = new University("JORDAN", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
+			dbController.removeUniversityFromStudent(student, temp);
+		}
 
 }
