@@ -44,7 +44,7 @@ public class Student extends User
   }
 
    /**
-   * Method to return the University associated with the name passed
+   * Method to return the saved University associated with the name passed
    * 
    * @param universityName the name of the university to get information for
    * 
@@ -52,32 +52,29 @@ public class Student extends User
    */
   public University getSpecificSchool(String universityName)
   {
-    for (University u : savedUniversities)
+    for (University u: savedUniversities)
     {
      if (u.getName().equals(universityName))
      {
       return u; 
      }
     }
-    return null;
+    throw new IllegalArgumentException("University not found in user's saved schools");
   }
 
    /**
    * Method to add a new University to a Student's saved universities
    * 
-   * @param newUniversity  the University to add to the Student
+   * @param newUniversity the University to add to the Student
    * 
    * @return an int representing the success of adding a university to a student
    */
-  public int addSchool(University newUniversity)
+  public void addSchool(University newUniversity)
   {
     if (this.savedUniversities.contains(newUniversity))
-    	return -1;
+    	throw new IllegalArgumentException();
     else
-    {
-    	boolean added = this.savedUniversities.add(newUniversity);
-    	return 1;
-    }
+    	this.savedUniversities.add(newUniversity);
   }
 
    /**
@@ -87,7 +84,10 @@ public class Student extends User
    */
   public void removeUniversity(University oldUniversity)
   {
-    this.savedUniversities.remove(oldUniversity);
+	if (!this.savedUniversities.contains(oldUniversity))
+		throw new IllegalArgumentException();
+	else	  
+		this.savedUniversities.remove(oldUniversity);
   }
 
   /**
@@ -106,9 +106,8 @@ public class Student extends User
             "\nUniversities: ";
 
     for(University u : savedUniversities)
-    {
     	s += u.getName() + ", ";   	
-    }
+    
     return s.substring(0, s.length()-2);
   }
   

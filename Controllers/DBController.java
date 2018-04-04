@@ -315,8 +315,12 @@ public class DBController
 				return universityMap.get(name.toUpperCase());
 			}
 		}
-
-		return universityMap.get(name.toUpperCase());
+		University temp = universityMap.get(name.toUpperCase());
+		if(temp == null)
+		{
+			throw new IllegalArgumentException("University does not exist in the databse");
+		}
+		return temp;
 	}
 
 	private ArrayList<String> getUniversityEmphases(String universityName) {
