@@ -91,6 +91,13 @@ public class UniversityTest
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForNoStudents()
+	{
+		Assert.assertTrue("Constructor fails for university with control field missing:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
+	            0, 50.0, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
 	public void constructorFailsForEmptyEmphases()
 	{
 		Assert.assertTrue("Constructor fails for university with emphases field missing:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
@@ -207,6 +214,12 @@ public class UniversityTest
 	{
 		Assert.assertTrue("Constructor fails for university with percentFemale < -1:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
 	            10000, 50, 100, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 6, 7, emphases) instanceof University);
+	}
+	
+	@Test
+	public void getNameReturnsCorrectName()
+	{
+		Assert.assertTrue("Name should be Saint John's University: ", testingUniversity.getName().equals("SAINT JOHN'S UNIVERSITY"));
 	}
 	
 	@Test
@@ -350,6 +363,25 @@ public class UniversityTest
 	}
 	
 	@Test
+	public void setPercentFinancialAidSucceedsForValidParameter()
+	{
+		testingUniversity.setPercentFinancialAid(20);
+		Assert.assertTrue("New percentFinancialAid should be 20%: ", testingUniversity.getPercentFinancialAid() == 20);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setPercentFinancialAidFailsForPercentLessThanNeg1()
+	{
+		testingUniversity.setPercentFinancialAid(-5);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setPercentFinancialAidFailsForPercentGreaterThanOneHundred()
+	{
+		testingUniversity.setPercentFinancialAid(101);
+	}
+	
+	@Test
 	public void setNumApplicantsCorrectlyChangesUniversityNumApplicants()
 	{
 		testingUniversity.setNumApplicants(10);
@@ -404,7 +436,7 @@ public class UniversityTest
 	public void setAcademicScaleCorrectlyChangesUniversityAcademicScale()
 	{
 		testingUniversity.setAcademicScale(4);
-		Assert.assertTrue("AcademicScale for University1 is now 4", testingUniversity.getQualityOfLifeScale() == 4);
+		Assert.assertTrue("AcademicScale for University1 is now 4", testingUniversity.getAcademicScale() == 4);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
@@ -471,6 +503,12 @@ public class UniversityTest
 	public void setEmphasesFailsForInvalidInput()
 	{	
 		testingUniversity.setEmphases(null);	
+	}
+	
+	@Test
+	public void toStringReturnsCorrectString()
+	{
+		Assert.assertTrue("toString returns correctly: ", testingUniversity.toString().equals("name: SAINT JOHN'S UNIVERSITY\nstate: MINNESOTA\nlocation: RURAL\ncontrol: PRIVATE\nnumStudents: 10000\npercentFemale: 50.0\nSATVerbal: 100.0\nSATMath: 100.0\nexpenses: 50000.0\npercentFinancialAid: 75.0\nnumApplicants: 1000\npercentAdmitted: 75.0\npercentEnrolled: 90.0\nacademicScale: 4\nsocialScale: 2\nqualityOfLifeScale: 4\nemphases: [Computer Science, Accounting, Nursing]"));
 	}
 	
 	
