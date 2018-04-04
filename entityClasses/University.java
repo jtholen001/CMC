@@ -137,7 +137,7 @@ public class University
 	  if(percentFemale < -1 || percentFemale > 100 || percentAdmitted < -1.0 || percentAdmitted > 100 || percentFinancialAid < -1 || percentFinancialAid > 100 ||
 			  percentEnrolled < -1 || percentEnrolled > 100)
 		  throw new IllegalArgumentException("Percentage cannot be less than negative one or greater than 100");
-	  if(numStudents <= 0)
+	  if(numStudents < -1)
 		  throw new IllegalArgumentException("Number of students cannot be less than 0");
 	  if(SATVerbal < -1 || SATMath < -1 || SATVerbal > 800 || SATMath > 800)
 		  throw new IllegalArgumentException("SAT scores cannot be less than negative one or greater than 800");

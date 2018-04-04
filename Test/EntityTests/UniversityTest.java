@@ -91,10 +91,10 @@ public class UniversityTest
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForNoStudents()
+	public void constructorFailsForInvalidNumStudents()
 	{
 		Assert.assertTrue("Constructor fails for university with no students:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
-	            0, 50.0, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
+	            -2, 50.0, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
