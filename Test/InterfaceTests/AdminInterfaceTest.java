@@ -30,7 +30,7 @@ public class AdminInterfaceTest
 		adminInt = new AdminInterface(admin);
 		allUsers = adminInt.viewUsers();
 		userToEdit = new User("Miss", "Pelled", "mpelled001", "password0", 'u', true, false);
-		successfullAddUser = adminInt.addUser("Miss", "Pelled", "mpelled001", "password0", 'u', true, false);
+		adminInt.addUser("Miss", "Pelled", "mpelled001", "password0", 'u', true, false);
 		dbCont = new DBController();
 	}
 	
@@ -49,7 +49,7 @@ public class AdminInterfaceTest
 	@Test
 	public void testEditUser()
 	{
-		int edit = adminInt.editUser("mpelled001", "Jessica", "Styles", "password1", 'a', false, true);
+		adminInt.editUser("mpelled001", "Jessica", "Styles", "password1", 'a', false, true);
 		User editedUser = dbCont.getUser("mpelled001");
 		Assert.assertTrue("editedUser first name is: Jessica", editedUser.getFirstName().equals("Jessica"));
 		Assert.assertTrue("editedUser last name is: Styles", editedUser.getLastName().equals("Styles"));

@@ -69,7 +69,7 @@ public class SearchController
 			int SATVerbalLower, int SATVerbalUpper, int SATMathLower, int SATMathUpper, int expensesLower, int expensesUpper, int numApplicantsLower, int numApplicantsUpper,
 			int academicScaleLower, int academicScaleUpper, int socialScaleLower, int socialScaleUpper, int qualityOfLifeScaleLower, int qualityOfLifeScaleUpper,  
 			double percentFinancialAidLower, double percentFinancialAidUpper, double percentAdmittedLower, double percentAdmittedUpper, double percentEnrolledLower, 
-			double percentEnrolledUpper, ArrayList<String> searchEmphases)
+			double percentEnrolledUpper, ArrayList<String> searchEmphases) throws IllegalArgumentException
 	{
 		if (name == null && state == null && location == null && control == null &&
 				numStudentsLower == 0 && numStudentsUpper == 0 && percentFemaleLower == 0 && percentFemaleUpper == 0 &&
@@ -79,10 +79,10 @@ public class SearchController
 				percentFinancialAidLower == 0 && percentFinancialAidUpper == 0 && percentAdmittedLower == 0 && percentAdmittedUpper == 0 &&
 				percentEnrolledLower == 0 && percentEnrolledUpper == 0 && searchEmphases == null)
 		{
-			return null;	
+			throw new IllegalArgumentException("All fields cannot be empty");
 		}
 		//HashMap containing all the universities in the database
-		HashMap<String, University> universities = dbc.viewUniversities();
+		HashMap<String, University> universities = this.dbc.viewUniversities();
 
 		//Set containing all the names of the universities in the database
 		Set<String> universityNames = universities.keySet();
@@ -252,7 +252,7 @@ public class SearchController
 	 */
 	public ArrayList<University> getRecommendedUniversities(University u)
 	{
-		HashMap<String, University> universityMap = dbc.viewUniversities();
+		HashMap<String, University> universityMap = this.dbc.viewUniversities();
 		Set<String> keys = universityMap.keySet();
 		HashMap<String, Double> distanceMap = new HashMap<String, Double>();
 
@@ -466,26 +466,26 @@ public class SearchController
 	 * Method to view Universities from searching
 	 * 
 	 * @param foundUniversities the universities to be viewed from searching
-	 * @return a String representing all the schools to be viewed
+	 * @return a HashMap representing all the schools to be viewed
 	 */
-	public String viewSchools(ArrayList<University> foundUniversities)
+	public HashMap<String, University> viewUniversities(ArrayList<University> foundUniversities)
 	{
-		String schools = ""; 
-		for (University u : foundUniversities)
+		HashMap<String, University> universities = new HashMap<String, University>();
+		for (University u: foundUniversities)
 		{
-			schools += u.toString() + '\n';
+			universities.put(u.getName(), u);
 		}
-		return schools;
+		return universities;
 	}
 
 	/**
 	 * Method to view a specific university from searching
-	 * @param university the University to be viewed
-	 * @return a String representation of the University
+	 * @param universityName  the name of the university to be viewed
+	 * @return a Unviersity
 	 */
-	public String viewUniversity(University university)
+	public University viewUniversity(String universityName)
 	{
-		return university.toString();
+		return this.dbc.getUniversity(universityName);
 	}
 
 	/**

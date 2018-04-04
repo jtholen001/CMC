@@ -120,12 +120,14 @@ public class UsersControllerTest
 	@Test
 	public void deactivateUserSucceeds()
 	{
+		uCont = new UsersController();
 		uCont.deactivate(student1);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void deactivateUserFailsForDeactivatedUser()
 	{
+		uCont = new UsersController();
 		uCont.deactivate(student1);
 		uCont.deactivate(student1);
 	}

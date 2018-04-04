@@ -35,20 +35,10 @@ public class UniversityController
    * A method that displays all University objects in the Database
    * @return a string representation of all the universities in the database
    */
-  public String viewUniversities()
+  public HashMap<String, University> viewUniversities()
   {
     HashMap<String, University> listAll = dbCont.viewUniversities();
-    
-    Set<String> universityNames = listAll.keySet();
-    
-    String listOfUniversities = "";
-    
-    for (String u : universityNames)
-    {
-      listOfUniversities = listOfUniversities + (listAll.get(u).getName() + "\n");
-    }
-    
-    return listOfUniversities;
+    return listAll;
   }
   
   /**
