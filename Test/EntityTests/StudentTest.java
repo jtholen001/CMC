@@ -171,7 +171,6 @@ public class StudentTest {
 	 * Test that equals method fails at second if statement (usernames not equal)
 	 */
 	@Test
-<<<<<<< HEAD
 	public void testEqualsFalseDifferentUsernames(){
 		student2 = new Student("Johnnie", "Miller", "mjill", "password1", 'u', true, false, new ArrayList<University>());
 		student2.addSchool(dbc.getUniversity("YALE"));
