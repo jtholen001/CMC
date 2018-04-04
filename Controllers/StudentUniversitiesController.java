@@ -7,6 +7,8 @@
 package Controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import entityClasses.*;
 
 public class StudentUniversitiesController
@@ -34,34 +36,30 @@ public class StudentUniversitiesController
   /**
    * Method to view a Student's saved universities
    * 
-   * @return a string representation of all the universities saved by this student
+   * @return a HashMap representing of all the universities saved by this student
    */
-  public String viewSavedUniversities()
+  public HashMap<String, University> viewSavedUniversities() //throws NoSuchElementException
   {
-    ArrayList<University> universities = this.student.getSavedSchools(); 
-    String output = "";
-    for (University u : universities)
-    {
-      output += u.getName() + ", ";
-    }
-    if (output.length() < 2)
-    	return "";
-    else
-    	return output.substring(0, output.length()-2);
+	HashMap<String, University> universities = new HashMap<String, University>();
+	ArrayList<University> savedUniversities = this.student.getSavedSchools();
+	for (University u : savedUniversities)
+	{
+		universities.put(u.getName(), u);
+	}
+	return universities;
   }
   
   /**
    * Method to view an University
    * @param university the University to be viewed
-   * @return a String representation of the University
+   * @return a University
    */
-  public String viewUniversity(University university)
+  public University viewUniversity(String universityName)
   {
-    return university.toString();
+    return this.dbc.getUniversity(universityName);
   }
   
   /**
-   * TODO: possible boolean return type
    * Method to remove a University from a Student's saved universities
    * 
    * @param oldUniversity the University to be removed

@@ -27,7 +27,7 @@ public class DBController
 	public DBController()
 	{
 	}
-
+ 
 	/**
 	 * This method gets a user's data based on their username
 	 * 
@@ -136,10 +136,13 @@ public class DBController
 		if(user instanceof Student)
 		{
 			Student stu = (Student)user;
-			if(this.checkSavedUniversities(stu) == -1)
-				return -1;
+			try{
+				this.checkSavedUniversities(stu);
+			}catch(IllegalArgumentException j)
+			{
+				throw j;
+			}
 		}
-		//returns -1 if an error is encountered
 		return univDBlib.user_editUser(user.getUsername(),user.getFirstName(),user.getLastName(),user.getPassword(),user.getType(),
 				temp);
 	}
@@ -312,8 +315,12 @@ public class DBController
 				return universityMap.get(name.toUpperCase());
 			}
 		}
-
-		return universityMap.get(name.toUpperCase());
+		University temp = universityMap.get(name.toUpperCase());
+		if(temp == null)
+		{
+			throw new IllegalArgumentException("University does not exist in the databse");
+		}
+		return temp;
 	}
 
 	private ArrayList<String> getUniversityEmphases(String universityName) {

@@ -21,10 +21,15 @@ public class UniversityControllerTest
 		uniCont = new UniversityController();
 		university = new University("UNIVERSITY OF CMC", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
 		dbCont = new DBController();
-		listAll = dbCont.viewUniversities();
+		listAll = uniCont.viewUniversities();
 		dbCont.addUniversity(university);
 	}
 	
+	@After
+	public void destroy()
+	{
+		uniCont.deleteUniversity(university);
+	}
 	/**
 	 * Test method to test viewing universities
 	 */
@@ -101,12 +106,11 @@ public class UniversityControllerTest
 	/**
 	 * Test method to test adding a university
 	 */
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void testAddUniversityFailsForDuplicateName()
 	{
 		university3 = new University("AUBURN", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
-		int result = uniCont.addUniversity("AUBURN", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
-		Assert.assertTrue(result == -1);
+		uniCont.addUniversity("AUBURN", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
 	}
 	
 	/**

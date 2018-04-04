@@ -114,7 +114,7 @@ public class TestDBController {
 		public void testGetUsers() {
 			HashMap<String,User> temp = dbController.getUsers();
 			Assert.assertNotNull("User object was null",temp.get("juser"));
-			Assert.assertNotNull("User object was null",temp.get("luser"));
+			Assert.assertNotNull("User object was null",temp.get("nadmin"));
 		}
 	
 	/**
@@ -227,6 +227,11 @@ public class TestDBController {
 				.equals(ad));
 		dbController.deleteUser(ad.getUsername());
 	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testAddNull() {
+		dbController.addUser(null);
+	}
 
 
 	/**
@@ -292,9 +297,9 @@ public class TestDBController {
 					.equals(university));
 		}
 		
-		@Test
+		@Test (expected = IllegalArgumentException.class)
 		public void testGetUniversityInvalid() {
-			assertNull("retrieved universtiy does not equal",dbController.getUniversity("Univeristy of Jordan"));
+			dbController.getUniversity("Univeristy of Jordan");
 		}
 		
 
@@ -457,22 +462,22 @@ public class TestDBController {
 		/**
 		 * Test method for {@link Controllers.DBController#deleteUniversity(entityClasses.University)}.
 		 */
-		@Test
+		@Test (expected = IllegalArgumentException.class)
 		public void testDeleteUniversity() {
 			University university1 = new University("JORDAN", "MINNESOTA", "RURAL", "PRIVATE", 10, 55.0, 100.0, 120.0, 85.0, 25.0, 10, 50.0, 20.0, 2, 1, 4, new ArrayList<String>());
 			dbController.addUniversity(university1);
 			dbController.deleteUniversity(university1);
-			Assert.assertTrue("University was not deleted",dbController.getUniversity(university1.getName()) == null);
+			dbController.getUniversity(university1.getName());
 		}
 		
-		@Test
+		@Test (expected = IllegalArgumentException.class)
 		public void testDeleteUniversityWithEmphases() {
 			University university1 = new University("JORDAN", "MINNESOTA", "RURAL", "PRIVATE", 10, 55.0, 100.0, 120.0, 85.0, 25.0, 10, 50.0, 20.0, 2, 1, 4, new ArrayList<String>());
 			ArrayList<String> emphases = university1.getEmphases();
 			emphases.add("BIOLOGY");
 			dbController.addUniversity(university1);
 			dbController.deleteUniversity(university1);
-			Assert.assertTrue("University was not deleted",dbController.getUniversity(university1.getName()) == null);
+			dbController.getUniversity(university1.getName());
 		}
 		
 		@Test (expected = IllegalArgumentException.class)
