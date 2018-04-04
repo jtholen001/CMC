@@ -44,11 +44,14 @@ public class LoginController
         user.setLoggedInStatus(true);
         return user;
       }
-      else if (loggedIn) // user already logged in
-      {
-        this.loggedInAccount();
-        return null;
-      }
+      
+     //TODO: maybe we don't need to check the user's loggedInStatus because it is saved locally, not in DB
+//      else if (loggedIn) // user already logged in
+//      {
+//        this.loggedInAccount();
+//        return null;
+//      }
+      
       else if (!activated) // deactivated account
       {
         this.deactivatedAccount();
@@ -67,13 +70,14 @@ public class LoginController
     }
    }
 
-   /**
-    * This method prints a login outor message indicating that the account is already logged in
-    */
-   public void loggedInAccount()
-   {
-     System.out.println("Account already logged in from a different location.");
-   }
+   //TODO: maybe we don't need to check the user's loggedInStatus because it is saved locally, not in DB
+//   /**
+//    * This method prints a login outor message indicating that the account is already logged in
+//    */
+//   public void loggedInAccount()
+//   {
+//     System.out.println("Account already logged in from a different location.");
+//   }
 
    /**
     * This method prints a login outor message indicating that the account is deactivated
@@ -91,17 +95,19 @@ public class LoginController
      System.out.println("Username or password is incorrect.");
    }
 
-   /**
-    * This method controls the log off logic of the system
-    * 
-    * @param user the user to log off
-    * @return true if the user was successfully logged out, false otherwise
-    */
-   public boolean logout(User user)
-   {
-    user.setLoggedInStatus(false);
-    dbc.saveEditedUser(user);
-    System.out.println("Successfuly logged out.");
-    return true;
-   }
+   //TODO: same thing, the loggedInStatus is not saved in the DB, so all this method will eventually do is 
+   //	bring the user back to a non-logged in home page
+//   /**
+//    * This method controls the log off logic of the system
+//    * 
+//    * @param user the user to log off
+//    * @return true if the user was successfully logged out, false otherwise
+//    */
+//   public boolean logout(User user)
+//   {
+//    user.setLoggedInStatus(false);
+//    dbc.saveEditedUser(user);
+//    System.out.println("Successfuly logged out.");
+//    return true;
+//   }
  }

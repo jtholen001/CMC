@@ -7,6 +7,8 @@
 package Interfaces;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import entityClasses.Student;
 import entityClasses.University;
 import Controllers.*;
@@ -79,23 +81,22 @@ public class StudentInterface extends UserInterface
   /**
    * Method to view the Student's saved universities
    * 
-   * @return a String representation of this student's saved universities
+   * @return a HashMap representing this student's saved universities
    */
-  public String viewSavedUniversities()
+  public HashMap<String, University> viewSavedUniversities()
   {
    return this.suc.viewSavedUniversities();
   }
   
-  /**
-   * Method to view a specific university
-   * 
-   * @param university the University to be viewed
-   * @return a String representation of the University 
-   */
-  public String viewUniversity(University university)
-  {
-    return this.suc.viewUniversity(university);
-  }
+	/**
+	 * Method to view a specific university from searching
+	 * @param universityName  the name of the university to be viewed
+	 * @return a Unviersity
+	 */
+	public University viewUniversity(String universityName)
+	{
+		return sc.viewUniversity(universityName);
+	}
 
   /**
    * Method to save a university to the Student's current list of saved universities
