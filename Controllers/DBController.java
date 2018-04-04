@@ -27,7 +27,7 @@ public class DBController
 	public DBController()
 	{
 	}
-
+ 
 	/**
 	 * This method gets a user's data based on their username
 	 * 

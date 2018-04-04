@@ -11,9 +11,10 @@ import org.junit.Test;
 
 public class LoginControllerTest 
 {
-	private User user1,user2;
+	private User user1,user2,user3;
 	private LoginController loginCont;
 	private UsersController uCont;
+	private DBController dbCont;
 	
 	@Before
 	public void init()
@@ -24,6 +25,7 @@ public class LoginControllerTest
 		uCont.addUser("Nicholas", "Tawil", "ntawil001", "password", 'u', true, false);
 		uCont.addUser("New", "User", "nUser", "password", 'u', true, false);
 		uCont.deactivate(user2);
+		uCont.addUser("Michael", "Carroll", "mcarroll001", "password", 'a', true, true);
 	}
 	
 	@After
@@ -40,7 +42,7 @@ public class LoginControllerTest
 		Assert.assertNotNull(user1);
 	}
 	
-	@Test
+	@Test 
 	public void testLoginFails_invalidUsername()
 	{
 		user1 = loginCont.login("badUser", "password");
@@ -54,11 +56,10 @@ public class LoginControllerTest
 		Assert.assertNull(user1);
 	}
 	
-	@Test
+	@Test 
 	public void testLoginFails_deactivatedUser()
 	{
 		user1 = loginCont.login("nUser", "password");
 		Assert.assertNull(user1);
 	}
-
 }
