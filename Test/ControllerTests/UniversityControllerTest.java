@@ -83,7 +83,7 @@ public class UniversityControllerTest
 	}
 	
 	/**
-	 * Test method to test editing a university
+	 * Test method to test editing a university fails because invalid name
 	 */
 	@Test (expected = IllegalArgumentException.class)
 	public void testEditUniversityFails_invalidInput()
@@ -104,7 +104,7 @@ public class UniversityControllerTest
 	}
 	
 	/**
-	 * Test method to test adding a university
+	 * Test method to test adding a university fails because duplicate name
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddUniversityFailsForDuplicateName()
