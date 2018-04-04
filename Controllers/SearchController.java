@@ -48,28 +48,28 @@ public class SearchController
 	 * @param SATMathUpper the upper bound of the average SAT Math score of the students enrolled at this university
 	 * @param expensesLower  the lower bound of the cost to attend this university
 	 * @param expensesUpper  the upper bound of the cost to attend this university
+	 * @param percentFinancialAidLower  the lower bound of the percentage of enrolled students who receive financial aid
+	 * @param percentFinancialAidUpper  the upper bound of the percentage of enrolled students who receive financial aid
 	 * @param numApplicantsLower  the lower bound of the number of students that apply to this university
 	 * @param numApplicantsUpper  the upper bound of the number of students that apply to this university
+	 * @param percentAdmittedLower  the lower bound of the percent of applicants that are addmitted to this university
+	 * @param percentAdmittedUpper  the upper bound of the percent of applicants that are addmitted to this university
+	 * @param percentEnrolledLower  the lower bound of the percent of addmitted students that enroll at this university
+	 * @param percentEnrolledUpper  the upper bound of the percent of addmitted students that enroll at this university
 	 * @param academicScaleLower the lower bound of how this university rates academically 
 	 * @param academicScaleUpper the upper bound of how this university rates academically
 	 * @param socialScaleLower  the lower bound of how this university rates socially
 	 * @param socialScaleUpper  the upper bound of how this university rates socially
 	 * @param qualityOfLifeScaleLower  the lower bound of the quality of life at this university
 	 * @param qualityOfLifeScaleUpper  the upper bound of the quality of life at this university
-	 * @param percentFinancialAidLower  the lower bound of the percentage of enrolled students who recieve financial aid
-	 * @param percentFinancialAidUpper  the upper bound of the percentage of enrolled students who recieve financial aid
-	 * @param percentAdmittedLower  the lower bound of the percent of applicants that are addmitted to this university
-	 * @param percentAdmittedUpper  the upper bound of the percent of applicants that are addmitted to this university
-	 * @param percentEnrolledLower  the lower bound of the percent of addmitted students that enroll at this university
-	 * @param percentEnrolledUpper  the upper bound of the percent of addmitted students that enroll at this university
 	 * @param searchEmphases  areas of study
 	 * @return ArrayList<University>  found Universities
 	 */
 	public ArrayList<University> searchUniversities(String name, String state, String location, String control, int numStudentsLower, int numStudentsUpper, int percentFemaleLower, int percentFemaleUpper,
-			int SATVerbalLower, int SATVerbalUpper, int SATMathLower, int SATMathUpper, int expensesLower, int expensesUpper, int numApplicantsLower, int numApplicantsUpper,
+			int SATVerbalLower, int SATVerbalUpper, int SATMathLower, int SATMathUpper, int expensesLower, int expensesUpper, double percentFinancialAidLower, double percentFinancialAidUpper, 
+			int numApplicantsLower, int numApplicantsUpper, double percentAdmittedLower, double percentAdmittedUpper, double percentEnrolledLower, double percentEnrolledUpper, 
 			int academicScaleLower, int academicScaleUpper, int socialScaleLower, int socialScaleUpper, int qualityOfLifeScaleLower, int qualityOfLifeScaleUpper,  
-			double percentFinancialAidLower, double percentFinancialAidUpper, double percentAdmittedLower, double percentAdmittedUpper, double percentEnrolledLower, 
-			double percentEnrolledUpper, ArrayList<String> searchEmphases) throws IllegalArgumentException
+		  ArrayList<String> searchEmphases) throws IllegalArgumentException
 	{
 		if (name == null && state == null && location == null && control == null &&
 				numStudentsLower == 0 && numStudentsUpper == 0 && percentFemaleLower == 0 && percentFemaleUpper == 0 &&
@@ -92,112 +92,34 @@ public class SearchController
 
 		for (String u : universityNames)
 		{
-			int match = 0;
 			University currentUniversity = universities.get(u);
 
-			switch (match)
+			boolean matched = false;
+			if ((name == null || u.contains(name)) && (state == null || currentUniversity.getState().contains(state)) && (location == null || currentUniversity.getLocation().equals(location)) &&
+					(control == null || currentUniversity.getControl().equals(control)) && compareStats(currentUniversity.getNumStudents(), numStudentsLower, numStudentsUpper) == 1 &&
+					compareStats(currentUniversity.getPercentFemale(), percentFemaleLower, percentFemaleUpper) == 1 && compareStats(currentUniversity.getSATVerbal(), SATVerbalLower, SATVerbalUpper) == 1 &&
+					compareStats(currentUniversity.getSATMath(), SATMathLower, SATMathUpper) == 1 && compareStats(currentUniversity.getExpenses(), expensesLower, expensesUpper) == 1 &&
+					compareStats(currentUniversity.getPercentFinancialAid(), percentFinancialAidLower, percentFinancialAidUpper) == 1 && compareStats(currentUniversity.getNumApplicants(), numApplicantsLower, numApplicantsUpper) == 1 &&
+					compareStats(currentUniversity.getPercentAdmitted(), percentAdmittedLower, percentAdmittedUpper) == 1 && compareStats(currentUniversity.getPercentEnrolled(), percentEnrolledLower, percentEnrolledUpper) == 1 &&
+					compareStats(currentUniversity.getAcademicScale(), academicScaleLower, academicScaleUpper) == 1 && compareStats(currentUniversity.getSocialScale(), socialScaleLower, socialScaleUpper) == 1 && 
+					compareStats(currentUniversity.getQualityOfLifeScale(), qualityOfLifeScaleLower, qualityOfLifeScaleUpper) == 1)
 			{
-			//checks the name 
-			case 0:
-				if (name == null || u.contains(name))
-					match++; 
-				else break;
-				//checks the state
-			case 1:
-				if (state == null || currentUniversity.getState().contains(state))
-					match++; 
-				else break;
-				//checks the location 
-			case 2:
-				if (location == null || currentUniversity.getLocation().equals(location))
-					match++; 
-				else break;
-				//checks the control 
-			case 3:
-				if (control == null || currentUniversity.getControl().equals(control))
-					match++; 
-				else break;
-				//checks the number of students bound 
-			case 4:
-				match += compareStats(currentUniversity.getNumStudents(), numStudentsLower, numStudentsUpper);
-				if(match != 5)
-					break;
-				//checks the percent female bound 
-			case 5:
-				match += compareStats(currentUniversity.getPercentFemale(), percentFemaleLower, percentFemaleUpper);  
-				if(match != 6)
-					break;
-				//checks the SAT Verbal bound 
-			case 6:
-				match += compareStats(currentUniversity.getSATVerbal(), SATVerbalLower, SATVerbalUpper);
-				if(match != 7)
-					break;
-				//checks the SAT Math bound 
-			case 7:
-				match += compareStats(currentUniversity.getSATMath(), SATMathLower, SATMathUpper);
-				if(match != 8)
-					break;
-				//checks the expenses bound 
-			case 8:
-				match += compareStats(currentUniversity.getExpenses(), expensesLower, expensesUpper);
-				if(match != 9)
-					break;
-				//checks the percent financial aid bound 
-			case 9:
-				match += compareStats(currentUniversity.getPercentFinancialAid(), percentFinancialAidLower, percentFinancialAidUpper);
-				if(match != 10)
-					break;
-				//checks the number of applicants bound 
-			case 10:
-				match += compareStats(currentUniversity.getNumApplicants(), numApplicantsLower, numApplicantsUpper);
-				if(match != 11)
-					break;
-				//checks the percent admitted bound 
-			case 11:
-				match += compareStats(currentUniversity.getPercentAdmitted(), percentAdmittedLower, percentAdmittedUpper);
-				if(match != 12)
-					break;
-				//checks the percent enrolled bound 
-			case 12:
-				match += compareStats(currentUniversity.getPercentEnrolled(), percentEnrolledLower, percentEnrolledUpper);
-				if(match != 13)
-					break;
-				//checks the academic scale bound 
-			case 13:
-				match += compareStats(currentUniversity.getAcademicScale(), academicScaleLower, academicScaleUpper);
-				if(match != 14)
-					break;
-				//checks the social scale bound 
-			case 14:
-				match += compareStats(currentUniversity.getSocialScale(), socialScaleLower, socialScaleUpper);
-				if(match != 15)
-					break;
-				//checks the quality of life scale bound 
-			case 15:
-				match += compareStats(currentUniversity.getQualityOfLifeScale(), qualityOfLifeScaleLower, qualityOfLifeScaleUpper);
-				if(match != 16)
-					break;
-				//checks the emphases
-			case 16:
 				ArrayList<String> currentEmphases = currentUniversity.getEmphases();
-				boolean atleastOneFound = false;
-				if (searchEmphases == null || searchEmphases.isEmpty())
-					match++; 
+				if (searchEmphases == null)
+					matched = true; 
 				else
 				{
 					for (String emphasis : searchEmphases)
 					{
-						if (currentEmphases.contains(emphasis) && !atleastOneFound)
-							match++; 
+						if (currentEmphases.contains(emphasis))
+							matched = true; 
 					}
-				}   
-			}  
+				}	
+			}	  
 			//only if a university 'matches' all criteria will it be added
 			//if the user does not put anything in a field it counts as a match for that particular field
-			if (match == 17)
-			{
-				foundUniversities.add(currentUniversity);
-			}  
+			if (matched)
+				foundUniversities.add(currentUniversity);			  
 		}
 		return foundUniversities;
 	}
@@ -209,7 +131,7 @@ public class SearchController
 	 * @param upper  the upper bound entered in the search criteria
 	 * @return an int if the university matches the criteria
 	 */
-	public int compareStats(double currentSchoolValue, double lower, double upper)
+	private int compareStats(double currentSchoolValue, double lower, double upper)
 	{
 		if (lower == 0 && upper == 0)      
 			return 1;          
@@ -221,27 +143,6 @@ public class SearchController
 			return 1;
 		return 0;
 	}
-
-	/**
-	 * helper method for comparing search criteria to universities in the database
-	 * @param currentSchoolValue  the value associated with the current university you are comparing
-	 * @param lower  the lower bound entered in the search criteria
-	 * @param upper  the upper bound entered in the search criteria
-	 * @return an int if the university matches the criteria
-	 */ 
-	public int compareStats(int currentSchoolValue, int lower, int upper)
-	{
-		if (lower == 0 && upper == 0)      
-			return 1;          
-		else if (lower == 0 && upper >=  currentSchoolValue)    
-			return 1;           
-		else if (upper == 0 && lower <=  currentSchoolValue)
-			return 1; 
-		else if ((lower <= currentSchoolValue) && (upper >= currentSchoolValue))
-			return 1;
-		return 0;
-	}
-
 
 	/**
 	 * method to get the recommended universities based off of a university
@@ -390,30 +291,51 @@ public class SearchController
 		Collections.sort(sortedValues);
 		Iterator<Double> values = sortedValues.iterator();
 
-		ArrayList<String> recommendedUniversityNames = new ArrayList<String>();
-		while ((values.hasNext()) && (recommendedUniversityNames.size() < 5))
+		ArrayList<University> recommendedUniversities = new ArrayList<University>();
+		
+		//ArrayList<Double, University> recommendedUniversities = new HashMap<Double, University>();
+		
+		while (values.hasNext() && (recommendedUniversities.size() <5))
 		{
 			double temp = values.next();
 			for (String universityName : keys)
-			{
-				if (!(u.getName().equals(universityName)))
 				{
-					if (distanceMap.get(universityName) == temp)
+					if (!(u.getName().equals(universityName)))
 					{
-						recommendedUniversityNames.add(universityName);
-						distanceMap.put(universityName,  -1.0);
+						if (distanceMap.get(universityName) == temp)
+						{
+							recommendedUniversities.add(dbc.getUniversity(universityName));
+							distanceMap.put(universityName,  -1.0);
+						}
 					}
 				}
-			}
-		}
-
-		// creates University objects from sorted University names to return
-		ArrayList<University> recommendedUniversities = new ArrayList<University>();
-		for (String universityName : recommendedUniversityNames)
-		{
-			recommendedUniversities.add(dbc.getUniversity(universityName));
 		}
 		return recommendedUniversities;
+//		ArrayList<String> recommendedUniversityNames = new ArrayList<String>();
+		
+//		while ((values.hasNext()) && (recommendedUniversityNames.size() < 5))
+//		{
+//			double temp = values.next();
+//			for (String universityName : keys)
+//			{
+//				if (!(u.getName().equals(universityName)))
+//				{
+//					if (distanceMap.get(universityName) == temp)
+//					{
+//						recommendedUniversityNames.add(universityName);
+//						distanceMap.put(universityName,  -1.0);
+//					}
+//				}
+//			}
+//		}
+
+		// creates University objects from sorted University names to return
+//		ArrayList<University> recommendedUniversities = new ArrayList<University>();
+//		for (String universityName : recommendedUniversityNames)
+//		{
+//			recommendedUniversities.add(dbc.getUniversity(universityName));
+//		}
+//		return recommendedUniversities;
 	}
 
 	/**

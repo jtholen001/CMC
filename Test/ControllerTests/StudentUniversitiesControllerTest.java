@@ -54,7 +54,6 @@ public class StudentUniversitiesControllerTest {
 	 */
 	@Test
 	public void testViewSavedUniversities() {
-		//Assert.assertTrue("Viewing saved universities should match output", suc.viewSavedUniversities().equals(u1.getName() + ", " + u2.getName()));
 		student.addSchool(u1);
 		student.addSchool(u2);
 		HashMap<String, University> savedUniversities = suc.viewSavedUniversities();
@@ -66,7 +65,7 @@ public class StudentUniversitiesControllerTest {
 	@Test
 	public void testViewSavedUniversitiesWithNoUniversities() {
 		HashMap<String, University> savedUniversities = suc.viewSavedUniversities();
-		Assert.assertTrue("Saved Universities size should be 2", savedUniversities.size() == 0);
+		Assert.assertTrue("Saved Universities should be empty", savedUniversities.isEmpty());
 	}
 
 	/**
@@ -83,14 +82,17 @@ public class StudentUniversitiesControllerTest {
 	 */
 	@Test
 	public void testRemoveUniversity() {
-		Assert.assertTrue("Removing university should return 1", suc.removeUniversity(u1) == 0);
-		//Assert.assertTrue("Removing an already removed university should return -1", suc.removeUniversity(u1) == -1);
+		student.addSchool(u1);
+		dbc.saveEditedUser(student);
+		Assert.assertTrue("Removing university should return 1", suc.removeUniversity(u1) == 1);
 	}
 	
 	@Test
 	public void testRemoveUniversityAlreadyRemoved() {
-		Assert.assertTrue("Removing university should return 0", suc.removeUniversity(u1) == 0);
-		Assert.assertTrue("Removing an already removed university should return -1", suc.removeUniversity(u1) == -1);
+		student.addSchool(u1);
+		dbc.saveEditedUser(student);
+		Assert.assertTrue("Removing university should return 1", suc.removeUniversity(u1) == 1);
+		Assert.assertTrue("Removing an already removed university should return 0", suc.removeUniversity(u1) == 0);
 	}
 
 }
