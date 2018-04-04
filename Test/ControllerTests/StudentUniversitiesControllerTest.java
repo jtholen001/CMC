@@ -87,12 +87,9 @@ public class StudentUniversitiesControllerTest {
 		Assert.assertTrue("Removing university should return 1", suc.removeUniversity(u1) == 1);
 	}
 	
-	@Test
+	@Test (expected = IllegalArgumentException.class)
 	public void testRemoveUniversityAlreadyRemoved() {
-		student.addSchool(u1);
-		dbc.saveEditedUser(student);
-		Assert.assertTrue("Removing university should return 1", suc.removeUniversity(u1) == 1);
-		Assert.assertTrue("Removing an already removed university should return 0", suc.removeUniversity(u1) == 0);
+		suc.removeUniversity(u1);
 	}
 
 }

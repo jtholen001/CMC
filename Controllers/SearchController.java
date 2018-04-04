@@ -71,6 +71,7 @@ public class SearchController
 			int academicScaleLower, int academicScaleUpper, int socialScaleLower, int socialScaleUpper, int qualityOfLifeScaleLower, int qualityOfLifeScaleUpper,  
 		  ArrayList<String> searchEmphases) throws IllegalArgumentException
 	{
+		//If 1
 		if (name == null && state == null && location == null && control == null &&
 				numStudentsLower == 0 && numStudentsUpper == 0 && percentFemaleLower == 0 && percentFemaleUpper == 0 &&
 				SATVerbalLower == 0 && SATVerbalUpper==0 && SATMathLower == 0 && SATMathUpper == 0 && expensesLower == 0 &&
@@ -90,11 +91,13 @@ public class SearchController
 		//ArrayList to keep track of universities that match search criteria
 		ArrayList<University> foundUniversities = new ArrayList<University>();
 
+		//For 1
 		for (String u : universityNames)
 		{
 			University currentUniversity = universities.get(u);
 
 			boolean matched = false;
+			//If 2
 			if ((name == null || u.contains(name)) && (state == null || currentUniversity.getState().contains(state)) && (location == null || currentUniversity.getLocation().equals(location)) &&
 					(control == null || currentUniversity.getControl().equals(control)) && compareStats(currentUniversity.getNumStudents(), numStudentsLower, numStudentsUpper) == 1 &&
 					compareStats(currentUniversity.getPercentFemale(), percentFemaleLower, percentFemaleUpper) == 1 && compareStats(currentUniversity.getSATVerbal(), SATVerbalLower, SATVerbalUpper) == 1 &&
@@ -105,12 +108,15 @@ public class SearchController
 					compareStats(currentUniversity.getQualityOfLifeScale(), qualityOfLifeScaleLower, qualityOfLifeScaleUpper) == 1)
 			{
 				ArrayList<String> currentEmphases = currentUniversity.getEmphases();
+				//If 3
 				if (searchEmphases == null)
 					matched = true; 
 				else
 				{
+					//For 2
 					for (String emphasis : searchEmphases)
 					{
+						//If 4
 						if (currentEmphases.contains(emphasis))
 							matched = true; 
 					}
@@ -118,6 +124,7 @@ public class SearchController
 			}	  
 			//only if a university 'matches' all criteria will it be added
 			//if the user does not put anything in a field it counts as a match for that particular field
+			//If 5
 			if (matched)
 				foundUniversities.add(currentUniversity);			  
 		}
@@ -234,7 +241,7 @@ public class SearchController
 			if (!(u.getName().equals(universityName))) // University u can't recommend itself
 			{
 				// Compares state name of parameter University with universities in database
-				if (universityMap.get(universityName).getName().equals(u.getName()))
+				if (universityMap.get(universityName).getState().equals(u.getState()))
 					stateDistance = 0; // state names equal
 				else
 					stateDistance = 1; // state names not equal
@@ -276,7 +283,9 @@ public class SearchController
 					if (!universityMap.get(universityName).getEmphases().contains(emphasis))
 						count++; 	  
 				}
-				double emphasesDistance = count/emphases.size();
+				double emphasesDistance = 0;
+				if (!emphases.isEmpty())
+				 emphasesDistance = count/emphases.size();
 
 				double totalDistance = stateDistance + locationDistance + controlDistance + numStudentsDistance + percentFemaleDistance + SATVerbalDistance +
 						SATMathDistance + expensesDistance + percentFinancialAidDistance + numApplicantsDistance + percentAdmittedDistance + percentEnrolledDistance +
@@ -311,31 +320,6 @@ public class SearchController
 				}
 		}
 		return recommendedUniversities;
-//		ArrayList<String> recommendedUniversityNames = new ArrayList<String>();
-		
-//		while ((values.hasNext()) && (recommendedUniversityNames.size() < 5))
-//		{
-//			double temp = values.next();
-//			for (String universityName : keys)
-//			{
-//				if (!(u.getName().equals(universityName)))
-//				{
-//					if (distanceMap.get(universityName) == temp)
-//					{
-//						recommendedUniversityNames.add(universityName);
-//						distanceMap.put(universityName,  -1.0);
-//					}
-//				}
-//			}
-//		}
-
-		// creates University objects from sorted University names to return
-//		ArrayList<University> recommendedUniversities = new ArrayList<University>();
-//		for (String universityName : recommendedUniversityNames)
-//		{
-//			recommendedUniversities.add(dbc.getUniversity(universityName));
-//		}
-//		return recommendedUniversities;
 	}
 
 	/**

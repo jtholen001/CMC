@@ -113,6 +113,16 @@ public class SearchControllerTest {
 		Assert.assertTrue("TestUniversity1 should be found in the search", foundUniversities.contains(u1));
 		Assert.assertFalse("TestUniversity2 should NOT be found in the search", foundUniversities.contains(u6));
 	}
+
+	
+	@Test
+	public void testSearchUniversitiesSomeFieldsEmpty() {
+		ArrayList<String> emphases = new ArrayList<String>();
+		emphases.add("MATH");
+		ArrayList<University> foundUniversities = sc.searchUniversities("T", "MINNESOTA", "URBAN", "PRIVATE", 5000, 10000, 0, 0, 500, 0, 0, 750, 20000, 50000, 20, 60, 5000, 55000, 20, 40, 10, 30, 1, 5, 1, 4, 1, 3, null );
+		Assert.assertTrue("TestUniversity1 should be found in the search", foundUniversities.contains(u1));
+		Assert.assertFalse("TestUniversity2 should NOT be found in the search", foundUniversities.contains(u6));
+	}
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void testSearchUniversitiesNoFieldsFilled() {
@@ -121,13 +131,13 @@ public class SearchControllerTest {
 	
 	@Test  //TODO : fix this
 	public void testGetRecommendedUniversities() {
-		ArrayList<University> recommendedUniversities = sc.getRecommendedUniversities(u1);
-		
-		//Assert.assertTrue("TestUniversity2 should be recommended first", recommendedUniversities.get(0).equals(u2));
-		//Assert.assertTrue("TestUniversity3 should be recommended second", recommendedUniversities.get(1).equals(u3));
-		//Assert.assertTrue("TestUniversity4 should be recommended third", recommendedUniversities.get(2).equals(u4));
-		//Assert.assertTrue("TestUniversity5 should be recommended fourth", recommendedUniversities.get(3).equals(u5));
-		//Assert.assertTrue("TestUniversity6 should be recommended fifth", recommendedUniversities.get(4).equals(u6));
+		ArrayList<University> recommendedUniversities = sc.getRecommendedUniversities(u1);		
+		Assert.assertTrue("TestUniversity2 should be recommended first", recommendedUniversities.get(0).equals(u2));
+		Assert.assertTrue("TestUniversity3 should be recommended second", recommendedUniversities.get(1).equals(u3));
+		Assert.assertTrue("TestUniversity4 should be recommended third", recommendedUniversities.get(2).equals(u4));
+		Assert.assertTrue("TestUniversity5 should be recommended fourth", recommendedUniversities.get(3).equals(u5));
+		Assert.assertTrue("TestUniversity6 should be recommended fifth", recommendedUniversities.get(4).equals(u6));
+		sc.getRecommendedUniversities(dbc.getUniversity("UNIVERSITY OF RYAN 2"));
 		
 	}
 	

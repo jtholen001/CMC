@@ -14,11 +14,12 @@ import Test.InterfaceTests.*;
 				TestDBController.class,
 				UniversityControllerTest.class,
 				UsersControllerTest.class,
+				LoginControllerTest.class,
 				AdminTest.class,
 				StudentTest.class,
 				UniversityTest.class,
 				UserTest.class,
-				AdminInterfaceTest.class
+				
 })
 
 public class TestSuite {
