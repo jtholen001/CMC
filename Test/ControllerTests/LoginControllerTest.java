@@ -35,6 +35,9 @@ public class LoginControllerTest
 		uCont.deleteUser("nUser");
 	}
 	
+	/**
+	 * Test method to test successful login
+	 */
 	@Test
 	public void testLogin() 
 	{
@@ -42,6 +45,9 @@ public class LoginControllerTest
 		Assert.assertNotNull(user1);
 	}
 	
+	/**
+	 * Test method to test that login fails for an invalid username
+	 */
 	@Test 
 	public void testLoginFails_invalidUsername()
 	{
@@ -49,6 +55,9 @@ public class LoginControllerTest
 		Assert.assertNull(user1);
 	}
 	
+	/**
+	 * Test method to test that login fails for a correct username but an incorrect password
+	 */
 	@Test
 	public void testLoginFails_passwordDoesNotMatch()
 	{
@@ -56,6 +65,9 @@ public class LoginControllerTest
 		Assert.assertNull(user1);
 	}
 	
+	/**
+	 * Test method to test that login fails for a user that is deactivated
+	 */
 	@Test 
 	public void testLoginFails_deactivatedUser()
 	{
