@@ -8,7 +8,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
+ 
 public class LoginControllerTest 
 {
 	private User user1,user2,user3;
