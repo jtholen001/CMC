@@ -24,58 +24,129 @@ public class StudentTest {
 	@Before
 	public void init(){
 		dbc = new DBController();
-		ArrayList<University> savedUniversities = new ArrayList<University>();
-		savedUniversities.add(dbc.getUniversity("YALE UNIVERSITY"));
-		savedUniversities.add(dbc.getUniversity("BOSTON UNIVERSITY"));
-		student1 = new Student("Johnnie", "Miller", "jmill", "password1", 'a', true, false, savedUniversities);
+		student1 = new Student("Johnnie", "Miller", "jmill", "password1", 'u', true, false, new ArrayList<University>());
+		student1.addSchool(dbc.getUniversity("YALE"));
+		student1.addSchool(dbc.getUniversity("BOSTON UNIVERSITY"));
 	}
 	
 	/**
-	 * Test method for {@link entityClasses.Student#Student(java.lang.String, java.lang.String, java.lang.String, java.lang.String, char, boolean, boolean, java.util.ArrayList)}.
-	 */
+	 * Test that the default constructor works for correct/valid parameters
+	 */     
 	@Test
-	public void testStudent() {
-		fail("Not yet implemented");
+	public void constructorSucceedsForValidInput() {
+		Assert.assertTrue("Constructor should succeed for user as all fields meet constructor criteria",
+				new Student("John","Miller","jmill", "password0", 'u', true, false, new ArrayList<University>()) instanceof Student);
 	}
 
+	/**
+	 * Test that the default constructor fails for empty firstName parameter
+	 */   
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForInvalidFirstName() {
+		new Student("","Miller","jmill", "password0", 'u', true, false, new ArrayList<University>());
+	}
+
+	/**
+	 * Test that the default constructor fails for empty lastName parameter
+	 */   
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForInvalidLastName() {
+		new Student("John","","jmill", "password0", 'u', true, false, new ArrayList<University>());
+	}
+
+	/**
+	 * Test that the default constructor fails for empty username parameter
+	 */   
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForInvalidUsername() {
+		new Student("John","Miller","", "password0", 'u', true, false, new ArrayList<University>());
+	}
+
+	/**
+	 * Test that the default constructor fails for empty password parameter
+	 */   
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForInvalidPassword() {
+		new Student("John","Miller","jmill", "", 'u', true, false, new ArrayList<University>());
+	}
 	/**
 	 * Test method for {@link entityClasses.Student#getSavedSchools()}.
 	 */
 	@Test
 	public void testGetSavedSchools() {
-		fail("Not yet implemented");
+		ArrayList<University> expected = new ArrayList<University>();
+		expected.add(dbc.getUniversity("YALE"));
+		expected.add(dbc.getUniversity("BOSTON UNIVERSITY"));
+		Assert.assertTrue("GetSavedSchools should succeed for user as ArrayList<University> \"expected\" is equal to user's saved schools",
+				student1.getSavedSchools().equals(expected));
 	}
 
 	/**
-	 * Test method for {@link entityClasses.Student#getSpecificSchool(java.lang.String)}.
+	 * Test that method getSpecificSchool() works for a University that exists in user's saved schools
 	 */
 	@Test
-	public void testGetSpecificSchool() {
-		fail("Not yet implemented");
+	public void testGetSpecificSchoolThatExists() {
+		Assert.assertTrue("GetSpecificSchool should succeed for user as \"BOSTON UNIVERSITY\" is one of their saved schools",
+				student1.getSpecificSchool("BOSTON UNIVERSITY") instanceof University);
+	}
+	
+	/**
+	 * Test that method getSpecificSchool() fails for a University that does not exist in user's saved schools
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void testGetSpecificSchoolThatDoesNotExist() {
+		student1.getSpecificSchool("University of Carrot");
 	}
 
 	/**
-	 * Test method for {@link entityClasses.Student#addSchool(entityClasses.University)}.
+	 * Test that method addSchool() works for a unique University not saved to user already
 	 */
 	@Test
-	public void testAddSchool() {
-		fail("Not yet implemented");
+	public void testAddUniqueSchool() {
+		student1.addSchool(dbc.getUniversity("ARIZONA STATE"));
+		Assert.assertTrue("addSchool() should succeed as \"ARIZONA STATE\" is not yet one of the user's saved schools",
+				student1.getSpecificSchool("ARIZONA STATE") instanceof University);
 	}
-
+	
 	/**
-	 * Test method for {@link entityClasses.Student#removeUniversity(entityClasses.University)}.
+	 * Test that method addSchool() fails for an existing University already saved to user
 	 */
-	@Test
-	public void testRemoveUniversity() {
-		fail("Not yet implemented");
+	@Test (expected = IllegalArgumentException.class)
+	public void testAddExistingSchool() {
+		student1.addSchool(dbc.getUniversity("BOSTON UNIVERSITY"));
+	}
+	
+	/**
+	 * Test that method removeSchool() works for a University saved to user
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void testRemoveExistingUniversity() {
+		student1.removeUniversity(dbc.getUniversity("BOSTON UNIVERSITY"));
+		student1.getSpecificSchool("BOSTON UNIVERSITY");
+	}
+	
+	/**
+	 * Test that method removeSchool() fails for a University not saved to user
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void testRemoveNonExistingUniversity() {
+		student1.removeUniversity(dbc.getUniversity("ARIZONA STATE"));
 	}
 	
 	/**
 	 * Test method for {@link entityClasses.Student#toString()}.
 	 */
 	@Test
-	public void testToString() {
-		fail("Not yet implemented");
+	public void testToString(){
+		String expected = ("First name: " + student1.getFirstName() +
+				"\nLast name: " + student1.getLastName() +
+				"\nUsername: " + student1.getUsername() +
+				"\nType: " + student1.getType() +
+				"\nActivated: " + student1.getActivationStatus() +
+				"\nLogged in: " + student1.getLoggedInStatus() +
+				"\nUniversities: YALE, BOSTON UNIVERSITY");
+		System.out.println(student1.toString());
+		Assert.assertTrue("Should return toString matching toString in Student entity", student1.toString().equals(expected));
 	}
 	
 	/**
@@ -97,12 +168,15 @@ public class StudentTest {
 	}
 	
 	/**
-	 * Test that equals method fails at second if statement (studentnames not equal)
+	 * Test that equals method fails at second if statement (usernames not equal)
 	 */
 	@Test
-	public void testEqualsFalseDifferentStudentnames(){
-		student2 = new Student("Johnnie", "Miller", "mjill", "password1", 'a', true, false);
-		Assert.assertFalse("Should return false as objects have different studentnames", student1.equals(student2));
+	public void testEqualsFalseDifferentUsernames(){
+		student2 = new Student("Johnnie", "Miller", "mjill", "password1", 'u', true, false, new ArrayList<University>());
+		student2.addSchool(dbc.getUniversity("YALE"));
+		student2.addSchool(dbc.getUniversity("BOSTON UNIVERSITY"));
+		
+		Assert.assertFalse("Should return false as objects have different usernames", student1.equals(student2));
 	}
 	
 	/**
@@ -110,7 +184,10 @@ public class StudentTest {
 	 */
 	@Test
 	public void testEqualsFalseDifferentFirstNames(){
-		student2 = new Student("John", "Miller", "jmill", "password1", 'a', true, false);
+		student2 = new Student("John", "Miller", "jmill", "password1", 'u', true, false, new ArrayList<University>());
+		student2.addSchool(dbc.getUniversity("YALE"));
+		student2.addSchool(dbc.getUniversity("BOSTON UNIVERSITY"));
+		
 		Assert.assertFalse("Should return false as objects have different firstNames", student1.equals(student2));
 	}
 	
@@ -119,7 +196,9 @@ public class StudentTest {
 	 */
 	@Test
 	public void testEqualsFalseDifferentLastNames(){
-		student2 = new Student("John", "Killer", "jmill", "password1", 'a', true, false);
+		student2 = new Student("John", "Killer", "jmill", "password1", 'u', true, false, new ArrayList<University>());
+		student2.addSchool(dbc.getUniversity("YALE"));
+		student2.addSchool(dbc.getUniversity("BOSTON UNIVERSITY"));
 		Assert.assertFalse("Should return false as objects have different lastNames", student1.equals(student2));
 	}
 	
@@ -128,7 +207,10 @@ public class StudentTest {
 	 */
 	@Test
 	public void testEqualsFalseDifferentPassword(){
-		student2 = new Student("John", "Miller", "jmill", "password0", 'a', true, false);
+		student2 = new Student("John", "Miller", "jmill", "password0", 'u', true, false, new ArrayList<University>());
+		student2.addSchool(dbc.getUniversity("YALE"));
+		student2.addSchool(dbc.getUniversity("BOSTON UNIVERSITY"));
+		
 		Assert.assertFalse("Should return false as objects have different passwords", student1.equals(student2));
 	}
 	
@@ -137,8 +219,23 @@ public class StudentTest {
 	 */
 	@Test
 	public void testEqualsFalseDifferentType(){
-		student2 = new Student("John", "Miller", "jmill", "password1", 'u', true, false);
+		student2 = new Student("John", "Miller", "jmill", "password1", 'a', true, false, new ArrayList<University>());
+		student2.addSchool(dbc.getUniversity("YALE"));
+		student2.addSchool(dbc.getUniversity("BOSTON UNIVERSITY"));
+		
 		Assert.assertFalse("Should return false as objects have different types", student1.equals(student2));
+	}
+	
+	/**
+	 * Test that equals method fails at seventh if statement (saved schools not equal)
+	 */
+	@Test
+	public void testEqualsFalseDifferentSavedSchools(){
+		student2 = new Student("John", "Miller", "jmill", "password1", 'a', true, false, new ArrayList<University>());
+		student2.addSchool(dbc.getUniversity("ARIZONA STATE"));
+		student2.addSchool(dbc.getUniversity("BOSTON UNIVERSITY"));
+		
+		Assert.assertFalse("Should return false as objects have different saved schools", student1.equals(student2));
 	}
 
 }

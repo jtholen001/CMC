@@ -56,6 +56,14 @@ public class UserTest{
 	public void constructorFailsForInvalidPassword() {
 		new User("John","Miller", "jmill", "", 'u', true, false);
 	}
+	
+	/**
+	 * Test that the default constructor fails for invalid type
+	 */   
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForInvalidType() {
+		new User("John","Miller", "jmill", "password0", 'q', true, false);
+	}
 
 	/**
 	 * Test that the getUser() method returns expected value
@@ -271,7 +279,7 @@ public class UserTest{
 	 */
 	@Test
 	public void testEqualsFalseDifferentLastNames(){
-		user2 = new User("John", "Killer", "jmill", "password1", 'a', true, false);
+		user2 = new User("Johnnie", "Killer", "jmill", "password1", 'a', true, false);
 		Assert.assertFalse("Should return false as objects have different lastNames", user1.equals(user2));
 	}
 	
@@ -280,7 +288,7 @@ public class UserTest{
 	 */
 	@Test
 	public void testEqualsFalseDifferentPassword(){
-		user2 = new User("John", "Miller", "jmill", "password0", 'a', true, false);
+		user2 = new User("Johnnie", "Miller", "jmill", "password0", 'a', true, false);
 		Assert.assertFalse("Should return false as objects have different passwords", user1.equals(user2));
 	}
 	
@@ -289,7 +297,7 @@ public class UserTest{
 	 */
 	@Test
 	public void testEqualsFalseDifferentType(){
-		user2 = new User("John", "Miller", "jmill", "password1", 'u', true, false);
+		user2 = new User("Johnnie", "Miller", "jmill", "password1", 'u', true, false);
 		Assert.assertFalse("Should return false as objects have different types", user1.equals(user2));
 	}
 }

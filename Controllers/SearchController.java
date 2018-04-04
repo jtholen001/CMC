@@ -496,9 +496,11 @@ public class SearchController
 	 */
 	public int saveUniversity(Student student, University newUniversity)
 	{
-		int success = student.addSchool(newUniversity);
-		if (success == 1)
+		try {
+			student.addSchool(newUniversity);
 			return dbc.saveEditedUser(student);
-		return success;
+		}
+		catch (IllegalArgumentException iae) {}
+		return -1;
 	}
 }
