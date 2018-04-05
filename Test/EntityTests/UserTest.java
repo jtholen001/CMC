@@ -4,9 +4,11 @@ import entityClasses.*;
 import org.junit.*;
 
 /**
- * for JUnit testing of ProfileController.java
+ * for JUnit testing of User.java
+ * 
+ * @author Michael Carroll
+ * @version 04/04/18
  */
-
 public class UserTest{
 	private User user1, user2;
 

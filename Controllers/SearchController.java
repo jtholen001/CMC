@@ -65,8 +65,8 @@ public class SearchController
 	 * @param searchEmphases  areas of study
 	 * @return ArrayList<University>  found Universities
 	 */
-	public ArrayList<University> searchUniversities(String name, String state, String location, String control, int numStudentsLower, int numStudentsUpper, int percentFemaleLower, int percentFemaleUpper,
-			int SATVerbalLower, int SATVerbalUpper, int SATMathLower, int SATMathUpper, int expensesLower, int expensesUpper, double percentFinancialAidLower, double percentFinancialAidUpper, 
+	public ArrayList<University> searchUniversities(String name, String state, String location, String control, int numStudentsLower, int numStudentsUpper, double percentFemaleLower, double percentFemaleUpper,
+			double SATVerbalLower, double SATVerbalUpper, double SATMathLower, double SATMathUpper, double expensesLower, double expensesUpper, double percentFinancialAidLower, double percentFinancialAidUpper, 
 			int numApplicantsLower, int numApplicantsUpper, double percentAdmittedLower, double percentAdmittedUpper, double percentEnrolledLower, double percentEnrolledUpper, 
 			int academicScaleLower, int academicScaleUpper, int socialScaleLower, int socialScaleUpper, int qualityOfLifeScaleLower, int qualityOfLifeScaleUpper,  
 		  ArrayList<String> searchEmphases) throws IllegalArgumentException

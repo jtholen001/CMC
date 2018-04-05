@@ -64,8 +64,9 @@ public class UserInterface
    * @param user the user to log out
    * @return true if successful log out
    */
+  /*
   public boolean logout(User user)
   {
     return lc.logout(user);
-  }
+  } */
 }

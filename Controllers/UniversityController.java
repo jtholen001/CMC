@@ -67,7 +67,7 @@ public class UniversityController
   public int editUniversity(University university, String state, String location, String control, int numStudents, double percentFemale, double SATVerbal, double SATMath,
          double expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
                              int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
-  {    
+  { 
     university.setState(state);
     university.setLocation(location);
     university.setControl(control);
@@ -115,9 +115,14 @@ public class UniversityController
          double expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
                              int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {    
-    return dbCont.addUniversity(new University(name, state, location, control, numStudents, percentFemale, SATVerbal, SATMath, 
+    try{
+    	return dbCont.addUniversity(new University(name, state, location, control, numStudents, percentFemale, SATVerbal, SATMath, 
                                         expenses, percentFinancialAid, numApplicants, percentAdmitted, percentEnrolled, 
                                         academicScale, socialScale, qualityOfLifeScale, emphases));
+    }
+    catch(IllegalArgumentException illegalArg) {
+    	return -1;
+    }
   }
   
   /**
@@ -128,6 +133,11 @@ public class UniversityController
    */
   public int deleteUniversity(University university)
   {
-   return dbCont.deleteUniversity(university);
+   try{
+	   return dbCont.deleteUniversity(university);
+   }
+   catch(IllegalArgumentException illegalArg) {
+	   return -1;
+   }
   }
 }

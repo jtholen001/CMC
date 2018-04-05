@@ -134,15 +134,16 @@ public class University
 		  throw new IllegalArgumentException("Control cannot be empty");
 	  if(emphases == null)
 		  throw new IllegalArgumentException("emphases cannot be empty");
-	  if(percentFemale < -1 || percentFemale > 100 || percentAdmitted < -1.0 || percentAdmitted > 100 || percentFinancialAid < -1 || percentFinancialAid > 100 ||
-			  percentEnrolled < -1 || percentEnrolled > 100)
+	  if(!(percentFemale >= -1 && percentFemale <= 100) || !(percentAdmitted >= -1.0 && percentAdmitted <= 100) ||
+			  !(percentFinancialAid >= -1 && percentFinancialAid <= 100) ||
+			  !(percentEnrolled >= -1 && percentEnrolled <= 100))
 		  throw new IllegalArgumentException("Percentage cannot be less than negative one or greater than 100");
 	  if(numStudents < -1)
-		  throw new IllegalArgumentException("Number of students cannot be less than 0");
-	  if(SATVerbal < -1 || SATMath < -1 || SATVerbal > 800 || SATMath > 800)
+		  throw new IllegalArgumentException("Number of students cannot be less than -1");
+	  if((SATVerbal != -1) && !(SATVerbal >=100 && SATVerbal <= 800) || (SATMath != -1) && !(SATMath >=100 && SATMath <= 800))
 		  throw new IllegalArgumentException("SAT scores cannot be less than negative one or greater than 800");
-	  if(academicScale < -1 || socialScale < -1 || qualityOfLifeScale < -1 ||
-			  academicScale > 5 || socialScale > 5 || qualityOfLifeScale > 5)
+	  if(!(academicScale >= -1 && academicScale <= 5 && academicScale != 0) || !(socialScale >= -1 &&
+			  socialScale <= 5 && socialScale != 0) || !(qualityOfLifeScale >= -1 && qualityOfLifeScale <= 5 && qualityOfLifeScale != 0))
 		  throw new IllegalArgumentException("scales must be between negative 1 and five");
    this.name = name.toUpperCase();
    this.state = state.toUpperCase();
@@ -389,8 +390,8 @@ public class University
    */
   public void setNumStudents(int newNumStudents) throws IllegalArgumentException
   {
-	  if(newNumStudents < 0)
-		  throw new IllegalArgumentException("Number of students cannot be less than zero");
+	  if(newNumStudents < -1)
+		  throw new IllegalArgumentException("Number of students cannot be less than -1");
 	 else
 		 this.numStudents = newNumStudents;
   }
