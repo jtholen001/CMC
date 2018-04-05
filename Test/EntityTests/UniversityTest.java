@@ -746,60 +746,177 @@ public class UniversityTest
 	}
 	
 	@Test
-	public void setAcademicScaleCorrectlyChangesUniversityAcademicScale()
+	public void setAcademicScaleCorrectlyChangesUniversityAcademicScale_4()
 	{
 		testingUniversity.setAcademicScale(4);
 		Assert.assertTrue("AcademicScale for University1 is now 4", testingUniversity.getAcademicScale() == 4);
 	}
 	
+	@Test
+	public void setAcademicScaleCorrectlyChangesUniversityAcademicScale_5()
+	{
+		testingUniversity.setAcademicScale(5);
+		Assert.assertTrue("AcademicScale for University1 is now 5", testingUniversity.getAcademicScale() == 5);
+	}
+	
+	@Test
+	public void setAcademicScaleCorrectlyChangesUniversityAcademicScale_1()
+	{
+		testingUniversity.setAcademicScale(1);
+		Assert.assertTrue("AcademicScale for University1 is now 1", testingUniversity.getAcademicScale() == 1);
+	}
+	
+	@Test
+	public void setAcademicScaleCorrectlyChangesUniversityAcademicScale_neg1()
+	{
+		testingUniversity.setAcademicScale(-1);
+		Assert.assertTrue("AcademicScale for University1 is now -1", testingUniversity.getAcademicScale() == -1);
+	}
+	
 	@Test (expected = IllegalArgumentException.class)
-	public void setAcademicScaleFailsForInvalidInputLessthanNegOne()
+	public void setAcademicScaleFailsForInvalidInputLessthanNegOne_neg2()
 	{
 		testingUniversity.setAcademicScale(-2);	
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void setAcademicScaleFailsForInvalidInputGreaterthanFive()
+	public void setAcademicScaleFailsForInvalidInputLessthanNegOne_neg20()
+	{
+		testingUniversity.setAcademicScale(-20);	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setAcademicScaleFailsForInvalidInput_0()
+	{
+		testingUniversity.setAcademicScale(0);	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setAcademicScaleFailsForInvalidInputGreaterthanFive_6()
 	{
 		testingUniversity.setAcademicScale(6);	
 	}
 	
-	@Test
-	public void setSocialCorrectlyChangesUniversitySocialScale()
+	@Test (expected = IllegalArgumentException.class)
+	public void setAcademicScaleFailsForInvalidInputGreaterthanFive_20()
 	{
-		testingUniversity.setSocialScale(3);
-		Assert.assertTrue("SocialScale for University1 is now 3", testingUniversity.getSocialScale() == 3);
+		testingUniversity.setAcademicScale(20);	
+	}
+	
+	@Test
+	public void setSocialCorrectlyChangesUniversitySocialScale_4()
+	{
+		testingUniversity.setSocialScale(4);
+		Assert.assertTrue("SocialScale for University1 is now 4", testingUniversity.getSocialScale() == 4);
+	}
+	
+	@Test
+	public void setSocialCorrectlyChangesUniversitySocialScale_5()
+	{
+		testingUniversity.setSocialScale(5);
+		Assert.assertTrue("SocialScale for University1 is now 5", testingUniversity.getSocialScale() == 5);
+	}
+	
+	@Test
+	public void setSocialCorrectlyChangesUniversitySocialScale_1()
+	{
+		testingUniversity.setSocialScale(1);
+		Assert.assertTrue("SocialScale for University1 is now 1", testingUniversity.getSocialScale() == 1);
+	}
+	
+	@Test
+	public void setSocialCorrectlyChangesUniversitySocialScale_neg1()
+	{
+		testingUniversity.setSocialScale(-1);
+		Assert.assertTrue("SocialScale for University1 is now -1", testingUniversity.getSocialScale() == -1);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void setSocialScaleFailsForInvalidInputLessthanNegOne()
+	public void setSocialScaleFailsForInvalidInputLessthanNegOne_neg2()
 	{
 		testingUniversity.setSocialScale(-2);	
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void setSocialScaleFailsForInvalidInputGreaterthanFive()
+	public void setSocialScaleFailsForInvalidInputLessthanNegOne_neg20()
+	{
+		testingUniversity.setSocialScale(-20);	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setSocialScaleFailsForInvalidInput_0()
+	{
+		testingUniversity.setSocialScale(0);	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setSocialScaleFailsForInvalidInputGreaterthanFive_6()
 	{
 		testingUniversity.setSocialScale(6);	
 	}
 	
-	@Test
-	public void setQualityOfLifeScaleCorrectlyChangesUniversityQualityOfLifeScale()
+	@Test (expected = IllegalArgumentException.class)
+	public void setSocialScaleFailsForInvalidInputGreaterthanFive_20()
 	{
-		testingUniversity.setQualityOfLifeScale(3);
-		Assert.assertTrue("qualityOfLifeScale for University1 is now 3", testingUniversity.getQualityOfLifeScale() == 3);
+		testingUniversity.setSocialScale(20);	
+	}
+	
+	@Test
+	public void setQualityOfLifeScaleCorrectlyChangesUniversityQualityOfLifeScale_4()
+	{
+		testingUniversity.setQualityOfLifeScale(4);
+		Assert.assertTrue("qualityOfLifeScale for University1 is now 4", testingUniversity.getQualityOfLifeScale() == 4);
+	}
+	
+	@Test
+	public void setQualityOfLifeScaleCorrectlyChangesUniversityQualityOfLifeScale_5()
+	{
+		testingUniversity.setQualityOfLifeScale(5);
+		Assert.assertTrue("qualityOfLifeScale for University1 is now 5", testingUniversity.getQualityOfLifeScale() == 5);
+	}
+	
+	@Test
+	public void setQualityOfLifeScaleCorrectlyChangesUniversityQualityOfLifeScale_1()
+	{
+		testingUniversity.setQualityOfLifeScale(1);
+		Assert.assertTrue("qualityOfLifeScale for University1 is now 1", testingUniversity.getQualityOfLifeScale() == 1);
+	}
+	
+	@Test
+	public void setQualityOfLifeScaleCorrectlyChangesUniversityQualityOfLifeScale_neg1()
+	{
+		testingUniversity.setQualityOfLifeScale(-1);
+		Assert.assertTrue("qualityOfLifeScale for University1 is now -1", testingUniversity.getQualityOfLifeScale() == -1);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void setQualityOfLIfeScaleFailsForInvalidInputLessthanNegOne()
+	public void setQualityOfLIfeScaleFailsForInvalidInput_0()
+	{
+		testingUniversity.setQualityOfLifeScale(0);	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setQualityOfLIfeScaleFailsForInvalidInputLessthanNegOne_neg2()
 	{
 		testingUniversity.setQualityOfLifeScale(-2);	
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void setQualityOfLifeScaleFailsForInvalidInputGreaterthanFive()
+	public void setQualityOfLIfeScaleFailsForInvalidInputLessthanNegOne_neg20()
+	{
+		testingUniversity.setQualityOfLifeScale(-20);	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setQualityOfLifeScaleFailsForInvalidInputGreaterthanFive_6()
 	{
 		testingUniversity.setQualityOfLifeScale(6);	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setQualityOfLifeScaleFailsForInvalidInputGreaterthanFive_20()
+	{
+		testingUniversity.setQualityOfLifeScale(20);	
 	}
 	
 	@Test
