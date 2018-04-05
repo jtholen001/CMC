@@ -420,156 +420,323 @@ public class UniversityTest
 	}
 	
 	@Test
-	public void setNumStudentsCorrectlyChangesUniversityNumStudents()
+	public void setNumStudentsCorrectlyChangesUniversityNumStudents_20()
 	{
-		testingUniversity.setNumStudents(50);
-		Assert.assertTrue("numStudents for University1 is now 50", testingUniversity.getNumStudents() == 50);
+		testingUniversity.setNumStudents(20);
+		Assert.assertTrue("numStudents for University1 is now 20", testingUniversity.getNumStudents() == 20);
+	}
+	
+	@Test
+	public void setNumStudentsCorrectlyChangesUniversityNumStudents_neg1()
+	{
+		testingUniversity.setNumStudents(-1);
+		Assert.assertTrue("numStudents for University1 is now -1", testingUniversity.getNumStudents() == -1);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void setNumStudentsFailsForInvalidInput()
+	public void setNumStudentsFailsForInvalidInput_neg2()
 	{
 		testingUniversity.setNumStudents(-2);	
 	}
 	
-	@Test
-	public void setPercentFemaleCorrectlyChangesUniversityPercentFemale()
+	@Test (expected = IllegalArgumentException.class)
+	public void setNumStudentsFailsForInvalidInput_neg20()
 	{
-		testingUniversity.setPercentFemale(10);
-		Assert.assertTrue("percentFemale for University1 is now 10%", testingUniversity.getPercentFemale() == 10);
+		testingUniversity.setNumStudents(-20);	
+	}
+	
+	@Test
+	public void setPercentFemaleCorrectlyChangesUniversityPercentFemale_20()
+	{
+		testingUniversity.setPercentFemale(20);
+		Assert.assertTrue("percentFemale for University1 is now 20%", testingUniversity.getPercentFemale() == 20);
+	}
+	
+	@Test
+	public void setPercentFemaleCorrectlyChangesUniversityPercentFemale_neg1()
+	{
+		testingUniversity.setPercentFemale(-1);
+		Assert.assertTrue("percentFemale for University1 is now -1%", testingUniversity.getPercentFemale() == -1);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void setPercentFemaleFailsForInvalidInputLessthanNegOne()
+	public void setPercentFemaleFailsForInvalidInputLessthanNegOne_neg2()
 	{
 		testingUniversity.setPercentFemale(-2);	
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void setPercentFemaleFailsForInvalidInputGreaterthanOneHundred()
+	public void setPercentFemaleFailsForInvalidInputLessthanNegOne_neg20()
 	{
-		testingUniversity.setPercentFemale(110);	
+		testingUniversity.setPercentFemale(-20);	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setPercentFemaleFailsForInvalidInputGreaterthanOneHundred_120()
+	{
+		testingUniversity.setPercentFemale(120);	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setPercentFemaleFailsForInvalidInputGreaterthanOneHundred_101()
+	{
+		testingUniversity.setPercentFemale(101);	
 	}
 	
 	@Test
-	public void setSATVerbalCorrectlyChangesUniversitySATVerbal()
+	public void setSATVerbalCorrectlyChangesUniversitySATVerbal_750()
 	{
 		testingUniversity.setSATVerbal(750);
 		Assert.assertTrue("SATVerbal for University1 is now 750", testingUniversity.getSATVerbal() == 750);
 	}
 	
+	@Test
+	public void setSATVerbalCorrectlyChangesUniversitySATVerbal_800()
+	{
+		testingUniversity.setSATVerbal(800);
+		Assert.assertTrue("SATVerbal for University1 is now 800", testingUniversity.getSATVerbal() == 800);
+	}
+	
+	@Test
+	public void setSATVerbalCorrectlyChangesUniversitySATVerbal_100()
+	{
+		testingUniversity.setSATVerbal(100);
+		Assert.assertTrue("SATVerbal for University1 is now 100", testingUniversity.getSATVerbal() == 100);
+	}
+	
 	@Test (expected = IllegalArgumentException.class)
-	public void setSATVerbalFailsForInvalidInputLessthanNegOne()
+	public void setSATVerbalFailsForInvalidInputLessthanNegOne_neg2()
 	{
 		testingUniversity.setSATVerbal(-2);	
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void setSATVerbalFailsForInvalidInputGreaterthanEightHundred()
+	public void setSATVerbalFailsForInvalidInputLessthanNegOne_neg20()
+	{
+		testingUniversity.setSATVerbal(-20);	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setSATVerbalFailsForInvalidInputGreaterthanEightHundred_801()
 	{
 		testingUniversity.setSATVerbal(801);	
 	}
 	
-	@Test
-	public void setSATMathCorrectlyChangesUniversitySATMath()
+	@Test (expected = IllegalArgumentException.class)
+	public void setSATVerbalFailsForInvalidInputGreaterthanEightHundred_820()
 	{
-		testingUniversity.setSATMath(200);
-		Assert.assertTrue("SATMath for University1 is now 200", testingUniversity.getSATMath() == 200);
+		testingUniversity.setSATVerbal(820);	
+	}
+	
+	@Test
+	public void setSATMathCorrectlyChangesUniversitySATMath_750()
+	{
+		testingUniversity.setSATMath(750);
+		Assert.assertTrue("SATMath for University1 is now 750", testingUniversity.getSATMath() == 750);
+	}
+	
+	@Test
+	public void setSATMathCorrectlyChangesUniversitySATMath_800()
+	{
+		testingUniversity.setSATMath(800);
+		Assert.assertTrue("SATMath for University1 is now 800", testingUniversity.getSATMath() == 800);
+	}
+	
+	@Test
+	public void setSATMathCorrectlyChangesUniversitySATMath_100()
+	{
+		testingUniversity.setSATMath(100);
+		Assert.assertTrue("SATMath for University1 is now 100", testingUniversity.getSATMath() == 100);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void setSATMathFailsForInvalidInputLessthanNegOne()
+	public void setSATMathFailsForInvalidInputLessthanNegOne_neg2()
 	{
 		testingUniversity.setSATMath(-2);	
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void setSATMathFailsForInvalidInputGreaterthanEightHundred()
+	public void setSATMathFailsForInvalidInputLessthanNegOne_neg20()
+	{
+		testingUniversity.setSATMath(-20);	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setSATMathFailsForInvalidInputGreaterthanEightHundred_801()
 	{
 		testingUniversity.setSATMath(801);	
 	}
 	
-	@Test
-	public void setExpensesCorrectlyChangesUniversityExpenses()
+	@Test (expected = IllegalArgumentException.class)
+	public void setSATMathFailsForInvalidInputGreaterthanEightHundred_820()
 	{
-		testingUniversity.setExpenses(10);
-		Assert.assertTrue("Expenses for University1 is now $10", testingUniversity.getExpenses() == 10);
+		testingUniversity.setSATMath(820);	
+	}
+	
+	@Test
+	public void setExpensesCorrectlyChangesUniversityExpenses_20()
+	{
+		testingUniversity.setExpenses(20);
+		Assert.assertTrue("Expenses for University1 is now $20", testingUniversity.getExpenses() == 20);
+	}
+	
+	@Test
+	public void setExpensesCorrectlyChangesUniversityExpenses_neg1()
+	{
+		testingUniversity.setExpenses(-1);
+		Assert.assertTrue("Expenses for University1 is now -$1", testingUniversity.getExpenses() == -1);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void setExpensesFailsForInvalidInputLessthanNegOne()
+	public void setExpensesFailsForInvalidInputLessthanNegOne_neg2()
 	{
 		testingUniversity.setExpenses(-2);	
 	}
 	
+	@Test (expected = IllegalArgumentException.class)
+	public void setExpensesFailsForInvalidInputLessthanNegOne_neg20()
+	{
+		testingUniversity.setExpenses(-20);	
+	}
+	
 	@Test
-	public void setPercentFinancialAidSucceedsForValidParameter()
+	public void setPercentFinancialAidSucceedsForValidParameter_20()
 	{
 		testingUniversity.setPercentFinancialAid(20);
 		Assert.assertTrue("New percentFinancialAid should be 20%: ", testingUniversity.getPercentFinancialAid() == 20);
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
-	public void setPercentFinancialAidFailsForPercentLessThanNeg1()
+	@Test
+	public void setPercentFinancialAidSucceedsForValidParameter_neg1()
 	{
-		testingUniversity.setPercentFinancialAid(-5);
+		testingUniversity.setPercentFinancialAid(-1);
+		Assert.assertTrue("New percentFinancialAid should be -1%: ", testingUniversity.getPercentFinancialAid() == -1);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void setPercentFinancialAidFailsForPercentGreaterThanOneHundred()
+	public void setPercentFinancialAidFailsForPercentLessThanNeg1_neg2()
+	{
+		testingUniversity.setPercentFinancialAid(-2);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setPercentFinancialAidFailsForPercentLessThanNeg1_neg20()
+	{
+		testingUniversity.setPercentFinancialAid(-20);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setPercentFinancialAidFailsForPercentGreaterThanOneHundred_101()
 	{
 		testingUniversity.setPercentFinancialAid(101);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setPercentFinancialAidFailsForPercentGreaterThanOneHundred_120()
+	{
+		testingUniversity.setPercentFinancialAid(120);
 	}
 	
 	@Test
 	public void setNumApplicantsCorrectlyChangesUniversityNumApplicants()
 	{
-		testingUniversity.setNumApplicants(10);
-		Assert.assertTrue("NumApplicants for University1 is now 10", testingUniversity.getNumApplicants() == 10);
+		testingUniversity.setNumApplicants(20);
+		Assert.assertTrue("NumApplicants for University1 is now 20", testingUniversity.getNumApplicants() == 20);
+	}
+	
+	@Test
+	public void setNumApplicantsCorrectlyChangesUniversityNumApplicants_neg1()
+	{
+		testingUniversity.setNumApplicants(-1);
+		Assert.assertTrue("NumApplicants for University1 is now -1", testingUniversity.getNumApplicants() == -1);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void setNumApplicantsFailsForInvalidInputLessthanNegOne()
+	public void setNumApplicantsFailsForInvalidInputLessthanNegOne_neg2()
 	{
 		testingUniversity.setNumApplicants(-2);	
 	}
 	
-	@Test
-	public void setPercentAdmittedCorrectlyChangesUniversityPercentAdmitted()
+	@Test (expected = IllegalArgumentException.class)
+	public void setNumApplicantsFailsForInvalidInputLessthanNegOne_neg20()
 	{
-		testingUniversity.setPercentAdmitted(88);
-		Assert.assertTrue("PercentAdmitted for University1 is now 88", testingUniversity.getPercentAdmitted() == 88);
+		testingUniversity.setNumApplicants(-20);	
+	}
+	
+	@Test
+	public void setPercentAdmittedCorrectlyChangesUniversityPercentAdmitted_20()
+	{
+		testingUniversity.setPercentAdmitted(20);
+		Assert.assertTrue("PercentAdmitted for University1 is now 20", testingUniversity.getPercentAdmitted() == 20);
+	}
+	
+	@Test
+	public void setPercentAdmittedCorrectlyChangesUniversityPercentAdmitted_neg1()
+	{
+		testingUniversity.setPercentAdmitted(-1);
+		Assert.assertTrue("PercentAdmitted for University1 is now -1", testingUniversity.getPercentAdmitted() == -1);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void setPercentAdmittedFailsForInvalidInputLessthanNegOne()
+	public void setPercentAdmittedFailsForInvalidInputLessthanNegOne_neg2()
 	{
 		testingUniversity.setPercentAdmitted(-2);	
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void setPercentAdmittedFailsForInvalidInputGreaterthanOneHundred()
+	public void setPercentAdmittedFailsForInvalidInputLessthanNegOne_neg20()
+	{
+		testingUniversity.setPercentAdmitted(-20);	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setPercentAdmittedFailsForInvalidInputGreaterthanOneHundred_101()
 	{
 		testingUniversity.setPercentAdmitted(101);	
 	}
 	
-	@Test
-	public void setPercentEnrolledCorrectlyChangesUniversityPercentEnrolled()
+	@Test (expected = IllegalArgumentException.class)
+	public void setPercentAdmittedFailsForInvalidInputGreaterthanOneHundred_120()
 	{
-		testingUniversity.setPercentEnrolled(40);
-		Assert.assertTrue("PercentEnrolled for University1 is now 40", testingUniversity.getPercentEnrolled() == 40);
+		testingUniversity.setPercentAdmitted(120);	
+	}
+	
+	@Test
+	public void setPercentEnrolledCorrectlyChangesUniversityPercentEnrolled_20()
+	{
+		testingUniversity.setPercentEnrolled(20);
+		Assert.assertTrue("PercentEnrolled for University1 is now 20", testingUniversity.getPercentEnrolled() == 20);
+	}
+	
+	@Test
+	public void setPercentEnrolledCorrectlyChangesUniversityPercentEnrolled_neg1()
+	{
+		testingUniversity.setPercentEnrolled(-1);
+		Assert.assertTrue("PercentEnrolled for University1 is now -1", testingUniversity.getPercentEnrolled() == -1);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void setPercentEnrolledFailsForInvalidInputLessthanNegOne()
+	public void setPercentEnrolledFailsForInvalidInputLessthanNegOne_neg2()
 	{
 		testingUniversity.setPercentEnrolled(-2);	
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void setPercentEnrolledFailsForInvalidInputGreaterthanOneHundred()
+	public void setPercentEnrolledFailsForInvalidInputLessthanNegOne_neg20()
+	{
+		testingUniversity.setPercentEnrolled(-20);	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setPercentEnrolledFailsForInvalidInputGreaterthanOneHundred_101()
 	{
 		testingUniversity.setPercentEnrolled(101);	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void setPercentEnrolledFailsForInvalidInputGreaterthanOneHundred_120()
+	{
+		testingUniversity.setPercentEnrolled(120);	
 	}
 	
 	@Test
