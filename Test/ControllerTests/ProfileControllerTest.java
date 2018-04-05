@@ -7,9 +7,11 @@ import org.junit.*;
 import java.util.*;
 
 /**
- * JUnit testing of ProfileController.java
+ * for JUnit testing of ProfileControllerTest.java
+ * 
+ * @author Michael Carroll
+ * @version 04/04/18
  */
-
 public class ProfileControllerTest{
 	private ProfileController pc;
 	private DBController dbc;
