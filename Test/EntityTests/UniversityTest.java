@@ -289,7 +289,7 @@ public class UniversityTest
 	@Test (expected = IllegalArgumentException.class)
 	public void setNumStudentsFailsForInvalidInput()
 	{
-		testingUniversity.setNumStudents(-1);	
+		testingUniversity.setNumStudents(-2);	
 	}
 	
 	@Test

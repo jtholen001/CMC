@@ -183,10 +183,10 @@ public class StudentInterface extends UserInterface
   /**
    * Method to log the student out
    * @return true if successful log out
-   */
+   */ /*
   public boolean logout()
   {
     return super.logout(this.student);
-  }
+  } */
 }  
 

@@ -138,7 +138,7 @@ public class University
 			  percentEnrolled < -1 || percentEnrolled > 100)
 		  throw new IllegalArgumentException("Percentage cannot be less than negative one or greater than 100");
 	  if(numStudents < -1)
-		  throw new IllegalArgumentException("Number of students cannot be less than 0");
+		  throw new IllegalArgumentException("Number of students cannot be less than -1");
 	  if(SATVerbal < -1 || SATMath < -1 || SATVerbal > 800 || SATMath > 800)
 		  throw new IllegalArgumentException("SAT scores cannot be less than negative one or greater than 800");
 	  if(academicScale < -1 || socialScale < -1 || qualityOfLifeScale < -1 ||
@@ -389,8 +389,8 @@ public class University
    */
   public void setNumStudents(int newNumStudents) throws IllegalArgumentException
   {
-	  if(newNumStudents < 0)
-		  throw new IllegalArgumentException("Number of students cannot be less than zero");
+	  if(newNumStudents < -1)
+		  throw new IllegalArgumentException("Number of students cannot be less than -1");
 	 else
 		 this.numStudents = newNumStudents;
   }
