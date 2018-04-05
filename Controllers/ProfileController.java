@@ -37,7 +37,8 @@ public class ProfileController
    */
   public int editProfile(String firstName, String lastName, String password)
   {
-	  if (firstName.equals("") || lastName.equals("") || password.equals(""))
+	  if (firstName == null || lastName == null || password == null ||
+			  firstName.equals("") || lastName.equals("") || password.equals(""))
 		  throw new IllegalArgumentException();
 	  
     this.student.setFirstName(firstName);

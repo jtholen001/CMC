@@ -30,6 +30,8 @@ public class Student extends User
   public Student(String firstName, String lastName, String username, String password, char type, boolean activated, boolean logged, ArrayList<University> universities)
   {
    super(firstName, lastName, username, password, type, activated, logged);
+   if (universities == null)
+	   	throw new IllegalArgumentException("Null arraylist parameter");
    this.savedUniversities = universities;
   }
 
@@ -56,7 +58,7 @@ public class Student extends User
     {
      if (u.getName().equals(universityName))
      {
-      return u; 
+      return u;
      }
     }
     throw new IllegalArgumentException("University not found in user's saved schools");

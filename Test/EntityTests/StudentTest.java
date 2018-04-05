@@ -41,10 +41,58 @@ public class StudentTest {
 	}
 
 	/**
+	 * Test that the default constructor fails for null firstName parameter
+	 */   
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForNullFirstName() {
+		new Student(null,"Miller","jmill", "password0", 'u', true, false, new ArrayList<University>());
+	}
+
+	/**
+	 * Test that the default constructor fails for null lastName parameter
+	 */   
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForNullLastName() {
+		new Student("John", null, "jmill", "password0", 'u', true, false, new ArrayList<University>());
+	}
+
+	/**
+	 * Test that the default constructor fails for null username parameter
+	 */   
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForNullUsername() {
+		new Student("John", "Miller", null, "password0", 'u', true, false, new ArrayList<University>());
+	}
+
+	/**
+	 * Test that the default constructor fails for null password parameter
+	 */   
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForNullPassword() {
+		new Student("John","Miller","jmill", null, 'u', true, false, new ArrayList<University>());
+	}
+	
+	/**
+	 * Test that the default constructor fails for null universities (ArrayList) parameter
+	 */   
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForNullUniversities() {
+		new Student("John","Miller","jmill", "password0", 'u', true, false, null);
+	}
+	
+	/**
+	 * Test that the default constructor fails for zero char parameter
+	 */   
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForZeroType() {
+		new Student("John","Miller","jmill", "password0", (char) 0, true, false, new ArrayList<University>());
+	}
+	
+	/**
 	 * Test that the default constructor fails for empty firstName parameter
 	 */   
 	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForInvalidFirstName() {
+	public void constructorFailsForEmptyFirstName() {
 		new Student("","Miller","jmill", "password0", 'u', true, false, new ArrayList<University>());
 	}
 
@@ -52,25 +100,26 @@ public class StudentTest {
 	 * Test that the default constructor fails for empty lastName parameter
 	 */   
 	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForInvalidLastName() {
-		new Student("John","","jmill", "password0", 'u', true, false, new ArrayList<University>());
+	public void constructorFailsForEmptyLastName() {
+		new Student("John", "","jmill", "password0", 'u', true, false, new ArrayList<University>());
 	}
 
 	/**
 	 * Test that the default constructor fails for empty username parameter
 	 */   
 	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForInvalidUsername() {
-		new Student("John","Miller","", "password0", 'u', true, false, new ArrayList<University>());
+	public void constructorFailsForEmptyUsername() {
+		new Student("John", "Miller","", "password0", 'u', true, false, new ArrayList<University>());
 	}
 
 	/**
 	 * Test that the default constructor fails for empty password parameter
 	 */   
 	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForInvalidPassword() {
-		new Student("John","Miller","jmill", "", 'u', true, false, new ArrayList<University>());
+	public void constructorFailsForEmptyPassword() {
+		new Student("John", "Miller","jmill", "", 'u', true, false, new ArrayList<University>());
 	}
+	
 	/**
 	 * Test method for {@link entityClasses.Student#getSavedSchools()}.
 	 */

@@ -22,7 +22,7 @@ public class ProfileControllerTest{
 	public void init(){ 
 		stud1 = new Student("ProfileControllerTest", "lastName", "pct", "password", 'u', true, false, new ArrayList<University>());
 		dbc = new DBController();
-//		stud1.addSchool(dbc.getUniversity("BOSTON UNIVERSITY"));
+		stud1.addSchool(dbc.getUniversity("BOSTON UNIVERSITY"));
 		dbc.addUser(stud1);
 		pc = new ProfileController(stud1);
 	}
@@ -97,6 +97,30 @@ public class ProfileControllerTest{
 	@Test (expected = IllegalArgumentException.class)
 	public void editProfileFailsForEmptyPasswordParameter(){
 		pc.editProfile("John", "Miller", "");
+	}
+	
+	/**
+	 * Test that method "editProfile" fails for null firstName parameter
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void editProfileFailsForNullFirstNameParameter(){
+		pc.editProfile(null, "Miller", "password1");
+	}
+
+	/**
+	 * Test that method "editProfile" fails for null lastName parameter
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void editProfileFailsForNullLastNameParameter(){
+		pc.editProfile("John", null, "password1");
+	}
+
+	/**
+	 * Test that method "editProfile" fails for null password parameter
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void editProfileFailsForNullPasswordParameter(){
+		pc.editProfile("John", "Miller", null);
 	}
 
 	/**
