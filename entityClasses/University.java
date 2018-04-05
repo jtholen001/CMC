@@ -518,7 +518,7 @@ public class University
    */
   public void setAcademicScale(int newAcademicScale) throws IllegalArgumentException
   {
-	  if(newAcademicScale < -1 || newAcademicScale > 5)
+	  if(!(newAcademicScale >= -1 && newAcademicScale <= 5 && newAcademicScale != 0))
 		  throw new IllegalArgumentException("Scales must be between -1 and 5");
 	  else
 		  this.academicScale = newAcademicScale;
@@ -532,7 +532,7 @@ public class University
    */
   public void setSocialScale(int newSocialScale) throws IllegalArgumentException
   {
-	  if(newSocialScale < -1 || newSocialScale > 5)
+	  if(!(newSocialScale >= -1 && newSocialScale <= 5 && newSocialScale != 0))
 		  throw new IllegalArgumentException("Scales must be between -1 and 5");
 	  else
 		  this.socialScale = newSocialScale;
@@ -546,7 +546,7 @@ public class University
    */
   public void setQualityOfLifeScale(int newQualityOfLifeScale) throws IllegalArgumentException
   {
-	  if(newQualityOfLifeScale < -1 || newQualityOfLifeScale > 5)
+	  if(!(newQualityOfLifeScale >= -1 && newQualityOfLifeScale <= 5 && newQualityOfLifeScale != 0))
 		  throw new IllegalArgumentException("Scales must be between -1 and 5");
 	  else
 		  this.qualityOfLifeScale = newQualityOfLifeScale;

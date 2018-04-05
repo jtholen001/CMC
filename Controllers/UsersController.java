@@ -88,7 +88,7 @@ public class UsersController
   public void addUser(String firstName, String lastName, String username, String password, char type ,boolean isActivated,
                         boolean isLoggedIn)
   {
-	  if (firstName.equals("") || lastName.equals("") || username.equals("") || password.equals("") || type == ' ')
+	  if (firstName.equals("") || lastName.equals("") || username.equals("") || password.equals("") || type != 'a' && type != 'u')
 		  throw new IllegalArgumentException("Fields cannot be empty");
 	  else
 		  dbCont.addUser(new User(firstName, lastName, username, password, type, isActivated, isLoggedIn));
