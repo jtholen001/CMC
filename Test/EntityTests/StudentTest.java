@@ -12,8 +12,10 @@ import Controllers.DBController;
 import entityClasses.*;
 
 /**
+ * for JUnit testing of Student.java
+ * 
  * @author Michael Carroll
- *
+ * @version 04/04/18
  */
 public class StudentTest {
 
