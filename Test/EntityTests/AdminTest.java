@@ -2,6 +2,12 @@ package Test.EntityTests;
 import org.junit.*;
 import entityClasses.*;
 
+/**
+ * for JUnit testing of Admin.java
+ * 
+ * @author Michael Carroll
+ * @version 04/04/18
+ */
 public class AdminTest {
 	/**
 	 * Test that the default constructor works for correct/valid parameters
