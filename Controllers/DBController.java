@@ -59,7 +59,7 @@ public class DBController
 				}
 			}
 		}
-		return null;
+		throw new IllegalArgumentException("user was not found in the database");
 	}
 
 	/**
