@@ -85,57 +85,45 @@ public class TestDBController {
 	public void testGetUserForInvalidUser() {
 		Assert.assertNull("test did not fail for getting an invalid user testuser001",dbController.getUser("testuser001"));
 	}
-	
+
 	@Test (expected = IllegalArgumentException.class)
 	public void testGetUserForInvalidUserEmpty() {
 		Assert.assertNull("test did not fail for getting an invalid user testuser001",dbController.getUser(""));
 	}
-	
+
 	@Test (expected = IllegalArgumentException.class)
 	public void testGetUserForInvalidUserNull() {
 		Assert.assertNull("test did not fail for getting an invalid user testuser001",dbController.getUser(null));
 	}
 
 	/**
-	 * Test method for {@link Controllers.DBController#getUniversitiesForStudent(java.lang.String)}.
+	 * Test method for {@link Controllers.DBController#getUsers()}.
 	 */
 	@Test
-	public void testGetUniversitiesForStudentWithUniversities() {
-		Assert.assertTrue("did not return with the correct univerisites for " +student1.getUsername(),
-				dbController.getUniversitiesForStudent(student1.getUsername()).equals(student1.getSavedSchools()));
-	}
-
-	@Test
-	public void testGetUniversitiesForStudentWithoutUniversities() {
-		Assert.assertTrue("did not return with the correct univerisites for " +student.getUsername(),
-				dbController.getUniversitiesForStudent(student.getUsername()).equals(student.getSavedSchools()));
-	}
-
-	@Test
-	public void testGetUniversitiesForAdmin() {
-		Assert.assertTrue("did not return and empty list for " +admin.getUsername(),
-				dbController.getUniversitiesForStudent(admin.getUsername()).isEmpty());
+	public void testGetUsers() {
+		HashMap<String,User> temp = dbController.getUsers();
+		Assert.assertNotNull("User object was null",temp.get("jtholen001"));
+		Assert.assertNotNull("User object was null",temp.get("irahal"));
 	}
 	
-		/**
-		 * Test method for {@link Controllers.DBController#getUsers()}.
-		 */
-		@Test
-		public void testGetUsers() {
-			HashMap<String,User> temp = dbController.getUsers();
-			Assert.assertNotNull("User object was null",temp.get("juser"));
-			Assert.assertNotNull("User object was null",temp.get("nadmin"));
-		}
-	
+	@Test (expected = IllegalArgumentException.class)
+	public void testSaveEditedUserForNull() {
+		dbController.saveEditedUser(null);
+	}
+
 	/**
 	 * Test method for {@link Controllers.DBController#saveEditedUser(entityClasses.User)}.
 	 */
 	@Test
-	public void testSaveEditedUserForStudentActivationStatus() {
-		student.setActivationStatus(false);
-		dbController.saveEditedUser(student);
-		Assert.assertTrue("user was not save correctly " + student.getUsername(), 
-				dbController.getUser(student.getUsername()).equals(student));
+	public void testSaveEditedUserForActivationStatus() {
+		admin.setActivationStatus(false);
+		dbController.saveEditedUser(admin);
+		Assert.assertTrue("user was not save correctly " + admin.getUsername(), 
+				dbController.getUser(admin.getUsername()).equals(admin));
+		student.setActivationStatus(true);
+		dbController.saveEditedUser(admin);
+		Assert.assertTrue("user was not save correctly " + admin.getUsername(), 
+				dbController.getUser(admin.getUsername()).equals(admin));
 	}
 
 	@Test
@@ -179,6 +167,13 @@ public class TestDBController {
 	}
 
 	@Test
+	public void testSaveEditedUserForStudent() {
+		dbController.saveEditedUser(student);
+		Assert.assertTrue("user was not save correctly " + student.getUsername(), 
+				dbController.getUser(student.getUsername()).equals(student));
+	}
+	
+	@Test
 	public void testSaveEditedStudentForNewSchool() {
 		student.addSchool(university);
 		dbController.saveEditedUser(student);
@@ -195,7 +190,7 @@ public class TestDBController {
 	}
 
 	@Test (expected = IllegalArgumentException.class)
-	public void testSaveEditedStudentForSchoolNotInDatabase() {
+	public void testSaveEditedStudentForInvalidSchool() {
 		student1.addSchool(new University("Jordan", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>()));
 		dbController.saveEditedUser(student1);
 	}
@@ -237,7 +232,7 @@ public class TestDBController {
 				.equals(ad));
 		dbController.deleteUser(ad.getUsername());
 	}
-	
+
 	@Test (expected = IllegalArgumentException.class)
 	public void testAddNull() {
 		dbController.addUser(null);
@@ -277,245 +272,245 @@ public class TestDBController {
 		Admin ad = new Admin("Imad","Rahal","irahal001","admin",'a',true,false);
 		dbController.deleteUser(ad.getUsername());
 	}
-	
-		/**
-		 * Test method for {@link Controllers.DBController#viewUniversities()}.
-		 */
-		@Test
-		public void testViewUniversities() {
-			HashMap<String,University> temp = dbController.viewUniversities();
-			Assert.assertNotNull("University object was null", temp.get("ABILENE CHRISTIAN UNIVERSITY"));
-			Assert.assertNotNull("University object was null", temp.get("YANKTOWN COLLEGE"));
-		}
-	
-		/**
-		 * Test method for {@link Controllers.DBController#getUniversity(java.lang.String)}.
-		 */
-		@Test
-		public void testGetUniversityWithoutEmphases() {
-			University uni = dbController.getUniversity(university.getName());
-			assertTrue("retrieved universtiy does not equal",uni.equals(university));
-		}
-		
-		@Test
-		public void testGetUniversityWithEmphases() {
-			ArrayList<String> temp = university.getEmphases();
-			temp.add("Computer Science");
-			university.setEmphases(temp);
-			dbController.saveEditedUniversity(university);
-			assertTrue("retrieved universtiy does not equal",dbController.getUniversity(university.getName())
-					.equals(university));
-		}
-		
-		@Test (expected = IllegalArgumentException.class)
-		public void testGetUniversityInvalid() {
-			dbController.getUniversity("Univeristy of Jordan");
-		}
-		
 
-		/**
-		 * Test method for {@link Controllers.DBController#saveEditedUniversity(entityClasses.University)}.
-		 */
-		@Test
-		public void testSaveEditedUniversityState() {
-			university.setState("Minnesota");
-			dbController.saveEditedUniversity(university);
-			assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
-		}
-		
-		@Test
-		public void testSaveEditedUniversityAcademicScale() {
-			university.setAcademicScale(5);
-			dbController.saveEditedUniversity(university);
-			assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
-		}
-		
-		@Test
-		public void testSaveEditedUniversityControl() {
-			university.setControl("private");
-			dbController.saveEditedUniversity(university);
-			assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
-		}
-		
-		@Test
-		public void testSaveEditedUniversityExpenses() {
-			university.setExpenses(20.0);
-			dbController.saveEditedUniversity(university);
-			assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
-		}
-		
-		@Test
-		public void testSaveEditedUniversityLocation() {
-			university.setLocation("urban");
-			dbController.saveEditedUniversity(university);
-			assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
-		}
-		
-		@Test
-		public void testSaveEditedUniversityApplicants() {
-			university.setNumApplicants(5000);
-			dbController.saveEditedUniversity(university);
-			assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
-		}
-		
-		@Test
-		public void testSaveEditedUniversityStudents() {
-			university.setNumStudents(500);
-			dbController.saveEditedUniversity(university);
-			assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
-		}
-		
-		@Test
-		public void testSaveEditedUniversityPercentAdmitted() {
-			university.setPercentAdmitted(90.0);
-			dbController.saveEditedUniversity(university);
-			assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
-		}
-		
-		@Test
-		public void testSaveEditedUniversityPercentEnrolled() {
-			university.setPercentEnrolled(95.0);
-			dbController.saveEditedUniversity(university);
-			assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
-		}
-		
-		@Test
-		public void testSaveEditedUniversityPercentFemale() {
-			university.setPercentFemale(100.0);
-			dbController.saveEditedUniversity(university);
-			assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
-		}
-		
-		@Test
-		public void testSaveEditedUniversityPercentFinancialAid() {
-			university.setPercentFinancialAid(100.0);
-			dbController.saveEditedUniversity(university);
-			assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
-		}
-		
-		@Test
-		public void testSaveEditedUniversityQualityOfLife() {
-			university.setQualityOfLifeScale(5);
-			dbController.saveEditedUniversity(university);
-			assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
-		}
-		
-		@Test
-		public void testSaveEditedUniversitySATMath() {
-			university.setSATMath(200.5);
-			dbController.saveEditedUniversity(university);
-			assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
-		}
-		
-		@Test
-		public void testSaveEditedUniversitySATVerbal() {
-			university.setSATVerbal(30.2);
-			dbController.saveEditedUniversity(university);
-			assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
-		}
-		
-		@Test
-		public void testSaveEditedUniversitySocialScale() {
-			university.setSocialScale(5);
-			dbController.saveEditedUniversity(university);
-			assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
-		}
-		
-		@Test
-		public void testSaveEditedUniversityAddedEmphases() {
-			ArrayList<String> temp = university.getEmphases();
-			temp.add("Biology");
-			university.setEmphases(temp);
-			dbController.saveEditedUniversity(university);
-			assertTrue("",university.equals(dbController.getUniversity(university.getName())));
-		}
-	
-		/**
-		 * Test method for {@link Controllers.DBController#addUniversity(entityClasses.University)}.
-		 */
-		@Test
-		public void testAddUniversity() {
-			University university1 = new University("JORDAN", "MINNESOTA", "RURAL", "PRIVATE", 10, 55.0, 100.0, 120.0, 85.0, 25.0, 10, 50.0, 20.0, 2, 1, 4, new ArrayList<String>());
-			dbController.addUniversity(university1);
-			Assert.assertTrue("The database did not contain the same information for the university", 
-					dbController.getUniversity(university1.getName()).equals(university1));
-			dbController.deleteUniversity(university1);
-		}
-		
-		@Test
-		public void testAddUniversityWithEmphases() {
-			University university1 = new University("JORDAN", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
-			ArrayList<String> emphases = university1.getEmphases();
-			emphases.add("BIOLOGY");
-			dbController.addUniversity(university1);
-			Assert.assertTrue("The database did not contain the same information for the university", 
-					dbController.getUniversity(university1.getName()).equals(university1));
-			dbController.deleteUniversity(university1);
-		}
-		
-		@Test (expected = IllegalArgumentException.class)
-		public void testAddUniversityAlreadyInDatabase() {
-			dbController.addUniversity(university);
-		}
-		
-		@Test (expected = IllegalArgumentException.class)
-		public void testAddUniversityForUniversityNameInDatabase() {
-			University university1 = new University("University of cmc","MINNESOTA", "RURAL", "PRIVATE", 10, 55.0, 100.0, 120.0, 85.0, 25.0, 10, 50.0, 20.0, 2, 1, 4, new ArrayList<String>());
-			dbController.addUniversity(university1);
-		}
-		
-		@Test (expected = IllegalArgumentException.class)
-		public void testAddUniversityForNullValue() {
-			University university1 = null;
-			dbController.addUniversity(university1);
-		}
-		/**
-		 * Test method for {@link Controllers.DBController#deleteUniversity(entityClasses.University)}.
-		 */
-		@Test (expected = IllegalArgumentException.class)
-		public void testDeleteUniversity() {
-			University university1 = new University("JORDAN", "MINNESOTA", "RURAL", "PRIVATE", 10, 55.0, 100.0, 120.0, 85.0, 25.0, 10, 50.0, 20.0, 2, 1, 4, new ArrayList<String>());
-			dbController.addUniversity(university1);
-			dbController.deleteUniversity(university1);
-			dbController.getUniversity(university1.getName());
-		}
-		
-		@Test (expected = IllegalArgumentException.class)
-		public void testDeleteUniversityWithEmphases() {
-			University university1 = new University("JORDAN", "MINNESOTA", "RURAL", "PRIVATE", 10, 55.0, 100.0, 120.0, 85.0, 25.0, 10, 50.0, 20.0, 2, 1, 4, new ArrayList<String>());
-			ArrayList<String> emphases = university1.getEmphases();
-			emphases.add("BIOLOGY");
-			dbController.addUniversity(university1);
-			dbController.deleteUniversity(university1);
-			dbController.getUniversity(university1.getName());
-		}
-		
-		@Test (expected = IllegalArgumentException.class)
-		public void testDeleteUniversityForUniversityNotInDatabase() {
-			University university1 = new University("JORDAN", "MINNESOTA", "RURAL", "PRIVATE", 10, 55.0, 100.0, 120.0, 85.0, 25.0, 10, 50.0, 20.0, 2, 1, 4, new ArrayList<String>());
-			dbController.deleteUniversity(university1);
-		}
-	
-		/**
-		 * Test method for {@link Controllers.DBController#removeUniversityFromStudent(entityClasses.Student, entityClasses.University)}.
-		 */
-		@Test
-		public void testRemoveUniversityFromStudent() {
-			student1.removeUniversity(university);
-			dbController.removeUniversityFromStudent(student1, university);
-			Assert.assertTrue("School was not removed", dbController.getUser(student1.getUsername()).equals(student1));
-		}
-		
-		@Test (expected = IllegalArgumentException.class)
-		public void testRemoveUniversityFromStudentForStudentNotInDatabase() {
-			Student temp = new Student("Donald","Trump","fakeNews","password",'u',true,false,new ArrayList<University>());
-			dbController.removeUniversityFromStudent(temp, university);
-		}
-		
-		@Test (expected = IllegalArgumentException.class)
-		public void testRemoveUniversityFromStudentForUniveristyNotInDatabase() {
-			University temp = new University("JORDAN", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
-			dbController.removeUniversityFromStudent(student, temp);
-		}
+	/**
+	 * Test method for {@link Controllers.DBController#viewUniversities()}.
+	 */
+	@Test
+	public void testViewUniversities() {
+		HashMap<String,University> temp = dbController.viewUniversities();
+		Assert.assertNotNull("University object was null", temp.get("ABILENE CHRISTIAN UNIVERSITY"));
+		Assert.assertNotNull("University object was null", temp.get("YANKTOWN COLLEGE"));
+	}
+
+	/**
+	 * Test method for {@link Controllers.DBController#getUniversity(java.lang.String)}.
+	 */
+	@Test
+	public void testGetUniversityWithoutEmphases() {
+		University uni = dbController.getUniversity(university.getName());
+		assertTrue("retrieved universtiy does not equal",uni.equals(university));
+	}
+
+	@Test
+	public void testGetUniversityWithEmphases() {
+		ArrayList<String> temp = university.getEmphases();
+		temp.add("Computer Science");
+		university.setEmphases(temp);
+		dbController.saveEditedUniversity(university);
+		assertTrue("retrieved universtiy does not equal",dbController.getUniversity(university.getName())
+				.equals(university));
+	}
+
+	@Test (expected = IllegalArgumentException.class)
+	public void testGetUniversityInvalid() {
+		dbController.getUniversity("Univeristy of Jordan");
+	}
+
+
+	/**
+	 * Test method for {@link Controllers.DBController#saveEditedUniversity(entityClasses.University)}.
+	 */
+	@Test
+	public void testSaveEditedUniversityState() {
+		university.setState("Minnesota");
+		dbController.saveEditedUniversity(university);
+		assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
+	}
+
+	@Test
+	public void testSaveEditedUniversityAcademicScale() {
+		university.setAcademicScale(5);
+		dbController.saveEditedUniversity(university);
+		assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
+	}
+
+	@Test
+	public void testSaveEditedUniversityControl() {
+		university.setControl("private");
+		dbController.saveEditedUniversity(university);
+		assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
+	}
+
+	@Test
+	public void testSaveEditedUniversityExpenses() {
+		university.setExpenses(20.0);
+		dbController.saveEditedUniversity(university);
+		assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
+	}
+
+	@Test
+	public void testSaveEditedUniversityLocation() {
+		university.setLocation("urban");
+		dbController.saveEditedUniversity(university);
+		assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
+	}
+
+	@Test
+	public void testSaveEditedUniversityApplicants() {
+		university.setNumApplicants(5000);
+		dbController.saveEditedUniversity(university);
+		assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
+	}
+
+	@Test
+	public void testSaveEditedUniversityStudents() {
+		university.setNumStudents(500);
+		dbController.saveEditedUniversity(university);
+		assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
+	}
+
+	@Test
+	public void testSaveEditedUniversityPercentAdmitted() {
+		university.setPercentAdmitted(90.0);
+		dbController.saveEditedUniversity(university);
+		assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
+	}
+
+	@Test
+	public void testSaveEditedUniversityPercentEnrolled() {
+		university.setPercentEnrolled(95.0);
+		dbController.saveEditedUniversity(university);
+		assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
+	}
+
+	@Test
+	public void testSaveEditedUniversityPercentFemale() {
+		university.setPercentFemale(100.0);
+		dbController.saveEditedUniversity(university);
+		assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
+	}
+
+	@Test
+	public void testSaveEditedUniversityPercentFinancialAid() {
+		university.setPercentFinancialAid(100.0);
+		dbController.saveEditedUniversity(university);
+		assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
+	}
+
+	@Test
+	public void testSaveEditedUniversityQualityOfLife() {
+		university.setQualityOfLifeScale(5);
+		dbController.saveEditedUniversity(university);
+		assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
+	}
+
+	@Test
+	public void testSaveEditedUniversitySATMath() {
+		university.setSATMath(200.5);
+		dbController.saveEditedUniversity(university);
+		assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
+	}
+
+	@Test
+	public void testSaveEditedUniversitySATVerbal() {
+		university.setSATVerbal(400.0);
+		dbController.saveEditedUniversity(university);
+		assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
+	}
+
+	@Test
+	public void testSaveEditedUniversitySocialScale() {
+		university.setSocialScale(5);
+		dbController.saveEditedUniversity(university);
+		assertTrue("University did not mached the saved university",university.equals(dbController.getUniversity(university.getName())));
+	}
+
+	@Test
+	public void testSaveEditedUniversityAddedEmphases() {
+		ArrayList<String> temp = university.getEmphases();
+		temp.add("Biology");
+		university.setEmphases(temp);
+		dbController.saveEditedUniversity(university);
+		assertTrue("",university.equals(dbController.getUniversity(university.getName())));
+	}
+
+	/**
+	 * Test method for {@link Controllers.DBController#addUniversity(entityClasses.University)}.
+	 */
+	@Test
+	public void testAddUniversity() {
+		University university1 = new University("JORDAN", "MINNESOTA", "RURAL", "PRIVATE", 10, 55.0, 100.0, 120.0, 85.0, 25.0, 10, 50.0, 20.0, 2, 1, 4, new ArrayList<String>());
+		dbController.addUniversity(university1);
+		Assert.assertTrue("The database did not contain the same information for the university", 
+				dbController.getUniversity(university1.getName()).equals(university1));
+		dbController.deleteUniversity(university1);
+	}
+
+	@Test
+	public void testAddUniversityWithEmphases() {
+		University university1 = new University("JORDAN", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
+		ArrayList<String> emphases = university1.getEmphases();
+		emphases.add("BIOLOGY");
+		dbController.addUniversity(university1);
+		Assert.assertTrue("The database did not contain the same information for the university", 
+				dbController.getUniversity(university1.getName()).equals(university1));
+		dbController.deleteUniversity(university1);
+	}
+
+	@Test (expected = IllegalArgumentException.class)
+	public void testAddUniversityAlreadyInDatabase() {
+		dbController.addUniversity(university);
+	}
+
+	@Test (expected = IllegalArgumentException.class)
+	public void testAddUniversityForUniversityNameInDatabase() {
+		University university1 = new University("University of cmc","MINNESOTA", "RURAL", "PRIVATE", 10, 55.0, 100.0, 120.0, 85.0, 25.0, 10, 50.0, 20.0, 2, 1, 4, new ArrayList<String>());
+		dbController.addUniversity(university1);
+	}
+
+	@Test (expected = IllegalArgumentException.class)
+	public void testAddUniversityForNullValue() {
+		University university1 = null;
+		dbController.addUniversity(university1);
+	}
+	/**
+	 * Test method for {@link Controllers.DBController#deleteUniversity(entityClasses.University)}.
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void testDeleteUniversity() {
+		University university1 = new University("JORDAN", "MINNESOTA", "RURAL", "PRIVATE", 10, 55.0, 100.0, 120.0, 85.0, 25.0, 10, 50.0, 20.0, 2, 1, 4, new ArrayList<String>());
+		dbController.addUniversity(university1);
+		dbController.deleteUniversity(university1);
+		dbController.getUniversity(university1.getName());
+	}
+
+	@Test (expected = IllegalArgumentException.class)
+	public void testDeleteUniversityWithEmphases() {
+		University university1 = new University("JORDAN", "MINNESOTA", "RURAL", "PRIVATE", 10, 55.0, 100.0, 120.0, 85.0, 25.0, 10, 50.0, 20.0, 2, 1, 4, new ArrayList<String>());
+		ArrayList<String> emphases = university1.getEmphases();
+		emphases.add("BIOLOGY");
+		dbController.addUniversity(university1);
+		dbController.deleteUniversity(university1);
+		dbController.getUniversity(university1.getName());
+	}
+
+	@Test (expected = IllegalArgumentException.class)
+	public void testDeleteUniversityForUniversityNotInDatabase() {
+		University university1 = new University("JORDAN", "MINNESOTA", "RURAL", "PRIVATE", 10, 55.0, 100.0, 120.0, 85.0, 25.0, 10, 50.0, 20.0, 2, 1, 4, new ArrayList<String>());
+		dbController.deleteUniversity(university1);
+	}
+
+	/**
+	 * Test method for {@link Controllers.DBController#removeUniversityFromStudent(entityClasses.Student, entityClasses.University)}.
+	 */
+	@Test
+	public void testRemoveUniversityFromStudent() {
+		student1.removeUniversity(university);
+		dbController.removeUniversityFromStudent(student1, university);
+		Assert.assertTrue("School was not removed", dbController.getUser(student1.getUsername()).equals(student1));
+	}
+
+	@Test (expected = IllegalArgumentException.class)
+	public void testRemoveUniversityFromStudentForStudentNotInDatabase() {
+		Student temp = new Student("Donald","Trump","fakeNews","password",'u',true,false,new ArrayList<University>());
+		dbController.removeUniversityFromStudent(temp, university);
+	}
+
+	@Test (expected = IllegalArgumentException.class)
+	public void testRemoveUniversityFromStudentForUniveristyNotInDatabase() {
+		University temp = new University("JORDAN", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
+		dbController.removeUniversityFromStudent(student, temp);
+	}
 
 }

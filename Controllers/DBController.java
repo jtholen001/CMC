@@ -69,12 +69,13 @@ public class DBController
 	 * 
 	 * @return an ArrayList of universities the student has saved
 	 */
-	public ArrayList<University> getUniversitiesForStudent(String username)
+	 ArrayList<University> getUniversitiesForStudent(String username)
 	{
 		String[][] universities = univDBlib.user_getUsernamesWithSavedSchools();
 		ArrayList<University> list = new ArrayList<University>();
 
-
+		if(username == null)
+			throw new IllegalArgumentException("username is a null value");
 		for(int i = 0; i < universities.length; i++)
 		{
 			if(universities[i][0].equals(username))
@@ -127,6 +128,8 @@ public class DBController
 	//TODO: change saveEditiedUser to not save schools and to create a save schools method
 	public <t extends User> int saveEditedUser(t user)
 	{
+		if(user == null)
+			throw new IllegalArgumentException("user is a null value");
 		char temp;
 		if(user.getActivationStatus() == false)
 			temp = 'N';
