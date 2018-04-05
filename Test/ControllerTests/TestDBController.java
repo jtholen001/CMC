@@ -65,13 +65,11 @@ public class TestDBController {
 	 * Test method for {@link Controllers.DBController#getUser(java.lang.String)}.
 	 */
 	@Test
-	public void testGetUserForStudentWithoutSchools() {
+	public void testGetUserForStudent() {
+		//without schools
 		Assert.assertTrue("test failed for getting user " + student.getUsername(), 
 				dbController.getUser(student.getUsername()).equals(student));
-	}
-
-	@Test
-	public void testGetUserForStudentWithSchools() {
+		//with schools
 		Assert.assertTrue("test failed for getting user " + student1.getUsername(), 
 				dbController.getUser(student1.getUsername()).equals(student1));
 	}
@@ -88,12 +86,12 @@ public class TestDBController {
 	}
 
 	@Test (expected = IllegalArgumentException.class)
-	public void testGetUserForInvalidUserEmpty() {
+	public void testGetUserForEmpty() {
 		Assert.assertNull("test did not fail for getting an invalid user testuser001",dbController.getUser(""));
 	}
 
 	@Test (expected = IllegalArgumentException.class)
-	public void testGetUserForInvalidUserNull() {
+	public void testGetUserForNull() {
 		Assert.assertNull("test did not fail for getting an invalid user testuser001",dbController.getUser(null));
 	}
 
@@ -133,6 +131,10 @@ public class TestDBController {
 		dbController.saveEditedUser(student);
 		Assert.assertTrue("user was not save correctly " + student.getUsername(), 
 				dbController.getUser(student.getUsername()).equals(student));
+		admin.setFirstName("dummie");
+		dbController.saveEditedUser(admin);
+		Assert.assertTrue("user was not save correctly " + admin.getUsername(), 
+				dbController.getUser(admin.getUsername()).equals(admin));
 	}
 
 	@Test
@@ -141,6 +143,10 @@ public class TestDBController {
 		dbController.saveEditedUser(student);
 		Assert.assertTrue("user was not save correctly " + student.getUsername(), 
 				dbController.getUser(student.getUsername()).equals(student));
+		admin.setLastName("fjsk");
+		dbController.saveEditedUser(admin);
+		Assert.assertTrue("user was not save correctly " + admin.getUsername(), 
+				dbController.getUser(admin.getUsername()).equals(admin));
 	}
 
 	@Test
@@ -149,6 +155,10 @@ public class TestDBController {
 		dbController.saveEditedUser(student);
 		Assert.assertTrue("user was not save correctly " + student.getUsername(), 
 				dbController.getUser(student.getUsername()).equals(student));
+		admin.setType('u');
+		dbController.saveEditedUser(admin);
+		Assert.assertTrue("user was not save correctly " + admin.getUsername(), 
+				admin.equals(dbController.getUser(admin.getUsername())));
 	}
 
 	@Test
@@ -157,6 +167,10 @@ public class TestDBController {
 		dbController.saveEditedUser(student);
 		Assert.assertTrue("user was not save correctly " + student.getUsername(), 
 				dbController.getUser(student.getUsername()).equals(student));
+		admin.setLoggedInStatus(true);
+		dbController.saveEditedUser(admin);
+		Assert.assertTrue("user was not save correctly " + admin.getUsername(), 
+				dbController.getUser(admin.getUsername()).equals(admin));
 	}
 
 	@Test
@@ -165,43 +179,58 @@ public class TestDBController {
 		dbController.saveEditedUser(student);
 		Assert.assertTrue("user was not save correctly " + student.getUsername(), 
 				dbController.getUser(student.getUsername()).equals(student));
+		admin.setPassword("dumb");
+		dbController.saveEditedUser(admin);
+		Assert.assertTrue("user was not save correctly " + admin.getUsername(), 
+				dbController.getUser(admin.getUsername()).equals(admin));
 	}
-
-	@Test
-	public void testSaveEditedUserForStudent() {
-		dbController.saveEditedUser(student);
-		Assert.assertTrue("user was not save correctly " + student.getUsername(), 
-				dbController.getUser(student.getUsername()).equals(student));
-	}
-	
 	/**
 	 * Test method for {@link Controllers.DBController#addUser(entityClasses.User)}.
 	 */
 	@Test
-	public void testAddStudent() {
+	public void testAddUser() {
 		Student stu = new Student("Jordan","Tholen","a;lskjdf","password",'u',true,false,new ArrayList<University>());
 		dbController.addUser(stu);
 		Assert.assertTrue("new user does not match the databse", dbController.getUser(stu.getUsername())
 				.equals(stu));
 		dbController.deleteUser(stu.getUsername());
 	}
-
-	@Test
-	public void testAddStudentWithSavedSchools() {
-		Student stu = new Student("Jordan","Tholen","a;lskjdf","password",'u',true,false,new ArrayList<University>());
-		stu.addSchool(university);
-		dbController.addUser(stu);
-		Assert.assertTrue("new user does not match the databse", dbController.getUser(stu.getUsername())
-				.equals(stu));
-		dbController.deleteUser(stu.getUsername());
-	}
-
+	
 	@Test (expected = IllegalArgumentException.class)
-	public void testAddStudentWithInvalidSavedSchools() {
-		Student stu = new Student("Jordan","Tholen","a;lskjdf","password",'u',true,false,new ArrayList<University>());
-		stu.addSchool(new University("Jordan", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>()));
+	public void testAddUserSpace() {
+		Student stu = new Student(" ","Tholen","a;lskjdf","password",'u',true,false,new ArrayList<University>());
 		dbController.addUser(stu);
+		Assert.assertTrue("new user does not match the databse", dbController.getUser(stu.getUsername())
+				.equals(stu));
+		Admin ad = new Admin(" ","Tholen","a;lskjdf","password",'u',true,false);
+		dbController.addUser(ad);
+		Assert.assertTrue("new user does not match the databse", dbController.getUser(ad.getUsername())
+				.equals(ad));
+		dbController.deleteUser(ad.getUsername());
+		dbController.deleteUser(stu.getUsername());
 	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testAddUserInDatabase() {
+		dbController.addUser(student);
+	}
+
+//	@Test
+//	public void testAddStudentWithSavedSchools() {
+//		Student stu = new Student("Jordan","Tholen","a;lskjdf","password",'u',true,false,new ArrayList<University>());
+//		stu.addSchool(university);
+//		dbController.addUser(stu);
+//		Assert.assertTrue("new user does not match the databse", dbController.getUser(stu.getUsername())
+//				.equals(stu));
+//		dbController.deleteUser(stu.getUsername());
+//	}
+//
+//	@Test (expected = IllegalArgumentException.class)
+//	public void testAddStudentWithInvalidSavedSchools() {
+//		Student stu = new Student("Jordan","Tholen","a;lskjdf","password",'u',true,false,new ArrayList<University>());
+//		stu.addSchool(new University("Jordan", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>()));
+//		dbController.addUser(stu);
+//	}
 
 	@Test
 	public void testAddAdmin() {
