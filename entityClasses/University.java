@@ -142,8 +142,8 @@ public class University
 		  throw new IllegalArgumentException("Number of students cannot be less than -1");
 	  if((SATVerbal != -1) && !(SATVerbal >=100 && SATVerbal <= 800) || (SATMath != -1) && !(SATMath >=100 && SATMath <= 800))
 		  throw new IllegalArgumentException("SAT scores cannot be less than negative one or greater than 800");
-	  if(!(academicScale >= -1 && academicScale <= 5) || !(socialScale >= -1 &&
-			  socialScale <= 5) || !(qualityOfLifeScale >= -1 && qualityOfLifeScale <= 5))
+	  if(!(academicScale >= -1 && academicScale <= 5 && academicScale != 0) || !(socialScale >= -1 &&
+			  socialScale <= 5 && socialScale != 0) || !(qualityOfLifeScale >= -1 && qualityOfLifeScale <= 5 && qualityOfLifeScale != 0))
 		  throw new IllegalArgumentException("scales must be between negative 1 and five");
    this.name = name.toUpperCase();
    this.state = state.toUpperCase();
