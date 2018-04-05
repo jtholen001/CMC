@@ -209,9 +209,9 @@ public class AdminInterface extends UserInterface
    * A method that logs out the Admin
    * 
    * @return true if successful log out
-   */
+   *//*
   public boolean logout()
   {
     return super.logout(admin);
-  }
+  }*/
 }
