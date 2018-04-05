@@ -148,7 +148,7 @@ public class User
   {
 	if (newFirstName.trim().equals(""))
 		throw new IllegalArgumentException();
-    this.firstName = newFirstName;
+    this.firstName = newFirstName.trim();
   }
   
   /**
@@ -160,7 +160,7 @@ public class User
   {
     if (newLastName.trim().equals(""))
     	throw new IllegalArgumentException();
-    this.lastName = newLastName;
+    this.lastName = newLastName.trim();
   }
   
   /**
@@ -172,7 +172,9 @@ public class User
   {
 	if (newPassword.trim().equals(""))
 		throw new IllegalArgumentException();
-    this.password = newPassword;
+	if (newPassword.trim().length() != newPassword.length())
+		throw new IllegalArgumentException("Paswwords cannot have spaces");
+    this.password = newPassword.trim();
   }
   
   /**

@@ -198,11 +198,11 @@ public class TestDBController {
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void testAddUserSpace() {
-		Student stu = new Student(" ","Tholen","a;lskjdf","password",'u',true,false,new ArrayList<University>());
+		Student stu = new Student("j","Tholen","a;lskjdf","password ",'u',true,false,new ArrayList<University>());
 		dbController.addUser(stu);
 		Assert.assertTrue("new user does not match the databse", dbController.getUser(stu.getUsername())
 				.equals(stu));
-		Admin ad = new Admin(" ","Tholen","a;lskjdf","password",'u',true,false);
+		Admin ad = new Admin("j","Tholen","a;lskjdf","password",'u',true,false);
 		dbController.addUser(ad);
 		Assert.assertTrue("new user does not match the databse", dbController.getUser(ad.getUsername())
 				.equals(ad));
