@@ -41,9 +41,10 @@ public class TestDBController {
 		admin = new Admin("Rahal","Imad","irahal","admin",'a',true,false);
 
 		dbController.addUniversity(university);
-		student1.addSchool(university);
+		//student1.addSchool(university);
 		dbController.addUser(student);
 		dbController.addUser(student1);
+		dbController.saveUniversityToStudent(student1, university);
 		dbController.addUser(admin);
 
 	}
@@ -173,28 +174,6 @@ public class TestDBController {
 				dbController.getUser(student.getUsername()).equals(student));
 	}
 	
-	@Test
-	public void testSaveEditedStudentForNewSchool() {
-		student.addSchool(university);
-		dbController.saveEditedUser(student);
-		Assert.assertTrue("user was not save correctly " + student.getUsername(), 
-				dbController.getUser(student.getUsername()).equals(student));
-	}
-
-	@Test
-	public void testSaveEditedStudentForDeletedSchool() {
-		student1.removeUniversity(university);
-		dbController.saveEditedUser(student1);
-		Assert.assertTrue("user was not save correctly " + student1.getUsername(), 
-				dbController.getUser(student1.getUsername()).equals(student1));
-	}
-
-	@Test (expected = IllegalArgumentException.class)
-	public void testSaveEditedStudentForInvalidSchool() {
-		student1.addSchool(new University("Jordan", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>()));
-		dbController.saveEditedUser(student1);
-	}
-
 	/**
 	 * Test method for {@link Controllers.DBController#addUser(entityClasses.User)}.
 	 */
@@ -238,7 +217,21 @@ public class TestDBController {
 		dbController.addUser(null);
 	}
 
+	@Test
+	public void testSaveUniversityToNewStudent() {
+		//student.addSchool(university);
+		dbController.saveUniversityToStudent(student, university);
+		Assert.assertTrue("user was not save correctly " + student.getUsername(), 
+				dbController.getUser(student.getUsername()).equals(student));
+	}
 
+	@Test (expected = IllegalArgumentException.class)
+	public void testSaveUniversityToNewStudentForInvalidSchool() {
+		University temp = new University("Jordan", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
+		dbController.saveUniversityToStudent(student, temp);
+	}
+
+	
 	/**
 	 * Test method for {@link Controllers.DBController#deleteUser(java.lang.String)}.
 	 */
@@ -496,7 +489,6 @@ public class TestDBController {
 	 */
 	@Test
 	public void testRemoveUniversityFromStudent() {
-		student1.removeUniversity(university);
 		dbController.removeUniversityFromStudent(student1, university);
 		Assert.assertTrue("School was not removed", dbController.getUser(student1.getUsername()).equals(student1));
 	}

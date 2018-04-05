@@ -82,8 +82,7 @@ public class StudentUniversitiesControllerTest {
 	 */
 	@Test
 	public void testRemoveUniversity() {
-		student.addSchool(u1);
-		dbc.saveEditedUser(student);
+		dbc.saveUniversityToStudent(student, u1);
 		Assert.assertTrue("Removing university should return 1", suc.removeUniversity(u1) == 1);
 	}
 	

@@ -22,8 +22,8 @@ public class ProfileControllerTest{
 	public void init(){ 
 		stud1 = new Student("ProfileControllerTest", "lastName", "pct", "password", 'u', true, false, new ArrayList<University>());
 		dbc = new DBController();
-		stud1.addSchool(dbc.getUniversity("BOSTON UNIVERSITY"));
 		dbc.addUser(stud1);
+		dbc.saveUniversityToStudent(stud1, (dbc.getUniversity("BOSTON UNIVERSITY")));
 		pc = new ProfileController(stud1);
 	}
 
