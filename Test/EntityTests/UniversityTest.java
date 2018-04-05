@@ -95,10 +95,17 @@ public class UniversityTest
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForInvalidNumStudents()
+	public void constructorFailsForInvalidNumStudentsNegative2()
 	{
 		Assert.assertTrue("Constructor fails for university with no students:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
 	            -2, 50.0, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForInvalidNumStudentsNegative20()
+	{
+		Assert.assertTrue("Constructor fails for university with no students:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
+	            -20, 50.0, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
@@ -109,52 +116,101 @@ public class UniversityTest
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForPercentFemaleLessThanNegOne()
+	public void constructorFailsForPercentFemaleNegative2()
 	{
 		Assert.assertTrue("Constructor fails for university with percentFemale < -1:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
-	            10000, -10, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
+	            10000, -2, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForPercentFemaleGreaterThanOneHundred()
+	public void constructorFailsForPercentFemaleNegative20()
+	{
+		Assert.assertTrue("Constructor fails for university with percentFemale < -1:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
+	            10000, -20, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForPercentFemale101()
 	{
 		Assert.assertTrue("Constructor fails for university with percentFemale > 100:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
-	            10000, 190, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
+	            10000, 101, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForPercentAdmittedLessThanNegOne()
+	public void constructorFailsForPercentFemale120()
+	{
+		Assert.assertTrue("Constructor fails for university with percentFemale > 100:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
+	            10000, 120, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForPercentAdmittedNegative2()
 	{
 		Assert.assertTrue("Constructor fails for university with percentAdmitted < -1:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
-	            10000, 50, 100.0, 100.0, 50000.0, -5, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
+	            10000, 50, 100.0, 100.0, 50000.0, -2, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForPercentAdmittedGreaterThanOneHundred()
+	public void constructorFailsForPercentAdmittedNegative20()
+	{
+		Assert.assertTrue("Constructor fails for university with percentAdmitted < -1:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
+	            10000, 50, 100.0, 100.0, 50000.0, -20, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForPercentAdmitted101()
 	{
 		Assert.assertTrue("Constructor fails for university with percentAdmitted > 100:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
-	            10000, 50, 100.0, 100.0, 50000.0, 175, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
+	            10000, 50, 100.0, 100.0, 50000.0, 101, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForPercentEnrolledLessThanNegOne()
+	public void constructorFailsForPercentAdmitted120()
+	{
+		Assert.assertTrue("Constructor fails for university with percentAdmitted > 100:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
+	            10000, 50, 100.0, 100.0, 50000.0, 120, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForPercentEnrolledNegative2()
 	{
 		Assert.assertTrue("Constructor fails for university with percentEnrolled < -1:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
-	            10000, 50, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, -6, 4, 2, 4, emphases) instanceof University);
+	            10000, 50, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, -2, 4, 2, 4, emphases) instanceof University);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForPercentEnrolledGreaterThanOneHundred()
+	public void constructorFailsForPercentEnrolledNegative20()
+	{
+		Assert.assertTrue("Constructor fails for university with percentEnrolled < -1:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
+	            10000, 50, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, -20, 4, 2, 4, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForPercentEnrolled101()
 	{
 		Assert.assertTrue("Constructor fails for university with percentEnrolled > 100:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
-	            10000, 50, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 190.0, 4, 2, 4, emphases) instanceof University);
+	            10000, 50, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 101.0, 4, 2, 4, emphases) instanceof University);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForSATVerbalLessThanNegOne()
+	public void constructorFailsForPercentEnrolled120()
+	{
+		Assert.assertTrue("Constructor fails for university with percentEnrolled > 100:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
+	            10000, 50, 100.0, 100.0, 50000.0, 75.0, 1000, 75.0, 120.0, 4, 2, 4, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForSATVerbalNegative2()
 	{
 		Assert.assertTrue("Constructor fails for university with SATVerbal < -1:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
 	            10000, 50, -2, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForSATVerbalNegative20()
+	{
+		Assert.assertTrue("Constructor fails for university with SATVerbal < -1:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
+	            10000, 50, -20, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
@@ -165,10 +221,24 @@ public class UniversityTest
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForSATVerbalMuchGreaterThanEightHundred()
+	{
+		Assert.assertTrue("Constructor fails for university with SATVerbal > 800:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
+	            10000, 50, 820.0, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
 	public void constructorFailsForSATMathLessThanNegOne()
 	{
 		Assert.assertTrue("Constructor fails for university with SATMath < -1:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
 	            10000, 50, 100.0, -2, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForSATMathNegative20()
+	{
+		Assert.assertTrue("Constructor fails for university with SATMath < -1:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
+	            10000, 50, 100.0, -20, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
@@ -179,10 +249,31 @@ public class UniversityTest
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForSATMathMuchGreaterThanEightHundred()
+	{
+		Assert.assertTrue("Constructor fails for university with SATMath > 800:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
+	            10000, 50, 100.0, 820.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 2, 4, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
 	public void constructorFailsForAcademicScaleLessthanNegOne()
 	{
 		Assert.assertTrue("Constructor fails for university with academicScale < -1:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
 	            10000, 50, 100, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, -2, 2, 4, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForAcademicScaleMuchLessthanNegOne()
+	{
+		Assert.assertTrue("Constructor fails for university with academicScale < -1:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
+	            10000, 50, 100, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, -20, 2, 4, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForAcademicScaleZero()
+	{
+		Assert.assertTrue("Constructor fails for university with academicScale = 0:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
+	            10000, 50, 100, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 0, 2, 4, emphases) instanceof University);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
@@ -193,10 +284,31 @@ public class UniversityTest
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForAcademicScaleMuchGreaterthanFive()
+	{
+		Assert.assertTrue("Constructor fails for university with academicScale > 5:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
+	            10000, 50, 100, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 20, 2, 4, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
 	public void constructorFailsForSocialScaleLessthanNegOne()
 	{
 		Assert.assertTrue("Constructor fails for university with socialScale < -1:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
 	            10000, 50, 100, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, -2, 4, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForSocialScaleZero()
+	{
+		Assert.assertTrue("Constructor fails for university with socialScale = 0:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
+	            10000, 50, 100, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 0, 4, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForSocialScaleMuchLessthanNegOne()
+	{
+		Assert.assertTrue("Constructor fails for university with socialScale < -1:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
+	            10000, 50, 100, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, -20, 4, emphases) instanceof University);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
@@ -207,17 +319,45 @@ public class UniversityTest
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForQualityOfLifeScaleLessthanNegOne()
+	public void constructorFailsForSociaScaleMuchGreaterthanFive()
 	{
-		Assert.assertTrue("Constructor fails for university with qualityOfLifeScale < -1:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
-	            10000, 50, 100, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 6, -4, emphases) instanceof University);
+		Assert.assertTrue("Constructor fails for university with socialScale > 5:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
+	            10000, 50, 100, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 20, 4, emphases) instanceof University);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForSociaScaleLessGreaterthanFive()
+	public void constructorFailsForQualityOfLifeScaleLessthanNegOne()
 	{
-		Assert.assertTrue("Constructor fails for university with percentFemale < -1:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
-	            10000, 50, 100, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 6, 7, emphases) instanceof University);
+		Assert.assertTrue("Constructor fails for university with qualityOfLifeScale < -1:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
+	            10000, 50, 100, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 5, -2, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForQualityOfLifeScaleMuchLessthanNegOne()
+	{
+		Assert.assertTrue("Constructor fails for university with qualityOfLifeScale < -1:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
+	            10000, 50, 100, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 5, -20, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForQualityOfLifeScaleGreaterthanFive()
+	{
+		Assert.assertTrue("Constructor fails for university with qualityOfLifeScale > 5:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
+	            10000, 50, 100, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 5, 6, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForQualityOfLifeScaleMuchGreaterthanFive()
+	{
+		Assert.assertTrue("Constructor fails for university with qualityOfLifeScale > 5:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
+	            10000, 50, 100, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 5, 20, emphases) instanceof University);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForQualityOfLifeScaleZero()
+	{
+		Assert.assertTrue("Constructor fails for university with qualityOfLifeScale = 0:", new University("Saint John's University","Minnesota", "Collegeville" , "Private",
+	            10000, 50, 100, 100.0, 50000.0, 75.0, 1000, 75.0, 90.0, 4, 5, 0, emphases) instanceof University);
 	}
 	
 	@Test

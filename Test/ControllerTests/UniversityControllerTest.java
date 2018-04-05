@@ -83,10 +83,10 @@ public class UniversityControllerTest
 	}
 	
 	/**
-	 * Test method to test editing a university fails because invalid name
+	 * Test method to test editing a university fails because invalid state
 	 */
 	@Test (expected = IllegalArgumentException.class)
-	public void testEditUniversityFails_invalidInput()
+	public void testEditUniversityFails_invalidState()
 	{
 		uniCont.editUniversity(university, "", "CITY", "PRIVATE", 4, 20.0, 100.0, 100.0, 80.0, 1.0, 6, 60.0, 60.0, 2, 2, 2, new ArrayList<String>());
 	}
@@ -124,4 +124,5 @@ public class UniversityControllerTest
 		int result = uniCont.deleteUniversity(university4);
 		Assert.assertTrue(result != -1);
 	}
+	
 }
