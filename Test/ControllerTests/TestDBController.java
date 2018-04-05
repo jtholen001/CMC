@@ -81,9 +81,19 @@ public class TestDBController {
 				dbController.getUser(admin.getUsername()).equals(admin));
 	}
 
-	@Test
+	@Test (expected = IllegalArgumentException.class)
 	public void testGetUserForInvalidUser() {
 		Assert.assertNull("test did not fail for getting an invalid user testuser001",dbController.getUser("testuser001"));
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testGetUserForInvalidUserEmpty() {
+		Assert.assertNull("test did not fail for getting an invalid user testuser001",dbController.getUser(""));
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testGetUserForInvalidUserNull() {
+		Assert.assertNull("test did not fail for getting an invalid user testuser001",dbController.getUser(null));
 	}
 
 	/**
