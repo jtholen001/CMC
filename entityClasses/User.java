@@ -57,7 +57,8 @@ public class User
    */
   public User(String firstName, String lastName, String username, String password, char type, boolean activated, boolean logged)
   {
-	if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() || password.isEmpty() || ((type != 'a') && (type != 'u')))
+	if (firstName == null || lastName == null || username == null || password == null || type == 0 ||
+			firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() || password.isEmpty() || ((type != 'a') && (type != 'u')))
 		throw new IllegalArgumentException();
 	  
     this.firstName = firstName;
