@@ -21,7 +21,7 @@ public class UniversityControllerTest
 		uniCont = new UniversityController();
 		university = new University("UNIVERSITY OF CMC", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
 		dbCont = new DBController();
-		listAll = uniCont.viewUniversities();
+		//listAll = uniCont.viewUniversities();
 		dbCont.addUniversity(university);
 	}
 	
@@ -36,6 +36,7 @@ public class UniversityControllerTest
 	@Test
 	public void testViewUniversities()
 	{
+		listAll = uniCont.viewUniversities();
 		Set<String> names = listAll.keySet();
 		boolean contains1 = false;
 		boolean contains2 = false;
