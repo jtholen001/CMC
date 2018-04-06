@@ -38,6 +38,9 @@ public class DBController
 	{
 		String[][] users = univDBlib.user_getUsers();
 		boolean status = false;
+		
+		if(username == null)
+			throw new IllegalArgumentException("username is a null value");
 
 		for(int index = 0; index < users.length; index++)
 		{
@@ -162,23 +165,31 @@ public class DBController
 	{ 
 		if(user == null)
 			throw new IllegalArgumentException("User value is null");
-		if(user instanceof Student)
-		{
-			Student temp = (Student)user;
-			if(!(temp).getSavedSchools().isEmpty())
-			{
-				int success = univDBlib.user_addUser(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getType());
-				try{
-					this.checkSavedUniversities(temp);
-				}catch(IllegalArgumentException j)
-				{
-					this.deleteUser(user.getUsername());
-					throw j;
-				}
-				return success;
-			}
+		try {
+			this.getUser(user.getUsername());
 		}
-		return univDBlib.user_addUser(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getType());
+		catch(IllegalArgumentException i)
+		{
+			return univDBlib.user_addUser(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getType());
+		}
+		throw new IllegalArgumentException("User is already in databse");
+//		if(user instanceof Student)
+//		{
+//			Student temp = (Student)user;
+//			if(!(temp).getSavedSchools().isEmpty())
+//			{
+//				int success = univDBlib.user_addUser(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getType());
+//				try{
+//					this.checkSavedUniversities(temp);
+//				}catch(IllegalArgumentException j)
+//				{
+//					this.deleteUser(user.getUsername());
+//					throw j;
+//				}
+//				return success;
+//			}
+//		}
+		
 	}
 	//TODO change save edited user to this
 	  public int saveUniversityToStudent(Student student, University university)
