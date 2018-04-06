@@ -69,18 +69,18 @@ public class DBController
 	 * 
 	 * @return an ArrayList of universities the student has saved
 	 */
-	 ArrayList<University> getUniversitiesForStudent(String username)
+	 private ArrayList<University> getUniversitiesForStudent(String username)
 	{
-		String[][] universities = univDBlib.user_getUsernamesWithSavedSchools();
+		String[][] usersUniversities = univDBlib.user_getUsernamesWithSavedSchools();
 		ArrayList<University> list = new ArrayList<University>();
 
 		if(username == null)
 			throw new IllegalArgumentException("username is a null value");
-		for(int i = 0; i < universities.length; i++)
+		for(int i = 0; i < usersUniversities.length; i++)
 		{
-			if(universities[i][0].equals(username))
+			if(usersUniversities[i][0].equals(username))
 			{
-				list.add(this.getUniversity(universities[i][1]));
+				list.add(this.getUniversity(usersUniversities[i][1]));
 			}
 		}
 		return list;

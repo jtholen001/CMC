@@ -97,6 +97,11 @@ public class TestDBController {
 		Assert.assertNull("test did not fail for getting an invalid user testuser001",dbController.getUser(null));
 	}
 
+	@Test (expected = IllegalArgumentException.class)
+	public void testGetUniversitiesForStudent() {
+		Assert.assertNull("test did not fail for getting an invalid user testuser001",dbController.getUser(null));
+	}
+
 	/**
 	 * Test method for {@link Controllers.DBController#getUsers()}.
 	 */
@@ -106,7 +111,7 @@ public class TestDBController {
 		Assert.assertNotNull("User object was null",temp.get("jtholen001"));
 		Assert.assertNotNull("User object was null",temp.get("irahal"));
 	}
-	
+
 	@Test (expected = IllegalArgumentException.class)
 	public void testSaveEditedUserForNull() {
 		dbController.saveEditedUser(null);
@@ -173,7 +178,7 @@ public class TestDBController {
 		Assert.assertTrue("user was not save correctly " + student.getUsername(), 
 				dbController.getUser(student.getUsername()).equals(student));
 	}
-	
+
 	/**
 	 * Test method for {@link Controllers.DBController#addUser(entityClasses.User)}.
 	 */
@@ -218,6 +223,12 @@ public class TestDBController {
 	}
 
 	@Test
+	public void testGetUniversitiesForStudent() {
+
+		//dbController.getUniversitiesForStudent(student.getUsername());
+	}
+
+	@Test
 	public void testSaveUniversityToNewStudent() {
 		//student.addSchool(university);
 		dbController.saveUniversityToStudent(student, university);
@@ -231,7 +242,7 @@ public class TestDBController {
 		dbController.saveUniversityToStudent(student, temp);
 	}
 
-	
+
 	/**
 	 * Test method for {@link Controllers.DBController#deleteUser(java.lang.String)}.
 	 */
