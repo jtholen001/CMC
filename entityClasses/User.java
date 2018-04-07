@@ -58,13 +58,13 @@ public class User
   public User(String firstName, String lastName, String username, String password, char type, boolean activated, boolean logged)
   {
 	if (firstName == null || lastName == null || username == null || password == null || type == 0 ||
-			firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() || password.isEmpty() || ((type != 'a') && (type != 'u')))
+			firstName.trim().isEmpty() || lastName.trim().isEmpty() || username.trim().isEmpty() || password.trim().isEmpty() || ((type != 'a') && (type != 'u')))
 		throw new IllegalArgumentException();
 	  
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.username = username;
-    this.password = password;
+    this.firstName = firstName.trim();
+    this.lastName = lastName.trim();
+    this.username = username.trim();
+    this.password = password.trim();
     this.type = type;
     this.isActivated = activated;
     this.isLoggedIn = logged;
@@ -146,9 +146,9 @@ public class User
    */
   public void setFirstName(String newFirstName)
   {
-	if (newFirstName.equals(""))
+	if (newFirstName.trim().equals(""))
 		throw new IllegalArgumentException();
-    this.firstName = newFirstName;
+    this.firstName = newFirstName.trim();
   }
   
   /**
@@ -158,9 +158,9 @@ public class User
    */
   public void setLastName(String newLastName)
   {
-    if (newLastName.equals(""))
+    if (newLastName.trim().equals(""))
     	throw new IllegalArgumentException();
-    this.lastName = newLastName;
+    this.lastName = newLastName.trim();
   }
   
   /**
@@ -170,9 +170,11 @@ public class User
    */
   public void setPassword(String newPassword)
   {
-	if (newPassword.equals(""))
+	if (newPassword.trim().equals(""))
 		throw new IllegalArgumentException();
-    this.password = newPassword;
+	if (newPassword.trim().length() != newPassword.length())
+		throw new IllegalArgumentException("Paswwords cannot have spaces");
+    this.password = newPassword.trim();
   }
   
   /**

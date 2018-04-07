@@ -38,6 +38,9 @@ public class DBController
 	{
 		String[][] users = univDBlib.user_getUsers();
 		boolean status = false;
+		
+		if(username == null)
+			throw new IllegalArgumentException("username is a null value");
 
 		for(int index = 0; index < users.length; index++)
 		{
@@ -69,18 +72,18 @@ public class DBController
 	 * 
 	 * @return an ArrayList of universities the student has saved
 	 */
-	 ArrayList<University> getUniversitiesForStudent(String username)
+	 private ArrayList<University> getUniversitiesForStudent(String username)
 	{
-		String[][] universities = univDBlib.user_getUsernamesWithSavedSchools();
+		String[][] usersUniversities = univDBlib.user_getUsernamesWithSavedSchools();
 		ArrayList<University> list = new ArrayList<University>();
 
 		if(username == null)
 			throw new IllegalArgumentException("username is a null value");
-		for(int i = 0; i < universities.length; i++)
+		for(int i = 0; i < usersUniversities.length; i++)
 		{
-			if(universities[i][0].equals(username))
+			if(usersUniversities[i][0].equals(username))
 			{
-				list.add(this.getUniversity(universities[i][1]));
+				list.add(this.getUniversity(usersUniversities[i][1]));
 			}
 		}
 		return list;
@@ -136,16 +139,16 @@ public class DBController
 		else
 			temp = 'Y';
 
-		if(user instanceof Student)
-		{
-			Student stu = (Student)user;
-			try{
-				this.checkSavedUniversities(stu);
-			}catch(IllegalArgumentException j)
-			{
-				throw j;
-			}
-		}
+//		if(user instanceof Student)
+//		{
+//			Student stu = (Student)user;
+//			try{
+//				this.checkSavedUniversities(stu);
+//			}catch(IllegalArgumentException j)
+//			{
+//				throw j;
+//			}
+//		}
 		return univDBlib.user_editUser(user.getUsername(),user.getFirstName(),user.getLastName(),user.getPassword(),user.getType(),
 				temp);
 	}
@@ -162,81 +165,90 @@ public class DBController
 	{ 
 		if(user == null)
 			throw new IllegalArgumentException("User value is null");
-		if(user instanceof Student)
-		{
-			Student temp = (Student)user;
-			if(!(temp).getSavedSchools().isEmpty())
-			{
-				int success = univDBlib.user_addUser(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getType());
-				try{
-					this.checkSavedUniversities(temp);
-				}catch(IllegalArgumentException j)
-				{
-					this.deleteUser(user.getUsername());
-					throw j;
-				}
-				return success;
-			}
+		try {
+			this.getUser(user.getUsername());
 		}
-		return univDBlib.user_addUser(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getType());
+		catch(IllegalArgumentException i)
+		{
+			return univDBlib.user_addUser(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getType());
+		}
+		throw new IllegalArgumentException("User is already in databse");
+//		if(user instanceof Student)
+//		{
+//			Student temp = (Student)user;
+//			if(!(temp).getSavedSchools().isEmpty())
+//			{
+//				int success = univDBlib.user_addUser(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getType());
+//				try{
+//					this.checkSavedUniversities(temp);
+//				}catch(IllegalArgumentException j)
+//				{
+//					this.deleteUser(user.getUsername());
+//					throw j;
+//				}
+//				return success;
+//			}
+//		}
+		
 	}
 	//TODO change save edited user to this
-	//  public int saveUniversityToStudent(Student student, University university)
-	//  {
-	//	  String[][] savedUniversities = univDBlib.user_getUsernamesWithSavedSchools();
-	//	  String[][] universities = univDBlib.university_getUniversities();
-	//	  
-	//	  for(int i = 0; i < universities.length; i++)
-	//	  {
-	//		  if(university.getName().equals(universities[i][0]))
-	//		  {
-	//			  for(int j = 0; j < savedUniversities.length; j++)
-	//			  {
-	//				  if(savedUniversities[j][1].equals(university.getName()))
-	//					  throw new IllegalArgumentException("Student already has school saved");
-	//			  }
-	//			 return univDBlib.user_saveSchool(student.getUsername(), university.getName());
-	//		  }
-	//	  }
-	//	  throw new IllegalArgumentException("Saved schools in student contains a school not in the databse");
-	//  }
-	//  
-	//  public int removeUniversityFromStudent(Student student, University university)
-	//  {
-	//	  String[][] savedUniversities = univDBlib.user_getUsernamesWithSavedSchools();
-	//	  String[][] universities = univDBlib.university_getUniversities();
-	//	  
-	//	  for(int i = 0; i < universities.length; i++)
-	//	  {
-	//		  if(university.getName().equals(universities[i][0]))
-	//		  {
-	//			  for(int j = 0; j < savedUniversities.length; j++)
-	//			  {
-	//				  if(!(savedUniversities[j][1].equals(university.getName())))
-	//					  throw new IllegalArgumentException("Student does not contain this school to delete");
-	//			  }
-	//			 return univDBlib.user_removeSchool(student.getUsername(), university.getName());
-	//		  }
-	//	  }
-	//	  throw new IllegalArgumentException("Saved schools in student contains a school not in the databse");  
-	//  }
-	//  
-	//  public int removeAllUniversitiesFromStudent(Student student)
-	//  {
-	//	  String[][] savedUniversities = univDBlib.user_getUsernamesWithSavedSchools();
-	//	  String[][] universities = univDBlib.university_getUniversities();
-	//	  
-	//	  for(int i = 0; i < savedUniversities.length; i++)
-	//	  {
-	//		  for(int j = 0; j < universities.length; j++)
-	//		  {
-	//			  if(savedUniversities[i][0].equals(universities[j][0]))
-	//				  univDBlib.user_removeSchool(student.getUsername(), universities[j][0]);
-	//		  }
-	//	  }
-	//	  //throw new IllegalArgumentException("Saved schools in student contains a school not in the databse");  
-	//	  return 1;
-	//  }
+	  public int saveUniversityToStudent(Student student, University university)
+	  {
+		  String[][] savedUniversities = univDBlib.user_getUsernamesWithSavedSchools();
+		  String[][] universities = univDBlib.university_getUniversities();
+		  
+		  for(int i = 0; i < universities.length; i++)
+		  {
+			  if(university.getName().equals(universities[i][0]))
+			  {
+				  for(int j = 0; j < savedUniversities.length; j++)
+				  {
+					  if(savedUniversities[j][1].equals(university.getName()) && savedUniversities[j][0].equals(student.getUsername()))
+						  throw new IllegalArgumentException("Student already has school saved");
+				  }
+				  student.addSchool(university);
+				 return univDBlib.user_saveSchool(student.getUsername(), university.getName());
+			  }
+		  }
+		  throw new IllegalArgumentException("Saved schools in student contains a school not in the databse");
+	  }
+	  
+//	  public int removeUniversityFromStudent(Student student, University university)
+//	  {
+//		  String[][] savedUniversities = univDBlib.user_getUsernamesWithSavedSchools();
+//		  String[][] universities = univDBlib.university_getUniversities();
+//		  
+//		  for(int i = 0; i < universities.length; i++)
+//		  {
+//			  if(university.getName().equals(universities[i][0]))
+//			  {
+//				  for(int j = 0; j < savedUniversities.length; j++)
+//				  {
+//					  if(!(savedUniversities[j][1].equals(university.getName())))
+//						  throw new IllegalArgumentException("Student does not contain this school to delete");
+//				  }
+//				 return univDBlib.user_removeSchool(student.getUsername(), university.getName());
+//			  }
+//		  }
+//		  throw new IllegalArgumentException("Saved schools in student contains a school not in the databse");  
+//	  }
+	  
+	  public int removeAllUniversitiesFromStudent(Student student)
+	  {
+		  String[][] savedUniversities = univDBlib.user_getUsernamesWithSavedSchools();
+		  String[][] universities = univDBlib.university_getUniversities();
+		  
+		  for(int i = 0; i < savedUniversities.length; i++)
+		  {
+			  for(int j = 0; j < universities.length; j++)
+			  {
+				  if(savedUniversities[i][0].equals(universities[j][0]))
+					  univDBlib.user_removeSchool(student.getUsername(), universities[j][0]);
+			  }
+		  }
+		  //throw new IllegalArgumentException("Saved schools in student contains a school not in the databse");  
+		  return 1;
+	  }
 
 	/**
 	 * method to delete a user from the database
@@ -440,6 +452,7 @@ public class DBController
 			throw new IllegalArgumentException("University does not exist in the database");
 		if(this.getUser(student.getUsername()) == null)
 			throw new IllegalArgumentException("University does not exist in the database");
+		student.removeUniversity(university);
 		int temp = univDBlib.user_removeSchool(student.getUsername(),university.getName());
 		if(temp == -1)
 			throw new IllegalArgumentException("Deleting saved school returned an error");
