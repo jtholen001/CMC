@@ -339,6 +339,13 @@ public class TestDBController {
 		Assert.assertNotNull("University object was null", temp.get("ABILENE CHRISTIAN UNIVERSITY"));
 		Assert.assertNotNull("University object was null", temp.get("YANKTOWN COLLEGE"));
 	}
+	
+	@Test
+	public void testViewUniversitiesInvalid() {
+		HashMap<String,University> temp = dbController.viewUniversities();
+		Assert.assertNull("University object was null", temp.get("Jordan"));
+		Assert.assertNull("University object was null", temp.get(null));
+	}
 
 	/**
 	 * Test method for {@link Controllers.DBController#getUniversity(java.lang.String)}.
@@ -362,6 +369,16 @@ public class TestDBController {
 	@Test (expected = IllegalArgumentException.class)
 	public void testGetUniversityInvalid() {
 		dbController.getUniversity("Univeristy of Jordan");
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testGetUniversityNull() {
+		dbController.getUniversity(null);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testSaveEditedUniversityInvalid() {
+		dbController.saveEditedUniversity(null);
 	}
 
 
