@@ -7,6 +7,7 @@
 package Controllers;
 
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -63,25 +64,36 @@ public class SearchController
 	 * @param qualityOfLifeScaleLower  the lower bound of the quality of life at this university
 	 * @param qualityOfLifeScaleUpper  the upper bound of the quality of life at this university
 	 * @param searchEmphases  areas of study
+	 * 
 	 * @return ArrayList<University>  found Universities
 	 */
 	public ArrayList<University> searchUniversities(String name, String state, String location, String control, int numStudentsLower, int numStudentsUpper, double percentFemaleLower, double percentFemaleUpper,
 			double SATVerbalLower, double SATVerbalUpper, double SATMathLower, double SATMathUpper, double expensesLower, double expensesUpper, double percentFinancialAidLower, double percentFinancialAidUpper, 
 			int numApplicantsLower, int numApplicantsUpper, double percentAdmittedLower, double percentAdmittedUpper, double percentEnrolledLower, double percentEnrolledUpper, 
 			int academicScaleLower, int academicScaleUpper, int socialScaleLower, int socialScaleUpper, int qualityOfLifeScaleLower, int qualityOfLifeScaleUpper,  
-		  ArrayList<String> searchEmphases) throws IllegalArgumentException
+		  ArrayList<String> searchEmphases) throws IllegalArgumentException, InputMismatchException
 	{
+		if (name == null || state == null || location == null || control == null || !checkBounds(numStudentsLower, numStudentsUpper) || !checkBounds(percentFemaleLower, percentFemaleUpper) || !checkBounds(SATVerbalLower, SATVerbalUpper) ||
+				!checkBounds(SATMathLower, SATMathUpper) || !checkBounds(expensesLower, expensesUpper) || !checkBounds(numApplicantsLower, numApplicantsUpper) || 
+				!checkBounds(percentFinancialAidLower, percentFinancialAidUpper) || !checkBounds(percentAdmittedLower, percentAdmittedUpper) || !checkBounds(percentEnrolledLower, percentEnrolledUpper) ||
+				!checkBounds(academicScaleLower, academicScaleUpper) || !checkBounds(socialScaleLower, socialScaleUpper) || !checkBounds(qualityOfLifeScaleLower, qualityOfLifeScaleUpper) || searchEmphases == null)
+		{
+			
+			throw new IllegalArgumentException("Invalid range entered");
+		}
+		
 		//If 1
-		if (name == null && state == null && location == null && control == null &&
+		if (name.equals("") && state.equals("") && location.equals("") && control.equals("") &&
 				numStudentsLower == 0 && numStudentsUpper == 0 && percentFemaleLower == 0 && percentFemaleUpper == 0 &&
 				SATVerbalLower == 0 && SATVerbalUpper==0 && SATMathLower == 0 && SATMathUpper == 0 && expensesLower == 0 &&
-				expensesUpper ==0 && numApplicantsLower == 0 && numApplicantsUpper == 0 && academicScaleLower == 0 && academicScaleUpper == 0 &&
+				expensesUpper == 0 && numApplicantsLower == 0 && numApplicantsUpper == 0 && academicScaleLower == 0 && academicScaleUpper == 0 &&
 				socialScaleLower == 0 && socialScaleUpper == 0 && qualityOfLifeScaleLower == 0 && qualityOfLifeScaleUpper == 0 &&
 				percentFinancialAidLower == 0 && percentFinancialAidUpper == 0 && percentAdmittedLower == 0 && percentAdmittedUpper == 0 &&
-				percentEnrolledLower == 0 && percentEnrolledUpper == 0 && searchEmphases == null)
+				percentEnrolledLower == 0 && percentEnrolledUpper == 0 && searchEmphases.isEmpty())
 		{
-			throw new IllegalArgumentException("All fields cannot be empty");
+			throw new InputMismatchException("All fields cannot be empty");
 		}
+
 		//HashMap containing all the universities in the database
 		HashMap<String, University> universities = this.dbc.viewUniversities();
 
@@ -98,18 +110,18 @@ public class SearchController
 
 			boolean matched = false;
 			//If 2
-			if ((name == null || u.contains(name)) && (state == null || currentUniversity.getState().contains(state)) && (location == null || currentUniversity.getLocation().equals(location)) &&
-					(control == null || currentUniversity.getControl().equals(control)) && compareStats(currentUniversity.getNumStudents(), numStudentsLower, numStudentsUpper) == 1 &&
-					compareStats(currentUniversity.getPercentFemale(), percentFemaleLower, percentFemaleUpper) == 1 && compareStats(currentUniversity.getSATVerbal(), SATVerbalLower, SATVerbalUpper) == 1 &&
-					compareStats(currentUniversity.getSATMath(), SATMathLower, SATMathUpper) == 1 && compareStats(currentUniversity.getExpenses(), expensesLower, expensesUpper) == 1 &&
-					compareStats(currentUniversity.getPercentFinancialAid(), percentFinancialAidLower, percentFinancialAidUpper) == 1 && compareStats(currentUniversity.getNumApplicants(), numApplicantsLower, numApplicantsUpper) == 1 &&
-					compareStats(currentUniversity.getPercentAdmitted(), percentAdmittedLower, percentAdmittedUpper) == 1 && compareStats(currentUniversity.getPercentEnrolled(), percentEnrolledLower, percentEnrolledUpper) == 1 &&
-					compareStats(currentUniversity.getAcademicScale(), academicScaleLower, academicScaleUpper) == 1 && compareStats(currentUniversity.getSocialScale(), socialScaleLower, socialScaleUpper) == 1 && 
-					compareStats(currentUniversity.getQualityOfLifeScale(), qualityOfLifeScaleLower, qualityOfLifeScaleUpper) == 1)
+			if ((name.equals("") || u.contains(name)) && (state.equals("") || currentUniversity.getState().contains(state)) && (location.equals("") || currentUniversity.getLocation().contains(location)) &&
+					(control.equals("") || currentUniversity.getControl().contains(control)) && checkNumbers(currentUniversity.getNumStudents(), numStudentsLower, numStudentsUpper) &&
+					checkNumbers(currentUniversity.getPercentFemale(), percentFemaleLower, percentFemaleUpper) && checkNumbers(currentUniversity.getSATVerbal(), SATVerbalLower, SATVerbalUpper) &&
+					checkNumbers(currentUniversity.getSATMath(), SATMathLower, SATMathUpper) && checkNumbers(currentUniversity.getExpenses(), expensesLower, expensesUpper) &&
+					checkNumbers(currentUniversity.getPercentFinancialAid(), percentFinancialAidLower, percentFinancialAidUpper) && checkNumbers(currentUniversity.getNumApplicants(), numApplicantsLower, numApplicantsUpper) &&
+					checkNumbers(currentUniversity.getPercentAdmitted(), percentAdmittedLower, percentAdmittedUpper) && checkNumbers(currentUniversity.getPercentEnrolled(), percentEnrolledLower, percentEnrolledUpper) &&
+					checkNumbers(currentUniversity.getAcademicScale(), academicScaleLower, academicScaleUpper) && checkNumbers(currentUniversity.getSocialScale(), socialScaleLower, socialScaleUpper) && 
+					checkNumbers(currentUniversity.getQualityOfLifeScale(), qualityOfLifeScaleLower, qualityOfLifeScaleUpper))
 			{
 				ArrayList<String> currentEmphases = currentUniversity.getEmphases();
 				//If 3
-				if (searchEmphases == null)
+				if (searchEmphases.isEmpty())
 					matched = true; 
 				else
 				{
@@ -132,24 +144,40 @@ public class SearchController
 	}
 
 	/**
-	 * helper method for comparing search criteria to universities in the database
+	 * helper method for comparing numbers
 	 * @param currentSchoolValue  the value associated with the current university you are comparing
 	 * @param lower  the lower bound entered in the search criteria
 	 * @param upper  the upper bound entered in the search criteria
-	 * @return an int if the university matches the criteria
+	 * @return a boolean if the currentSchoolValue is in range of the bounds
 	 */
-	private int compareStats(double currentSchoolValue, double lower, double upper)
+	private boolean checkNumbers(double currentSchoolValue, double lower, double upper)
 	{
 		if (lower == 0 && upper == 0)      
-			return 1;          
+			return true;          
 		else if (lower == 0 && upper >=  currentSchoolValue)    
-			return 1;           
+			return true;           
 		else if (upper == 0 && lower <=  currentSchoolValue)
-			return 1; 
+			return true; 
 		else if ((lower <= currentSchoolValue) && (upper >= currentSchoolValue))
-			return 1;
-		return 0;
+			return true;
+		return false;
 	}
+	
+	/**
+	 * helper method to make sure bounds are valid numbers	
+	 * @param lower  the lower bound entered in the search criteria
+	 * @param upper  the upper bound entered in the search criteria
+	 * @return a boolean representing if the bounds are valid
+	 */
+	private boolean checkBounds(double lower, double upper)
+	{
+		if (lower < 0 || upper < 0)    
+			return false;  
+		else if (lower > upper && upper != 0)
+			return false;
+		return true;
+	}
+	
 
 	/**
 	 * method to get the recommended universities based off of a university
