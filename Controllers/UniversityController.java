@@ -121,7 +121,7 @@ public class UniversityController
                                         academicScale, socialScale, qualityOfLifeScale, emphases));
     }
     catch(IllegalArgumentException illegalArg) {
-    	return -1;
+    	throw illegalArg;
     }
   }
   

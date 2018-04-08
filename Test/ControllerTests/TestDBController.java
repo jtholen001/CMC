@@ -103,6 +103,14 @@ public class TestDBController {
 		HashMap<String,User> temp = dbController.getUsers();
 		Assert.assertNotNull("User object was null",temp.get("jtholen001"));
 		Assert.assertNotNull("User object was null",temp.get("irahal"));
+		Assert.assertNotNull("User object was null",temp.get("jtholen"));
+	}
+	
+	@Test
+	public void testGetUsersInvalid() {
+		HashMap<String,User> temp = dbController.getUsers();
+		Assert.assertNull("User object was not null",temp.get(" "));
+		Assert.assertNull("User object was not null",temp.get(null));
 	}
 
 	@Test (expected = IllegalArgumentException.class)
@@ -315,6 +323,11 @@ public class TestDBController {
 	public void testDeleteInvalidUser() {
 		Admin ad = new Admin("Imad","Rahal","irahal001","admin",'a',true,false);
 		dbController.deleteUser(ad.getUsername());
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testDeleteNull() {
+		dbController.deleteUser(null);
 	}
 
 	/**
