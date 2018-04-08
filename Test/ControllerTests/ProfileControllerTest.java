@@ -34,18 +34,6 @@ public class ProfileControllerTest{
 	}
 
 	/**
-	 * Test that the default constructor works for correct/valid parameters
-	 */ 
-	@Test
-	public void constructorSucceedsForValidInput(){
-		stud1 = new Student("ProfileControllerTest", "lastName", "pct", "password", 'u', true, false, new ArrayList<University>());
-		dbc = new DBController();
-		dbc.addUser(stud1);
-		Assert.assertTrue("Constructor should succeed for ProfileController as all fields meet constructor criteria",
-				new ProfileController(stud1) instanceof ProfileController);
-	}
-
-	/**
 	 * Test that method "editProfile" works for correct/valid firstName parameter
 	 */ 
 	@Test
@@ -53,6 +41,16 @@ public class ProfileControllerTest{
 		pc.editProfile("John", "Miller", "password1");
 		Student edited = (Student) dbc.getUser("pct");
 		Assert.assertTrue("User's firstName should be John", edited.getFirstName().equals("John"));
+	}
+	
+	/**
+	 * Test that method "editProfile" works for correct/valid firstName parameter
+	 */ 
+	@Test
+	public void editProfileSucceedsForValidFirstNameParameterAdditional(){
+		pc.editProfile("j", "Miller", "password1");
+		Student edited = (Student) dbc.getUser("pct");
+		Assert.assertTrue("User's firstName should be j", edited.getFirstName().equals("j"));
 	}
 	
 	/**
@@ -66,6 +64,16 @@ public class ProfileControllerTest{
 	}
 	
 	/**
+	 * Test that method "editProfile" works for correct/valid lastName parameter
+	 */ 
+	@Test
+	public void editProfileSucceedsForValidLastNameParameterAdditional(){
+		pc.editProfile("John", "m", "password1");
+		Student edited = (Student) dbc.getUser("pct");
+		Assert.assertTrue("User's lastName should be m", edited.getLastName().equals("m"));
+	}
+	
+	/**
 	 * Test that method "editProfile" works for correct/valid password parameter
 	 */ 
 	@Test
@@ -76,11 +84,29 @@ public class ProfileControllerTest{
 	}
 	
 	/**
+	 * Test that method "editProfile" works for correct/valid password parameter
+	 */ 
+	@Test
+	public void editProfileSucceedsForValidPasswordParameterAdditional(){
+		pc.editProfile("John", "Miller", "p");
+		Student edited = (Student) dbc.getUser("pct");
+		Assert.assertTrue("User's password should be password1", edited.getPassword().equals("p"));
+	}
+	
+	/**
 	 * Test that method "editProfile" fails for empty firstName parameter
 	 */
 	@Test (expected = IllegalArgumentException.class)
 	public void editProfileFailsForEmptyFirstNameParameter(){
 		pc.editProfile("", "Miller", "password1");
+	}
+	
+	/**
+	 * Test that method "editProfile" fails for empty firstName parameter
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void editProfileFailsForEmptyFirstNameParameterAdditional(){
+		pc.editProfile(" ", "Miller", "password1");
 	}
 
 	/**
@@ -90,6 +116,14 @@ public class ProfileControllerTest{
 	public void editProfileFailsForEmptyLastNameParameter(){
 		pc.editProfile("John", "", "password1");
 	}
+	
+	/**
+	 * Test that method "editProfile" fails for empty lastName parameter
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void editProfileFailsForEmptyLastNameParameterAdditional(){
+		pc.editProfile("John", " ", "password1");
+	}
 
 	/**
 	 * Test that method "editProfile" fails for empty password parameter
@@ -97,6 +131,14 @@ public class ProfileControllerTest{
 	@Test (expected = IllegalArgumentException.class)
 	public void editProfileFailsForEmptyPasswordParameter(){
 		pc.editProfile("John", "Miller", "");
+	}
+	
+	/**
+	 * Test that method "editProfile" fails for empty password parameter
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void editProfileFailsForEmptyPasswordParameterAdditional(){
+		pc.editProfile("John", "Miller", " ");
 	}
 	
 	/**
