@@ -103,6 +103,14 @@ public class TestDBController {
 		HashMap<String,User> temp = dbController.getUsers();
 		Assert.assertNotNull("User object was null",temp.get("jtholen001"));
 		Assert.assertNotNull("User object was null",temp.get("irahal"));
+		Assert.assertNotNull("User object was null",temp.get("jtholen"));
+	}
+	
+	@Test
+	public void testGetUsersInvalid() {
+		HashMap<String,User> temp = dbController.getUsers();
+		Assert.assertNull("User object was not null",temp.get(" "));
+		Assert.assertNull("User object was not null",temp.get(null));
 	}
 
 	@Test (expected = IllegalArgumentException.class)
@@ -316,6 +324,11 @@ public class TestDBController {
 		Admin ad = new Admin("Imad","Rahal","irahal001","admin",'a',true,false);
 		dbController.deleteUser(ad.getUsername());
 	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testDeleteNull() {
+		dbController.deleteUser(null);
+	}
 
 	/**
 	 * Test method for {@link Controllers.DBController#viewUniversities()}.
@@ -325,6 +338,13 @@ public class TestDBController {
 		HashMap<String,University> temp = dbController.viewUniversities();
 		Assert.assertNotNull("University object was null", temp.get("ABILENE CHRISTIAN UNIVERSITY"));
 		Assert.assertNotNull("University object was null", temp.get("YANKTOWN COLLEGE"));
+	}
+	
+	@Test
+	public void testViewUniversitiesInvalid() {
+		HashMap<String,University> temp = dbController.viewUniversities();
+		Assert.assertNull("University object was null", temp.get("Jordan"));
+		Assert.assertNull("University object was null", temp.get(null));
 	}
 
 	/**
@@ -349,6 +369,16 @@ public class TestDBController {
 	@Test (expected = IllegalArgumentException.class)
 	public void testGetUniversityInvalid() {
 		dbController.getUniversity("Univeristy of Jordan");
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testGetUniversityNull() {
+		dbController.getUniversity(null);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testSaveEditedUniversityInvalid() {
+		dbController.saveEditedUniversity(null);
 	}
 
 

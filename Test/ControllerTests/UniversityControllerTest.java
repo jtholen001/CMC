@@ -30,6 +30,7 @@ public class UniversityControllerTest
 	{
 		uniCont.deleteUniversity(university);
 	}
+	
 	/**
 	 * Test method to test viewing universities
 	 */
@@ -84,10 +85,10 @@ public class UniversityControllerTest
 	}
 	
 	/**
-	 * Test method to test editing a university fails because invalid state
+	 * Test method to test editing a university fails because invalid input
 	 */
-	@Test (expected = IllegalArgumentException.class)
-	public void testEditUniversityFails_invalidState()
+	@Test(expected = IllegalArgumentException.class)
+	public void testEditUniversityFails_invalidInput()
 	{
 		uniCont.editUniversity(university, "", "CITY", "PRIVATE", 4, 20.0, 100.0, 100.0, 80.0, 1.0, 6, 60.0, 60.0, 2, 2, 2, new ArrayList<String>());
 	}
@@ -108,7 +109,7 @@ public class UniversityControllerTest
 	 * Test method to test adding a university fails because duplicate name
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void testAddUniversityFailsForDuplicateName()
+	public void testAddUniversityFailsForInvalidInput()
 	{
 		university3 = new University("AUBURN", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
 		uniCont.addUniversity("AUBURN", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());

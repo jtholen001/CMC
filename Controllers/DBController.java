@@ -315,6 +315,9 @@ public class DBController
 	{
 		String[][] universities = univDBlib.university_getUniversities();
 		HashMap<String, University> universityMap = new HashMap<String, University>();
+		
+		if(name == null)
+			throw new IllegalArgumentException("Given name was null");
 
 		for(int index = 0; index < universities.length; index++)
 		{
@@ -361,6 +364,9 @@ public class DBController
 	 */
 	public int saveEditedUniversity(University university)
 	{
+		if(university == null)
+			throw new IllegalArgumentException("Given university was null");
+		
 		int success = univDBlib.university_editUniversity(university.getName(), university.getState(), university.getLocation(),
 				university.getControl(), university.getNumStudents(), university.getPercentFemale(),
 				university.getSATVerbal(), university.getSATMath(), university.getExpenses(),
@@ -450,10 +456,13 @@ public class DBController
 	{
 		if(this.getUniversity(university.getName()) == null)
 			throw new IllegalArgumentException("University does not exist in the database");
+		
 		if(this.getUser(student.getUsername()) == null)
-			throw new IllegalArgumentException("University does not exist in the database");
+			throw new IllegalArgumentException("User does not exist in the database");
+		
 		student.removeUniversity(university);
 		int temp = univDBlib.user_removeSchool(student.getUsername(),university.getName());
+		
 		if(temp == -1)
 			throw new IllegalArgumentException("Deleting saved school returned an error");
 		return temp;
