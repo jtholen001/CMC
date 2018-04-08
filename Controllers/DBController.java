@@ -458,7 +458,7 @@ public class DBController
 			throw new IllegalArgumentException("University does not exist in the database");
 		
 		if(this.getUser(student.getUsername()) == null)
-			throw new IllegalArgumentException("University does not exist in the database");
+			throw new IllegalArgumentException("User does not exist in the database");
 		
 		student.removeUniversity(university);
 		int temp = univDBlib.user_removeSchool(student.getUsername(),university.getName());
