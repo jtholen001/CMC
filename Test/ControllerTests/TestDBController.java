@@ -550,22 +550,34 @@ public class TestDBController {
 	/**
 	 * Test method for {@link Controllers.DBController#deleteUniversity(entityClasses.University)}.
 	 */
-	@Test (expected = IllegalArgumentException.class)
+	@Test
 	public void testDeleteUniversity() {
 		University university1 = new University("JORDAN", "MINNESOTA", "RURAL", "PRIVATE", 10, 55.0, 100.0, 120.0, 85.0, 25.0, 10, 50.0, 20.0, 2, 1, 4, new ArrayList<String>());
 		dbController.addUniversity(university1);
 		dbController.deleteUniversity(university1);
-		dbController.getUniversity(university1.getName());
+		try{
+			dbController.getUniversity(university1.getName());
+			Assert.fail();
+		}
+		catch(IllegalArgumentException j) {
+			
+		}
 	}
 
-	@Test (expected = IllegalArgumentException.class)
+	@Test
 	public void testDeleteUniversityWithEmphases() {
 		University university1 = new University("JORDAN", "MINNESOTA", "RURAL", "PRIVATE", 10, 55.0, 100.0, 120.0, 85.0, 25.0, 10, 50.0, 20.0, 2, 1, 4, new ArrayList<String>());
 		ArrayList<String> emphases = university1.getEmphases();
 		emphases.add("BIOLOGY");
 		dbController.addUniversity(university1);
 		dbController.deleteUniversity(university1);
-		dbController.getUniversity(university1.getName());
+		try{
+			dbController.getUniversity(university1.getName());
+			Assert.fail();
+		}
+		catch(IllegalArgumentException j) {
+			
+		}
 	}
 
 	@Test (expected = IllegalArgumentException.class)
