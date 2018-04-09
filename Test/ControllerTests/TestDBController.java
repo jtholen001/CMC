@@ -354,6 +354,9 @@ public class TestDBController {
 	public void testGetUniversityWithoutEmphases() {
 		University uni = dbController.getUniversity(university.getName());
 		assertTrue("retrieved universtiy does not equal",uni.equals(university));
+		
+		 uni = dbController.getUniversity(" University of CMC ");
+		assertTrue("retrieved universtiy does not equal",uni.equals(university));
 	}
 
 	@Test
@@ -374,6 +377,11 @@ public class TestDBController {
 	@Test (expected = IllegalArgumentException.class)
 	public void testGetUniversityNull() {
 		dbController.getUniversity(null);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testGetUniversitySpace() {
+		dbController.getUniversity(" ");
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
@@ -516,6 +524,7 @@ public class TestDBController {
 		University university1 = new University("JORDAN", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
 		ArrayList<String> emphases = university1.getEmphases();
 		emphases.add("BIOLOGY");
+		emphases.add("COMPUTER SCIENCE");
 		dbController.addUniversity(university1);
 		Assert.assertTrue("The database did not contain the same information for the university", 
 				dbController.getUniversity(university1.getName()).equals(university1));
