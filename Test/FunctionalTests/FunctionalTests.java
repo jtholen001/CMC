@@ -1,10 +1,10 @@
 package Test.FunctionalTests;
 
-<<<<<<< HEAD
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.junit.*;
-=======
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +15,7 @@ import java.util.HashMap;
 import org.junit.*;
 
 
->>>>>>> 71956134909dad138210f0c5c5dee0cf4dfd6773
+
 import entityClasses.*;
 import Controllers.*;
 import Interfaces.*;
@@ -46,10 +46,7 @@ public class FunctionalTests
 	{
 		admin = new Admin("Com", "Puter", "cputer001", "password", 'a', true, false);
 		student = new Student("Calc", "Ulator", "culator001", "password", 'u', true, false, new ArrayList<University>());
-<<<<<<< HEAD
-=======
 		university = new University("UNIVERSITY OF CMC", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
->>>>>>> 71956134909dad138210f0c5c5dee0cf4dfd6773
 		dbCont = new DBController();
 		dbCont.addUser(admin);
 		dbCont.addUser(student);
@@ -103,7 +100,12 @@ public class FunctionalTests
 	
 	//TODO:U6
 	
-	//TODO:U7
+	@Test
+	public void testU7()
+	{
+		Assert.assertTrue("University did not match saved university", 
+				studentInt.viewUniversity(university.getName()).equals(university));
+	}
 	
 	//TODO:U8
 	
