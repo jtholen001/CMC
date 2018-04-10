@@ -1,6 +1,9 @@
 package Test.EntityTests;
 
 import entityClasses.*;
+
+import java.util.ArrayList;
+
 import org.junit.*;
 
 /**
@@ -15,7 +18,7 @@ public class UserTest{
 	// @Before annotation forces method to re-execute before each test method
 	@Before
 	public void init(){ 
-		user1 = new User("Johnnie", "Miller", "jmill", "password1", 'a', true, false);
+		user1 = new User("Johnnie", "Cash", "jcash", "password1", 'a', true, false);
 	}
 
 	/**
@@ -25,14 +28,24 @@ public class UserTest{
 	public void constructorSucceedsForValidInput() {
 		Assert.assertTrue("Constructor should succeed for user as all fields meet constructor criteria",
 				new User("John","Miller","jmill", "password0", 'u', true, false) instanceof User);
+		Assert.assertTrue("Constructor should succeed for user as all fields meet constructor criteria",
+				new User("j","m","jm", "p", 'a', false, true) instanceof User);
 	}
-
+	
 	/**
 	 * Test that the default constructor fails for empty firstName parameter
 	 */   
 	@Test (expected = IllegalArgumentException.class)
 	public void constructorFailsForInvalidFirstName() {
 		new User("", "miller","jmill", "password0", 'u', true, false);
+	}
+	
+	/**
+	 * Test that the default constructor fails for empty firstName parameter
+	 */   
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForInvalidFirstNameAdditional() {
+		new User(" ", "miller","jmill", "password0", 'u', true, false);
 	}
 
 	/**
@@ -42,6 +55,14 @@ public class UserTest{
 	public void constructorFailsForInvalidLastName() {
 		new User("John", "","jmill", "password0", 'u', true, false);
 	}
+	
+	/**
+	 * Test that the default constructor fails for empty lastName parameter
+	 */   
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForInvalidLastNameAdditional() {
+		new User("John", " ","jmill", "password0", 'u', true, false);
+	}
 
 	/**
 	 * Test that the default constructor fails for empty username parameter
@@ -49,6 +70,14 @@ public class UserTest{
 	@Test (expected = IllegalArgumentException.class)
 	public void constructorFailsForInvalidUsername() {
 		new User("John","Miller", "", "password0", 'u', true, false);
+	}
+	
+	/**
+	 * Test that the default constructor fails for empty username parameter
+	 */   
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForInvalidUsernameAdditional() {
+		new User("John","Miller", " ", "password0", 'u', true, false);
 	}
 
 	/**
@@ -60,11 +89,59 @@ public class UserTest{
 	}
 	
 	/**
+	 * Test that the default constructor fails for empty password parameter
+	 */   
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForInvalidPasswordAdditional() {
+		new User("John","Miller", "jmill", " ", 'u', true, false);
+	}
+	
+	/**
 	 * Test that the default constructor fails for invalid type
 	 */   
 	@Test (expected = IllegalArgumentException.class)
 	public void constructorFailsForInvalidType() {
 		new User("John","Miller", "jmill", "password0", 'q', true, false);
+	}
+	
+	/**
+	 * Test that the default constructor fails for invalid type
+	 */   
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForInvalidTypeAlternate() {
+		new User("John","Miller", "jmill", "password0", (char) 0, true, false);
+	}
+	
+	/**
+	 * Test that the default constructor fails for null firstName parameter
+	 */   
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForNullFirstName() {
+		new User(null,"Miller","jmill", "password0", 'u', true, false);
+	}
+
+	/**
+	 * Test that the default constructor fails for null lastName parameter
+	 */   
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForNullLastName() {
+		new User("John", null, "jmill", "password0", 'u', true, false);
+	}
+
+	/**
+	 * Test that the default constructor fails for null username parameter
+	 */   
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForNullUsername() {
+		new User("John", "Miller", null, "password0", 'u', true, false);
+	}
+
+	/**
+	 * Test that the default constructor fails for null password parameter
+	 */   
+	@Test (expected = IllegalArgumentException.class)
+	public void constructorFailsForNullPassword() {
+		new User("John","Miller","jmill", null, 'u', true, false);
 	}
 
 	/**
@@ -84,6 +161,10 @@ public class UserTest{
 		String newFirstName = "John";
 		user1.setFirstName(newFirstName);
 		Assert.assertTrue("Should return new name \"John\" for firstName variable", user1.getFirstName().equals(newFirstName));
+	
+		newFirstName = "j";
+		user1.setFirstName(newFirstName);
+		Assert.assertTrue("Should return new name \"j\" for firstName variable", user1.getFirstName().equals(newFirstName));
 	}
 	
 	/**
@@ -94,14 +175,32 @@ public class UserTest{
 		String newFirstName = "";
 		user1.setFirstName(newFirstName);
 	}
+	
+	/**
+	 * Test method for {@link entityClasses.User#setFirstName(java.lang.String)}.
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void testSetFirstNameFailsForEmptyParameterAlternate(){
+		String newFirstName = " ";
+		user1.setFirstName(newFirstName);
+	}
+	
+	/**
+	 * Test method for {@link entityClasses.User#setFirstName(java.lang.String)}.
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void testSetFirstNameFailsForNullParameter(){
+		String newFirstName = null;
+		user1.setFirstName(newFirstName);
+	}
 
 	/**
 	 * Test method for {@link entityClasses.User#getLastName()}.
 	 */
 	@Test
 	public final void testGetLastName() {
-		String expected = "Miller";
-		Assert.assertTrue("Should return \"Miller\" for lastName variable", user1.getLastName().equals(expected));
+		String expected = "Cash";
+		Assert.assertTrue("Should return \"Cash\" for lastName variable", user1.getLastName().equals(expected));
 	}
 
 	/**
@@ -109,9 +208,9 @@ public class UserTest{
 	 */
 	@Test
 	public final void testSetLastName() {
-		String newLastName = "Cash";
+		String newLastName = "Miller";
 		user1.setLastName(newLastName);
-		Assert.assertTrue("Should return new name \"Cash\" for lastName variable", user1.getLastName().equals(newLastName));
+		Assert.assertTrue("Should return new name \"Miller\" for lastName variable", user1.getLastName().equals(newLastName));
 	}
 	
 	/**
@@ -122,14 +221,32 @@ public class UserTest{
 		String newLastName = "";
 		user1.setLastName(newLastName);
 	}
+	
+	/**
+	 * Test method for {@link entityClasses.User#setFirstName(java.lang.String)}.
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void testSetLastNameFailsForEmptyParameterAlternate(){
+		String newLastName = " ";
+		user1.setLastName(newLastName);
+	}
+	
+	/**
+	 * Test method for {@link entityClasses.User#setFirstName(java.lang.String)}.
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void testSetLastNameFailsForNullParameter(){
+		String newLastName = null;
+		user1.setLastName(newLastName);
+	}
 
 	/**
 	 * Test method for {@link entityClasses.User#getUsername()}.
 	 */
 	@Test
 	public void testGetUsername(){
-		String expected = "jmill";
-		Assert.assertTrue("Should return \"jmill\" for username variable", user1.getUsername().equals(expected));
+		String expected = "jcash";
+		Assert.assertTrue("Should return \"jcash\" for username variable", user1.getUsername().equals(expected));
 	}
 
 	/**
@@ -149,6 +266,9 @@ public class UserTest{
 		String newPassword = "password0";
 		user1.setPassword(newPassword);
 		Assert.assertTrue("Should return new password \"password0\" for password variable", user1.getPassword().equals(newPassword));
+		newPassword = "p";
+		user1.setPassword(newPassword);
+		Assert.assertTrue("Should return new password \"password0\" for password variable", user1.getPassword().equals(newPassword));
 	}
 	
 	/**
@@ -157,6 +277,24 @@ public class UserTest{
 	@Test (expected = IllegalArgumentException.class)
 	public void testSetPasswordFailsForEmptyParameter(){
 		String newPassword = "";
+		user1.setFirstName(newPassword);
+	}
+	
+	/**
+	 * Test method for {@link entityClasses.User#setFirstName(java.lang.String)}.
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void testSetPasswordFailsForEmptyParameterAlternate(){
+		String newPassword = " ";
+		user1.setFirstName(newPassword);
+	}
+	
+	/**
+	 * Test method for {@link entityClasses.User#setFirstName(java.lang.String)}.
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void testSetPasswordFailsForNullParameter(){
+		String newPassword = null;
 		user1.setFirstName(newPassword);
 	}
 
@@ -177,6 +315,9 @@ public class UserTest{
 		char newType = 'u';
 		user1.setType(newType);
 		Assert.assertTrue("Should return new type \'u\' for type variable", user1.getType() == newType);
+		newType = 'a';
+		user1.setType(newType);
+		Assert.assertTrue("Should return new type \'a\' for type variable", user1.getType() == newType);
 	}
 	
 	/**
@@ -185,6 +326,15 @@ public class UserTest{
 	@Test (expected = IllegalArgumentException.class)
 	public void testSetTypeForInvalidParameter(){
 		char newType = 'q';
+		user1.setType(newType);
+	}
+	
+	/**
+	 * Test method for {@link entityClasses.User#setFirstName(java.lang.String)}.
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void testSetTypeForInvalidParameterZero(){
+		char newType = (char) 0;
 		user1.setType(newType);
 	}
 
@@ -203,6 +353,9 @@ public class UserTest{
 	@Test
 	public void testSetActivationStatus(){
 		boolean newActivationStatus = false;
+		user1.setActivationStatus(newActivationStatus);
+		Assert.assertTrue("Should return new password false for activationStatus variable", user1.getActivationStatus() == newActivationStatus);
+		newActivationStatus = true;
 		user1.setActivationStatus(newActivationStatus);
 		Assert.assertTrue("Should return new password false for activationStatus variable", user1.getActivationStatus() == newActivationStatus);
 	}
@@ -224,6 +377,9 @@ public class UserTest{
 		boolean newLoggedInStatus = true;
 		user1.setLoggedInStatus(newLoggedInStatus);
 		Assert.assertTrue("Should return new true for isLoggedIn variable", user1.getLoggedInStatus() == newLoggedInStatus);
+		newLoggedInStatus = false;
+		user1.setLoggedInStatus(newLoggedInStatus);
+		Assert.assertTrue("Should return new false for isLoggedIn variable", user1.getLoggedInStatus() == newLoggedInStatus);
 	}
 
 	/**

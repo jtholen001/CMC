@@ -54,6 +54,9 @@ public class Student extends User
    */
   public University getSpecificSchool(String universityName)
   {
+	if (universityName == null || universityName.trim().equals(""))
+		throw new IllegalArgumentException();
+	  
     for (University u: savedUniversities)
     {
      if (u.getName().equals(universityName))
@@ -72,7 +75,7 @@ public class Student extends User
    * @return an int representing the success of adding a university to a student
    */
   public void addSchool(University newUniversity)
-  {
+  { 
     if (this.savedUniversities.contains(newUniversity))
     	throw new IllegalArgumentException("Can't save a university twice");
     else
