@@ -2,7 +2,7 @@ package Test.FunctionalTests;
 
 import entityClasses.*;
 
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import org.junit.*;
 
@@ -33,17 +33,17 @@ public class FunctionalTests
 	public void init()
 	{
 		admin = new Admin("Com", "Puter", "cputer001", "password", 'a', true, false);
-		student = new Student("Calc", "Ulator", "culator001", "password", 'u', true, false, null);
+		student = new Student("Calc", "Ulator", "culator001", "password", 'u', true, false, new ArrayList<University>());
 		adminInt = new AdminInterface(admin);
 		studentInt = new StudentInterface(student);
 		userInt = new UserInterface();
 	}
 	//TODO:U1 Login
-	@Test
-	public void testU1()
-	{
-		
-	}
+	//@Test
+	//public void testU1()
+	//{
+		//Assert.assertTrue(true);
+//	}
 	
 	//U2(ABSTRACT USE CASE)
 	
@@ -83,13 +83,28 @@ public class FunctionalTests
 	@Test
 	public void U19Main()
 	{
-		UsersController uC = new UsersController();
+		Admin control = new Admin("Noreen", "Admin", "nadmin", "admin", 'a', true, true);
+		AdminInterface aI = new AdminInterface(control);
 		Admin test = new Admin("John", "Tested", "test", "newPass", 'a', true, false);
-		uC.addUser("Andy", "Tester", "test", "password", 'u', true, false);
-		uC.editUser("test", "John", "Tested", "newPass", 'a', true, true);
-		HashMap<String, User> users = uC.viewUsers();
+		aI.addUser("Andy", "Tester", "test", "password", 'a', true, false);
+		aI.editUser("test", "John", "Tested", "newPass", 'a', true, true);
+		HashMap<String, User> users = aI.viewUsers();
 		Assert.assertTrue(users.get("test").equals(test));
-		uC.deleteUser("test");
+		aI.deleteUser("test");
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void U19Alternate()
+	{
+		Admin control = new Admin("Noreen", "Admin", "nadmin", "admin", 'a', true, true);
+		AdminInterface aI = new AdminInterface(control);
+		Admin test = new Admin("John", "Tested", "test", "newPass", 'a', true, false);
+		aI.addUser("Andy", "Tester", "test", "password", 'a', true, false);
+		aI.editUser("test", "", "Tested", "newPass", 'a', true, true);
+		aI.deleteUser("test");
+		HashMap<String, User> users = aI.viewUsers();
+		Assert.assertTrue(users.get("test").equals(test));
+		
 	}
 	//TODO:U20
 }
