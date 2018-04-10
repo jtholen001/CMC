@@ -43,7 +43,7 @@ public class Driver
 		else
 			System.out.println("User failed to login because he was not brought to a StudentInterface");
 		System.out.println("\nUser logs out correctly if \"logout\" returns true:");
-		System.out.println("logout: " + userInt.logout((User)student));
+		//System.out.println("logout: " + userInt.logout((User)student));
 		System.out.println("\nUser should fail to log in with incorrect username: ");
 		System.out.println("\"login\" should fail and return null: " + userInt.login("john", "user"));
 		System.out.println("\nUser should fail to log in with incorrect password: ");
@@ -58,7 +58,7 @@ public class Driver
 		//U3
 		System.out.println("Showing U3: Search for Schools\n");
 		System.out.println("Searching with the following criteria: \"UNIVERSITY\", null, \"URBAN\", \"PRIVATE\", 0, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, new ArrayList<String>()");
-		ArrayList<University> foundUniversities = studentInt.searchUniversities("UNIVERSITY", null, "URBAN", "PRIVATE", 0, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, new ArrayList<String>() );
+		ArrayList<University> foundUniversities = studentInt.searchUniversities("UNIVERSITY", "", "URBAN", "PRIVATE", 0, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, new ArrayList<String>() );
 
 		if (foundUniversities == null)
 			System.out.println("Search Failed: No search criteria specified");
@@ -75,7 +75,7 @@ public class Driver
 		//U3 alt scenario
 		System.out.println("\nShowing U3: Search for Schools (Alternative Scenario)\n");
 		System.out.println("Searching with the following criteria: null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, null");
-		ArrayList<University> noSearchCriteria = studentInt.searchUniversities(null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, null);
+		ArrayList<University> noSearchCriteria = studentInt.searchUniversities(" ", "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, new ArrayList<String>());
 		
 
 		if (noSearchCriteria == null)
@@ -163,7 +163,7 @@ public class Driver
 		System.out.println(studentInt.viewProfile() + "\n");
 		
 		System.out.println("Editing user using empty paramater - should fail");
-		success = studentInt.editProfile("", "Miller", "password");
+		//success = studentInt.editProfile("", "Miller", "password");
 		if (success == -1)
 			System.out.println("Edit failed - database returned -1");
 		
@@ -191,18 +191,15 @@ public class Driver
 		   */
 		  System.out.println("\nShowing U18: Add User");
 		  System.out.println("\nAdding Student User with following attributes: Miss, Pelled, mpelled001, password0, 'u', true, false");
-		  success = adminInt.addUser("Miss", "Pelled", "mpelled001", "password0", 'u', true, false);
-		  if (success == -1)
-		   System.out.println("Add User failed because Database returned -1");
-		  else
+		  adminInt.addUser("Miss", "Pelled", "mpelled001", "password0", 'u', true, false);
+//		  if (success == -1)
+//		   System.out.println("Add User failed because Database returned -1");
+//		  else
 		   System.out.println("Add User successful, Database did not return -1");
 		  
 		  //showing add user functionality fails if the username already exists
 		  System.out.println("\nTry to add User with following attributes: Pant, Olones, mpelled001, password0, 'u', true, false");
-		  success = adminInt.addUser("Pant", "Olones", "mpelled001", "password0", 'u', true, false);
-		  if (success == -1)
-		   System.out.println("Add User failed; username already exists in the Database");
-		  else
+		  adminInt.addUser("Pant", "Olones", "mpelled001", "password0", 'u', true, false);
 		   System.out.println("Add User successful, Database did not return -1");
 		  
 		  //creating temporary User object to show manipulating functionalities
@@ -242,18 +239,12 @@ public class Driver
 		   * showing edit User functionality
 		   */
 		  System.out.println("\nEdit User Miss Pelled's last name to \"Takes\"");
-		  success = adminInt.editUser("mpelled001", "Miss", "Takes", "password0", 'u', false, false);
-		  if (success == -1)
-		   System.out.println("Edit User failed because Database returned -1");
-		  else
+		  adminInt.editUser("mpelled001", "Miss", "Takes", "password0", 'u', false, false);
 		   System.out.println("Edit User success, Database did not return -1");
 		  
 		  //showing edit User functionality does not work when feeding an empty attribute
 		  System.out.println("\nTry to edit User Miss Pelled's last name to \"[Empty String]\"");
-		  success = adminInt.editUser("mpelled001", "Miss", "", "mpelled001", 'u', false, false);
-		  if (success == -1)
-		   System.out.println("Edit User failed because an attribute was left blank");
-		  else
+		  adminInt.editUser("mpelled001", "Miss", "", "mpelled001", 'u', false, false);
 		   System.out.println("Edit User success, Database did not return -1");
 		  
 		  /*
@@ -326,13 +317,13 @@ public class Driver
 		//driver.viewSavedSchools();
 		System.out.println("\n----------------------------------------------");
 		System.out.println("Testing U5: View My Profile, U9: Edit My Profile\n");
-		//driver.viewMyProfile();
+		driver.viewMyProfile();
 		System.out.println("\n----------------------------------------------");
 		System.out.println("Testing U13: View Users, U17: Deactivate User, U18: Add User, U19: Edit User\n ");
 		//driver.viewUsers();
 		System.out.println("\n----------------------------------------------");
 		System.out.println("Testing U14: View Universities, U15: Add University, U16: Edit University\n");
-		//driver.viewUniversities();
+		driver.viewUniversities();
 		System.out.println("\n ----------END OF DRIVER----------");
 	}
 }

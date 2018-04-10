@@ -6,28 +6,33 @@
  */
 package Controllers;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import dblibrary.project.csci230.*;
+
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
-import java.util.List;
-import java.util.Collections;
-import java.util.Iterator;
 import entityClasses.*;
 
 public class DBController implements Runnable
 {
-	HashMap<String,University> storedUniversities = this.viewUniversities();
+	HashMap<String,University> storedUniversities;
 	/**
 	 * Construct a database controller
 	 */
-	private UniversityDBLibrary univDBlib = new UniversityDBLibrary("byteme","byteme","csci230");
+	private UniversityDBLibrary univDBlib;
 
 	public DBController()
 	{
+		univDBlib =  new UniversityDBLibrary("byteme","byteme","csci230");
+		//this.storedUniversities = this.viewUniversities();
+		Thread thread = new Thread();
+		thread.start();
+	}
+	
+	public DBController(HashMap<String,University> tempUniversities)
+	{
+		univDBlib =  new UniversityDBLibrary("byteme","byteme","csci230");
+		this.storedUniversities = tempUniversities;
 		Thread thread = new Thread();
 		thread.start();
 	}
@@ -315,6 +320,7 @@ public class DBController implements Runnable
 					Integer.parseInt(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
 					Integer.parseInt(universities[index][15]), getUniversityEmphases(universities[index][0]))); //not sure how emphases are stored
 		}
+		this.storedUniversities = universityMap;
 		return universityMap;
 	}
 
@@ -550,12 +556,17 @@ public class DBController implements Runnable
 
 	public void run()
 	{
-		synchronized(this.storedUniversities){
-			this.storedUniversities = this.viewUniversities();
+		if(!(this.storedUniversities == null))
+			synchronized(this.storedUniversities){
+				this.storedUniversities = this.viewUniversities();
+			}
+		else
+		{
+			this.viewUniversities();
 		}
 
 		try {
-			Thread.sleep(10 * 1000);
+			Thread.sleep(1000);
 		}
 		catch(InterruptedException j)
 		{
