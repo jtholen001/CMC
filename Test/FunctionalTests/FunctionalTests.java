@@ -3,6 +3,7 @@ package Test.FunctionalTests;
 import entityClasses.*;
 
 import org.junit.Before;
+import org.junit.Test;
 
 import Controllers.*;
 import Interfaces.*;
@@ -16,6 +17,12 @@ import Interfaces.*;
 public class FunctionalTests
 {
 	//private variables here
+	private AdminInterface adminInt;
+	private StudentInterface studentInt;
+	private UserInterface userInt;
+	private Admin admin;
+	private Student student;
+	
 	
 	/**
 	 * Init method
@@ -23,9 +30,18 @@ public class FunctionalTests
 	@Before
 	public void init()
 	{
+		admin = new Admin("Com", "Puter", "cputer001", "password", 'a', true, false);
+		student = new Student("Calc", "Ulator", "culator001", "password", 'u', true, false, null);
+		adminInt = new AdminInterface(admin);
+		studentInt = new StudentInterface(student);
+		userInt = new UserInterface();
+	}
+	//TODO:U1 Login
+	@Test
+	public void testU1()
+	{
 		
 	}
-	//TODO:U1
 	
 	//U2(ABSTRACT USE CASE)
 	
