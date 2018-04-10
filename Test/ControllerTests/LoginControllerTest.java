@@ -33,6 +33,7 @@ public class LoginControllerTest
 	{
 		uCont.deleteUser("ntawil001");
 		uCont.deleteUser("nUser");
+		uCont.deleteUser("mcarroll001");
 	}
 	
 	/**
@@ -48,11 +49,10 @@ public class LoginControllerTest
 	/**
 	 * Test method to test that login fails for an invalid username
 	 */
-	@Test 
+	@Test (expected = IllegalArgumentException.class)
 	public void testLoginFails_invalidUsername()
 	{
 		user1 = loginCont.login("badUser", "password");
-		Assert.assertNull(user1);
 	}
 	
 	/**

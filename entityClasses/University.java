@@ -6,7 +6,7 @@
 
 package entityClasses;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class University
 {
@@ -124,44 +124,24 @@ public class University
                     int numApplicants, double percentAdmitted, double percentEnrolled, int academicScale, int socialScale,
                     int qualityOfLifeScale, ArrayList<String> emphases) throws IllegalArgumentException
   {
-	  if(name == null || name.equals(""))
-		  throw new IllegalArgumentException("Name cannot be empty");
-	  if(state == null || state.equals(""))
-		  throw new IllegalArgumentException("State cannot be empty");
-	  if(location == null || location.equals(""))
-		  throw new IllegalArgumentException("Location cannot be empty");
-	  if(control == null || control.equals(""))
-		  throw new IllegalArgumentException("Control cannot be empty");
-	  if(emphases == null)
-		  throw new IllegalArgumentException("emphases cannot be empty");
-	  if(!(percentFemale >= -1 && percentFemale <= 100) || !(percentAdmitted >= -1.0 && percentAdmitted <= 100) ||
-			  !(percentFinancialAid >= -1 && percentFinancialAid <= 100) ||
-			  !(percentEnrolled >= -1 && percentEnrolled <= 100))
-		  throw new IllegalArgumentException("Percentage cannot be less than negative one or greater than 100");
-	  if(numStudents < -1)
-		  throw new IllegalArgumentException("Number of students cannot be less than -1");
-	  if((SATVerbal != -1) && !(SATVerbal >=100 && SATVerbal <= 800) || (SATMath != -1) && !(SATMath >=100 && SATMath <= 800))
-		  throw new IllegalArgumentException("SAT scores cannot be less than negative one or greater than 800");
-	  if(!(academicScale >= -1 && academicScale <= 5 && academicScale != 0) || !(socialScale >= -1 &&
-			  socialScale <= 5 && socialScale != 0) || !(qualityOfLifeScale >= -1 && qualityOfLifeScale <= 5 && qualityOfLifeScale != 0))
-		  throw new IllegalArgumentException("scales must be between negative 1 and five");
-   this.name = name.toUpperCase();
-   this.state = state.toUpperCase();
-   this.location = location.toUpperCase();
-   this.control = control.toUpperCase();
-   this.numStudents = numStudents;
-   this.percentFemale = percentFemale;
-   this.SATVerbal = SATVerbal;
-   this.SATMath = SATMath;
-   this.expenses = expenses;
-   this.percentFinancialAid = percentFinancialAid;
-   this.numApplicants = numApplicants;
-   this.percentAdmitted = percentAdmitted;
-   this.percentEnrolled = percentEnrolled;
-   this.academicScale = academicScale;
-   this.socialScale = socialScale;
-   this.qualityOfLifeScale = qualityOfLifeScale;
-   this.emphases = emphases;
+
+   this.name = name.toUpperCase().trim();
+   this.setState(state);
+   this.setLocation(location);
+   this.setControl(control);
+   this.setNumStudents(numStudents);
+   this.setPercentFemale(percentFemale);
+   this.setSATVerbal(SATVerbal);
+   this.setSATMath(SATMath);
+   this.setExpenses(expenses);
+   this.setPercentFinancialAid(percentFinancialAid);
+   this.setNumApplicants(numApplicants);
+   this.setPercentAdmitted(percentAdmitted);
+   this.setPercentEnrolled(percentEnrolled);
+   this.setAcademicScale(academicScale);
+   this.setSocialScale(socialScale);
+   this.setQualityOfLifeScale(qualityOfLifeScale);
+   this.setEmphases(emphases);
   }
 
   /**
@@ -345,7 +325,7 @@ public class University
    */
   public void setState(String newState) throws IllegalArgumentException
   {
-	  if(newState == null || newState.equals(""))
+	  if(newState == null || newState.equals("") || newState.trim() != newState)
 		throw new IllegalArgumentException("University state cannot be null");
 	  else
 		  this.state = newState.toUpperCase();
@@ -360,7 +340,7 @@ public class University
    */
   public void setLocation(String newLocation) throws IllegalArgumentException
   {
-	  if(newLocation == null || newLocation.equals(""))
+	  if(newLocation == null || newLocation.equals("") || newLocation.trim() != newLocation)
 		  throw new IllegalArgumentException("University Location cannot be null");
 	  else
 		  this.location = newLocation.toUpperCase();
@@ -375,7 +355,7 @@ public class University
    */
   public void setControl(String newControl) throws IllegalArgumentException
   {
-	  if(newControl == null || newControl.equals(""))
+	  if(newControl == null || newControl.equals("") || newControl.trim() != newControl)
 		  throw new IllegalArgumentException("University Control cannot be null");
 	  else
 		  this.control = newControl.toUpperCase();
@@ -564,6 +544,8 @@ public class University
 		  throw new IllegalArgumentException("Emphases cannot be null");
 	  else
 		  this.emphases = newEmphases;
+		  Collections.sort(emphases);
+	  
   }
 
   /**

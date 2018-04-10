@@ -36,11 +36,12 @@ public class DBController
 	 */
 	public User getUser(String username)
 	{
-		String[][] users = univDBlib.user_getUsers();
-		boolean status = false;
-		
 		if(username == null)
 			throw new IllegalArgumentException("username is a null value");
+		
+		username = username.trim();
+		String[][] users = univDBlib.user_getUsers();
+		boolean status = false;
 
 		for(int index = 0; index < users.length; index++)
 		{
@@ -259,6 +260,9 @@ public class DBController
 	 */
 	public int deleteUser(String username)
 	{
+		if (username == null)
+			throw new IllegalArgumentException("user was not found in the database");
+		
 		User user = this.getUser(username);
 		if(user instanceof Student) {
 			Student stu = (Student) user;
@@ -313,15 +317,15 @@ public class DBController
 	 */
 	public University getUniversity(String name)
 	{
-		String[][] universities = univDBlib.university_getUniversities();
-		HashMap<String, University> universityMap = new HashMap<String, University>();
-		
 		if(name == null)
 			throw new IllegalArgumentException("Given name was null");
+		name = name.toUpperCase().trim();
+		String[][] universities = univDBlib.university_getUniversities();
+		HashMap<String, University> universityMap = new HashMap<String, University>();
 
 		for(int index = 0; index < universities.length; index++)
 		{
-			if(universities[index][0].toUpperCase().equals(name.toUpperCase()))
+			if(universities[index][0].toUpperCase().equals(name))
 			{
 				universityMap.put(universities[index][0], new University(universities[index][0], universities[index][1],
 						universities[index][2],universities[index][3],
@@ -330,10 +334,10 @@ public class DBController
 						new Double(universities[index][9]), Integer.parseInt(universities[index][10]),new Double(universities[index][11]),
 						new Double(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
 						Integer.parseInt(universities[index][15]), getUniversityEmphases(name)));  
-				return universityMap.get(name.toUpperCase());
+				return universityMap.get(name);
 			}
 		}
-		University temp = universityMap.get(name.toUpperCase());
+		University temp = universityMap.get(name);
 		if(temp == null)
 		{
 			throw new IllegalArgumentException("University does not exist in the databse");
@@ -415,10 +419,6 @@ public class DBController
 				univDBlib.university_addUniversityEmphasis(university.getName(), university.getEmphases().get(i).toUpperCase());
 			}
 		}
-		if(ret == -1)
-		{
-			throw new IllegalArgumentException("Error saving emphases");
-		}
 		return ret;
 	}
 
@@ -430,9 +430,13 @@ public class DBController
 	 */
 	public int deleteUniversity(University university)
 	{
-		if(this.getUniversity(university.getName()) == null)
+		try
 		{
-			throw new IllegalArgumentException("University does not exist in database");
+			this.getUniversity(university.getName());
+		}
+		catch(IllegalArgumentException j)
+		{
+			throw j;
 		}
 		if(!(this.deleteUniversityEmphases(university) == 1))
 		{
@@ -498,39 +502,39 @@ public class DBController
 		return 1;
 	}
 
-	private int checkSavedUniversities(Student student)
-	{
-		ArrayList<University> databaseList = this.getUniversitiesForStudent(student.getUsername());
-		HashMap<String,University> universities = this.viewUniversities();
-		ArrayList<University> studentList = student.getSavedSchools();
-
-		for(University uni : studentList)
-		{
-			if(!(databaseList.contains(uni)))
-			{
-				if(!universities.containsKey(uni.getName()))
-				{
-					throw new IllegalArgumentException("Saved schools in student contains a school not in the databse");
-				}
-				univDBlib.user_saveSchool(student.getUsername(), uni.getName());
-				databaseList.add(uni);
-			}
-
-		}
-
-		for(University uni : this.getUniversitiesForStudent(student.getUsername()))
-		{
-			if(!(studentList.contains(uni)))
-			{
-				univDBlib.user_removeSchool(student.getUsername(), uni.getName());
-				databaseList.remove(uni);
-			}
-		}
-		if(databaseList.size() != studentList.size())
-		{
-			throw new IndexOutOfBoundsException("Saved schools in student and database do not match in size "
-					+ "after an attempted save");
-		}
-		return 1;
-	}
+//	private int checkSavedUniversities(Student student)
+//	{
+//		ArrayList<University> databaseList = this.getUniversitiesForStudent(student.getUsername());
+//		HashMap<String,University> universities = this.viewUniversities();
+//		ArrayList<University> studentList = student.getSavedSchools();
+//
+//		for(University uni : studentList)
+//		{
+//			if(!(databaseList.contains(uni)))
+//			{
+//				if(!universities.containsKey(uni.getName()))
+//				{
+//					throw new IllegalArgumentException("Saved schools in student contains a school not in the databse");
+//				}
+//				univDBlib.user_saveSchool(student.getUsername(), uni.getName());
+//				databaseList.add(uni);
+//			}
+//
+//		}
+//
+//		for(University uni : this.getUniversitiesForStudent(student.getUsername()))
+//		{
+//			if(!(studentList.contains(uni)))
+//			{
+//				univDBlib.user_removeSchool(student.getUsername(), uni.getName());
+//				databaseList.remove(uni);
+//			}
+//		}
+//		if(databaseList.size() != studentList.size())
+//		{
+//			throw new IndexOutOfBoundsException("Saved schools in student and database do not match in size "
+//					+ "after an attempted save");
+//		}
+//		return 1;
+//	}
 }
