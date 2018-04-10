@@ -1,21 +1,11 @@
 package Test.FunctionalTests;
 
-<<<<<<< HEAD
-import java.util.ArrayList;
-import java.util.HashMap;
+
 import org.junit.*;
-=======
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import entityClasses.*;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.junit.*;
 
-
->>>>>>> 71956134909dad138210f0c5c5dee0cf4dfd6773
 import entityClasses.*;
 import Controllers.*;
 import Interfaces.*;
@@ -46,10 +36,7 @@ public class FunctionalTests
 	{
 		admin = new Admin("Com", "Puter", "cputer001", "password", 'a', true, false);
 		student = new Student("Calc", "Ulator", "culator001", "password", 'u', true, false, new ArrayList<University>());
-<<<<<<< HEAD
-=======
 		university = new University("UNIVERSITY OF CMC", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
->>>>>>> 71956134909dad138210f0c5c5dee0cf4dfd6773
 		dbCont = new DBController();
 		dbCont.addUser(admin);
 		dbCont.addUser(student);
@@ -124,9 +111,34 @@ public class FunctionalTests
 	//TODO:U16
 	
 	//TODO:U17
-	
+	@Test
+	public void U17Main()
+	{
+		
+	}
 	//TODO:U18
+	@Test
+	public void U18Main()
+	{
+		Admin admin2 = new Admin("Com", "Puter", "computer", "password", 'a', true, false);
+		adminInt.addUser("Com", "Puter", "computer", "password", 'a', true, false);
+		HashMap<String, User> users = adminInt.viewUsers();
+		Assert.assertTrue(users.get("computer").equals(admin2));
+		adminInt.deleteUser("computer");
+	}
 	
+	@Test (expected = IllegalArgumentException.class)
+	public void U18MainAlt1()
+	{
+		
+		adminInt.addUser("Com", "Puter", "cputer001", "password", 'a', true, false);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void U18MainAlt2()
+	{
+		adminInt.addUser("Com", "", "computer", "password", 'a', true, false);
+	}
 	//TODO:U19
 	@Test
 	public void U19Main()
