@@ -1,8 +1,17 @@
 package Test.FunctionalTests;
 
+<<<<<<< HEAD
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+=======
+import entityClasses.*;
+
+
+import java.util.HashMap;
+import org.junit.*;
+
+>>>>>>> e783eb32a5a1cc20ab061fe0ae8c3f8cc813ef33
 
 import entityClasses.*;
 import Controllers.*;
@@ -92,6 +101,16 @@ public class FunctionalTests
 	//TODO:U18
 	
 	//TODO:U19
-	
+	@Test
+	public void U19Main()
+	{
+		UsersController uC = new UsersController();
+		Admin test = new Admin("John", "Tested", "test", "newPass", 'a', true, false);
+		uC.addUser("Andy", "Tester", "test", "password", 'u', true, false);
+		uC.editUser("test", "John", "Tested", "newPass", 'a', true, true);
+		HashMap<String, User> users = uC.viewUsers();
+		Assert.assertTrue(users.get("test").equals(test));
+		uC.deleteUser("test");
+	}
 	//TODO:U20
 }
