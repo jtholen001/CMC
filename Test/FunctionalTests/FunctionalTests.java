@@ -1,6 +1,9 @@
 package Test.FunctionalTests;
 
 import entityClasses.*;
+
+import org.junit.Before;
+
 import Controllers.*;
 import Interfaces.*;
 
@@ -12,6 +15,16 @@ import Interfaces.*;
  */
 public class FunctionalTests
 {
+	//private variables here
+	
+	/**
+	 * Init method
+	 */
+	@Before
+	public void init()
+	{
+		
+	}
 	//TODO:U1
 	
 	//U2(ABSTRACT USE CASE)
