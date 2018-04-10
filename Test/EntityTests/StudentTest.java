@@ -41,83 +41,11 @@ public class StudentTest {
 	}
 
 	/**
-	 * Test that the default constructor fails for null firstName parameter
-	 */   
-	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForNullFirstName() {
-		new Student(null,"Miller","jmill", "password0", 'u', true, false, new ArrayList<University>());
-	}
-
-	/**
-	 * Test that the default constructor fails for null lastName parameter
-	 */   
-	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForNullLastName() {
-		new Student("John", null, "jmill", "password0", 'u', true, false, new ArrayList<University>());
-	}
-
-	/**
-	 * Test that the default constructor fails for null username parameter
-	 */   
-	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForNullUsername() {
-		new Student("John", "Miller", null, "password0", 'u', true, false, new ArrayList<University>());
-	}
-
-	/**
-	 * Test that the default constructor fails for null password parameter
-	 */   
-	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForNullPassword() {
-		new Student("John","Miller","jmill", null, 'u', true, false, new ArrayList<University>());
-	}
-	
-	/**
-	 * Test that the default constructor fails for null universities (ArrayList) parameter
-	 */   
-	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForNullUniversities() {
-		new Student("John","Miller","jmill", "password0", 'u', true, false, null);
-	}
-	
-	/**
-	 * Test that the default constructor fails for zero char parameter
-	 */   
-	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForZeroType() {
-		new Student("John","Miller","jmill", "password0", (char) 0, true, false, new ArrayList<University>());
-	}
-	
-	/**
-	 * Test that the default constructor fails for empty firstName parameter
-	 */   
-	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForEmptyFirstName() {
-		new Student("","Miller","jmill", "password0", 'u', true, false, new ArrayList<University>());
-	}
-
-	/**
-	 * Test that the default constructor fails for empty lastName parameter
-	 */   
-	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForEmptyLastName() {
-		new Student("John", "","jmill", "password0", 'u', true, false, new ArrayList<University>());
-	}
-
-	/**
-	 * Test that the default constructor fails for empty username parameter
-	 */   
-	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForEmptyUsername() {
-		new Student("John", "Miller","", "password0", 'u', true, false, new ArrayList<University>());
-	}
-
-	/**
 	 * Test that the default constructor fails for empty password parameter
 	 */   
 	@Test (expected = IllegalArgumentException.class)
-	public void constructorFailsForEmptyPassword() {
-		new Student("John", "Miller","jmill", "", 'u', true, false, new ArrayList<University>());
+	public void constructorFailsForNullArrayList() {
+		new Student("John", "Miller","jmill", "", 'u', true, false, null);
 	}
 	
 	/**
@@ -142,11 +70,52 @@ public class StudentTest {
 	}
 	
 	/**
+	 * Test that method getSpecificSchool() works for a University that exists in user's saved schools
+	 */
+	@Test
+	public void testGetSpecificSchoolThatExistsAlternate() {
+		Assert.assertTrue("GetSpecificSchool should succeed for user as \"BOSTON UNIVERSITY\" is one of their saved schools",
+				student1.getSpecificSchool("YALE") instanceof University);
+	}
+	
+	/**
 	 * Test that method getSpecificSchool() fails for a University that does not exist in user's saved schools
 	 */
 	@Test (expected = IllegalArgumentException.class)
 	public void testGetSpecificSchoolThatDoesNotExist() {
-		student1.getSpecificSchool("University of Carrot");
+		student1.getSpecificSchool("UNIVERSITY OF CARROT");
+	}
+	
+	/**
+	 * Test that method getSpecificSchool() fails for a University that does not exist in user's saved schools
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void testGetSpecificSchoolThatDoesNotExistAlternate() {
+		student1.getSpecificSchool("ARIZONA STATE");
+	}
+	
+	/**
+	 * Test that method getSpecificSchool() fails for a University that is null
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void testGetSpecificSchoolThatIsNull() {
+		student1.getSpecificSchool(null);
+	}
+	
+	/**
+	 * Test that method getSpecificSchool() fails for a University that has an empty name
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void testGetSpecificSchoolEmptyString() {
+		student1.getSpecificSchool("");
+	}
+	
+	/**
+	 * Test that method getSpecificSchool() fails for a University that has an empty name
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void testGetSpecificSchoolEmptyStringAlternate() {
+		student1.getSpecificSchool(" ");
 	}
 
 	/**
@@ -160,11 +129,29 @@ public class StudentTest {
 	}
 	
 	/**
+	 * Test that method addSchool() works for a unique University not saved to user already
+	 */
+	@Test
+	public void testAddUniqueSchoolAlternate() {
+		student1.addSchool(dbc.getUniversity("BUCKNELL"));
+		Assert.assertTrue("addSchool() should succeed as \"BUCKNELL\" is not yet one of the user's saved schools",
+				student1.getSpecificSchool("BUCKNELL") instanceof University);
+	}
+	
+	/**
 	 * Test that method addSchool() fails for an existing University already saved to user
 	 */
 	@Test (expected = IllegalArgumentException.class)
 	public void testAddExistingSchool() {
 		student1.addSchool(dbc.getUniversity("BOSTON UNIVERSITY"));
+	}
+	
+	/**
+	 * Test that method addSchool() fails for an existing University already saved to user
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void testAddExistingSchoolAlternate() {
+		student1.addSchool(dbc.getUniversity("YALE"));
 	}
 	
 	/**
@@ -177,10 +164,27 @@ public class StudentTest {
 	}
 	
 	/**
+	 * Test that method removeSchool() works for a University saved to user
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void testRemoveExistingUniversityAlternate() {
+		student1.removeUniversity(dbc.getUniversity("YALE"));
+		student1.getSpecificSchool("YALE");
+	}
+	
+	/**
 	 * Test that method removeSchool() fails for a University not saved to user
 	 */
 	@Test (expected = IllegalArgumentException.class)
 	public void testRemoveNonExistingUniversity() {
+		student1.removeUniversity(dbc.getUniversity("BUCKNELL"));
+	}
+	
+	/**
+	 * Test that method removeSchool() fails for a University not saved to user
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void testRemoveNonExistingUniversityAlternate() {
 		student1.removeUniversity(dbc.getUniversity("ARIZONA STATE"));
 	}
 	
@@ -196,7 +200,6 @@ public class StudentTest {
 				"\nActivated: " + student1.getActivationStatus() +
 				"\nLogged in: " + student1.getLoggedInStatus() +
 				"\nUniversities: YALE, BOSTON UNIVERSITY");
-		System.out.println(student1.toString());
 		Assert.assertTrue("Should return toString matching toString in Student entity", student1.toString().equals(expected));
 	}
 	

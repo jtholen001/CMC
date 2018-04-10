@@ -6,7 +6,7 @@
 
 package entityClasses;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class University
 {
@@ -124,59 +124,24 @@ public class University
                     int numApplicants, double percentAdmitted, double percentEnrolled, int academicScale, int socialScale,
                     int qualityOfLifeScale, ArrayList<String> emphases) throws IllegalArgumentException
   {
-	  if(name == null || name.equals(""))
-		  throw new IllegalArgumentException("Name cannot be empty");
-	  if(state == null || state.equals(""))
-		  throw new IllegalArgumentException("State cannot be empty");
-	  if(location == null || location.equals(""))
-		  throw new IllegalArgumentException("Location cannot be empty");
-	  if(control == null || control.equals(""))
-		  throw new IllegalArgumentException("Control cannot be empty");
-	  if(emphases == null)
-		  throw new IllegalArgumentException("emphases cannot be empty");
-	  if(!(percentFemale >= -1 && percentFemale <= 100) || !(percentAdmitted >= -1.0 && percentAdmitted <= 100) ||
-			  !(percentFinancialAid >= -1 && percentFinancialAid <= 100) ||
-			  !(percentEnrolled >= -1 && percentEnrolled <= 100))
-		  throw new IllegalArgumentException("Percentage cannot be less than negative one or greater than 100");
-	  if(numStudents < -1)
-		  throw new IllegalArgumentException("Number of students cannot be less than -1");
-	  if((SATVerbal != -1) && !(SATVerbal >=100 && SATVerbal <= 800) || (SATMath != -1) && !(SATMath >=100 && SATMath <= 800))
-		  throw new IllegalArgumentException("SAT scores cannot be less than negative one or greater than 800");
-	  if(!(academicScale >= -1 && academicScale <= 5 && academicScale != 0) || !(socialScale >= -1 &&
-			  socialScale <= 5 && socialScale != 0) || !(qualityOfLifeScale >= -1 && qualityOfLifeScale <= 5 && qualityOfLifeScale != 0))
-		  throw new IllegalArgumentException("scales must be between negative 1 and five");
+
    this.name = name.toUpperCase().trim();
-   //this.state = state.toUpperCase();
    this.setState(state);
-   //this.location = location.toUpperCase();
    this.setLocation(location);
-   //this.control = control.toUpperCase();
    this.setControl(control);
-   //this.numStudents = numStudents;
    this.setNumStudents(numStudents);
-   //this.percentFemale = percentFemale;
    this.setPercentFemale(percentFemale);
-   //this.SATVerbal = SATVerbal;
    this.setSATVerbal(SATVerbal);
-   //this.SATMath = SATMath;
    this.setSATMath(SATMath);
-   //this.expenses = expenses;
    this.setExpenses(expenses);
-   //this.percentFinancialAid = percentFinancialAid;
    this.setPercentFinancialAid(percentFinancialAid);
-   //this.numApplicants = numApplicants;
    this.setNumApplicants(numApplicants);
-   //this.percentAdmitted = percentAdmitted;
    this.setPercentAdmitted(percentAdmitted);
-   //this.percentEnrolled = percentEnrolled;
    this.setPercentEnrolled(percentEnrolled);
-   //this.academicScale = academicScale;
    this.setAcademicScale(academicScale);
-   //this.socialScale = socialScale;
    this.setSocialScale(socialScale);
-   //this.qualityOfLifeScale = qualityOfLifeScale;
    this.setQualityOfLifeScale(qualityOfLifeScale);
-   this.emphases = emphases;
+   this.setEmphases(emphases);
   }
 
   /**
@@ -579,6 +544,8 @@ public class University
 		  throw new IllegalArgumentException("Emphases cannot be null");
 	  else
 		  this.emphases = newEmphases;
+		  Collections.sort(emphases);
+	  
   }
 
   /**

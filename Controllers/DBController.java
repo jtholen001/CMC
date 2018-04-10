@@ -234,22 +234,22 @@ public class DBController
 //		  throw new IllegalArgumentException("Saved schools in student contains a school not in the databse");  
 //	  }
 	  
-	  public int removeAllUniversitiesFromStudent(Student student)
-	  {
-		  String[][] savedUniversities = univDBlib.user_getUsernamesWithSavedSchools();
-		  String[][] universities = univDBlib.university_getUniversities();
-		  
-		  for(int i = 0; i < savedUniversities.length; i++)
-		  {
-			  for(int j = 0; j < universities.length; j++)
-			  {
-				  if(savedUniversities[i][0].equals(universities[j][0]))
-					  univDBlib.user_removeSchool(student.getUsername(), universities[j][0]);
-			  }
-		  }
-		  //throw new IllegalArgumentException("Saved schools in student contains a school not in the databse");  
-		  return 1;
-	  }
+//	  public int removeAllUniversitiesFromStudent(Student student)
+//	  {
+//		  String[][] savedUniversities = univDBlib.user_getUsernamesWithSavedSchools();
+//		  String[][] universities = univDBlib.university_getUniversities();
+//		  
+//		  for(int i = 0; i < savedUniversities.length; i++)
+//		  {
+//			  for(int j = 0; j < universities.length; j++)
+//			  {
+//				  if(savedUniversities[i][0].equals(universities[j][0]))
+//					  univDBlib.user_removeSchool(student.getUsername(), universities[j][0]);
+//			  }
+//		  }
+//		  //throw new IllegalArgumentException("Saved schools in student contains a school not in the databse");  
+//		  return 1;
+//	  }
 
 	/**
 	 * method to delete a user from the database

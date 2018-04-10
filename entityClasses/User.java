@@ -146,7 +146,7 @@ public class User
    */
   public void setFirstName(String newFirstName)
   {
-	if (newFirstName.trim().equals(""))
+	if (newFirstName == null || newFirstName.trim().equals(""))
 		throw new IllegalArgumentException();
     this.firstName = newFirstName.trim();
   }
@@ -158,7 +158,7 @@ public class User
    */
   public void setLastName(String newLastName)
   {
-    if (newLastName.trim().equals(""))
+    if (newLastName == null || newLastName.trim().equals(""))
     	throw new IllegalArgumentException();
     this.lastName = newLastName.trim();
   }
@@ -170,7 +170,7 @@ public class User
    */
   public void setPassword(String newPassword)
   {
-	if (newPassword.trim().equals(""))
+	if (newPassword == null || newPassword.trim().equals(""))
 		throw new IllegalArgumentException();
 	if (newPassword.trim().length() != newPassword.length())
 		throw new IllegalArgumentException("Paswwords cannot have spaces");

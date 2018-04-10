@@ -8,6 +8,7 @@ import org.junit.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import entityClasses.*;
 
 import java.util.ArrayList;
@@ -15,6 +16,10 @@ import java.util.HashMap;
 import org.junit.*;
 
 
+import org.junit.*;
+import entityClasses.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import entityClasses.*;
 import Controllers.*;
@@ -35,7 +40,8 @@ public class FunctionalTests
 	private Admin admin;
 	private Student student;
 	private DBController dbCont;
-	private University university;
+	private University university, university2;
+
 	
 	
 	/**
@@ -46,14 +52,17 @@ public class FunctionalTests
 	{
 		admin = new Admin("Com", "Puter", "cputer001", "password", 'a', true, false);
 		student = new Student("Calc", "Ulator", "culator001", "password", 'u', true, false, new ArrayList<University>());
-		university = new University("UNIVERSITY OF CMC", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
 		dbCont = new DBController();
 		dbCont.addUser(admin);
 		dbCont.addUser(student);
-		dbCont.addUniversity(university);
 		adminInt = new AdminInterface(admin);
 		studentInt = new StudentInterface(student);
 		userInt = new UserInterface();
+		university = new University("TestUniversity1", "Minnesota", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>() );
+		university2 = new University("TestUniversity2", "IOWA", "SUBURBAN", "PRIVATE", 5000, 65.0, 600, 800, 15000, 50, 25000, 50, 40, 2, 1, 4, new ArrayList<String>() );
+		dbCont.addUniversity(university2);
+		studentInt.saveUniversity(university2);
+		dbCont.addUniversity(university);
 	}
 	
 	@After
@@ -62,14 +71,49 @@ public class FunctionalTests
 		dbCont.deleteUser("cputer001");
 		dbCont.deleteUser("culator001");
 		dbCont.deleteUniversity(university);
+		dbCont.deleteUniversity(university2);
 	}
-	//TODO:U1 Login
+	
+	//U1 Login
 	/**
 	 * u1 main scenario
 	 */
 	@Test
 	public void testU1()
 	{
+		UserInterface addedUser = userInt.login(student.getUsername(), student.getPassword());
+		Assert.assertNotNull(addedUser);
+	}
+	
+	/**
+	 * U1A1 password is incorrect
+	 */
+	@Test
+	public void testU1_A1()
+	{
+		UserInterface addedUser = userInt.login(student.getUsername(), "incorrectPassword");
+		Assert.assertNull(addedUser);
+	}
+	
+	/**
+	 * U1_A2 username is incorrect
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void testU1_A2()
+	{
+		UserInterface addedUser = userInt.login("incorrectUsername", student.getPassword());
+		Assert.assertNull(addedUser);
+	}
+	
+	/**
+	 * U1_A3 user is deactivated
+	 */
+	@Test
+	public void testU1_A3()
+	{
+		adminInt.deactivate(student);
+		UserInterface addedUser = userInt.login("incorrectUsername", student.getPassword());
+		Assert.assertNull(addedUser);
 		//adminInt.login(username, password)
 	}
 	
@@ -90,13 +134,24 @@ public class FunctionalTests
 	@Test
 	public void testU4A1()
 	{
+		studentInt.removeUniversity(university2);
 		HashMap<String, University> temp = studentInt.viewSavedUniversities();
 		Assert.assertTrue("student's saved schools was not null", 
 				temp.isEmpty());
 		
 	}
 	
-	//TODO:U5
+	//U5 View My Profile
+	
+	/**
+	 * U5 main scenario
+	 */
+	@Test
+	public void testU5()
+	{
+		String profile = studentInt.viewProfile();
+		Assert.assertTrue(profile.equals(student.toString()));
+	}
 	
 	//TODO:U6
 	
@@ -107,13 +162,67 @@ public class FunctionalTests
 				studentInt.viewUniversity(university.getName()).equals(university));
 	}
 	
-	//TODO:U8
+	//U8 Remove Specific School from Student's saved universities
 	
-	//TODO:U9
+	/**
+	 * U8 main scenario
+	 */
+	@Test
+	public void testU8()
+	{
+		studentInt.saveUniversity(university);
+		int success = studentInt.removeUniversity(university);
+		Assert.assertTrue(success == 1);
+	}
+	
+	//U9 Edit My Profile
+	
+	/**
+	 * U9 Main scenario
+	 */
+	@Test
+	public void testU9()
+	{
+		int success = studentInt.editProfile("firstName", "lastName", "password");
+		Assert.assertFalse(success == -1);
+	}
+	
+	/**
+	 * U9A1 student leaves a field blank
+	 */
+	@Test
+	public void testU9_A1()
+	{
+		int success = studentInt.editProfile("", "lastName", "password");
+		Assert.assertTrue(success == -1);
+	}
+	
+	
 	
 	//TODO:U10
 	
-	//TODO:U11
+	
+	
+	//U11 Save University to student's saved universities
+	
+	/**
+	 * U11 main scenario
+	 */
+	@Test
+	public void testU11()
+	{
+		int success = studentInt.saveUniversity(university);
+		Assert.assertTrue(success != -1);
+	}
+	
+	/**
+	 * U11_A1
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void testU11_A1()
+	{
+		studentInt.saveUniversity(university2);
+	}
 	
 	//U12(ABSTRACT USE CASE)
 	
@@ -125,11 +234,43 @@ public class FunctionalTests
 	
 	//TODO:U16
 	
-	//TODO:U17
+	//U17
+	@Test
+	public void U17Main()
+	{
+		adminInt.deactivate(admin);
+	}
 	
-	//TODO:U18
+	@Test (expected = IllegalArgumentException.class)
+	public void U17MainAlt1()
+	{
+		adminInt.deactivate(admin);
+		adminInt.deactivate(admin);
+	}
+	//U18
+	@Test
+	public void U18Main()
+	{
+		Admin admin2 = new Admin("Com", "Puter", "computer", "password", 'a', true, false);
+		adminInt.addUser("Com", "Puter", "computer", "password", 'a', true, false);
+		HashMap<String, User> users = adminInt.viewUsers();
+		Assert.assertTrue(users.get("computer").equals(admin2));
+		adminInt.deleteUser("computer");
+	}
 	
-	//TODO:U19
+	@Test (expected = IllegalArgumentException.class)
+	public void U18MainAlt1()
+	{
+		
+		adminInt.addUser("Com", "Puter", "cputer001", "password", 'a', true, false);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void U18MainAlt2()
+	{
+		adminInt.addUser("Com", "", "computer", "password", 'a', true, false);
+	}
+	//U19
 	@Test
 	public void U19Main()
 	{
