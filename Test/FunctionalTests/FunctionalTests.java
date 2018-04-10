@@ -1,5 +1,6 @@
 package Test.FunctionalTests;
 
+<<<<<<< HEAD
 
 import org.junit.After;
 import org.junit.Before;
@@ -11,6 +12,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.junit.*;
 
+=======
+
+import org.junit.*;
+import entityClasses.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+>>>>>>> 4c4d778c073ee581bfe7ba954805896e669eb2c2
 
 import entityClasses.*;
 import Controllers.*;
@@ -31,7 +39,11 @@ public class FunctionalTests
 	private Admin admin;
 	private Student student;
 	private DBController dbCont;
+<<<<<<< HEAD
 	private University university, university2;
+=======
+	private University university;
+>>>>>>> 4c4d778c073ee581bfe7ba954805896e669eb2c2
 	
 	
 	/**
@@ -41,10 +53,12 @@ public class FunctionalTests
 	public void init()
 	{
 		admin = new Admin("Com", "Puter", "cputer001", "password", 'a', true, false);
-		student = new Student("Calc", "Ulator", "culator001", "password", 'u', true, false, null);
+		student = new Student("Calc", "Ulator", "culator001", "password", 'u', true, false, new ArrayList<University>());
+		university = new University("UNIVERSITY OF CMC", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
 		dbCont = new DBController();
 		dbCont.addUser(admin);
 		dbCont.addUser(student);
+		dbCont.addUniversity(university);
 		adminInt = new AdminInterface(admin);
 		studentInt = new StudentInterface(student);
 		userInt = new UserInterface();
@@ -62,7 +76,10 @@ public class FunctionalTests
 		dbCont.removeAllUniversitiesFromStudent(student);
 		dbCont.deleteUser("culator001");
 		dbCont.deleteUniversity(university);
+<<<<<<< HEAD
 		dbCont.deleteUniversity(university2);
+=======
+>>>>>>> 4c4d778c073ee581bfe7ba954805896e669eb2c2
 	}
 	
 	//U1 Login
@@ -72,6 +89,7 @@ public class FunctionalTests
 	@Test
 	public void testU1()
 	{
+<<<<<<< HEAD
 		UserInterface addedUser = userInt.login(student.getUsername(), student.getPassword());
 		Assert.assertNotNull(addedUser);
 	}
@@ -105,13 +123,33 @@ public class FunctionalTests
 		adminInt.deactivate(student);
 		UserInterface addedUser = userInt.login("incorrectUsername", student.getPassword());
 		Assert.assertNull(addedUser);
+=======
+		//adminInt.login(username, password)
+>>>>>>> 4c4d778c073ee581bfe7ba954805896e669eb2c2
 	}
 	
 	//U2(ABSTRACT USE CASE)
 	
 	//TODO:U3
 	
-	//TODO:U4
+	@Test
+	public void testU4()
+	{
+		dbCont.saveUniversityToStudent(student, university);
+		HashMap<String, University> temp = studentInt.viewSavedUniversities();
+		Assert.assertTrue(university.getName() + " was not in the students saved schools", 
+				university.equals(temp.get(university.getName())));
+		
+	}
+	
+	@Test
+	public void testU4A1()
+	{
+		HashMap<String, University> temp = studentInt.viewSavedUniversities();
+		Assert.assertTrue("student's saved schools was not null", 
+				temp.isEmpty());
+		
+	}
 	
 	//U5 View My Profile
 	
@@ -202,21 +240,56 @@ public class FunctionalTests
 	
 	//TODO:U16
 	
-	//TODO:U17
+	//U17
+	@Test
+	public void U17Main()
+	{
+		adminInt.deactivate(admin);
+	}
 	
-	//TODO:U18
+	@Test (expected = IllegalArgumentException.class)
+	public void U17MainAlt1()
+	{
+		adminInt.deactivate(admin);
+		adminInt.deactivate(admin);
+	}
+	//U18
+	@Test
+	public void U18Main()
+	{
+		Admin admin2 = new Admin("Com", "Puter", "computer", "password", 'a', true, false);
+		adminInt.addUser("Com", "Puter", "computer", "password", 'a', true, false);
+		HashMap<String, User> users = adminInt.viewUsers();
+		Assert.assertTrue(users.get("computer").equals(admin2));
+		adminInt.deleteUser("computer");
+	}
 	
-	//TODO:U19
+	@Test (expected = IllegalArgumentException.class)
+	public void U18MainAlt1()
+	{
+		
+		adminInt.addUser("Com", "Puter", "cputer001", "password", 'a', true, false);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void U18MainAlt2()
+	{
+		adminInt.addUser("Com", "", "computer", "password", 'a', true, false);
+	}
+	//U19
 	@Test
 	public void U19Main()
 	{
-		UsersController uC = new UsersController();
-		Admin test = new Admin("John", "Tested", "test", "newPass", 'a', true, false);
-		uC.addUser("Andy", "Tester", "test", "password", 'u', true, false);
-		uC.editUser("test", "John", "Tested", "newPass", 'a', true, true);
-		HashMap<String, User> users = uC.viewUsers();
-		Assert.assertTrue(users.get("test").equals(test));
-		uC.deleteUser("test");
+		Admin admin2 = new Admin("John", "Puter", "cputer001", "password", 'a', true, false);
+		adminInt.editUser("cputer001", "John", "Puter", "password", 'a', true, false);
+		HashMap<String, User> users = adminInt.viewUsers();
+		Assert.assertTrue(users.get("cputer001").equals(admin2));
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void U19Alternate()
+	{
+		adminInt.editUser("cputer001", "", "Tested", "newPass", 'a', true, true);
 	}
 	//TODO:U20
 }
