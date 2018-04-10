@@ -1,10 +1,10 @@
 package Test.FunctionalTests;
 
-import entityClasses.*;
-
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import entityClasses.*;
 import Controllers.*;
 import Interfaces.*;
 
@@ -22,6 +22,7 @@ public class FunctionalTests
 	private UserInterface userInt;
 	private Admin admin;
 	private Student student;
+	private DBController dbCont;
 	
 	
 	/**
@@ -32,15 +33,28 @@ public class FunctionalTests
 	{
 		admin = new Admin("Com", "Puter", "cputer001", "password", 'a', true, false);
 		student = new Student("Calc", "Ulator", "culator001", "password", 'u', true, false, null);
+		dbCont = new DBController();
+		dbCont.addUser(admin);
+		dbCont.addUser(student);
 		adminInt = new AdminInterface(admin);
 		studentInt = new StudentInterface(student);
 		userInt = new UserInterface();
 	}
+	
+	@After
+	public void destroy()
+	{
+		dbCont.deleteUser("cputer001");
+		dbCont.deleteUser("culator001");
+	}
 	//TODO:U1 Login
+	/**
+	 * u1 main scenario
+	 */
 	@Test
 	public void testU1()
 	{
-		
+		adminInt.login(username, password)
 	}
 	
 	//U2(ABSTRACT USE CASE)
