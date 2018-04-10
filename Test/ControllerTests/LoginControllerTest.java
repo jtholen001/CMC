@@ -19,8 +19,9 @@ public class LoginControllerTest
 	@Before
 	public void init()
 	{
+		dbCont = new DBController();
 		user2 = new User("New", "User", "nUser", "password", 'u', false, false);
-		loginCont = new LoginController();
+		loginCont = new LoginController(dbCont);
 		uCont = new UsersController();
 		uCont.addUser("Nicholas", "Tawil", "ntawil001", "password", 'u', true, false);
 		uCont.addUser("New", "User", "nUser", "password", 'u', true, false);

@@ -27,10 +27,10 @@ public class StudentUniversitiesController
    * Constructor for a StudentUniversitiesController
    * @param student the student that has the Universities to be controlled
    */
-  public StudentUniversitiesController(Student student)
+  public StudentUniversitiesController(Student student, DBController db)
   {
     this.student = student;
-    this.dbc = new DBController(); 
+    this.dbc = db;
   }
   
   /**

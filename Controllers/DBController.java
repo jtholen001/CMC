@@ -20,22 +20,24 @@ public class DBController implements Runnable
 	 * Construct a database controller
 	 */
 	private UniversityDBLibrary univDBlib;
+	private boolean run;
+	Thread thread;
 
 	public DBController()
 	{
 		univDBlib =  new UniversityDBLibrary("byteme","byteme","csci230");
+		run = true;
+		thread = new Thread(this);
+		thread.setDaemon(true);
+		this.startThread();
 		//this.storedUniversities = this.viewUniversities();
-		Thread thread = new Thread();
-		thread.start();
 	}
 	
-	public DBController(HashMap<String,University> tempUniversities)
+	private void startThread()
 	{
-		univDBlib =  new UniversityDBLibrary("byteme","byteme","csci230");
-		this.storedUniversities = tempUniversities;
-		Thread thread = new Thread();
 		thread.start();
 	}
+
 
 	/**
 	 * This method gets a user's data based on their username
@@ -308,20 +310,19 @@ public class DBController implements Runnable
 			}
 		}
 		String[][] universities = univDBlib.university_getUniversities();
-		HashMap<String, University> universityMap = new HashMap<String, University>();
+		storedUniversities= new HashMap<String, University>();
 
 		for(int index = 0; index < universities.length; index++)
 		{
-			universityMap.put(universities[index][0], new University(universities[index][0], universities[index][1],
-					universities[index][2],universities[index][3],
-					Integer.parseInt(universities[index][4]), Integer.parseInt(universities[index][5]),
-					Integer.parseInt(universities[index][6]), Integer.parseInt(universities[index][7]), Integer.parseInt(universities[index][8]),
-					Integer.parseInt(universities[index][9]), Integer.parseInt(universities[index][10]),Integer.parseInt(universities[index][11]),
-					Integer.parseInt(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
-					Integer.parseInt(universities[index][15]), getUniversityEmphases(universities[index][0]))); //not sure how emphases are stored
+				this.storedUniversities.put(universities[index][0], new University(universities[index][0], universities[index][1],
+						universities[index][2],universities[index][3],
+						Integer.parseInt(universities[index][4]), Integer.parseInt(universities[index][5]),
+						Integer.parseInt(universities[index][6]), Integer.parseInt(universities[index][7]), Integer.parseInt(universities[index][8]),
+						Integer.parseInt(universities[index][9]), Integer.parseInt(universities[index][10]),Integer.parseInt(universities[index][11]),
+						Integer.parseInt(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
+						Integer.parseInt(universities[index][15]), getUniversityEmphases(universities[index][0]))); //not sure how emphases are stored
 		}
-		this.storedUniversities = universityMap;
-		return universityMap;
+		return this.storedUniversities;
 	}
 
 	/**
@@ -336,6 +337,16 @@ public class DBController implements Runnable
 		if(name == null)
 			throw new IllegalArgumentException("Given name was null");
 		name = name.toUpperCase().trim();
+		
+		if(this.storedUniversities != null)
+		{
+			synchronized(this.storedUniversities)
+			{
+				if(storedUniversities.containsKey(name))
+					return storedUniversities.get(name);
+			}
+		}
+		
 		String[][] universities = univDBlib.university_getUniversities();
 		HashMap<String, University> universityMap = new HashMap<String, University>();
 
@@ -553,24 +564,27 @@ public class DBController implements Runnable
 	//		}
 	//		return 1;
 	//	}
-
+	@Override 
 	public void run()
 	{
-		if(!(this.storedUniversities == null))
-			synchronized(this.storedUniversities){
-				this.storedUniversities = this.viewUniversities();
+		while(run != false) {
+			if(!(this.storedUniversities == null))
+				synchronized(this.storedUniversities){
+					this.storedUniversities = this.viewUniversities();
+				}
+			else
+			{
+				this.viewUniversities();
 			}
-		else
-		{
-			this.viewUniversities();
-		}
-
-		try {
-			Thread.sleep(1000);
-		}
-		catch(InterruptedException j)
-		{
-
+			
+			
+			try {
+				Thread.sleep(1000);
+			}
+			catch(InterruptedException j)
+			{
+				j.printStackTrace();
+			}
 		}
 	}
 }

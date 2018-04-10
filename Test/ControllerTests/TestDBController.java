@@ -27,11 +27,17 @@ import entityClasses.User;
 public class TestDBController {
 
 	University university;
-	DBController dbController = new DBController();
+	 DBController dbController ;
 	Student student, student1;
 	Admin admin;
 	
 
+//	@BeforeClass
+//	public static void before()
+//	{
+//		dbController = new DBController();
+//
+//	}
 	/**
 	 * @throws java.lang.Exception
 	 */

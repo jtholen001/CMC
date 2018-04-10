@@ -26,9 +26,9 @@ public class UniversityController
   /**
    * Constructor for a UniversityController object
    */
-  public UniversityController()
+  public UniversityController(DBController temp)
   {
-    this.dbCont = new DBController();
+    this.dbCont = temp;
   }
   
   /**

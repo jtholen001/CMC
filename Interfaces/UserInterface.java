@@ -6,6 +6,7 @@
  */
 package Interfaces;
 
+import Controllers.DBController;
 import Controllers.LoginController;
 import entityClasses.*;
 
@@ -31,7 +32,7 @@ public class UserInterface
    */
   public UserInterface()
   {
-    lc = new LoginController();
+    lc = new LoginController(new DBController());
   }
   
   /**

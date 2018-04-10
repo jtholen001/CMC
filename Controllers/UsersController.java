@@ -21,9 +21,9 @@ public class UsersController
   /**
    * Constuctor for UsersController
    */
-  public UsersController()
+  public UsersController(DBController temp)
   {
-    this.dbCont = new DBController();
+    this.dbCont = temp;
     users = dbCont.getUsers();
   }
 

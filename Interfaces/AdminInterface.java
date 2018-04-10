@@ -39,10 +39,11 @@ public class AdminInterface extends UserInterface
    */
   public AdminInterface(Admin admin)
   {
+	DBController db = new DBController();
     this.admin = admin;
     this.uCont = new UsersController();
-    this.uniCont = new UniversityController();
-    this.lc = new LoginController();
+    this.uniCont = new UniversityController(db);
+    this.lc = new LoginController(db);
   }
   
   /**

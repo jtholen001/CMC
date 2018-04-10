@@ -15,79 +15,80 @@ import Controllers.*;
 
 public class StudentInterface extends UserInterface
 {
-  
-  /**
-   * Student that will be associated with the StudentInterface
-   */
-  private Student student;
-  
-  /**
-   * ProfileController that will be associated with the StudentInterface
-   */
-  private ProfileController pc;
-  
-  /**
-   * SearchController that will be associated with the StudentInterface
-   */
-  private SearchController sc;
-  
-  /**
-   * StudentUniversitiesController that will be associated with the StudentInterface
-   */
-  private StudentUniversitiesController suc;
-  
-  /**
-   * LoginController that will be associated with the StudentInterface
-   */
-  private LoginController lc;
-  
-  /**
-   * Constructor for a StudentInterface
-   * 
-   * @param student the student that will be associated with the StudentInterface
-   */
-  public StudentInterface(Student student)
-  {
-    this.student = student;
-    this.pc = new ProfileController(this.student);
-    this.sc = new SearchController();
-    this.suc = new StudentUniversitiesController(this.student);
-    this.lc = new LoginController(); 
-  }
-  
-  /**
-   * Method to veiw the Student's profile
-   * 
-   * @return a string representation of this student's profile
-   */
-  public String viewProfile()
-  {
-   return this.pc.viewProfile(); 
-  }
-  
-  /**
-   * Method to edit the Student's profile 
-   * 
-   * @param firstName a String representing the first name of a Student
-   * @param lastName a String representing the last name of a Student
-   * @param password a String representing the password of a Student
-   * @return integer representing success of edit
-   */
-  public int editProfile(String firstName, String lastName, String password)
-  {
-   return this.pc.editProfile(firstName, lastName, password); 
-  }
-  
-  /**
-   * Method to view the Student's saved universities
-   * 
-   * @return a HashMap representing this student's saved universities
-   */
-  public HashMap<String, University> viewSavedUniversities()
-  {
-   return this.suc.viewSavedUniversities();
-  }
-  
+
+	/**
+	 * Student that will be associated with the StudentInterface
+	 */
+	private Student student;
+
+	/**
+	 * ProfileController that will be associated with the StudentInterface
+	 */
+	private ProfileController pc;
+
+	/**
+	 * SearchController that will be associated with the StudentInterface
+	 */
+	private SearchController sc;
+
+	/**
+	 * StudentUniversitiesController that will be associated with the StudentInterface
+	 */
+	private StudentUniversitiesController suc;
+
+	/**
+	 * LoginController that will be associated with the StudentInterface
+	 */
+	private LoginController lc;
+
+	/**
+	 * Constructor for a StudentInterface
+	 * 
+	 * @param student the student that will be associated with the StudentInterface
+	 */
+	public StudentInterface(Student student)
+	{
+		DBController db = new DBController();
+		this.student = student;
+		this.pc = new ProfileController(this.student,db);
+		this.sc = new SearchController(db);
+		this.suc = new StudentUniversitiesController(this.student,db);
+		this.lc = new LoginController(db); 
+	}
+
+	/**
+	 * Method to veiw the Student's profile
+	 * 
+	 * @return a string representation of this student's profile
+	 */
+	public String viewProfile()
+	{
+		return this.pc.viewProfile(); 
+	}
+
+	/**
+	 * Method to edit the Student's profile 
+	 * 
+	 * @param firstName a String representing the first name of a Student
+	 * @param lastName a String representing the last name of a Student
+	 * @param password a String representing the password of a Student
+	 * @return integer representing success of edit
+	 */
+	public int editProfile(String firstName, String lastName, String password)
+	{
+		return this.pc.editProfile(firstName, lastName, password); 
+	}
+
+	/**
+	 * Method to view the Student's saved universities
+	 * 
+	 * @return a HashMap representing this student's saved universities
+	 */
+	public HashMap<String, University> viewSavedUniversities()
+	{
+		return this.suc.viewSavedUniversities();
+	}
+
 	/**
 	 * Method to view a specific university from searching
 	 * @param universityName  the name of the university to be viewed
@@ -98,29 +99,29 @@ public class StudentInterface extends UserInterface
 		return sc.viewUniversity(universityName);
 	}
 
-  /**
-   * Method to save a university to the Student's current list of saved universities
-   * 
-   * @param university the University to be saved to the Student
-   * @return integer representing success of save
-   */
-  public int saveUniversity(University university)
-  {
-   return this.sc.saveUniversity(this.student, university);
-  }
-  
-  /**
-   * Method to remove a university from the Student's saved universities
-   * 
-   * @param university the University to be removed from the student
-   * @return university 
-   */
-  public int removeUniversity(University university)
-  {
-    return this.suc.removeUniversity(university);
-  }
-  
-  /**
+	/**
+	 * Method to save a university to the Student's current list of saved universities
+	 * 
+	 * @param university the University to be saved to the Student
+	 * @return integer representing success of save
+	 */
+	public int saveUniversity(University university)
+	{
+		return this.sc.saveUniversity(this.student, university);
+	}
+
+	/**
+	 * Method to remove a university from the Student's saved universities
+	 * 
+	 * @param university the University to be removed from the student
+	 * @return university 
+	 */
+	public int removeUniversity(University university)
+	{
+		return this.suc.removeUniversity(university);
+	}
+
+	/**
 	 * Method to search for universities
 	 * 
 	 * @param name the name of this university as a String
@@ -158,32 +159,32 @@ public class StudentInterface extends UserInterface
 			double SATVerbalLower, double SATVerbalUpper, double SATMathLower, double SATMathUpper, double expensesLower, double expensesUpper, double percentFinancialAidLower, double percentFinancialAidUpper, 
 			int numApplicantsLower, int numApplicantsUpper, double percentAdmittedLower, double percentAdmittedUpper, double percentEnrolledLower, double percentEnrolledUpper, 
 			int academicScaleLower, int academicScaleUpper, int socialScaleLower, int socialScaleUpper, int qualityOfLifeScaleLower, int qualityOfLifeScaleUpper,  
-		  ArrayList<String> searchEmphases)
-  {
-    return sc.searchUniversities(name, state, location, control, numStudentsLower, numStudentsUpper, percentFemaleLower, percentFemaleUpper,
-                                                                    SATVerbalLower, SATVerbalUpper, SATMathLower, SATMathUpper, expensesLower, expensesUpper,percentFinancialAidLower, percentFinancialAidUpper, numApplicantsLower, numApplicantsUpper,
-                                                                    percentAdmittedLower, percentAdmittedUpper, percentEnrolledLower, percentEnrolledUpper,
-                                                                    academicScaleLower, academicScaleUpper, socialScaleLower, socialScaleUpper, qualityOfLifeScaleLower, qualityOfLifeScaleUpper,  
-                                                                      searchEmphases); 
-  }
-  
-  /**
-   * method to get the recommended universities based off of a university
-   *
-   * @param university the university object to base the other schools off of
-   *
-   * @return an ArrayList of university objects
-   */
-  public ArrayList<University> getRecommendedUniversities(University university)
-  {
-   return sc.getRecommendedUniversities(university);
-   
-  }
-  
-  /**
-   * Method to log the student out
-   * @return true if successful log out
-   */ /*
+			ArrayList<String> searchEmphases)
+	{
+		return sc.searchUniversities(name, state, location, control, numStudentsLower, numStudentsUpper, percentFemaleLower, percentFemaleUpper,
+				SATVerbalLower, SATVerbalUpper, SATMathLower, SATMathUpper, expensesLower, expensesUpper,percentFinancialAidLower, percentFinancialAidUpper, numApplicantsLower, numApplicantsUpper,
+				percentAdmittedLower, percentAdmittedUpper, percentEnrolledLower, percentEnrolledUpper,
+				academicScaleLower, academicScaleUpper, socialScaleLower, socialScaleUpper, qualityOfLifeScaleLower, qualityOfLifeScaleUpper,  
+				searchEmphases); 
+	}
+
+	/**
+	 * method to get the recommended universities based off of a university
+	 *
+	 * @param university the university object to base the other schools off of
+	 *
+	 * @return an ArrayList of university objects
+	 */
+	public ArrayList<University> getRecommendedUniversities(University university)
+	{
+		return sc.getRecommendedUniversities(university);
+
+	}
+
+	/**
+	 * Method to log the student out
+	 * @return true if successful log out
+	 */ /*
   public boolean logout()
   {
     return super.logout(this.student);

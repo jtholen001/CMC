@@ -27,9 +27,9 @@ public class SearchController
 	 * Constructor for a SearchController
 	 * 
 	 */
-	public SearchController()
+	public SearchController(DBController db)
 	{
-		this.dbc = new DBController(); 
+		this.dbc = db;
 	}
 
 	/**
