@@ -110,7 +110,7 @@ public class FunctionalTests
 	
 	//TODO:U16
 	
-	//TODO:U17
+	//U17
 	@Test
 	public void U17Main()
 	{
@@ -123,7 +123,7 @@ public class FunctionalTests
 		adminInt.deactivate(admin);
 		adminInt.deactivate(admin);
 	}
-	//TODO:U18
+	//U18
 	@Test
 	public void U18Main()
 	{
@@ -146,7 +146,7 @@ public class FunctionalTests
 	{
 		adminInt.addUser("Com", "", "computer", "password", 'a', true, false);
 	}
-	//TODO:U19
+	//U19
 	@Test
 	public void U19Main()
 	{
