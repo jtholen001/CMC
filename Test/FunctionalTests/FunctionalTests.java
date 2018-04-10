@@ -1,17 +1,16 @@
 package Test.FunctionalTests;
 
-<<<<<<< HEAD
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-=======
+
 import entityClasses.*;
 
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import org.junit.*;
 
->>>>>>> e783eb32a5a1cc20ab061fe0ae8c3f8cc813ef33
 
 import entityClasses.*;
 import Controllers.*;
@@ -32,6 +31,7 @@ public class FunctionalTests
 	private Admin admin;
 	private Student student;
 	private DBController dbCont;
+	private University university, university2;
 	
 	
 	/**
@@ -48,22 +48,63 @@ public class FunctionalTests
 		adminInt = new AdminInterface(admin);
 		studentInt = new StudentInterface(student);
 		userInt = new UserInterface();
+		university = new University("TestUniversity1", "Minnesota", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>() );
+		university2 = new University("TestUniversity2", "IOWA", "SUBURBAN", "PRIVATE", 5000, 65.0, 600, 800, 15000, 50, 25000, 50, 40, 2, 1, 4, new ArrayList<String>() );
+		dbCont.addUniversity(university2);
+		studentInt.saveUniversity(university2);
+		dbCont.addUniversity(university);
 	}
 	
 	@After
 	public void destroy()
 	{
 		dbCont.deleteUser("cputer001");
+		dbCont.removeAllUniversitiesFromStudent(student);
 		dbCont.deleteUser("culator001");
+		dbCont.deleteUniversity(university);
+		dbCont.deleteUniversity(university2);
 	}
-	//TODO:U1 Login
+	
+	//U1 Login
 	/**
 	 * u1 main scenario
 	 */
 	@Test
 	public void testU1()
 	{
-		adminInt.login(username, password)
+		UserInterface addedUser = userInt.login(student.getUsername(), student.getPassword());
+		Assert.assertNotNull(addedUser);
+	}
+	
+	/**
+	 * U1A1 password is incorrect
+	 */
+	@Test
+	public void testU1_A1()
+	{
+		UserInterface addedUser = userInt.login(student.getUsername(), "incorrectPassword");
+		Assert.assertNull(addedUser);
+	}
+	
+	/**
+	 * U1_A2 username is incorrect
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void testU1_A2()
+	{
+		UserInterface addedUser = userInt.login("incorrectUsername", student.getPassword());
+		Assert.assertNull(addedUser);
+	}
+	
+	/**
+	 * U1_A3 user is deactivated
+	 */
+	@Test
+	public void testU1_A3()
+	{
+		adminInt.deactivate(student);
+		UserInterface addedUser = userInt.login("incorrectUsername", student.getPassword());
+		Assert.assertNull(addedUser);
 	}
 	
 	//U2(ABSTRACT USE CASE)
@@ -72,19 +113,84 @@ public class FunctionalTests
 	
 	//TODO:U4
 	
-	//TODO:U5
+	//U5 View My Profile
+	
+	/**
+	 * U5 main scenario
+	 */
+	@Test
+	public void testU5()
+	{
+		String profile = studentInt.viewProfile();
+		Assert.assertTrue(profile.equals(student.toString()));
+	}
 	
 	//TODO:U6
 	
 	//TODO:U7
 	
-	//TODO:U8
+	//U8 Remove Specific School from Student's saved universities
 	
-	//TODO:U9
+	/**
+	 * U8 main scenario
+	 */
+	@Test
+	public void testU8()
+	{
+		studentInt.saveUniversity(university);
+		int success = studentInt.removeUniversity(university);
+		dbCont.removeUniversityFromStudent(student, university);
+		Assert.assertTrue(success == 1);
+	}
+	
+	//U9 Edit My Profile
+	
+	/**
+	 * U9 Main scenario
+	 */
+	@Test
+	public void testU9()
+	{
+		int success = studentInt.editProfile("firstName", "lastName", "password");
+		Assert.assertFalse(success == -1);
+	}
+	
+	/**
+	 * U9A1 student leaves a field blank
+	 */
+	@Test
+	public void testU9_A1()
+	{
+		int success = studentInt.editProfile("", "lastName", "password");
+		Assert.assertTrue(success == -1);
+	}
+	
+	
 	
 	//TODO:U10
 	
-	//TODO:U11
+	
+	
+	//U11 Save University to student's saved universities
+	
+	/**
+	 * U11 main scenario
+	 */
+	@Test
+	public void testU11()
+	{
+		int success = studentInt.saveUniversity(university);
+		Assert.assertTrue(success != -1);
+	}
+	
+	/**
+	 * U11_A1
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void testU11_A1()
+	{
+		studentInt.saveUniversity(university2);
+	}
 	
 	//U12(ABSTRACT USE CASE)
 	
