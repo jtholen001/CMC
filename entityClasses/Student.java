@@ -74,7 +74,7 @@ public class Student extends User
   public void addSchool(University newUniversity)
   {
     if (this.savedUniversities.contains(newUniversity))
-    	throw new IllegalArgumentException();
+    	throw new IllegalArgumentException("Can't save a university twice");
     else
     	this.savedUniversities.add(newUniversity);
   }

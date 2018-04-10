@@ -145,22 +145,37 @@ public class University
 	  if(!(academicScale >= -1 && academicScale <= 5 && academicScale != 0) || !(socialScale >= -1 &&
 			  socialScale <= 5 && socialScale != 0) || !(qualityOfLifeScale >= -1 && qualityOfLifeScale <= 5 && qualityOfLifeScale != 0))
 		  throw new IllegalArgumentException("scales must be between negative 1 and five");
-   this.name = name.toUpperCase();
-   this.state = state.toUpperCase();
-   this.location = location.toUpperCase();
-   this.control = control.toUpperCase();
-   this.numStudents = numStudents;
-   this.percentFemale = percentFemale;
-   this.SATVerbal = SATVerbal;
-   this.SATMath = SATMath;
-   this.expenses = expenses;
-   this.percentFinancialAid = percentFinancialAid;
-   this.numApplicants = numApplicants;
-   this.percentAdmitted = percentAdmitted;
-   this.percentEnrolled = percentEnrolled;
-   this.academicScale = academicScale;
-   this.socialScale = socialScale;
-   this.qualityOfLifeScale = qualityOfLifeScale;
+   this.name = name.toUpperCase().trim();
+   //this.state = state.toUpperCase();
+   this.setState(state);
+   //this.location = location.toUpperCase();
+   this.setLocation(location);
+   //this.control = control.toUpperCase();
+   this.setControl(control);
+   //this.numStudents = numStudents;
+   this.setNumStudents(numStudents);
+   //this.percentFemale = percentFemale;
+   this.setPercentFemale(percentFemale);
+   //this.SATVerbal = SATVerbal;
+   this.setSATVerbal(SATVerbal);
+   //this.SATMath = SATMath;
+   this.setSATMath(SATMath);
+   //this.expenses = expenses;
+   this.setExpenses(expenses);
+   //this.percentFinancialAid = percentFinancialAid;
+   this.setPercentFinancialAid(percentFinancialAid);
+   //this.numApplicants = numApplicants;
+   this.setNumApplicants(numApplicants);
+   //this.percentAdmitted = percentAdmitted;
+   this.setPercentAdmitted(percentAdmitted);
+   //this.percentEnrolled = percentEnrolled;
+   this.setPercentEnrolled(percentEnrolled);
+   //this.academicScale = academicScale;
+   this.setAcademicScale(academicScale);
+   //this.socialScale = socialScale;
+   this.setSocialScale(socialScale);
+   //this.qualityOfLifeScale = qualityOfLifeScale;
+   this.setQualityOfLifeScale(qualityOfLifeScale);
    this.emphases = emphases;
   }
 
@@ -345,7 +360,7 @@ public class University
    */
   public void setState(String newState) throws IllegalArgumentException
   {
-	  if(newState == null || newState.equals(""))
+	  if(newState == null || newState.equals("") || newState.trim() != newState)
 		throw new IllegalArgumentException("University state cannot be null");
 	  else
 		  this.state = newState.toUpperCase();
@@ -360,7 +375,7 @@ public class University
    */
   public void setLocation(String newLocation) throws IllegalArgumentException
   {
-	  if(newLocation == null || newLocation.equals(""))
+	  if(newLocation == null || newLocation.equals("") || newLocation.trim() != newLocation)
 		  throw new IllegalArgumentException("University Location cannot be null");
 	  else
 		  this.location = newLocation.toUpperCase();
@@ -375,7 +390,7 @@ public class University
    */
   public void setControl(String newControl) throws IllegalArgumentException
   {
-	  if(newControl == null || newControl.equals(""))
+	  if(newControl == null || newControl.equals("") || newControl.trim() != newControl)
 		  throw new IllegalArgumentException("University Control cannot be null");
 	  else
 		  this.control = newControl.toUpperCase();

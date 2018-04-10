@@ -73,6 +73,7 @@ public class SearchController
 			int academicScaleLower, int academicScaleUpper, int socialScaleLower, int socialScaleUpper, int qualityOfLifeScaleLower, int qualityOfLifeScaleUpper,  
 		  ArrayList<String> searchEmphases) throws IllegalArgumentException, InputMismatchException
 	{
+		//If 1
 		if (name == null || state == null || location == null || control == null || !checkBounds(numStudentsLower, numStudentsUpper) || !checkBounds(percentFemaleLower, percentFemaleUpper) || !checkBounds(SATVerbalLower, SATVerbalUpper) ||
 				!checkBounds(SATMathLower, SATMathUpper) || !checkBounds(expensesLower, expensesUpper) || !checkBounds(numApplicantsLower, numApplicantsUpper) || 
 				!checkBounds(percentFinancialAidLower, percentFinancialAidUpper) || !checkBounds(percentAdmittedLower, percentAdmittedUpper) || !checkBounds(percentEnrolledLower, percentEnrolledUpper) ||
@@ -82,7 +83,7 @@ public class SearchController
 			throw new IllegalArgumentException("Invalid range entered");
 		}
 		
-		//If 1
+		//If 2
 		if (name.equals("") && state.equals("") && location.equals("") && control.equals("") &&
 				numStudentsLower == 0 && numStudentsUpper == 0 && percentFemaleLower == 0 && percentFemaleUpper == 0 &&
 				SATVerbalLower == 0 && SATVerbalUpper==0 && SATMathLower == 0 && SATMathUpper == 0 && expensesLower == 0 &&
@@ -109,7 +110,7 @@ public class SearchController
 			University currentUniversity = universities.get(u);
 
 			boolean matched = false;
-			//If 2
+			//If 3
 			if ((name.equals("") || u.contains(name)) && (state.equals("") || currentUniversity.getState().contains(state)) && (location.equals("") || currentUniversity.getLocation().contains(location)) &&
 					(control.equals("") || currentUniversity.getControl().contains(control)) && checkNumbers(currentUniversity.getNumStudents(), numStudentsLower, numStudentsUpper) &&
 					checkNumbers(currentUniversity.getPercentFemale(), percentFemaleLower, percentFemaleUpper) && checkNumbers(currentUniversity.getSATVerbal(), SATVerbalLower, SATVerbalUpper) &&
@@ -120,7 +121,7 @@ public class SearchController
 					checkNumbers(currentUniversity.getQualityOfLifeScale(), qualityOfLifeScaleLower, qualityOfLifeScaleUpper))
 			{
 				ArrayList<String> currentEmphases = currentUniversity.getEmphases();
-				//If 3
+				//If 4
 				if (searchEmphases.isEmpty())
 					matched = true; 
 				else
@@ -128,7 +129,7 @@ public class SearchController
 					//For 2
 					for (String emphasis : searchEmphases)
 					{
-						//If 4
+						//If 5
 						if (currentEmphases.contains(emphasis))
 							matched = true; 
 					}
@@ -136,7 +137,7 @@ public class SearchController
 			}	  
 			//only if a university 'matches' all criteria will it be added
 			//if the user does not put anything in a field it counts as a match for that particular field
-			//If 5
+			//If 6
 			if (matched)
 				foundUniversities.add(currentUniversity);			  
 		}
@@ -189,7 +190,25 @@ public class SearchController
 	public ArrayList<University> getRecommendedUniversities(University u)
 	{
 		HashMap<String, University> universityMap = this.dbc.viewUniversities();
+//		HashMap<String, University> universityMap = new HashMap<String, University>();
+//		ArrayList<String> emphaseses = new ArrayList<String>();
+//		emphaseses.add("MATH");
+//		University u2 = new University("TestUniversity2", "MINNESOTA", "URBAN", "PRIVATE", 5000, 65.0, 701, 600, 40000, 50, 49000, 31, 25, 4, 3, 2, emphaseses );
+//		University u3 = new University("TestUniversity3", "MINNESOTA", "URBAN", "PRIVATE", 5000, 54.0, 702, 601, 39000, 51, 48000, 32, 40, 3, 4, 2, emphaseses );
+//		University u4 = new University("TestUniversity4", "MINNESOTA", "URBAN", "PRIVATE", 5000, 53.0, 703, 602, 38000, 52, 47000, 33, 40, 2, 4, 3, emphaseses );
+//		University u5 = new University("TestUniversity5", "MINNESOTA", "URBAN", "PRIVATE", 5000, 62.0, 704, 603, 37000, 53, 46000, 34, 40, 1, 5, 4, emphaseses );
+//		University u6 = new University("TestUniversity6", "IOWA", "URBAN", "PRIVATE", 5000, 63.0, 705, 604, 36000, 54, 45000, 35, 40, 4, 5, 5, emphaseses );
+//		University u333 = new University("TestUniversity333", "MONTANA", "SUBURAN", "CITY", 40000, 63.0, 705, 604, 36000, 54, 45000, 35, 40, 4, 5, 5, new ArrayList<String>() );
+//		
+//		universityMap.put(u2.getName(), u2);
+//		universityMap.put(u3.getName(), u3);
+//		universityMap.put(u4.getName(), u4);
+//		universityMap.put(u5.getName(), u5);
+//		universityMap.put(u6.getName(), u6);
+//		universityMap.put(u333.getName(), u333);
+		
 		Set<String> keys = universityMap.keySet();
+		keys.remove(u.getName());
 		HashMap<String, Double> distanceMap = new HashMap<String, Double>();
 
 		int maxNumStudents = u.getNumStudents();
@@ -217,7 +236,7 @@ public class SearchController
 		int maxQualityOfLifeScale = u.getQualityOfLifeScale();
 		int minQualityOfLifeScale = u.getQualityOfLifeScale();
 
-
+		//For 1
 		for (String universityName : keys)
 		{
 			University university = universityMap.get(universityName);
@@ -263,64 +282,73 @@ public class SearchController
 
 		int stateDistance, locationDistance, controlDistance;
 		// Finds distances between all instance variables in parameter University with corresponding variables of all universities in database
+		//For 2
 		for (String universityName : keys)
 		{
-			// if universityName != parameter?
-			if (!(u.getName().equals(universityName))) // University u can't recommend itself
+			//If 1
+			// Compares state name of parameter University with universities in database or see if its NA
+			if (u.getState().equals("-1") || universityMap.get(universityName).getState().equals("-1") ||
+					universityMap.get(universityName).getState().equals(u.getState()))
+				stateDistance = 0; // state names equal
+			else
+				stateDistance = 1; // state names not equal
+			
+			//If 2
+			// Compares location String of parameter University with universities in database or see if its NA
+			if (u.getLocation().equals("-1")|| universityMap.get(universityName).getLocation().equals("-1") ||
+					universityMap.get(universityName).getLocation().equals(u.getLocation()))
+				locationDistance = 0; // location equal
+			else
+				locationDistance = 1; // location not equal
+
+			//If 3
+			// Compares control String of parameter University with universities in database or see if its NA
+			if (u.getControl().equals("-1") || universityMap.get(universityName).getControl().equals("-1") ||
+					universityMap.get(universityName).getControl().equals(u.getControl()))
+				controlDistance = 0; // control equal
+			else
+				controlDistance = 1; // control not equal
+
+			double numStudentsDistance, percentFemaleDistance, SATVerbalDistance, SATMathDistance,expensesDistance, percentFinancialAidDistance,
+			numApplicantsDistance, percentAdmittedDistance, percentEnrolledDistance, academicScaleDistance, socialScaleDistance, qualityOfLifeScaleDistance;
+
+			numStudentsDistance = calculateDistance(u.getNumStudents(), universityMap.get(universityName).getNumStudents(), maxNumStudents, minNumStudents);
+			percentFemaleDistance = calculateDistance(u.getPercentFemale(), universityMap.get(universityName).getPercentFemale(), maxPercentFemale, minPercentFemale);
+			SATVerbalDistance = calculateDistance(u.getSATVerbal(), universityMap.get(universityName).getSATVerbal(), maxSATVerbal, minSATVerbal);
+			SATMathDistance = calculateDistance(u.getSATMath(), universityMap.get(universityName).getSATMath(), maxSATMath, minSATMath);
+			expensesDistance = calculateDistance(u.getExpenses(), universityMap.get(universityName).getExpenses(), maxExpenses, minExpenses);
+			percentFinancialAidDistance = calculateDistance(u.getPercentFinancialAid(), universityMap.get(universityName).getPercentFinancialAid(), maxPercentFinancialAid, minPercentFinancialAid);	        
+			numApplicantsDistance = calculateDistance(u.getNumApplicants(), universityMap.get(universityName).getNumApplicants(), maxNumApplicants, minNumApplicants);	        
+			percentAdmittedDistance = calculateDistance(u.getPercentAdmitted(), universityMap.get(universityName).getPercentAdmitted(), maxPercentAdmitted, minPercentAdmitted);	     
+			percentEnrolledDistance = calculateDistance(u.getPercentEnrolled(), universityMap.get(universityName).getPercentEnrolled(), maxPercentEnrolled, minPercentEnrolled);
+			academicScaleDistance = calculateDistance(u.getAcademicScale(), universityMap.get(universityName).getAcademicScale(), maxAcademicScale, minAcademicScale);
+			socialScaleDistance = calculateDistance(u.getSocialScale(), universityMap.get(universityName).getSocialScale(), maxSocialScale, minSocialScale);
+			qualityOfLifeScaleDistance = calculateDistance(u.getQualityOfLifeScale(), universityMap.get(universityName).getQualityOfLifeScale(), maxQualityOfLifeScale, minQualityOfLifeScale);
+
+			ArrayList<String> emphases = u.getEmphases();
+			double emphasesDistance = 0;
+			
+			//If 4
+			if (!emphases.isEmpty())
 			{
-				// Compares state name of parameter University with universities in database
-				if (universityMap.get(universityName).getState().equals(u.getState()))
-					stateDistance = 0; // state names equal
-				else
-					stateDistance = 1; // state names not equal
-
-				// Compares location String of parameter University with universities in database
-				if (universityMap.get(universityName).getState().equals(u.getState()))
-					locationDistance = 0; // location equal
-				else
-					locationDistance = 1; // location not equal
-
-				// Compares control String of parameter University with universities in database
-				if (universityMap.get(universityName).getControl().equals(u.getControl()))
-					controlDistance = 0; // control equal
-				else
-					controlDistance = 1; // control not equal
-
-				double numStudentsDistance, percentFemaleDistance, SATVerbalDistance, SATMathDistance,expensesDistance, percentFinancialAidDistance,
-				numApplicantsDistance, percentAdmittedDistance, percentEnrolledDistance, academicScaleDistance, socialScaleDistance, qualityOfLifeScaleDistance;
-
-				numStudentsDistance = calculateDistance(u.getNumStudents(), universityMap.get(universityName).getNumStudents(), maxNumStudents, minNumStudents);
-				percentFemaleDistance = calculateDistance(u.getPercentFemale(), universityMap.get(universityName).getPercentFemale(), maxPercentFemale, minPercentFemale);
-				SATVerbalDistance = calculateDistance(u.getSATVerbal(), universityMap.get(universityName).getSATVerbal(), maxSATVerbal, minSATVerbal);
-				SATMathDistance = calculateDistance(u.getSATMath(), universityMap.get(universityName).getSATMath(), maxSATMath, minSATMath);
-				expensesDistance = calculateDistance(u.getExpenses(), universityMap.get(universityName).getExpenses(), maxExpenses, minExpenses);
-				percentFinancialAidDistance = calculateDistance(u.getPercentFinancialAid(), universityMap.get(universityName).getPercentFinancialAid(), maxPercentFinancialAid, minPercentFinancialAid);	        
-				numApplicantsDistance = calculateDistance(u.getNumApplicants(), universityMap.get(universityName).getNumApplicants(), maxNumApplicants, minNumApplicants);	        
-				percentAdmittedDistance = calculateDistance(u.getPercentAdmitted(), universityMap.get(universityName).getPercentAdmitted(), maxPercentAdmitted, minPercentAdmitted);	     
-				percentEnrolledDistance = calculateDistance(u.getPercentEnrolled(), universityMap.get(universityName).getPercentEnrolled(), maxPercentEnrolled, minPercentEnrolled);
-				academicScaleDistance = calculateDistance(u.getAcademicScale(), universityMap.get(universityName).getAcademicScale(), maxAcademicScale, minAcademicScale);
-				socialScaleDistance = calculateDistance(u.getSocialScale(), universityMap.get(universityName).getSocialScale(), maxSocialScale, minSocialScale);
-				qualityOfLifeScaleDistance = calculateDistance(u.getQualityOfLifeScale(), universityMap.get(universityName).getQualityOfLifeScale(), maxQualityOfLifeScale, minQualityOfLifeScale);
-
-				ArrayList<String> emphases = u.getEmphases();
-
 				int count = 0;
+				//For 3
 				for (String emphasis : emphases)
 				{
+					//If 5
 					//if the potentially recommended school does not contain an emphasis
 					if (!universityMap.get(universityName).getEmphases().contains(emphasis))
 						count++; 	  
 				}
-				double emphasesDistance = 0;
-				if (!emphases.isEmpty())
-				 emphasesDistance = count/emphases.size();
+				emphasesDistance = count/emphases.size();
+			}	
 
-				double totalDistance = stateDistance + locationDistance + controlDistance + numStudentsDistance + percentFemaleDistance + SATVerbalDistance +
-						SATMathDistance + expensesDistance + percentFinancialAidDistance + numApplicantsDistance + percentAdmittedDistance + percentEnrolledDistance +
-						academicScaleDistance + socialScaleDistance + qualityOfLifeScaleDistance + emphasesDistance;
+			double totalDistance = stateDistance + locationDistance + controlDistance + numStudentsDistance + percentFemaleDistance + SATVerbalDistance +
+					SATMathDistance + expensesDistance + percentFinancialAidDistance + numApplicantsDistance + percentAdmittedDistance + percentEnrolledDistance +
+					academicScaleDistance + socialScaleDistance + qualityOfLifeScaleDistance + emphasesDistance;
 
-				distanceMap.put(universityName, totalDistance);
-			}
+			distanceMap.put(universityName, totalDistance);
+
 		}
 
 		// sorts distance map by value in ascending order, adds universityNames to ArrayList to return
@@ -336,16 +364,13 @@ public class SearchController
 		{
 			double temp = values.next();
 			for (String universityName : keys)
+			{
+				if (distanceMap.get(universityName) == temp)
 				{
-					if (!(u.getName().equals(universityName)))
-					{
-						if (distanceMap.get(universityName) == temp)
-						{
-							recommendedUniversities.add(dbc.getUniversity(universityName));
-							distanceMap.put(universityName,  -1.0);
-						}
-					}
+					recommendedUniversities.add(dbc.getUniversity(universityName));
+					distanceMap.put(universityName,  -1.0);
 				}
+			}
 		}
 		return recommendedUniversities;
 	}
@@ -404,6 +429,8 @@ public class SearchController
 	 */
 	public HashMap<String, University> viewUniversities(ArrayList<University> foundUniversities)
 	{
+		if (foundUniversities == null)
+			throw new IllegalArgumentException("ArrayList cannot be null");
 		HashMap<String, University> universities = new HashMap<String, University>();
 		for (University u: foundUniversities)
 		{
@@ -430,11 +457,13 @@ public class SearchController
 	 */
 	public int saveUniversity(Student student, University newUniversity)
 	{
-		try {
-			student.addSchool(newUniversity);
-			return dbc.saveEditedUser(student);
+		if(student == null)
+			throw new IllegalArgumentException("student is a null value");
+		else if (newUniversity == null) 
+			throw new IllegalArgumentException("newUniveristy is a null value");	
+		else {
+			return dbc.saveUniversityToStudent(student, newUniversity);
 		}
-		catch (IllegalArgumentException iae) {}
-		return -1;
+
 	}
 }
