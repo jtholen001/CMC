@@ -22,7 +22,7 @@ public class LoginControllerTest
 		dbCont = new DBController();
 		user2 = new User("New", "User", "nUser", "password", 'u', false, false);
 		loginCont = new LoginController(dbCont);
-		uCont = new UsersController();
+		uCont = new UsersController(dbCont);
 		uCont.addUser("Nicholas", "Tawil", "ntawil001", "password", 'u', true, false);
 		uCont.addUser("New", "User", "nUser", "password", 'u', true, false);
 		uCont.deactivate(user2);

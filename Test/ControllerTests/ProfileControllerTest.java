@@ -24,7 +24,7 @@ public class ProfileControllerTest{
 		dbc = new DBController();
 		dbc.addUser(stud1);
 		dbc.saveUniversityToStudent(stud1, (dbc.getUniversity("BOSTON UNIVERSITY")));
-		pc = new ProfileController(stud1);
+		pc = new ProfileController(stud1,dbc);
 	}
 
 	// @After annotation forces method to re-execute after each test method

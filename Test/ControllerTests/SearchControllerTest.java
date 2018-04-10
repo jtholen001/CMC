@@ -24,8 +24,8 @@ public class SearchControllerTest {
 
 	@Before
 	public void init() {
-		sc = new SearchController();
 		dbc = new DBController();
+		sc = new SearchController(dbc);
 		
 		ArrayList<String> emphases = new ArrayList<String>();
 		emphases.add("MATH");

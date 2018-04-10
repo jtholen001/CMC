@@ -18,9 +18,9 @@ public class UniversityControllerTest
 	@Before
 	public void init() 
 	{
-		uniCont = new UniversityController();
-		university = new University("UNIVERSITY OF CMC", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
 		dbCont = new DBController();
+		uniCont = new UniversityController(dbCont);
+		university = new University("UNIVERSITY OF CMC", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
 		//listAll = uniCont.viewUniversities();
 		dbCont.addUniversity(university);
 	}

@@ -2,6 +2,8 @@ package Test.ControllerTests;
 
 import org.junit.*;
 import java.util.*;
+
+import Controllers.DBController;
 import Controllers.UsersController;
 import entityClasses.*;
 
@@ -14,7 +16,7 @@ public class UsersControllerTest
 	@Before
 	public void init() 
 	{
-		uCont = new UsersController();
+		uCont = new UsersController(new DBController());
 		student1 = new Student("Brandan", "Kalsow", "bkalsow", "password0", 'a', true, false, new ArrayList<University>());
 		uCont.addUser("Brandan", "Kalsow", "bkalsow", "password0", 'a', true, false);
 		uCont.addUser("Nicholas", "Long", "nlong", "password0", 'u', true, false);
@@ -30,7 +32,7 @@ public class UsersControllerTest
 	@Test
 	public void testConstructor()
 	{
-		Assert.assertTrue("Constructor should return a new instance of UsersController", new UsersController() instanceof UsersController);;
+		Assert.assertTrue("Constructor should return a new instance of UsersController", new UsersController(new DBController()) instanceof UsersController);;
 	}
 	
 	@Test
@@ -120,14 +122,12 @@ public class UsersControllerTest
 	@Test
 	public void deactivateUserSucceeds()
 	{
-		uCont = new UsersController();
 		uCont.deactivate(student1);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void deactivateUserFailsForDeactivatedUser()
 	{
-		uCont = new UsersController();
 		uCont.deactivate(student1);
 		uCont.deactivate(student1);
 	}
