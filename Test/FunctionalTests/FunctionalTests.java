@@ -1,12 +1,9 @@
 package Test.FunctionalTests;
 
-import entityClasses.*;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.junit.*;
-
-
+import entityClasses.*;
 import Controllers.*;
 import Interfaces.*;
 
@@ -24,6 +21,7 @@ public class FunctionalTests
 	private UserInterface userInt;
 	private Admin admin;
 	private Student student;
+	private DBController dbCont;
 	
 	
 	/**
@@ -34,16 +32,29 @@ public class FunctionalTests
 	{
 		admin = new Admin("Com", "Puter", "cputer001", "password", 'a', true, false);
 		student = new Student("Calc", "Ulator", "culator001", "password", 'u', true, false, new ArrayList<University>());
+		dbCont = new DBController();
+		dbCont.addUser(admin);
+		dbCont.addUser(student);
 		adminInt = new AdminInterface(admin);
 		studentInt = new StudentInterface(student);
 		userInt = new UserInterface();
 	}
+	
+	@After
+	public void destroy()
+	{
+		dbCont.deleteUser("cputer001");
+		dbCont.deleteUser("culator001");
+	}
 	//TODO:U1 Login
-	//@Test
-	//public void testU1()
-	//{
-		//Assert.assertTrue(true);
-//	}
+	/**
+	 * u1 main scenario
+	 */
+	@Test
+	public void testU1()
+	{
+		//adminInt.login(username, password)
+	}
 	
 	//U2(ABSTRACT USE CASE)
 	
@@ -83,28 +94,16 @@ public class FunctionalTests
 	@Test
 	public void U19Main()
 	{
-		Admin control = new Admin("Noreen", "Admin", "nadmin", "admin", 'a', true, true);
-		AdminInterface aI = new AdminInterface(control);
-		Admin test = new Admin("John", "Tested", "test", "newPass", 'a', true, false);
-		aI.addUser("Andy", "Tester", "test", "password", 'a', true, false);
-		aI.editUser("test", "John", "Tested", "newPass", 'a', true, true);
-		HashMap<String, User> users = aI.viewUsers();
-		Assert.assertTrue(users.get("test").equals(test));
-		aI.deleteUser("test");
+		Admin admin2 = new Admin("John", "Puter", "cputer001", "password", 'a', true, false);
+		adminInt.editUser("cputer001", "John", "Puter", "password", 'a', true, false);
+		HashMap<String, User> users = adminInt.viewUsers();
+		Assert.assertTrue(users.get("cputer001").equals(admin2));
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void U19Alternate()
 	{
-		Admin control = new Admin("Noreen", "Admin", "nadmin", "admin", 'a', true, true);
-		AdminInterface aI = new AdminInterface(control);
-		Admin test = new Admin("John", "Tested", "test", "newPass", 'a', true, false);
-		aI.addUser("Andy", "Tester", "test", "password", 'a', true, false);
-		aI.editUser("test", "", "Tested", "newPass", 'a', true, true);
-		aI.deleteUser("test");
-		HashMap<String, User> users = aI.viewUsers();
-		Assert.assertTrue(users.get("test").equals(test));
-		
+		adminInt.editUser("cputer001", "", "Tested", "newPass", 'a', true, true);
 	}
 	//TODO:U20
 }
