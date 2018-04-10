@@ -12,7 +12,7 @@ public class UsersControllerTest
 	Student student1;
 
 	@Before
-	public void test() 
+	public void init() 
 	{
 		uCont = new UsersController();
 		student1 = new Student("Brandan", "Kalsow", "bkalsow", "password0", 'a', true, false, new ArrayList<University>());
@@ -71,7 +71,7 @@ public class UsersControllerTest
 	@Test (expected = IllegalArgumentException.class)
 	public void editUserFailsForInvalidPassword()
 	{
-		uCont.editUser("bkalsow", "Brian", "Coleslaw", "", 'u', true, false);
+		uCont.editUser("bkalsow", "Brian", "", "abcde", 'u', true, false);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)

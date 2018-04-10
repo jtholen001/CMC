@@ -189,24 +189,11 @@ public class SearchController
 	 */
 	public ArrayList<University> getRecommendedUniversities(University u)
 	{
+		if (u == null)
+			throw new IllegalArgumentException("University cannot be null");
 		HashMap<String, University> universityMap = this.dbc.viewUniversities();
-//		HashMap<String, University> universityMap = new HashMap<String, University>();
-//		ArrayList<String> emphaseses = new ArrayList<String>();
-//		emphaseses.add("MATH");
-//		University u2 = new University("TestUniversity2", "MINNESOTA", "URBAN", "PRIVATE", 5000, 65.0, 701, 600, 40000, 50, 49000, 31, 25, 4, 3, 2, emphaseses );
-//		University u3 = new University("TestUniversity3", "MINNESOTA", "URBAN", "PRIVATE", 5000, 54.0, 702, 601, 39000, 51, 48000, 32, 40, 3, 4, 2, emphaseses );
-//		University u4 = new University("TestUniversity4", "MINNESOTA", "URBAN", "PRIVATE", 5000, 53.0, 703, 602, 38000, 52, 47000, 33, 40, 2, 4, 3, emphaseses );
-//		University u5 = new University("TestUniversity5", "MINNESOTA", "URBAN", "PRIVATE", 5000, 62.0, 704, 603, 37000, 53, 46000, 34, 40, 1, 5, 4, emphaseses );
-//		University u6 = new University("TestUniversity6", "IOWA", "URBAN", "PRIVATE", 5000, 63.0, 705, 604, 36000, 54, 45000, 35, 40, 4, 5, 5, emphaseses );
-//		University u333 = new University("TestUniversity333", "MONTANA", "SUBURAN", "CITY", 40000, 63.0, 705, 604, 36000, 54, 45000, 35, 40, 4, 5, 5, new ArrayList<String>() );
-//		
-//		universityMap.put(u2.getName(), u2);
-//		universityMap.put(u3.getName(), u3);
-//		universityMap.put(u4.getName(), u4);
-//		universityMap.put(u5.getName(), u5);
-//		universityMap.put(u6.getName(), u6);
-//		universityMap.put(u333.getName(), u333);
 		
+		//HashMap<String, University> universityMap = new HashMap<String, University>();
 		Set<String> keys = universityMap.keySet();
 		keys.remove(u.getName());
 		HashMap<String, Double> distanceMap = new HashMap<String, Double>();
@@ -360,11 +347,14 @@ public class SearchController
 		
 		//ArrayList<Double, University> recommendedUniversities = new HashMap<Double, University>();
 		
+		//while 1
 		while (values.hasNext() && (recommendedUniversities.size() <5))
 		{
 			double temp = values.next();
+			//For 4
 			for (String universityName : keys)
 			{
+				//If 6
 				if (distanceMap.get(universityName) == temp)
 				{
 					recommendedUniversities.add(dbc.getUniversity(universityName));
