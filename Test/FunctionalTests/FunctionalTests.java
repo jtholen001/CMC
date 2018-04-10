@@ -114,7 +114,14 @@ public class FunctionalTests
 	@Test
 	public void U17Main()
 	{
-		
+		adminInt.deactivate(admin);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void U17MainAlt1()
+	{
+		adminInt.deactivate(admin);
+		adminInt.deactivate(admin);
 	}
 	//TODO:U18
 	@Test
