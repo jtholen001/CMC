@@ -39,11 +39,12 @@ public class FunctionalTests
 	public void init()
 	{
 		admin = new Admin("Com", "Puter", "cputer001", "password", 'a', true, false);
-		student = new Student("Calc", "Ulator", "culator001", "password", 'u', true, false, null);
+		student = new Student("Calc", "Ulator", "culator001", "password", 'u', true, false, new ArrayList<University>());
 		university = new University("UNIVERSITY OF CMC", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
 		dbCont = new DBController();
 		dbCont.addUser(admin);
 		dbCont.addUser(student);
+		dbCont.addUniversity(university);
 		adminInt = new AdminInterface(admin);
 		studentInt = new StudentInterface(student);
 		userInt = new UserInterface();
@@ -54,6 +55,7 @@ public class FunctionalTests
 	{
 		dbCont.deleteUser("cputer001");
 		dbCont.deleteUser("culator001");
+		dbCont.deleteUniversity(university);
 	}
 	//TODO:U1 Login
 	/**
@@ -62,20 +64,29 @@ public class FunctionalTests
 	@Test
 	public void testU1()
 	{
-	//	adminInt.login(username, password)
+		//adminInt.login(username, password)
 	}
 	
 	//U2(ABSTRACT USE CASE)
 	
 	//TODO:U3
 	
-	//TODO:U4
+	@Test
 	public void testU4()
 	{
 		dbCont.saveUniversityToStudent(student, university);
 		HashMap<String, University> temp = studentInt.viewSavedUniversities();
 		Assert.assertTrue(university.getName() + " was not in the students saved schools", 
 				university.equals(temp.get(university.getName())));
+		
+	}
+	
+	@Test
+	public void testU4A1()
+	{
+		HashMap<String, University> temp = studentInt.viewSavedUniversities();
+		Assert.assertTrue("student's saved schools was not null", 
+				temp.isEmpty());
 		
 	}
 	
