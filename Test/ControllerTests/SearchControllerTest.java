@@ -18,7 +18,7 @@ public class SearchControllerTest {
 
 	private ArrayList<University> universities1, universities2;
 
-	private University u1, u2, u3, u4, u5, u6, searchUniversity1, searchUniversity2, useForRecommend1, useForRecommend2;
+	private University u1, u2, u3, u4, u5, u6, searchUniversity1, searchUniversity2, u7, u8, u9, u10, u11, u12, u13;
 
 	private Student student1, student2;
 
@@ -29,21 +29,30 @@ public class SearchControllerTest {
 		
 		ArrayList<String> emphases = new ArrayList<String>();
 		emphases.add("MATH");
+		
+		ArrayList<String> emphases2 = new ArrayList<String>();	
+		emphases2.add("BUSINESS");
+		emphases2.add("MATH");
 
 		//Used for testing search
 		searchUniversity1 = new University("SEARCH UNIVERSITY 1", "MINNESOTA", "URBAN", "PRIVATE", 100, 10.0, 100, 100, 100, 10, 100, 10, 10, 1, 1, 1, emphases );
 		searchUniversity2 = new University("SEARCH UNIVERSITY 2", "WISCONSIN", "RURAL", "PUBLIC", 1000, 100.0, 800, 800, 1000, 100, 1000, 100, 100, 5, 5, 5, new ArrayList<String>() );
 		
 		//used for testing getRecommendedUniversities
-		u1 = new University("TestUniversity1", "MINNESOTA", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, emphases );
-		u2 = new University("TestUniversity2", "MINNESOTA", "URBAN", "PRIVATE", 5000, 65.0, 701, 600, 40000, 50, 49000, 31, 25, 4, 3, 2, emphases );
-		u3 = new University("TestUniversity3", "MINNESOTA", "URBAN", "PRIVATE", 5000, 54.0, 702, 601, 39000, 51, 48000, 32, 40, 3, 4, 2, emphases );
-		u4 = new University("TestUniversity4", "MINNESOTA", "URBAN", "PRIVATE", 5000, 53.0, 703, 602, 38000, 52, 47000, 33, 40, 2, 4, 3, emphases );
-		u5 = new University("TestUniversity5", "MINNESOTA", "URBAN", "PRIVATE", 5000, 62.0, 704, 603, 37000, 53, 46000, 34, 40, 1, 5, 4, emphases );
-		u6 = new University("TestUniversity6", "IOWA", "URBAN", "PRIVATE", 5000, 63.0, 705, 604, 36000, 54, 45000, 35, 40, 4, 5, 5, emphases );
-		//used to test certain cases for getRecommendedUniversities
-		useForRecommend1 = new University("USE FOR RECOMMEND 1", "-1", "-1", "-1", -1, -1, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>());
-		useForRecommend2 = new University("USE FOR RECOMMEND 2", "-1", "-1", "-1", -1, -1, 300, 550, -1, 45, 20000, 30, 20, 4, 3, 2, new ArrayList<String>());
+		u1 = new University("TEST UNIVERSITY 1", "MINNESOTA", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, emphases2 );
+		u2 = new University("TEST UNIVERSITY 2", "MINNESOTA", "URBAN", "PRIVATE", 5000, 65.0, 701, 600, 40000, 50, 49000, 31, 25, 4, 3, 2, emphases );
+		u3 = new University("TEST UNIVERSITY 3", "MINNESOTA", "URBAN", "PRIVATE", 5000, 54.0, 702, 601, 39000, 51, 48000, 32, 40, 3, 4, 2, emphases );
+		u4 = new University("TEST UNIVERSITY 4", "MINNESOTA", "URBAN", "PRIVATE", 5000, 53.0, 703, 602, 38000, 52, 47000, 33, 40, 2, 4, 3, emphases );
+		u5 = new University("TEST UNIVERSITY 5", "MINNESOTA", "URBAN", "PRIVATE", 5000, 62.0, 704, 603, 37000, 53, 46000, 34, 40, 1, 5, 4, emphases2 );
+		u6 = new University("TEST UNIVERSITY 6", "IOWA", "URBAN", "PRIVATE", 5000, 63.0, 705, 604, 36000, 54, 45000, 35, 40, 4, 5, 5, emphases );
+		
+		u7 = new University("TEST UNIVERSITY 7", "MONTANA", "RURAL", "PUBLIC", 1000, 90, 700, 550, 40200, 45, 21000, 30, 20, 1, 5, 4, new ArrayList<String>());
+		u8 = new University("TEST UNIVERSITY 8", "-1", "RURAL", "PUBLIC", 900, 88, 700, 550, 40200, 45, 20000, 30, 20, 1, 5, 4, new ArrayList<String>());
+		u9 = new University("TEST UNIVERSITY 9", "MONTANA", "-1", "PUBLIC", 800, 86, 700, 550, 40000, 40, 20000, 30, 20, 1, 5, 4, new ArrayList<String>());
+		u10 = new University("TEST UNIVERSITY 10", "MONTANA", "RURAL", "-1", 700, 86, 700, 550, 40000, 40, 22000, 30, 20, 1, 5, 4, new ArrayList<String>());
+		u11 = new University("TEST UNIVERSITY 11", "MONTANA", "RURAL", "PUBLIC", -1, 85, 700, 550, 40000, 39, 22000, 30, 20, 1, 5, 4, new ArrayList<String>());
+		u12 = new University("TEST UNIVERSITY 12", "MONTANA", "RURAL", "PUBLIC", 600, 85, 700, 550, 40500, 38, 23000, 30, 20, 1, 5, 4, new ArrayList<String>());
+		u13 = new University("TEST UNIVERSITY 13", "-1", "-1", "-1", -1, 85, 700, 550, 40500, 38, 23000, 30, 20, 1, 5, 4, new ArrayList<String>());
 		
 		universities1 = new ArrayList<University>();
 		universities1.add(u1);
@@ -61,7 +70,13 @@ public class SearchControllerTest {
 		dbc.addUniversity(u3);
 		dbc.addUniversity(u4);
 		dbc.addUniversity(u5);
-		dbc.addUniversity(u6);
+		dbc.addUniversity(u6);		
+		dbc.addUniversity(u7);
+		dbc.addUniversity(u8);
+		dbc.addUniversity(u9);
+		dbc.addUniversity(u10);
+		dbc.addUniversity(u11);
+		dbc.addUniversity(u12);
 		dbc.addUniversity(searchUniversity1);
 		dbc.addUniversity(searchUniversity2);
 	}
@@ -432,22 +447,44 @@ public class SearchControllerTest {
 		Assert.assertFalse("searchUniversity2 should NOT be found in the search", foundUniversities.contains(searchUniversity2));
 	}
 	
-
+	@Test (expected = IllegalArgumentException.class)
+	public void testGetRecommendedUniversities_InvalidUniversity() {
+		ArrayList<University> recommendedUniversities = sc.getRecommendedUniversities(null);		
+		
+	}
 	
 	@Test  //TODO : fix this
-	public void testGetRecommendedUniversities() {
+	public void testGetRecommendedUniversities_Valid1() {
 		ArrayList<University> recommendedUniversities = sc.getRecommendedUniversities(u1);		
-		Assert.assertTrue("TestUniversity2 should be recommended first", recommendedUniversities.get(0).equals(u2));
-		Assert.assertTrue("TestUniversity3 should be recommended second", recommendedUniversities.get(1).equals(u3));
-		Assert.assertTrue("TestUniversity4 should be recommended third", recommendedUniversities.get(2).equals(u4));
-		Assert.assertTrue("TestUniversity5 should be recommended fourth", recommendedUniversities.get(3).equals(u5));
-		Assert.assertTrue("TestUniversity6 should be recommended fifth", recommendedUniversities.get(4).equals(u6));
+		Assert.assertTrue("TEST UNIVERSITY 2 should be recommended first", recommendedUniversities.get(0).equals(u2));
+		Assert.assertTrue("TEST UNIVERSITY 3 should be recommended second", recommendedUniversities.get(1).equals(u3));
+		Assert.assertTrue("TEST UNIVERSITY 4 should be recommended third", recommendedUniversities.get(2).equals(u4));
+		Assert.assertTrue("TEST UNIVERSITY 5 should be recommended fourth", recommendedUniversities.get(3).equals(u5));
+		Assert.assertTrue("TEST UNIVERSITY 6 should be recommended fifth", recommendedUniversities.get(4).equals(u6));
 		
-		dbc.addUniversity(useForRecommend1);
-		dbc.addUniversity(useForRecommend2);
-		sc.getRecommendedUniversities(useForRecommend1);
-		dbc.deleteUniversity(useForRecommend1);
-		dbc.deleteUniversity(useForRecommend2);
+
+	}
+	
+	@Test
+	public void testGetRecommendedUniversities_Valid2() {
+		ArrayList<University> recommendedUniversities = sc.getRecommendedUniversities(u7);		
+		Assert.assertTrue("TEST UNIVERSITY 8 should be recommended first", recommendedUniversities.get(0).equals(u8));
+		Assert.assertTrue("TEST UNIVERSITY 9 should be recommended second", recommendedUniversities.get(1).equals(u9));
+		Assert.assertTrue("TEST UNIVERSITY 10 should be recommended third", recommendedUniversities.get(2).equals(u10));
+		Assert.assertTrue("TEST UNIVERSITY 11 should be recommended fourth", recommendedUniversities.get(3).equals(u11));
+		Assert.assertTrue("TEST UNIVERSITY 12 should be recommended fifth", recommendedUniversities.get(4).equals(u12));
+		
+	}
+	
+	@Test
+	public void testGetRecommendedUniversities_Valid3() {
+		ArrayList<University> recommendedUniversities = sc.getRecommendedUniversities(u13);		
+		Assert.assertTrue("TEST UNIVERSITY 12 should be recommended first", recommendedUniversities.get(0).equals(u12));
+		Assert.assertTrue("TEST UNIVERSITY 11 should be recommended second", recommendedUniversities.get(1).equals(u11));
+		Assert.assertTrue("TEST UNIVERSITY 10 should be recommended third", recommendedUniversities.get(2).equals(u10));
+		Assert.assertTrue("TEST UNIVERSITY 9 should be recommended fourth", recommendedUniversities.get(3).equals(u9));
+		Assert.assertTrue("TEST UNIVERSITY 8 should be recommended fifth", recommendedUniversities.get(4).equals(u8));
+		
 	}
 	
 	@After
@@ -460,6 +497,12 @@ public class SearchControllerTest {
 		dbc.deleteUniversity(u4);
 		dbc.deleteUniversity(u5);
 		dbc.deleteUniversity(u6);
+		dbc.deleteUniversity(u7);
+		dbc.deleteUniversity(u8);
+		dbc.deleteUniversity(u9);
+		dbc.deleteUniversity(u10);
+		dbc.deleteUniversity(u11);
+		dbc.deleteUniversity(u12);
 		dbc.deleteUniversity(searchUniversity1);
 		dbc.deleteUniversity(searchUniversity2);
 	}
