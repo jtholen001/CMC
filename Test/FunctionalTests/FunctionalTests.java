@@ -1,17 +1,14 @@
 package Test.FunctionalTests;
 
-<<<<<<< HEAD
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-=======
 import entityClasses.*;
 
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import org.junit.*;
 
->>>>>>> e783eb32a5a1cc20ab061fe0ae8c3f8cc813ef33
 
 import entityClasses.*;
 import Controllers.*;
@@ -32,6 +29,7 @@ public class FunctionalTests
 	private Admin admin;
 	private Student student;
 	private DBController dbCont;
+	private University university;
 	
 	
 	/**
@@ -42,6 +40,7 @@ public class FunctionalTests
 	{
 		admin = new Admin("Com", "Puter", "cputer001", "password", 'a', true, false);
 		student = new Student("Calc", "Ulator", "culator001", "password", 'u', true, false, null);
+		university = new University("UNIVERSITY OF CMC", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
 		dbCont = new DBController();
 		dbCont.addUser(admin);
 		dbCont.addUser(student);
@@ -63,7 +62,7 @@ public class FunctionalTests
 	@Test
 	public void testU1()
 	{
-		adminInt.login(username, password)
+	//	adminInt.login(username, password)
 	}
 	
 	//U2(ABSTRACT USE CASE)
@@ -71,6 +70,14 @@ public class FunctionalTests
 	//TODO:U3
 	
 	//TODO:U4
+	public void testU4()
+	{
+		dbCont.saveUniversityToStudent(student, university);
+		HashMap<String, University> temp = studentInt.viewSavedUniversities();
+		Assert.assertTrue(university.getName() + " was not in the students saved schools", 
+				university.equals(temp.get(university.getName())));
+		
+	}
 	
 	//TODO:U5
 	
