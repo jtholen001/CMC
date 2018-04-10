@@ -1,8 +1,21 @@
 package Test.FunctionalTests;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.junit.*;
+=======
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import entityClasses.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.junit.*;
+
+
+>>>>>>> 71956134909dad138210f0c5c5dee0cf4dfd6773
 import entityClasses.*;
 import Controllers.*;
 import Interfaces.*;
@@ -22,6 +35,7 @@ public class FunctionalTests
 	private Admin admin;
 	private Student student;
 	private DBController dbCont;
+	private University university;
 	
 	
 	/**
@@ -32,9 +46,14 @@ public class FunctionalTests
 	{
 		admin = new Admin("Com", "Puter", "cputer001", "password", 'a', true, false);
 		student = new Student("Calc", "Ulator", "culator001", "password", 'u', true, false, new ArrayList<University>());
+<<<<<<< HEAD
+=======
+		university = new University("UNIVERSITY OF CMC", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
+>>>>>>> 71956134909dad138210f0c5c5dee0cf4dfd6773
 		dbCont = new DBController();
 		dbCont.addUser(admin);
 		dbCont.addUser(student);
+		dbCont.addUniversity(university);
 		adminInt = new AdminInterface(admin);
 		studentInt = new StudentInterface(student);
 		userInt = new UserInterface();
@@ -45,6 +64,7 @@ public class FunctionalTests
 	{
 		dbCont.deleteUser("cputer001");
 		dbCont.deleteUser("culator001");
+		dbCont.deleteUniversity(university);
 	}
 	//TODO:U1 Login
 	/**
@@ -60,7 +80,24 @@ public class FunctionalTests
 	
 	//TODO:U3
 	
-	//TODO:U4
+	@Test
+	public void testU4()
+	{
+		dbCont.saveUniversityToStudent(student, university);
+		HashMap<String, University> temp = studentInt.viewSavedUniversities();
+		Assert.assertTrue(university.getName() + " was not in the students saved schools", 
+				university.equals(temp.get(university.getName())));
+		
+	}
+	
+	@Test
+	public void testU4A1()
+	{
+		HashMap<String, University> temp = studentInt.viewSavedUniversities();
+		Assert.assertTrue("student's saved schools was not null", 
+				temp.isEmpty());
+		
+	}
 	
 	//TODO:U5
 	
