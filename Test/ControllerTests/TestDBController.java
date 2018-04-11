@@ -277,7 +277,7 @@ public class TestDBController {
 	}
 
 	@Test
-	public void testSaveUniversityToNewStudent() {
+	public void testSaveUniversityToStudent() {
 		//student.addSchool(university);
 		dbController.saveUniversityToStudent(student, university);
 		Assert.assertTrue("user was not save correctly " + student.getUsername(), 
@@ -285,7 +285,7 @@ public class TestDBController {
 	}
 
 	@Test (expected = IllegalArgumentException.class)
-	public void testSaveUniversityToNewStudentForInvalidSchool() {
+	public void testSaveUniversityToStudentForInvalidSchool() {
 		University temp = new University("Jordan", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
 		dbController.saveUniversityToStudent(student, temp);
 	}
