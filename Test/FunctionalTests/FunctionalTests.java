@@ -40,8 +40,8 @@ public class FunctionalTests
 		adminInt = new AdminInterface(admin);
 		studentInt = new StudentInterface(student);
 		userInt = new UserInterface();
-		university = new University("University 1", "Minnesota", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>() );
-		university2 = new University("University 2", "IOWA", "SUBURBAN", "PRIVATE", 5000, 65.0, 600, 800, 15000, 50, 25000, 50, 40, 2, 1, 4, new ArrayList<String>() );
+		university = new University("UNIVERSITY 1", "MINNESOTA", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>() );
+		university2 = new University("UNIVERSITY 2", "IOWA", "SUBURBAN", "PRIVATE", 5000, 65.0, 600, 800, 15000, 50, 25000, 50, 40, 2, 1, 4, new ArrayList<String>() );
 		dbCont.addUniversity(university2);
 		studentInt.saveUniversity(university2);
 		dbCont.addUniversity(university);
@@ -355,7 +355,8 @@ public class FunctionalTests
 	public void U15Alt1()
 	{
 		
-		adminInt.addUniversity("TestUniversity1", "Minnesota", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>() );
+		adminInt.addUniversity(university.getName(), "Minnesota", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>() );
+		
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
@@ -368,7 +369,7 @@ public class FunctionalTests
 	@Test
 	public void U16Main()
 	{
-		University editedUniversity = new University("TestUniversity1", "WISCONSIN", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>());
+		University editedUniversity = new University("University 1", "WISCONSIN", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>());
 		adminInt.editUniversity(university, "Wisconsin", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>());
 		Assert.assertTrue("University should be equal to editedUniversity", university.equals(editedUniversity));
 	}
@@ -376,7 +377,7 @@ public class FunctionalTests
 	@Test (expected = IllegalArgumentException.class)
 	public void U16Alternate1()
 	{
-		University editedUniversity = new University("UNIVERSITY1", "WISCONSIN", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>());
+		University editedUniversity = new University("UNIVERSITY 1", "WISCONSIN", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>());
 		adminInt.editUniversity(university, "Wisconsin", "", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>());
 		Assert.assertTrue("University should be equal to editedUniversity", university.equals(editedUniversity));
 	}
