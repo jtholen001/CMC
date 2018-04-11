@@ -171,6 +171,17 @@ public class StudentInterface extends UserInterface
                                                                     academicScaleLower, academicScaleUpper, socialScaleLower, socialScaleUpper, qualityOfLifeScaleLower, qualityOfLifeScaleUpper,  
                                                                       searchEmphases); 
   }
+	
+	/**
+	 * Method to view Universities from searching
+	 * 
+	 * @param foundUniversities the universities to be viewed from searching
+	 * @return a HashMap representing all the schools to be viewed
+	 */
+	public HashMap<String, University> viewUniversities(ArrayList<University> foundUniversities)
+	{
+		return sc.viewUniversities(foundUniversities);
+	}
   
   /**
    * method to get the recommended universities based off of a university
