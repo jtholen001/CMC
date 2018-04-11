@@ -46,7 +46,7 @@ public class Student extends User
   }
 
    /**
-   * Method to return the saved University associated with the name passed
+   * Method to return a specific saved University from the user’s savedUniversities
    * 
    * @param universityName the name of the university to get information for
    * 
@@ -132,7 +132,7 @@ public class Student extends User
 		  return false;
 	  else if(!(other.getType() == this.getType())) // U6
 		  return false;
-	  else if(!(other.getSavedSchools().equals(this.getSavedSchools()))) // U7
+	  else if(!(other.getSavedSchools().equals(this.getSavedSchools())))
 		  return false;
 	  else
 		  return true;
