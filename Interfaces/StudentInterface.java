@@ -75,7 +75,12 @@ public class StudentInterface extends UserInterface
    */
   public int editProfile(String firstName, String lastName, String password)
   {
+	  try {
    return this.pc.editProfile(firstName, lastName, password); 
+	  }
+	  catch (IllegalArgumentException iae) {
+		  return -1;
+	  }
   }
   
   /**

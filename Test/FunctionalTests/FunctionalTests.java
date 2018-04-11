@@ -242,7 +242,17 @@ public class FunctionalTests
 		Assert.assertTrue(allUsers.containsKey("nadmin"));
 	}
 	
-	//TODO:U14
+	//U14 View Universities
+	
+	/**
+	 * U14 main scenario
+	 */
+	@Test
+	public void testU14()
+	{
+		HashMap<String, University> allUniversities = adminInt.viewUniversities();
+		Assert.assertTrue(allUniversities.containsKey("AUBURN"));
+	}
 	
 	//TODO:U15
 	
