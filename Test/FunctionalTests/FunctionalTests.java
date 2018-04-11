@@ -268,10 +268,12 @@ public class FunctionalTests
 	/**
 	 * U9A1 student leaves a field blank
 	 */
-	@Test (expected = IllegalArgumentException.class)
+	@Test
 	public void testU9_A1()
 	{
-		studentInt.editProfile("", "lastName", "password");
+		int success = studentInt.editProfile("", "lastName", "password");
+		Assert.assertTrue(success == -1);
+		
 	}
 	
 	
