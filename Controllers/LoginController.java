@@ -6,6 +6,7 @@
 */
 package Controllers;
 
+import Interfaces.UserInterface;
 import entityClasses.User;
 
 public class LoginController
@@ -96,19 +97,14 @@ public class LoginController
      System.out.println("Username or password is incorrect.");
    }
 
-   //TODO: same thing, the loggedInStatus is not saved in the DB, so all this method will eventually do is 
-   //	bring the user back to a non-logged in home page
-//   /**
-//    * This method controls the log off logic of the system
-//    * 
-//    * @param user the user to log off
-//    * @return true if the user was successfully logged out, false otherwise
-//    */
-//   public boolean logout(User user)
-//   {
-//    user.setLoggedInStatus(false);
-//    dbc.saveEditedUser(user);
-//    System.out.println("Successfuly logged out.");
-//    return true;
-//   }
+   /**
+    * This method controls the log off logic of the system
+    * 
+    * @param user the user to log off
+    * @return UserInterface brings the user back to a UserInterface to login as a different user
+    */
+   public UserInterface logout()
+   {
+    return new UserInterface();
+   }
  }

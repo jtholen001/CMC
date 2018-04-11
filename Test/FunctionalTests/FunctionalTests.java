@@ -175,8 +175,7 @@ public class FunctionalTests
 	@Test (expected = IllegalArgumentException.class)
 	public void testU9_A1()
 	{
-		int success = studentInt.editProfile("", "lastName", "password");
-		Assert.assertTrue(success == -1);
+		studentInt.editProfile("", "lastName", "password");
 	}
 	
 	
@@ -198,7 +197,7 @@ public class FunctionalTests
 	}
 	
 	/**
-	 * U11_A1
+	 * U11_A1 university is already saved
 	 */
 	@Test (expected = IllegalArgumentException.class)
 	public void testU11_A1()
@@ -301,5 +300,14 @@ public class FunctionalTests
 	{
 		adminInt.editUser("cputer001", "", "Tested", "newPass", 'a', true, true);
 	}
-	//TODO:U20
+	
+	//U20 Login
+	/**
+	 * U20 main scenario
+	 */
+	@Test
+	public void testU20()
+	{
+		Assert.assertTrue(studentInt.logout() instanceof UserInterface);
+	}
 }
