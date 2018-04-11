@@ -40,6 +40,108 @@ public class UniversityTest
                 10000, 100, 800.0, 800.0, 50000.0, 100, 1000, 100, 100.0, 5, 5, 5, emphases) instanceof University);
 	}
 	
+	@Test
+	public void testGetName()
+	{
+		Assert.assertTrue(testingUniversity.getName().equals("SAINT JOHN'S UNIVERSITY"));
+	}
+	
+	@Test
+	public void testGetState()
+	{
+		Assert.assertTrue(testingUniversity.getState().equals("MINNESOTA"));
+	}
+	
+	@Test
+	public void testGetLocation()
+	{
+		Assert.assertTrue(testingUniversity.getLocation().equals("RURAL"));
+	}
+	
+	@Test
+	public void testGetControl()
+	{
+		Assert.assertTrue(testingUniversity.getControl().equals("PRIVATE"));
+	}
+	
+	@Test
+	public void testGetNumStudents()
+	{
+		Assert.assertTrue(testingUniversity.getNumStudents() == 10000);
+	}
+	
+	@Test
+	public void testGetPercentFemale()
+	{
+		Assert.assertTrue(testingUniversity.getPercentFemale() == 50.0);
+	}
+	
+	@Test
+	public void testGetSATVerbal()
+	{
+		Assert.assertTrue(testingUniversity.getSATVerbal() == 100.0);
+	}
+	
+	@Test
+	public void testGetSATMath()
+	{
+		Assert.assertTrue(testingUniversity.getSATMath() == 100.0);
+	}
+	
+	@Test
+	public void testGetExpenses()
+	{
+		Assert.assertTrue(testingUniversity.getExpenses() == 50000.0);
+	}
+	
+	@Test
+	public void testGetPercentFinancialAid()
+	{
+		Assert.assertTrue(testingUniversity.getPercentFinancialAid() == 75.0);
+	}
+	
+	@Test
+	public void testGetNumApplicants()
+	{
+		Assert.assertTrue(testingUniversity.getNumApplicants() == 1000);
+	}
+	
+	@Test
+	public void testGetPercentAdmitted()
+	{
+		Assert.assertTrue(testingUniversity.getPercentAdmitted() == 75.0);
+	}
+	
+	@Test
+	public void testGetPercentEnrolled()
+	{
+		Assert.assertTrue(testingUniversity.getPercentEnrolled() == 90.0);
+	}
+	
+	@Test
+	public void testGetAcademicScale()
+	{
+		Assert.assertTrue(testingUniversity.getAcademicScale() == 4);
+	}
+	
+	@Test
+	public void testGetSocialScale()
+	{
+		Assert.assertTrue(testingUniversity.getSocialScale() == 2);
+	}
+	
+	@Test
+	public void testGetQualityOfLifeScale()
+	{
+		Assert.assertTrue(testingUniversity.getQualityOfLifeScale() == 4);
+	}
+	
+	@Test
+	public void testGetEmphases()
+	{
+		Assert.assertTrue(testingUniversity.getEmphases().equals(emphases));
+	}
+	
 	@Test (expected = IllegalArgumentException.class)
 	public void constructorFailsForInvalidName()
 	{
