@@ -98,7 +98,7 @@ public class FunctionalTests
 	/**
 	 * U1_A2 username is incorrect
 	 */
-	@Test (expected = IllegalArgumentException.class)
+	@Test
 	public void testU1_A2()
 	{
 		UserInterface addedUser = userInt.login("incorrectUsername", student.getPassword());
@@ -226,7 +226,17 @@ public class FunctionalTests
 	
 	//U12(ABSTRACT USE CASE)
 	
-	//TODO:U13
+	//U13
+	
+	/**
+	 * U13 main scenario
+	 */
+	@Test
+	public void testU13()
+	{
+		HashMap<String, User> allUsers = adminInt.viewUsers();
+		Assert.assertTrue(allUsers.containsKey("nadmin"));
+	}
 	
 	//TODO:U14
 	

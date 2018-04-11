@@ -32,7 +32,6 @@ public class LoginController
     */
    public User login(String username, String password)
    {
-	 try{
      User user = dbc.getUser(username);
      if (user != null)
      {
@@ -69,10 +68,7 @@ public class LoginController
       this.invalidCredentials();
       return null;
     }
-   }
-	 catch (IllegalArgumentException illegalArg){
-		 return null;
-	 }
+   
    }
 
    //TODO: maybe we don't need to check the user's loggedInStatus because it is saved locally, not in DB

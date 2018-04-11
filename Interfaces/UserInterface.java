@@ -43,6 +43,7 @@ public class UserInterface
    */
   public <t extends UserInterface> UserInterface login(String username, String password)
   {
+	  try {
     User user = lc.login(username, password);
     if (user != null)
     {
@@ -57,6 +58,11 @@ public class UserInterface
       }
     }
       return null;
+	  }
+	  catch (IllegalArgumentException iae)
+	  {
+		  return null;
+	  }
   }
   /**
    * A method that logs out a user
