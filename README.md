@@ -3,7 +3,7 @@
 
 ## For team members only
 
-1. Compress your old CMC folder in and name it CMC_Backup (zip)
+1. Compress your old CMC folder and name it CMC_Backup (zip)
 2. Delete old CMC folder
 3. In Eclipse, right click on CMC project and click Delete, and check "Delete project contents on disk"
 4. Go to "File" > "Import..."
