@@ -207,6 +207,7 @@ public class FunctionalTests
 		Assert.assertTrue(profile.equals(student.toString()));
 	}
 	
+	//U6: View Matched Schools
 	@Test
 	public void testU6()
 	{
@@ -214,15 +215,23 @@ public class FunctionalTests
 		emphases.add("MATH");
 		ArrayList<University> foundUniversities =studentInt.searchUniversities("TEST", "MINNESOTA", "URBAN", "PRIVATE", 2000, 100000, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,emphases);
 		HashMap<String, University> formattedUniversities = studentInt.viewUniversities(foundUniversities);
-		Assert.assertTrue("First University should be TEST UNIVERSITY 1", formattedUniversities.get(u1.getName()).equals(u1));	
-		Assert.assertTrue("First University should be TEST UNIVERSITY 2", formattedUniversities.get(u2.getName()).equals(u2));
-		Assert.assertTrue("First University should be TEST UNIVERSITY 3", formattedUniversities.get(u3.getName()).equals(u3));
-		Assert.assertTrue("First University should be TEST UNIVERSITY 4", formattedUniversities.get(u4.getName()).equals(u4));		
-		Assert.assertTrue("First University should be TEST UNIVERSITY 5", formattedUniversities.get(u5.getName()).equals(u5));
+		Assert.assertTrue("University should be TEST UNIVERSITY 1", formattedUniversities.get(u1.getName()).equals(u1));	
+		Assert.assertTrue("University should be TEST UNIVERSITY 2", formattedUniversities.get(u2.getName()).equals(u2));
+		Assert.assertTrue("University should be TEST UNIVERSITY 3", formattedUniversities.get(u3.getName()).equals(u3));
+		Assert.assertTrue("University should be TEST UNIVERSITY 4", formattedUniversities.get(u4.getName()).equals(u4));		
+		Assert.assertTrue("University should be TEST UNIVERSITY 5", formattedUniversities.get(u5.getName()).equals(u5));
 		Assert.assertTrue("Size of viewed Universites should be 5", formattedUniversities.size() == 5);
 	}
 	
-	//TODO:U6
+	@Test
+	public void testU6_A1()
+	{
+		ArrayList<String> emphases = new ArrayList<String>();
+		emphases.add("MATH");
+		ArrayList<University> foundUniversities =studentInt.searchUniversities("TEST", "MINNESOTA", "URBAN", "PRIVATE", 2000, 2000, 1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,emphases);
+		HashMap<String, University> formattedUniversities = studentInt.viewUniversities(foundUniversities);
+		Assert.assertTrue("Size of viewed Universites should be 0", formattedUniversities.isEmpty());
+	}
 	
 	@Test
 	public void testU7()
@@ -271,7 +280,14 @@ public class FunctionalTests
 	@Test
 	public void testU10()
 	{
-		
+		ArrayList<University> recommendedUniversities = studentInt.getRecommendedUniversities(u1);
+
+		Assert.assertTrue("First University should be TEST UNIVERSITY 2", recommendedUniversities.get(0).equals(u2));
+		Assert.assertTrue("Second University should be UNIVERSITY 1", recommendedUniversities.get(1).equals(university));
+		Assert.assertTrue("Third University should be TEST UNIVERSITY 3", recommendedUniversities.get(2).equals(u3));
+		Assert.assertTrue("Fourth University should be TEST UNIVERSITY 4", recommendedUniversities.get(3).equals(u4));
+		Assert.assertTrue("Fifth University should be TEST UNIVERSITY 5", recommendedUniversities.get(4).equals(u5));
+		Assert.assertTrue("Size of viewed Universites should be 5", recommendedUniversities.size() == 5);
 	}
 	
 	
