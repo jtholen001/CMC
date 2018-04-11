@@ -181,7 +181,11 @@ public class FunctionalTests
 	
 	
 	//TODO:U10
-	
+	@Test
+	public void testU10()
+	{
+		
+	}
 	
 	
 	//U11 Save University to student's saved universities
@@ -232,7 +236,29 @@ public class FunctionalTests
 	}
 	
 	//TODO:U15
+	@Test
+	public void U15Main()
+	{
+		University U15 = new University("U15 University", "Minnesota", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>() );
+		adminInt.addUniversity("U15 University", "Minnesota", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>() );
+		HashMap<String, University> universities = adminInt.viewUniversities();
+		Assert.assertTrue("University should be in the database", universities.containsValue(U15));
+		adminInt.deleteUniversity(U15);
+	}
 	
+	@Test (expected = IllegalArgumentException.class)
+	public void U15Alt1()
+	{
+		
+		adminInt.addUniversity("TestUniversity1", "Minnesota", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>() );
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void U15Alt2()
+	{
+		
+		adminInt.addUniversity("", "Minnesota", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>() );
+	}
 	//TODO:U16
 	@Test
 	public void U16Main()

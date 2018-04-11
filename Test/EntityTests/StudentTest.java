@@ -249,7 +249,7 @@ public class StudentTest {
 	 */
 	@Test
 	public void testEqualsFalseDifferentLastNames(){
-		student2 = new Student("John", "Killer", "jmill", "password1", 'u', true, false, new ArrayList<University>());
+		student2 = new Student("Johnnie", "Killer", "jmill", "password1", 'u', true, false, new ArrayList<University>());
 		student2.addSchool(dbc.getUniversity("YALE"));
 		student2.addSchool(dbc.getUniversity("BOSTON UNIVERSITY"));
 		Assert.assertFalse("Should return false as objects have different lastNames", student1.equals(student2));
@@ -260,7 +260,7 @@ public class StudentTest {
 	 */
 	@Test
 	public void testEqualsFalseDifferentPassword(){
-		student2 = new Student("John", "Miller", "jmill", "password0", 'u', true, false, new ArrayList<University>());
+		student2 = new Student("Johnnie", "Miller", "jmill", "password0", 'u', true, false, new ArrayList<University>());
 		student2.addSchool(dbc.getUniversity("YALE"));
 		student2.addSchool(dbc.getUniversity("BOSTON UNIVERSITY"));
 		Assert.assertFalse("Should return false as objects have different passwords", student1.equals(student2));
@@ -271,7 +271,7 @@ public class StudentTest {
 	 */
 	@Test
 	public void testEqualsFalseDifferentType(){
-		student2 = new Student("John", "Miller", "jmill", "password1", 'a', true, false, new ArrayList<University>());
+		student2 = new Student("Johnnie", "Miller", "jmill", "password1", 'a', true, false, new ArrayList<University>());
 		student2.addSchool(dbc.getUniversity("YALE"));
 		student2.addSchool(dbc.getUniversity("BOSTON UNIVERSITY"));
 		Assert.assertFalse("Should return false as objects have different types", student1.equals(student2));
@@ -282,7 +282,7 @@ public class StudentTest {
 	 */
 	@Test
 	public void testEqualsFalseDifferentSavedSchools(){
-		student2 = new Student("John", "Miller", "jmill", "password1", 'a', true, false, new ArrayList<University>());
+		student2 = new Student("Johnnie", "Miller", "jmill", "password1", 'a', true, false, new ArrayList<University>());
 		student2.addSchool(dbc.getUniversity("ARIZONA STATE"));
 		student2.addSchool(dbc.getUniversity("BOSTON UNIVERSITY"));
 		
