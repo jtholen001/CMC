@@ -11,7 +11,7 @@
 6. Click "Next" button
 7. Choose "Select archive file:" and click "Browse..." button
 8. Open CMC.zip (from Jordan's email) and click "Finish"
-9. Close Eclipse
+9. Close Eclipse 
 10.Go to /HOME/eclipse-workspace/CMC
 11.Click on the "View" menu and check "Show Hidden Files"
 12.Copy ".project" and ".classpath" files
