@@ -68,11 +68,10 @@ public class UserInterface
    * A method that logs out a user
    * 
    * @param user the user to log out
-   * @return true if successful log out
+   * @return UserInterface brings the user back to a UserInterface to login as a different user
    */
-  /*
-  public boolean logout(User user)
+  public UserInterface logout()
   {
-    return lc.logout(user);
-  } */
+    return lc.logout();
+  } 
 }

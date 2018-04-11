@@ -227,18 +227,18 @@ public class User
   @Override
   public boolean equals(Object o)
   {
-	  if(!(o instanceof User))
+	  if(!(o instanceof User)) // C1
 		  return false;
 	  User other = (User) o;
-	  if(!other.getUsername().equals(this.getUsername()))
+	  if(!other.getUsername().equals(this.getUsername())) // C2
 		  return false;
-	  else if(!other.getFirstName().equals(this.getFirstName()))
+	  else if(!other.getFirstName().equals(this.getFirstName())) // C3
 		  return false;
-	  else if(!other.getLastName().equals(this.getLastName()))
+	  else if(!other.getLastName().equals(this.getLastName())) // C4
 		  return false;
-	  else if(!other.getPassword().equals(this.getPassword()))
+	  else if(!other.getPassword().equals(this.getPassword())) // C5
 		  return false;
-	  else if(!(other.getType() == this.getType()))
+	  else if(!(other.getType() == this.getType())) // C6
 		  return false;
 	  else
 		  return true;

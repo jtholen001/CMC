@@ -262,8 +262,7 @@ public class FunctionalTests
 	@Test (expected = IllegalArgumentException.class)
 	public void testU9_A1()
 	{
-		int success = studentInt.editProfile("", "lastName", "password");
-		Assert.assertTrue(success == -1);
+		studentInt.editProfile("", "lastName", "password");
 	}
 	
 	
@@ -289,7 +288,7 @@ public class FunctionalTests
 	}
 	
 	/**
-	 * U11_A1
+	 * U11_A1 university is already saved
 	 */
 	@Test (expected = IllegalArgumentException.class)
 	public void testU11_A1()
@@ -323,7 +322,7 @@ public class FunctionalTests
 		Assert.assertTrue(allUniversities.containsKey("AUBURN"));
 	}
 	
-	//TODO:U15
+	//U15
 	@Test
 	public void U15Main()
 	{
@@ -347,7 +346,7 @@ public class FunctionalTests
 		
 		adminInt.addUniversity("", "Minnesota", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>() );
 	}
-	//TODO:U16
+	//U16
 	@Test
 	public void U16Main()
 	{
@@ -414,5 +413,14 @@ public class FunctionalTests
 	{
 		adminInt.editUser("cputer001", "", "Tested", "newPass", 'a', true, true);
 	}
-	//TODO:U20
+	
+	//U20 Login
+	/**
+	 * U20 main scenario
+	 */
+	@Test
+	public void testU20()
+	{
+		Assert.assertTrue(studentInt.logout() instanceof UserInterface);
+	}
 }

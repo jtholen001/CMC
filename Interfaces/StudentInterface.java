@@ -198,11 +198,11 @@ public class StudentInterface extends UserInterface
   
   /**
    * Method to log the student out
-   * @return true if successful log out
-   */ /*
-  public boolean logout()
+   * @return UserInterface brings the user back to a UserInterface to login as a different user
+   */
+  public UserInterface logout()
   {
-    return super.logout(this.student);
-  } */
+    return super.logout();
+  }
 }  
 
