@@ -26,7 +26,7 @@
 ## For all other users
 
 TO ADD PROJECT TO ECLIPSE:
-1. Clone repository
+1. [Download](https://github.com/jtholen001/CMC/files/1900743/CMC-main.zip) our latest stable release as a zip file
 2. Open Eclipse
 3.. Go to "File" > "Import..."
 4. Under "General", select "Existing Projects into Workspace"
