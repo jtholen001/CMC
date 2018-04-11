@@ -124,7 +124,9 @@ public class University
                     int numApplicants, double percentAdmitted, double percentEnrolled, int academicScale, int socialScale,
                     int qualityOfLifeScale, ArrayList<String> emphases) throws IllegalArgumentException
   {
-
+	  if(name == null || name.equals(""))
+	  	throw new IllegalArgumentException("Name cannot be empty.");
+	  	
    this.name = name.toUpperCase().trim();
    this.setState(state);
    this.setLocation(location);
