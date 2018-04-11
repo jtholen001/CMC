@@ -200,7 +200,11 @@ public class FunctionalTests
 	
 	
 	//TODO:U10
-	
+	@Test
+	public void testU10()
+	{
+		
+	}
 	
 	
 	//U11 Save University to student's saved universities
