@@ -16,7 +16,7 @@ public class StudentUniversitiesControllerTest {
 
 	private StudentUniversitiesController suc; 
 	
-	private DBController dbc;
+	private DBController;
 	
 	private Student student;
 
@@ -74,7 +74,7 @@ public class StudentUniversitiesControllerTest {
 	@Test
 	public void testViewUniversity() {
 		Assert.assertTrue("returned University should match expected result for viewing a university", suc.viewUniversity(u1.getName()).equals(u1));
-
+		
 	}
 
 	/**

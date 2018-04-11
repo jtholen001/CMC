@@ -55,6 +55,16 @@ public class StudentInterface extends UserInterface
 		this.suc = new StudentUniversitiesController(this.student,db);
 		this.lc = new LoginController(db); 
 	}
+	
+	public StudentInterface(Student student, DBController temp)
+	{
+		super(temp);
+		this.student = student;
+		this.pc = new ProfileController(this.student,temp);
+		this.sc = new SearchController(temp);
+		this.suc = new StudentUniversitiesController(this.student,temp);
+		this.lc = new LoginController(temp); 
+	}
 
 	/**
 	 * Method to veiw the Student's profile

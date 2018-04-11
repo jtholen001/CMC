@@ -505,5 +505,6 @@ public class SearchControllerTest {
 		dbc.deleteUniversity(u12);
 		dbc.deleteUniversity(searchUniversity1);
 		dbc.deleteUniversity(searchUniversity2);
+		dbc.stop();
 	}
 }

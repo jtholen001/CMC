@@ -32,7 +32,12 @@ public class UserInterface
    */
   public UserInterface()
   {
-    lc = new LoginController(new DBController());
+    this.lc = new LoginController(new DBController());
+  }
+  
+  public UserInterface(DBController temp)
+  {
+    this.lc = new LoginController(temp);
   }
   
   /**

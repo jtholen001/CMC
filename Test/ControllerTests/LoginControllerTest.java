@@ -35,6 +35,7 @@ public class LoginControllerTest
 		uCont.deleteUser("ntawil001");
 		uCont.deleteUser("nUser");
 		uCont.deleteUser("mcarroll001");
+		dbCont.stop();
 	}
 	
 	/**
