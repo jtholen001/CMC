@@ -1,25 +1,7 @@
 package Test.FunctionalTests;
 
-
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 import org.junit.*;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import entityClasses.*;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.junit.*;
-
-
-import org.junit.*;
-import entityClasses.*;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import entityClasses.*;
 import Controllers.*;
