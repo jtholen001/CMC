@@ -236,7 +236,7 @@ public class FunctionalTests
 		Assert.assertTrue(allUniversities.containsKey("AUBURN"));
 	}
 	
-	//TODO:U15
+	//U15
 	@Test
 	public void U15Main()
 	{
@@ -260,7 +260,7 @@ public class FunctionalTests
 		
 		adminInt.addUniversity("", "Minnesota", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>() );
 	}
-	//TODO:U16
+	//U16
 	@Test
 	public void U16Main()
 	{
