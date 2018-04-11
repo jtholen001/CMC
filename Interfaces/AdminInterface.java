@@ -208,10 +208,10 @@ public class AdminInterface extends UserInterface
   /**
    * A method that logs out the Admin
    * 
-   * @return true if successful log out
-   *//*
-  public boolean logout()
+   * @return UserInterface brings the user back to a UserInterface to login as a different user
+   */
+  public UserInterface logout()
   {
-    return super.logout(admin);
-  }*/
+    return super.logout();
+  }
 }
