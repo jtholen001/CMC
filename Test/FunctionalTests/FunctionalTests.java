@@ -190,7 +190,7 @@ public class FunctionalTests
 	/**
 	 * U9A1 student leaves a field blank
 	 */
-	@Test
+	@Test (expected = IllegalArgumentException.class)
 	public void testU9_A1()
 	{
 		int success = studentInt.editProfile("", "lastName", "password");
@@ -233,7 +233,21 @@ public class FunctionalTests
 	//TODO:U15
 	
 	//TODO:U16
+	@Test
+	public void U16Main()
+	{
+		University editedUniversity = new University("TestUniversity1", "WISCONSIN", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>());
+		adminInt.editUniversity(university, "Wisconsin", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>());
+		Assert.assertTrue("University should be equal to editedUniversity", university.equals(editedUniversity));
+	}
 	
+	@Test (expected = IllegalArgumentException.class)
+	public void U16Alternate1()
+	{
+		University editedUniversity = new University("TestUniversity1", "WISCONSIN", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>());
+		adminInt.editUniversity(university, "Wisconsin", "", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>());
+		Assert.assertTrue("University should be equal to editedUniversity", university.equals(editedUniversity));
+	}
 	//U17
 	@Test
 	public void U17Main()

@@ -15,7 +15,6 @@ import Test.InterfaceTests.*;
 				UniversityControllerTest.class,
 				UsersControllerTest.class,
 				LoginControllerTest.class,
-				AdminTest.class,
 				StudentTest.class,
 				UniversityTest.class,
 				UserTest.class,
