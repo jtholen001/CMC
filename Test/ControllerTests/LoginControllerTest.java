@@ -2,6 +2,8 @@ package Test.ControllerTests;
 
 import entityClasses.*;
 import Controllers.*;
+import Interfaces.UserInterface;
+
 import static org.junit.Assert.*;
 
 import org.junit.After;
@@ -73,5 +75,14 @@ public class LoginControllerTest
 	{
 		user1 = loginCont.login("nUser", "password");
 		Assert.assertNull(user1);
+	}
+	
+	/**
+	 * Test method to test logout
+	 */
+	@Test
+	public void testLogout()
+	{
+		Assert.assertTrue(loginCont.logout() instanceof UserInterface);
 	}
 }

@@ -22,7 +22,7 @@ public class FunctionalTests
 	private Admin admin;
 	private Student student;
 	private DBController dbCont;
-	private University university, university2;
+	private University university, university2, searchUniversity1, searchUniversity2, u1, u2, u3, u4, u5, u6, u7, u8, u9, u10, u11, u12, u13;
 
 	
 	
@@ -40,11 +40,53 @@ public class FunctionalTests
 		adminInt = new AdminInterface(admin);
 		studentInt = new StudentInterface(student);
 		userInt = new UserInterface();
-		university = new University("TestUniversity1", "Minnesota", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>() );
-		university2 = new University("TestUniversity2", "IOWA", "SUBURBAN", "PRIVATE", 5000, 65.0, 600, 800, 15000, 50, 25000, 50, 40, 2, 1, 4, new ArrayList<String>() );
+		university = new University("UNIVERSITY 1", "MINNESOTA", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>() );
+		university2 = new University("UNIVERSITY 2", "IOWA", "SUBURBAN", "PRIVATE", 5000, 65.0, 600, 800, 15000, 50, 25000, 50, 40, 2, 1, 4, new ArrayList<String>() );
 		dbCont.addUniversity(university2);
 		studentInt.saveUniversity(university2);
 		dbCont.addUniversity(university);
+
+		//Used for searching and recommendedUniversities
+		ArrayList<String> emphases = new ArrayList<String>();
+		emphases.add("MATH");
+		
+		ArrayList<String> emphases2 = new ArrayList<String>();	
+		emphases2.add("BUSINESS");
+		emphases2.add("MATH");
+		//Used for testing search
+		searchUniversity1 = new University("SEARCH UNIVERSITY 1", "MINNESOTA", "URBAN", "PRIVATE", 100, 10.0, 100, 100, 100, 10, 100, 10, 10, 1, 1, 1, emphases );
+		searchUniversity2 = new University("SEARCH UNIVERSITY 2", "WISCONSIN", "RURAL", "PUBLIC", 1000, 100.0, 800, 800, 1000, 100, 1000, 100, 100, 5, 5, 5, new ArrayList<String>() );
+
+		//used for testing getRecommendedUniversities
+		u1 = new University("TEST UNIVERSITY 1", "MINNESOTA", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, emphases2 );
+		u2 = new University("TEST UNIVERSITY 2", "MINNESOTA", "URBAN", "PRIVATE", 5000, 65.0, 701, 600, 40000, 50, 49000, 31, 25, 4, 3, 2, emphases );
+		u3 = new University("TEST UNIVERSITY 3", "MINNESOTA", "URBAN", "PRIVATE", 5000, 54.0, 702, 601, 39000, 51, 48000, 32, 40, 3, 4, 2, emphases );
+		u4 = new University("TEST UNIVERSITY 4", "MINNESOTA", "URBAN", "PRIVATE", 5000, 53.0, 703, 602, 38000, 52, 47000, 33, 40, 2, 4, 3, emphases );
+		u5 = new University("TEST UNIVERSITY 5", "MINNESOTA", "URBAN", "PRIVATE", 5000, 62.0, 704, 603, 37000, 53, 46000, 34, 40, 1, 5, 4, emphases2 );
+		u6 = new University("TEST UNIVERSITY 6", "IOWA", "URBAN", "PRIVATE", 5000, 63.0, 705, 604, 36000, 54, 45000, 35, 40, 4, 5, 5, emphases );
+
+		u7 = new University("TEST UNIVERSITY 7", "MONTANA", "RURAL", "PUBLIC", 1000, 90, 700, 550, 40200, 45, 21000, 30, 20, 1, 5, 4, new ArrayList<String>());
+		u8 = new University("TEST UNIVERSITY 8", "-1", "RURAL", "PUBLIC", 900, 88, 700, 550, 40200, 45, 20000, 30, 20, 1, 5, 4, new ArrayList<String>());
+		u9 = new University("TEST UNIVERSITY 9", "MONTANA", "-1", "PUBLIC", 800, 86, 700, 550, 40000, 40, 20000, 30, 20, 1, 5, 4, new ArrayList<String>());
+		u10 = new University("TEST UNIVERSITY 10", "MONTANA", "RURAL", "-1", 700, 86, 700, 550, 40000, 40, 22000, 30, 20, 1, 5, 4, new ArrayList<String>());
+		u11 = new University("TEST UNIVERSITY 11", "MONTANA", "RURAL", "PUBLIC", -1, 85, 700, 550, 40000, 39, 22000, 30, 20, 1, 5, 4, new ArrayList<String>());
+		u12 = new University("TEST UNIVERSITY 12", "MONTANA", "RURAL", "PUBLIC", 600, 85, 700, 550, 40500, 38, 23000, 30, 20, 1, 5, 4, new ArrayList<String>());
+		u13 = new University("TEST UNIVERSITY 13", "-1", "-1", "-1", -1, 85, 700, 550, 40500, 38, 23000, 30, 20, 1, 5, 4, new ArrayList<String>());
+
+		dbCont.addUniversity(u1);
+		dbCont.addUniversity(u2);
+		dbCont.addUniversity(u3);
+		dbCont.addUniversity(u4);
+		dbCont.addUniversity(u5);
+		dbCont.addUniversity(u6);		
+		dbCont.addUniversity(u7);
+		dbCont.addUniversity(u8);
+		dbCont.addUniversity(u9);
+		dbCont.addUniversity(u10);
+		dbCont.addUniversity(u11);
+		dbCont.addUniversity(u12);
+		dbCont.addUniversity(searchUniversity1);
+		dbCont.addUniversity(searchUniversity2);
 	}
 	
 	@After
@@ -54,6 +96,21 @@ public class FunctionalTests
 		dbCont.deleteUser("culator001");
 		dbCont.deleteUniversity(university);
 		dbCont.deleteUniversity(university2);
+		
+		dbCont.deleteUniversity(u1);
+		dbCont.deleteUniversity(u2);
+		dbCont.deleteUniversity(u3);
+		dbCont.deleteUniversity(u4);
+		dbCont.deleteUniversity(u5);
+		dbCont.deleteUniversity(u6);
+		dbCont.deleteUniversity(u7);
+		dbCont.deleteUniversity(u8);
+		dbCont.deleteUniversity(u9);
+		dbCont.deleteUniversity(u10);
+		dbCont.deleteUniversity(u11);
+		dbCont.deleteUniversity(u12);
+		dbCont.deleteUniversity(searchUniversity1);
+		dbCont.deleteUniversity(searchUniversity2);
 	}
 	
 	//U1 Login
@@ -101,8 +158,23 @@ public class FunctionalTests
 	
 	//U2(ABSTRACT USE CASE)
 	
-	//TODO:U3
+	//U3(Search for Schools	
+	@Test
+	public void testU3()
+	{
+		ArrayList<String> emphases = new ArrayList<String>();
+		emphases.add("MATH");
+		ArrayList<University> foundUniversities = studentInt.searchUniversities("SEARCH", "MIN", "URBAN", "PRIVATE", 50, 150, 5, 15, 50, 100, 50, 100, 50, 100, 5, 15, 50, 100, 5, 15, 5, 15, 1, 3, 1, 3, 1, 3, emphases);
+		Assert.assertTrue("searchUniversity1 should be found in the search", foundUniversities.contains(searchUniversity1));
+		Assert.assertFalse("searchUniversity2 should NOT be found in the search", foundUniversities.contains(searchUniversity2));	
+	}
 	
+	@Test (expected = InputMismatchException.class)
+	public void testU3_A1()
+	{
+		studentInt.searchUniversities("", "", "", "", 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, new ArrayList<String>());	
+	}
+		
 	@Test
 	public void testU4()
 	{
@@ -135,7 +207,31 @@ public class FunctionalTests
 		Assert.assertTrue(profile.equals(student.toString()));
 	}
 	
-	//TODO:U6
+	//U6: View Matched Schools
+	@Test
+	public void testU6()
+	{
+		ArrayList<String> emphases = new ArrayList<String>();
+		emphases.add("MATH");
+		ArrayList<University> foundUniversities =studentInt.searchUniversities("TEST", "MINNESOTA", "URBAN", "PRIVATE", 2000, 100000, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,emphases);
+		HashMap<String, University> formattedUniversities = studentInt.viewUniversities(foundUniversities);
+		Assert.assertTrue("University should be TEST UNIVERSITY 1", formattedUniversities.get(u1.getName()).equals(u1));	
+		Assert.assertTrue("University should be TEST UNIVERSITY 2", formattedUniversities.get(u2.getName()).equals(u2));
+		Assert.assertTrue("University should be TEST UNIVERSITY 3", formattedUniversities.get(u3.getName()).equals(u3));
+		Assert.assertTrue("University should be TEST UNIVERSITY 4", formattedUniversities.get(u4.getName()).equals(u4));		
+		Assert.assertTrue("University should be TEST UNIVERSITY 5", formattedUniversities.get(u5.getName()).equals(u5));
+		Assert.assertTrue("Size of viewed Universites should be 5", formattedUniversities.size() == 5);
+	}
+	
+	@Test
+	public void testU6_A1()
+	{
+		ArrayList<String> emphases = new ArrayList<String>();
+		emphases.add("MATH");
+		ArrayList<University> foundUniversities =studentInt.searchUniversities("TEST", "MINNESOTA", "URBAN", "PRIVATE", 2000, 2000, 1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,emphases);
+		HashMap<String, University> formattedUniversities = studentInt.viewUniversities(foundUniversities);
+		Assert.assertTrue("Size of viewed Universites should be 0", formattedUniversities.isEmpty());
+	}
 	
 	@Test
 	public void testU7()
@@ -172,11 +268,12 @@ public class FunctionalTests
 	/**
 	 * U9A1 student leaves a field blank
 	 */
-	@Test (expected = IllegalArgumentException.class)
+	@Test
 	public void testU9_A1()
 	{
 		int success = studentInt.editProfile("", "lastName", "password");
 		Assert.assertTrue(success == -1);
+		
 	}
 	
 	
@@ -185,7 +282,14 @@ public class FunctionalTests
 	@Test
 	public void testU10()
 	{
-		
+		ArrayList<University> recommendedUniversities = studentInt.getRecommendedUniversities(u1);
+
+		Assert.assertTrue("First University should be TEST UNIVERSITY 2", recommendedUniversities.get(0).equals(u2));
+		Assert.assertTrue("Second University should be UNIVERSITY 1", recommendedUniversities.get(1).equals(university));
+		Assert.assertTrue("Third University should be TEST UNIVERSITY 3", recommendedUniversities.get(2).equals(u3));
+		Assert.assertTrue("Fourth University should be TEST UNIVERSITY 4", recommendedUniversities.get(3).equals(u4));
+		Assert.assertTrue("Fifth University should be TEST UNIVERSITY 5", recommendedUniversities.get(4).equals(u5));
+		Assert.assertTrue("Size of viewed Universites should be 5", recommendedUniversities.size() == 5);
 	}
 	
 	
@@ -202,7 +306,7 @@ public class FunctionalTests
 	}
 	
 	/**
-	 * U11_A1
+	 * U11_A1 university is already saved
 	 */
 	@Test (expected = IllegalArgumentException.class)
 	public void testU11_A1()
@@ -236,7 +340,7 @@ public class FunctionalTests
 		Assert.assertTrue(allUniversities.containsKey("AUBURN"));
 	}
 	
-	//TODO:U15
+	//U15
 	@Test
 	public void U15Main()
 	{
@@ -251,7 +355,8 @@ public class FunctionalTests
 	public void U15Alt1()
 	{
 		
-		adminInt.addUniversity("TestUniversity1", "Minnesota", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>() );
+		adminInt.addUniversity(university.getName(), "Minnesota", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>() );
+		
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
@@ -260,11 +365,11 @@ public class FunctionalTests
 		
 		adminInt.addUniversity("", "Minnesota", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>() );
 	}
-	//TODO:U16
+	//U16
 	@Test
 	public void U16Main()
 	{
-		University editedUniversity = new University("TestUniversity1", "WISCONSIN", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>());
+		University editedUniversity = new University("University 1", "WISCONSIN", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>());
 		adminInt.editUniversity(university, "Wisconsin", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>());
 		Assert.assertTrue("University should be equal to editedUniversity", university.equals(editedUniversity));
 	}
@@ -272,7 +377,7 @@ public class FunctionalTests
 	@Test (expected = IllegalArgumentException.class)
 	public void U16Alternate1()
 	{
-		University editedUniversity = new University("TestUniversity1", "WISCONSIN", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>());
+		University editedUniversity = new University("UNIVERSITY 1", "WISCONSIN", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>());
 		adminInt.editUniversity(university, "Wisconsin", "", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>());
 		Assert.assertTrue("University should be equal to editedUniversity", university.equals(editedUniversity));
 	}
@@ -327,5 +432,14 @@ public class FunctionalTests
 	{
 		adminInt.editUser("cputer001", "", "Tested", "newPass", 'a', true, true);
 	}
-	//TODO:U20
+	
+	//U20 Login
+	/**
+	 * U20 main scenario
+	 */
+	@Test
+	public void testU20()
+	{
+		Assert.assertTrue(studentInt.logout() instanceof UserInterface);
+	}
 }
