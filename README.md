@@ -1,7 +1,7 @@
-##CMC
+## CMC
 
 
-##For team members only
+## For team members only
 
 1. Compress your old CMC folder in and name it CMC_Backup (zip)
 2. Delete old CMC folder
@@ -23,7 +23,7 @@
 18.Run command: git remote add upstream https://github.com/jtholen001/CMC
 19.Open Eclipse and the project should be there.
 
-##For all other users
+## For all other users
 
 TO ADD PROJECT TO ECLIPSE:
 1. Clone repository
