@@ -938,7 +938,7 @@ public class UniversityTest
 	@Test
 	public void toStringReturnsCorrectString()
 	{
-		Assert.assertTrue("toString returns correctly: ", testingUniversity.toString().equals("name: SAINT JOHN'S UNIVERSITY\nstate: MINNESOTA\nlocation: RURAL\ncontrol: PRIVATE\nnumStudents: 10000\npercentFemale: 50.0\nSATVerbal: 100.0\nSATMath: 100.0\nexpenses: 50000.0\npercentFinancialAid: 75.0\nnumApplicants: 1000\npercentAdmitted: 75.0\npercentEnrolled: 90.0\nacademicScale: 4\nsocialScale: 2\nqualityOfLifeScale: 4\nemphases: [Computer Science, Accounting, Nursing]"));
+		Assert.assertTrue("toString returns correctly: ", testingUniversity.toString().equals("name: SAINT JOHN'S UNIVERSITY\nstate: MINNESOTA\nlocation: RURAL\ncontrol: PRIVATE\nnumStudents: 10000\npercentFemale: 50.0\nSATVerbal: 100.0\nSATMath: 100.0\nexpenses: 50000.0\npercentFinancialAid: 75.0\nnumApplicants: 1000\npercentAdmitted: 75.0\npercentEnrolled: 90.0\nacademicScale: 4\nsocialScale: 2\nqualityOfLifeScale: 4\nemphases: [Accounting, Computer Science, Nursing]"));
 	}
 	
 	
