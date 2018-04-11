@@ -13,12 +13,13 @@ import org.junit.*;
  * @version 04/04/18
  */
 public class UserTest{
-	private User user1, user2;
+	private User user1, user2, user3;
 
 	// @Before annotation forces method to re-execute before each test method
 	@Before
 	public void init(){ 
 		user1 = new User("Johnnie", "Cash", "jcash", "password1", 'a', true, false);
+		user2 = new User("Johnnie", "Miller", "jmill", "password1", 'a', true, false);
 	}
 
 	/**
@@ -401,8 +402,8 @@ public class UserTest{
 	 */
 	@Test
 	public void testEqualsTrue(){
-		user2 = this.user1;
-		Assert.assertTrue("Should return true as objects are equal", user1.equals(user2));
+		user3 = this.user2;
+		Assert.assertTrue("Should return true as objects are equal", user2.equals(user3));
 	}
 	
 	/**
@@ -411,7 +412,7 @@ public class UserTest{
 	@Test
 	public void testEqualsFalseNotInstance(){
 		boolean randomUnrelatedObject = false;
-		Assert.assertFalse("Should return false as objects are of different types", user1.equals(randomUnrelatedObject));
+		Assert.assertFalse("Should return false as objects are of different types", user2.equals(randomUnrelatedObject));
 	}
 	
 	/**
@@ -419,8 +420,8 @@ public class UserTest{
 	 */
 	@Test
 	public void testEqualsFalseDifferentUsernames(){
-		user2 = new User("Johnnie", "Miller", "mjill", "password1", 'a', true, false);
-		Assert.assertFalse("Should return false as objects have different usernames", user1.equals(user2));
+		user3 = new User("Johnnie", "Miller", "mjill", "password1", 'a', true, false);
+		Assert.assertFalse("Should return false as objects have different usernames", user2.equals(user3));
 	}
 	
 	/**
@@ -428,8 +429,8 @@ public class UserTest{
 	 */
 	@Test
 	public void testEqualsFalseDifferentFirstNames(){
-		user2 = new User("John", "Miller", "jmill", "password1", 'a', true, false);
-		Assert.assertFalse("Should return false as objects have different firstNames", user1.equals(user2));
+		user3 = new User("John", "Miller", "jmill", "password1", 'a', true, false);
+		Assert.assertFalse("Should return false as objects have different firstNames", user2.equals(user3));
 	}
 	
 	/**
@@ -437,8 +438,8 @@ public class UserTest{
 	 */
 	@Test
 	public void testEqualsFalseDifferentLastNames(){
-		user2 = new User("Johnnie", "Killer", "jmill", "password1", 'a', true, false);
-		Assert.assertFalse("Should return false as objects have different lastNames", user1.equals(user2));
+		user3 = new User("Johnnie", "Killer", "jmill", "password1", 'a', true, false);
+		Assert.assertFalse("Should return false as objects have different lastNames", user2.equals(user3));
 	}
 	
 	/**
@@ -446,8 +447,8 @@ public class UserTest{
 	 */
 	@Test
 	public void testEqualsFalseDifferentPassword(){
-		user2 = new User("Johnnie", "Miller", "jmill", "password0", 'a', true, false);
-		Assert.assertFalse("Should return false as objects have different passwords", user1.equals(user2));
+		user3 = new User("Johnnie", "Miller", "jmill", "password0", 'a', true, false);
+		Assert.assertFalse("Should return false as objects have different passwords", user2.equals(user3));
 	}
 	
 	/**
@@ -455,7 +456,7 @@ public class UserTest{
 	 */
 	@Test
 	public void testEqualsFalseDifferentType(){
-		user2 = new User("Johnnie", "Miller", "jmill", "password1", 'u', true, false);
-		Assert.assertFalse("Should return false as objects have different types", user1.equals(user2));
+		user3 = new User("Johnnie", "Miller", "jmill", "password1", 'u', true, false);
+		Assert.assertFalse("Should return false as objects have different types", user2.equals(user3));
 	}
 }
