@@ -9,20 +9,12 @@
 Login form:<br>
 <br>
 <% 
-String error = request.getParameter("error");
+String error = request.getParameter("Error");
 if(error != null) {
-	if (error.equals("-1")) {
-		out.print("Provide valid username");
-	}
-	else if (error.equals("-2")) {
-		out.print("Provide a valid password");
-}		
-	else if (error.equals("-3")) {
-		out.print("Error while attempting to access database");
-}
-	else if (error.equals("-4")) {
+	if (error.equals("-1"))
+		out.print("Incorrect password or username");
+	else if (error.equals("-4"))
 		out.print("User must be logged in to access system pages");
-}
 }
  %>
 

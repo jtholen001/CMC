@@ -192,7 +192,16 @@ public class StudentInterface extends UserInterface
   public ArrayList<University> getRecommendedUniversities(University university)
   {
    return sc.getRecommendedUniversities(university);
-   
+  }
+  
+  /**
+   * Method to return the student associated with this StudentInterface
+   * 
+   * @return a Student
+   */
+  public Student getStudent()
+  {
+   return this.student;
   }
   
   /**
