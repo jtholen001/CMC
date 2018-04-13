@@ -35,7 +35,7 @@ public class DBController implements Runnable
 		this.run = true;
 		thread = new Thread(this);
 		thread.getThreadGroup().setDaemon(true);
-		thread.start();
+		//thread.start();
 	}
 
 	public void stop()
@@ -390,6 +390,7 @@ public class DBController implements Runnable
 	{
 		if(university == null)
 			throw new IllegalArgumentException("university is null");
+		
 		int ret =  univDBlib.university_addUniversity(university.getName().toUpperCase(), university.getState().toUpperCase(), university.getLocation().toUpperCase(),
 				university.getControl().toUpperCase(), university.getNumStudents(), university.getPercentFemale(),
 				university.getSATVerbal(), university.getSATMath(), university.getExpenses(),
@@ -407,6 +408,13 @@ public class DBController implements Runnable
 			for(int i = 0; i < university.getEmphases().size(); i++)
 			{
 				univDBlib.university_addUniversityEmphasis(university.getName(), university.getEmphases().get(i).toUpperCase());
+			}
+		}
+		if(this.storedUniversities!= null)
+		{
+			synchronized(this.storedUniversities)
+			{
+				this.storedUniversities.put(university.getName(), university);
 			}
 		}
 		return ret;
