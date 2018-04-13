@@ -1,5 +1,5 @@
 /**
- * LoginController class controls the login logic for a user
+ * Modified LoginController class controls the login logic for a user and allows for 2-factor authentication
  *
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
  * @version 2/26/18
