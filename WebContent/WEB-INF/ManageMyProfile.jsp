@@ -11,7 +11,7 @@
 <title>Manage My Profile</title>
 </head>
 <body>
-<table style="text-align: left; width: 50%;" border="1" cellpadding="2" cellspacing="2">
+<table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
   <tbody>
 <tr>
 	<td style="vertical-align: top">First Name</td>
