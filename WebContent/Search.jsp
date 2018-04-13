@@ -130,7 +130,6 @@ border="1" cellpadding="2" cellspacing="2">
 name="Search" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input value="Reset Form"
 name="Reset" type="reset">
-</tr>
 </form>
 </body>
 </html>

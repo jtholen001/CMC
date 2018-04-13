@@ -11,29 +11,36 @@
 <title>Manage My Profile</title>
 </head>
 <body>
+<form action="EditProfile_action.jsp" name="EditProfile">
 <table style="text-align: left; width: 50%;" border="1" cellpadding="2" cellspacing="2">
   <tbody>
 <tr>
 	<td style="vertical-align: top">First Name</td>
-	<td style="vertical-align: top"><input name="firstName" value=<%studentInt.getStudent().getFirstName();%>></td>
+	<td style="vertical-align: top"><input name="firstName" value=<%out.print(studentInt.getStudent().getFirstName());%>></td>
 </tr>
 <tr>
 	<td style="vertical-align: top">Last Name</td>
-	<td style="vertical-align: top"><input name="lastName" value=<%studentInt.getStudent().getLastName();%>></td>
+	<td style="vertical-align: top"><input name="lastName" value=<%out.print(studentInt.getStudent().getLastName());%>></td>
 </tr>  
 <tr>
 	<td style="vertical-align: top">Username</td>
-	<td style="vertical-align: top"><input readonly="readonly" name="Username" value=<%studentInt.getStudent().getUsername();%>></td>
+	<td style="vertical-align: top"><input readonly="readonly" name="Username" value=<%out.print(studentInt.getStudent().getUsername());%>></td>
 </tr> 
 <tr>
 	<td style="vertical-align: top">Password</td>
-	<td style="vertical-align: top"><input name="Password" value=<%studentInt.getStudent().getPassword();%>></td>
+	<td style="vertical-align: top"><input name="Password" value=<%out.print(studentInt.getStudent().getPassword());%>></td>
 </tr> 
 <tr>
 	<td style="vertical-align: top">Type</td>
-	<td style="vertical-align: top"><input readonly="readonly" name="Type" value=<%studentInt.getStudent().getType();%>></td>
+	<td style="vertical-align: top"><input readonly="readonly" name="Type" value=<%out.print(studentInt.getStudent().getType());%>></td>
 </tr> 
 </tbody>
 </table>
+<br>
+<input value="Edit"
+name="Edit" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input value="Reset Form"
+name="Reset" type="reset">
+</form>
 </body>
 </html>
