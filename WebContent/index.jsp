@@ -15,6 +15,7 @@ if(error != null) {
 }
  %>
 
+
 <form method="post" action="Login_action.jsp" name="Login"><br>
 <table style="text-align: left; width: 266px; height: 228px;"
 border="1" cellpadding="2" cellspacing="2">
@@ -29,6 +30,16 @@ border="1" cellpadding="2" cellspacing="2">
 </td>
 <td style="vertical-align: top;"><input type = "password" name="Password"> </td>
 </tr>
+<tr>
+<td><input value="Log in"
+name="Log in" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><input value="Reset"
+name="Reset" type="reset"></td>
+</tr>
+
+
+
+
 
 <br>
 </form>
