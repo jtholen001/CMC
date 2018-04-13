@@ -35,7 +35,7 @@ public class DBController implements Runnable
 		this.run = true;
 		thread = new Thread(this);
 		thread.getThreadGroup().setDaemon(true);
-		//thread.start();
+		thread.start();
 	}
 
 	public void stop()
@@ -515,7 +515,7 @@ public class DBController implements Runnable
 
 
 			try {
-				Thread.sleep((10 * 1000));
+				Thread.sleep((4 * 1000));
 			}
 			catch(InterruptedException j)
 			{
