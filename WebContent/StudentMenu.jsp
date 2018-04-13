@@ -8,9 +8,12 @@
 <%
 	StudentInterface studentInt = (StudentInterface)session.getAttribute("userInt");
 %>
-Hello User <%out.print(studentInt.getStudent().getUsername()); %><br>
-<a href="Search.jsp">Search For Universities</a><br>
-<a href="ManageSavedUniversities.jsp">Manage My Saved Universities</a><br>
-<a href="ManageProfile.jsp">Manage My Profile</a><br>
+
+Hello <%out.print(studentInt.getStudent().getFirstName() + " " + studentInt.getStudent().getLastName()); %>!
+<br><a href="Search.jsp"><br>Search For Universities</a><br>
+<br><a href="ManageSavedUniversities.jsp">Manage My Saved Universities</a><br>
+<br><a href="ManageProfile.jsp">Manage My Profile</a>
+<br>
+
 </body>
 </html>

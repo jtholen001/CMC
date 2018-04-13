@@ -5,9 +5,6 @@
 </head>
 <body>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="cmcPackage.*" %>
-<br>
-Login form:<br>
-<br>
 <% 
 String error = request.getParameter("Error");
 if(error != null) {
@@ -33,13 +30,6 @@ border="1" cellpadding="2" cellspacing="2">
 <td style="vertical-align: top;"><input type = "password" name="Password"> </td>
 </tr>
 
-<td style="vertical-align: top;"><input value="Log in"
-name="Log in" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top;"><input value="Reset"
-name="Reset" type="reset"></td>
-</tr>
-</tbody>
-</table>
 <br>
 </form>
 <br>
