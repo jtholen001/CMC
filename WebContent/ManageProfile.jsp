@@ -15,23 +15,23 @@
   <tbody>
 <tr>
 	<td style="vertical-align: top">First Name</td>
-	<td style="vertical-align: top"><%studentInt.getStudent().getFirstName();%></td>
+	<td style="vertical-align: top"><input name="firstName" value=<%studentInt.getStudent().getFirstName();%>></td>
 </tr>
 <tr>
 	<td style="vertical-align: top">Last Name</td>
-	<td style="vertical-align: top"><%studentInt.getStudent().getLastName();%></td>
+	<td style="vertical-align: top"><input name="lastName" value=<%studentInt.getStudent().getLastName();%>></td>
 </tr>  
 <tr>
 	<td style="vertical-align: top">Username</td>
-	<td style="vertical-align: top"><%studentInt.getStudent().getUsername();%></td>
+	<td style="vertical-align: top"><input readonly="readonly" name="Username" value=<%studentInt.getStudent().getUsername();%>></td>
 </tr> 
 <tr>
 	<td style="vertical-align: top">Password</td>
-	<td style="vertical-align: top"><%studentInt.getStudent().getPassword();%></td>
+	<td style="vertical-align: top"><input name="Password" value=<%studentInt.getStudent().getPassword();%>></td>
 </tr> 
 <tr>
 	<td style="vertical-align: top">Type</td>
-	<td style="vertical-align: top"><%studentInt.getStudent().getType();%></td>
+	<td style="vertical-align: top"><input readonly="readonly" name="Type" value=<%studentInt.getStudent().getType();%>></td>
 </tr> 
 </tbody>
 </table>
