@@ -6,6 +6,8 @@
  */
 package cmcPackage.interfaces;
 
+import java.security.GeneralSecurityException;
+
 import cmcPackage.Controllers.LoginController;
 import cmcPackage.entityClasses.*;
 
@@ -41,10 +43,10 @@ public class UserInterface
    * @param password of the user
    * @return boolean successful
    */
-  public <t extends UserInterface> UserInterface login(String username, String password)
+  public <t extends UserInterface> UserInterface login(String username, String password, String authKey)
   {
-	  try {
-    User user = lc.login(username, password);
+	try {
+    User user = lc.login(username, password, authKey);
     if (user != null)
     {
       char type = user.getType();
@@ -59,7 +61,7 @@ public class UserInterface
     }
       return null;
 	  }
-	  catch (IllegalArgumentException iae)
+	  catch (IllegalArgumentException | GeneralSecurityException iae)
 	  {
 		  return null;
 	  }
