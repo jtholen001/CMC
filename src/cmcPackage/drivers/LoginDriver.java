@@ -37,19 +37,19 @@ public class LoginDriver
 	public void login() 
 	{
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Username: ");
-		String username = sc.nextLine();
-		System.out.println("Password: ");
-		String password = sc.nextLine();
+		System.out.print("Username: ");
+		String username = sc.next();
+		System.out.print("Password: ");
+		String password = sc.next();
 		
-		System.out.println("2-Step Verification");
-		System.out.println("Enter secret key from authenticator app: ");
-		String authKey = sc.nextLine();
+		System.out.println("\n2-Step Verification");
+		System.out.print("Enter secret key from authenticator app: ");
+		String authKey = sc.next();
 		
 		if(userInt.login(username, password, authKey) instanceof StudentInterface)
-			System.out.println("User successfully logged in because he was brought to a StudentInterface");
+			System.out.println("\nUser successfully logged in because he was brought to a StudentInterface");
 		else
-			System.out.println("User failed to login because he was not brought to a StudentInterface");
+			System.out.println("\nUser failed to login because he was not brought to a StudentInterface");
 		System.out.println("\n");
 	}
 	
@@ -60,7 +60,7 @@ public class LoginDriver
 	public static void main(String[] args)
 	{
 		LoginDriver driver = new LoginDriver();
-		System.out.println("Testing U1: Login, U20: Logout\n");
+		System.out.println("Testing U1: Login\n");
 		driver.login();
 		System.out.println("\n ----------END OF DRIVER----------");
 	}
