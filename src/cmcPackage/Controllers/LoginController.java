@@ -23,8 +23,8 @@ public class LoginController
 	 */
 	private DBController dbc;
 	
-	private static final String SECRET_KEY = "Q6UW57BRUNZERPLA";
-	private static final String QR_CODE = "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=200x200&chld=M|0&cht=qr&chl=otpauth://totp/CMC-internal%3Fsecret%3DQ6UW57BRUNZERPLA";
+	private static final String SECRET_KEY = "VNBAZKGA4QRMBB6K";
+	private static final String QR_CODE = "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=200x200&chld=M|0&cht=qr&chl=otpauth://totp/CMC-internal%3Fsecret%3DVNBAZKGA4QRMBB6K";
 
 	/**
 	 * Default constructor
@@ -43,11 +43,7 @@ public class LoginController
 	 * @throws GeneralSecurityException 
 	 */
 	public User login(String username, String password, String authKey) throws GeneralSecurityException
-	{
-		//String newSecretKey = tfaUtil.generateBase32Secret();
-		//System.out.println(newSecretKey); // store this key associated with user account in database
-		//System.out.println(tfaUtil.qrImageUrl("CMC-internal", newSecretKey)); // prints QR code URL to load secret key to authenticator application
-		
+	{				
 		User user = dbc.getUser(username);
 		if (user != null)
 		{

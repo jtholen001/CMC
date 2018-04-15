@@ -6,6 +6,7 @@ package cmcPackage.drivers;
 
 
 import cmcPackage.interfaces.*;
+import com.j256.twofactorauth.*;
 import cmcPackage.entityClasses.*;
 import cmcPackage.Controllers.*;
 import java.util.*;
@@ -19,6 +20,11 @@ public class LoginDriver
 	public DBController dbCont;
 	public Admin admin;
 	public Student student;
+	
+	/**
+	 *  2-factor authentication utility
+	 */
+	TimeBasedOneTimePasswordUtil tfaUtil;
 
 
 	public LoginDriver() 
@@ -53,6 +59,12 @@ public class LoginDriver
 		System.out.println("\n");
 	}
 	
+	public void setupTFA() {
+		String newSecretKey = tfaUtil.generateBase32Secret();
+		System.out.println(newSecretKey); // store this key associated with user account in database
+		System.out.println(tfaUtil.qrImageUrl("CMC-internal", newSecretKey)); // prints QR code URL to load secret key to authenticator application
+	}
+	
 
 	/**
 	 * @param argsAdd User failed; us
@@ -60,6 +72,9 @@ public class LoginDriver
 	public static void main(String[] args)
 	{
 		LoginDriver driver = new LoginDriver();
+		
+		//driver.setupTFA();
+		
 		System.out.println("Testing U1: Login\n");
 		driver.login();
 		System.out.println("\n ----------END OF DRIVER----------");
