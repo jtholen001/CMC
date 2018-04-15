@@ -206,6 +206,16 @@ public class AdminInterface extends UserInterface
   }
   
   /**
+   * This method get the admin that is currently logged in
+   * 
+   * @return admin the admin logged into this interface
+   */
+  public Admin getAdmin()
+  {
+	  return this.admin;
+  }
+  
+  /**
    * A method that logs out the Admin
    * 
    * @return UserInterface brings the user back to a UserInterface to login as a different user
