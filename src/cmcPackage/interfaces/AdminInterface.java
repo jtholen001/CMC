@@ -116,6 +116,17 @@ public class AdminInterface extends UserInterface
    return uCont.deleteUser(username);
   }
   
+  public University getUniversity(String name)
+  {
+    try {
+    	return uniCont.getUniversity(name);
+    }
+    catch(IllegalArgumentException j)
+	  {
+		  return null; 
+	  }
+  }
+  
   /**
    * A method that displays all University objects in the Database
    * 
