@@ -54,7 +54,7 @@ for(User u: users.values())
 	<td style="vertical-align: top;"><%=u.getActivationStatus()%>
 	</td>
 	<td style="vertical-align: top;">
-	<form method="post" action="Edit.jsp" name="Edit">
+	<form method="post" action="EditUser.jsp" name="Edit">
 	    <input name="Edit" value="Edit" type="submit">
 	    <input name="Username" value= <%=u.getUsername()%> type="hidden">
 	</form>
