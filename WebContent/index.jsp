@@ -36,11 +36,6 @@ name="Log in" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 <td><input value="Reset"
 name="Reset" type="reset"></td>
 </tr>
-
-
-
-
-
 <br>
 </form>
 <br>
