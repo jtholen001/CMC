@@ -41,17 +41,17 @@ border="1" >
 <tr>
 <td style="vertical-align: top;">Password<br>
 </td>
-<td style="vertical-align: top;"><input name="Password" value=<%=u.getPassword()%>> </td>
+<td style="vertical-align: top;"><input name="Password" value=<%=u.getPassword()%>>
 </tr>
 <tr>
 <td style="vertical-align: top;">Type<br>
 </td>
-<td style="vertical-align: top;"><input name="Type" value=<%=u.getType()%> readonly> </td>
+<td style="vertical-align: top;"><input name="Type" value=<%=u.getType()%>> </td>
 </tr>
 <tr>
 <td style="vertical-align: top;">Status<br>
 </td>
-<td style="vertical-align: top;"><input name="Status" value=<%=u.getActivationStatus()%> readonly> </td>
+<td style="vertical-align: top;"><input name="Status" value=<%=u.getActivationStatus()%>> </td>
 </tr>
 
 <tr>
