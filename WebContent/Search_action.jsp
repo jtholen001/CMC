@@ -84,8 +84,6 @@ cellspacing="2">
 
 <%
 
-//TEMP DBC*********************************
-DBController dbc = new DBController();
 for(University u: foundUniversities)
 {
 %>
@@ -93,14 +91,14 @@ for(University u: foundUniversities)
 		<td style="vertical-align: top;">
 	<form method="post" action="SaveUniversity_action.jsp" name="SaveUniversity">
 	    <input name="Save" value="Save" type="submit">
-	    <input name="University" value=<%out.print(dbc.getUniversity(u.getName()).getName());%> type="hidden">
+	    <input name="University" value='<%=u.getName()%>' type="hidden">
 	</form></td>
-	<td style="vertical-align: top;"><%out.print(dbc.getUniversity(u.getName()).getName());%>
+	<td style="vertical-align: top;"><%=u.getName()%>
 	</td>
 	<td style="vertical-align: top;">
 	<form method="post" action="ViewSearchedUniversity.jsp" name="ViewUniversity">
 	    <input name="View" value="View" type="submit">
-	    <input name="University" value=<%out.print(dbc.getUniversity(u.getName()).getName());%> type="hidden">
+	    <input name="University" value='<%=u.getName()%>' type="hidden">
 	</form></td>
 	</tr>
 <%}

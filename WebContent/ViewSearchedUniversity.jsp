@@ -5,12 +5,10 @@
 String universityName = request.getParameter("University");
 StudentInterface studentInt = (StudentInterface)session.getAttribute("userInt");
 University u = studentInt.viewUniversity(universityName);
-//DBController dbc = new DBController();
-//University u = dbc.getUniversity(universityName);
  %>
 <form method="post" action="SaveUniversity_action.jsp" name="SaveUniversity">
 	    <input name="Save" value="Save" type="submit">
-	    <input name="University" value=<%=u.getName()%> type="hidden">
+	    <input name="University" value='<%=u.getName()%>' type="hidden">
 	</form>
 <table style="text-align: left; width: 700px; height: 228px;"
 border="1" >
@@ -18,14 +16,14 @@ border="1" >
 <tr>
 <td style="vertical-align: top;">UNIVERSITY<br>
 </td>
-<td style="vertical-align: top;"><input name="University" value=<%=u.getName()%> readonly><br>
+<td style="vertical-align: top;"><input name="University" value='<%=u.getName()%>' readonly style="width: 320px; "><br>
 </td>
 </tr>
 <tr>
 <tr>
 <td style="vertical-align: top;">STATE<br>
 </td>
-<td style="vertical-align: top;"><input name="State" value=<%=u.getState()%> readonly><br>
+<td style="vertical-align: top;"><input name="State" value='<%=u.getState()%>' readonly><br>
 </td>
 </tr>
 <tr>
@@ -107,7 +105,7 @@ border="1" >
 ArrayList<String> emphases = u.getEmphases();
 for(String emphasis: emphases){
 %>
-<input value=<%=emphasis%> readonly> <br>
+<input value='<%=emphasis%>' readonly> <br>
  <%} %>
  </td>
 </tr>
@@ -118,11 +116,10 @@ MAY WE ALSO RECOMMEND<br>
 <%
 ArrayList<University> recommendedUniversities = studentInt.getRecommendedUniversities(u);
 for (University uni: recommendedUniversities) {
-out.print(uni.getName());
  %>
 <form method="post" action="SaveUniversity_action.jsp" name="SaveUniversity">
 	    <input name="Save" value="Save" type="submit">
-	    <input name="University" value=<%out.print(uni.getName());%> type="hidden">
+	    <input name="University" value='<%=uni.getName()%>' type="hidden">
 </form>
 <table style="text-align: left; width: 700px; height: 228px;"
 border="1" >
@@ -130,14 +127,14 @@ border="1" >
 <tr>
 <td style="vertical-align: top;">UNIVERSITY<br>
 </td>
-<td style="vertical-align: top;"><input name="University" value=<%out.print(uni.getName());%> readonly><br>
+<td style="vertical-align: top;"><input name="University" value='<%=uni.getName()%>' readonly style="width: 320px; "><br>
 </td>
 </tr>
 <tr>
 <tr>
 <td style="vertical-align: top;">STATE<br>
 </td>
-<td style="vertical-align: top;"><input name="State" value=<%=uni.getState()%> readonly><br>
+<td style="vertical-align: top;"><input name="State" value='<%=uni.getState()%>' readonly><br>
 </td>
 </tr>
 <tr>
@@ -219,7 +216,7 @@ border="1" >
 emphases = uni.getEmphases();
 for(String emphasis: emphases){
 %>
-<input value=<%=emphasis%> readonly> <br>
+<input value='<%=emphasis%>' readonly> <br>
  <%} %>
  </td>
 </tr>

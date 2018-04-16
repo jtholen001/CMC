@@ -30,14 +30,15 @@ for(String u: savedUniversities)
 	<tr>
 	<td style="vertical-align: top;">
 	<form method="post" action="RemoveStudentUniversity_action.jsp" name="Remove">
-	    <input name="Edit" value="Remove" type="submit">
+	    <input name="Remove" value="Remove" type="submit">
+	    <input name="University" value='<%=u %>' type="hidden">
 	</form>
 	<td style="vertical-align: top;"><%=u%>
 	</td>
 	<td style="vertical-align: top;">
 	<form method="post" action="ViewUniversity.jsp" name="View">
 	    <input name="View" value="View" type="submit">
-	    <input name="University" value=<%=u %> type="hidden">
+	    <input name="University" value='<%=u %>' type="hidden">
 	</form>
 	</td>
 	</tr>
