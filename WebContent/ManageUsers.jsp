@@ -18,7 +18,7 @@ cellspacing="2">
 			<tr align="center">
 
 <td colspan="8" rowspan="1" style="vertical-align: top;"><a
-href="Add.jsp">ADD A USER</a>
+href="AddUser.jsp">ADD A USER</a>
 </td>
 
 </tr>
@@ -37,7 +37,7 @@ for(User u: users.values())
 %>
 	<tr>
 		<td style="vertical-align: top;">
-	<form method="post" action="Deactivate.jsp" name="Deactivate">
+	<form method="post" action="Deactivate_action.jsp" name="Deactivate">
 	    <input name="Deactivate" value="Deactivate" type="submit">
 	    <input name="Username" value=<%=u.getUsername()%> type="hidden">
 	</form></td>
