@@ -23,7 +23,7 @@ public class LoginController
 	 */
 	private DBController dbc;
 	
-	private static final String SECRET_KEY = "VNBAZKGA4QRMBB6K";
+	private static final String SECRET_KEY = "VVDAKWRGH2NPTAN4";
 	private static final String QR_CODE = "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=200x200&chld=M|0&cht=qr&chl=otpauth://totp/CMC-internal%3Fsecret%3DVNBAZKGA4QRMBB6K";
 
 	/**
