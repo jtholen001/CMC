@@ -21,6 +21,7 @@ href="Add.jsp">ADD A UNIVERSITY</a>
 
 </tr>
 <tr>
+<td></td>
 <td style="vertical-align: top; text-align: center;">School
 </td>
 <td style="vertical-align: top; text-align: center;">State
@@ -64,6 +65,12 @@ sortedUniversities.putAll(allUniversities);
 for(String u: sortedUniversities.keySet())
 {university = sortedUniversities.get(u);%>
 <tr>
+<td>
+<form method="post" action="DeleteUniversity_action.jsp" name="Delete">
+    <input name="Delete" value="Delete" type="submit">
+    <input name="UniversityName" value= <%=university.getName()%> type="hidden">
+</form>
+</td>
 <td><%=university.getName()%></td>
 <td><%=university.getState()%></td>
 <td><%=university.getLocation()%></td>
