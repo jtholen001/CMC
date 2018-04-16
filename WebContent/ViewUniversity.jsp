@@ -13,14 +13,14 @@ border="1" >
 <tr>
 <td style="vertical-align: top;">UNIVERSITY<br>
 </td>
-<td style="vertical-align: top;"><input name="University" value=<%=u.getName()%> readonly><br>
+<td style="vertical-align: top;"><input name="University" value='<%=u.getName()%>' readonly style="width: 320px; "><br>
 </td>
 </tr>
 <tr>
 <tr>
 <td style="vertical-align: top;">STATE<br>
 </td>
-<td style="vertical-align: top;"><input name="State" value=<%=u.getState()%> readonly><br>
+<td style="vertical-align: top;"><input name="State" value='<%=u.getState()%>' readonly><br>
 </td>
 </tr>
 <tr>
@@ -102,7 +102,7 @@ border="1" >
 ArrayList<String> emphases = u.getEmphases();
 for(String emphasis: emphases){
 %>
-<input value=<%=emphasis%> readonly> <br>
+<input value='<%=emphasis%>' readonly> <br>
  <%} %>
  </td>
 </tr>
