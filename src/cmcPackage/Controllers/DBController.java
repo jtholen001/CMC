@@ -313,10 +313,20 @@ public class DBController
 				university.getQualityOfLifeScale());
 
 		ArrayList<String> storedVals = getUniversityEmphases(university.getName());
+		ArrayList<String> universityEmphases = university.getEmphases();
+		
 		for(String emphases: university.getEmphases())
 		{
 			if(!(storedVals.contains(emphases))){
 				univDBlib.university_addUniversityEmphasis(university.getName(), emphases);
+				storedVals.add(emphases);
+			}
+		}
+		for(String emphasis : storedVals)
+		{
+			if(!(universityEmphases.contains(emphasis)))
+			{
+				univDBlib.university_removeUniversityEmphasis(university.getName(), emphasis);
 			}
 		}
 		return success;

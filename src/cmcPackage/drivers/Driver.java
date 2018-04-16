@@ -57,53 +57,54 @@ public class Driver
 	
 	public void searchForUniversities() 
 	{
-		//U3
-		System.out.println("Showing U3: Search for Schools\n");
-		System.out.println("Searching with the following criteria: \"UNIVERSITY\", null, \"URBAN\", \"PRIVATE\", 0, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, new ArrayList<String>()");
-		ArrayList<University> foundUniversities = studentInt.searchUniversities("UNIVERSITY", null, "URBAN", "PRIVATE", 0, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, new ArrayList<String>() );
-
-		if (foundUniversities == null)
-			System.out.println("Search Failed: No search criteria specified");
-		else if (foundUniversities.isEmpty())
-			System.out.println("Search Successful: Nothing Found");
-		else {
-			//U6
-			System.out.println("Search Successful: Showing U6: View Matched Schools\n");
-			for(University u : foundUniversities) 
-				System.out.println(u.getName());	
-		}
-		
-		
-		//U3 alt scenario
-		System.out.println("\nShowing U3: Search for Schools (Alternative Scenario)\n");
-		System.out.println("Searching with the following criteria: null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, null");
-		ArrayList<University> noSearchCriteria = studentInt.searchUniversities(null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, null);
-		
-
-		if (noSearchCriteria == null)
-			System.out.println("Search Failed: No search criteria specified");
-		else if (noSearchCriteria.isEmpty())
-			System.out.println("Search Successful: Nothing Found");
-		else {
-			//U6
-			System.out.println("Search Successful: Showing U6: View Matched Schools\n");
-			for(University u : noSearchCriteria) 
-				System.out.println(u.getName());	
-		}
-		
-
-		//U7
-		University dummyUniversity = foundUniversities.get(0);
-		System.out.println("\nShowing U7: View Specific School\n");
-		System.out.println(dummyUniversity);
-
-	
+//		//U3
+//		System.out.println("Showing U3: Search for Schools\n");
+//		System.out.println("Searching with the following criteria: \"UNIVERSITY\", null, \"URBAN\", \"PRIVATE\", 0, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, new ArrayList<String>()");
+//		ArrayList<University> foundUniversities = studentInt.searchUniversities("UNIVERSITY", null, "URBAN", "PRIVATE", 0, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, new ArrayList<String>() );
+//
+//		if (foundUniversities == null)
+//			System.out.println("Search Failed: No search criteria specified");
+//		else if (foundUniversities.isEmpty())
+//			System.out.println("Search Successful: Nothing Found");
+//		else {
+//			//U6
+//			System.out.println("Search Successful: Showing U6: View Matched Schools\n");
+//			for(University u : foundUniversities) 
+//				System.out.println(u.getName());	
+//		}
+//		
+//		
+//		//U3 alt scenario
+//		System.out.println("\nShowing U3: Search for Schools (Alternative Scenario)\n");
+//		System.out.println("Searching with the following criteria: null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, null");
+//		ArrayList<University> noSearchCriteria = studentInt.searchUniversities(null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, null);
+//		
+//
+//		if (noSearchCriteria == null)
+//			System.out.println("Search Failed: No search criteria specified");
+//		else if (noSearchCriteria.isEmpty())
+//			System.out.println("Search Successful: Nothing Found");
+//		else {
+//			//U6
+//			System.out.println("Search Successful: Showing U6: View Matched Schools\n");
+//			for(University u : noSearchCriteria) 
+//				System.out.println(u.getName());	
+//		}
+//		
+//
+//		//U7
+//		University dummyUniversity = foundUniversities.get(0);
+//		System.out.println("\nShowing U7: View Specific School\n");
+//		System.out.println(dummyUniversity);
+//
+//	
 		//U10
-		ArrayList<University> recommendedUniversities = studentInt.getRecommendedUniversities(dbCont.getUniversity("YALE"));
+		ArrayList<University> recommendedUniversities = studentInt.getRecommendedUniversities(dbCont.getUniversity("SMITH"));
 		System.out.println("\nShowing U10: View Recommended Schools\n");
 		//System.out.println(dummyUniversity + "\n");
 		for (University u : recommendedUniversities) {
-			System.out.println(u + "\n");
+			//System.out.println(u + "\n");
+			System.out.println(u.getName());
 
 		}
 		
@@ -323,18 +324,18 @@ public class Driver
 		System.out.println("\n----------------------------------------------");
 		System.out.println("Testing U3: Search For Schools, U6: View Matched Schools, U7: View Specific School, U10 View Recommended Schools\n");
 		driver.searchForUniversities();
-		System.out.println("\n----------------------------------------------");
-		System.out.println("Testing U11: Save School, U4: View Saved Schools, U8: Remove Specific School\n");
-		//driver.viewSavedSchools();
-		System.out.println("\n----------------------------------------------");
-		System.out.println("Testing U5: View My Profile, U9: Edit My Profile\n");
-		//driver.viewMyProfile();
-		System.out.println("\n----------------------------------------------");
-		System.out.println("Testing U13: View Users, U17: Deactivate User, U18: Add User, U19: Edit User\n ");
-		//driver.viewUsers();
-		System.out.println("\n----------------------------------------------");
-		System.out.println("Testing U14: View Universities, U15: Add University, U16: Edit University\n");
-		//driver.viewUniversities();
-		System.out.println("\n ----------END OF DRIVER----------");
+//		System.out.println("\n----------------------------------------------");
+//		System.out.println("Testing U11: Save School, U4: View Saved Schools, U8: Remove Specific School\n");
+//		//driver.viewSavedSchools();
+//		System.out.println("\n----------------------------------------------");
+//		System.out.println("Testing U5: View My Profile, U9: Edit My Profile\n");
+//		//driver.viewMyProfile();
+//		System.out.println("\n----------------------------------------------");
+//		System.out.println("Testing U13: View Users, U17: Deactivate User, U18: Add User, U19: Edit User\n ");
+//		//driver.viewUsers();
+//		System.out.println("\n----------------------------------------------");
+//		System.out.println("Testing U14: View Universities, U15: Add University, U16: Edit University\n");
+//		//driver.viewUniversities();
+//		System.out.println("\n ----------END OF DRIVER----------");
 	}
 }
