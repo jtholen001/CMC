@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 	import="cmcPackage.entityClasses.University,cmcPackage.interfaces.*,cmcPackage.Controllers.*,java.util.ArrayList"%>
+<%@include file="verifyLogin.jsp"  %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,14 +9,14 @@
 <title>Edit University</title>
 </head>
 <%
-	//AdminInterface adminInt = (AdminInterface) session.getAttribute("userInt");
-	//University universtiy = //adminInt.getUniversity(request.getParameter("university"));
+	AdminInterface adminInt = (AdminInterface) session.getAttribute("userInt");
+	University university = adminInt.getUniversity(request.getParameter("UniversityName"));
 
-	DBController db = new DBController();
-	University university = db.getUniversity("ADELPHI");
+// 	DBController db = new DBController();
+// 	University university = db.getUniversity("ADELPHI");
 %>
 <body>
-	<form action="EditUniversityAction.jsp" name="Edit University">
+	<form action="EditUniversity_Action.jsp" name="Edit University">
 		<table style="text-align: left; width: 50%;" border="1"
 			cellpadding="2" cellspacing="2">
 			<tbody>
@@ -122,36 +123,37 @@
 						style="width: 258px;"></td>
 				</tr>
 				<tr style="width: 617px;">
+				<td style="vertical-align: top; width: 288px; height: 87px">EMPHASES</td>
+				<td style="vertical-align: top; width: 288px; height: 87px">
 					<%
 						ArrayList<String> temp = university.getEmphases();
+						Integer i = new Integer(temp.size());
+						for (i = 0; i < temp.size(); i++) {
 					%>
-					<td style="vertical-align: top; width: 288px; height: 87px">EMPHASES</td>
-					<td style="vertical-align: top; width: 288px">
-						<%
-							if (temp.size() > 0) {
-						%> <input name="emphasis1"
-						value=<%out.println(university.getEmphases().get(0));%>
-						style="width: 190px;"> <%
- 	}
- 	if (temp.size() > 0) {
- %> <input name="emphasis2"
-						value=<%out.println(university.getEmphases().get(1));%>
-						style="width: 191px;"> <%
- 	}
- 	if (temp.size() > 2) {
- %> <input name="emphasis2"
-						value=<%out.println(university.getEmphases().get(2));%>
-						style="width: 185px;"> <%
- 	}
- %>
+								
+						<input style="vertical-align: top; width: 288px" style="vertical-align: top" style="width: 258px;"
+						name=<%out.println("emphasis"+i);%>
+						<%if(temp.size() > i){ %>
+							value='<%out.println(temp.get(i));%>'
+							<% }%>  
+						<%if(temp.size() < i){
+						%>
+							value=""
+						 <%} 
+						 %>
+						
+						>
+						<%} 
+						%>
+						<input style="vertical-align: top; width: 288px" style="vertical-align: top" style="width: 258px;"
+						name=<%out.println("end");%> value="">
 					</td>
-
 				</tr>
 				<tr>
 					<td><input value="Submit" name="Log in" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 					<td><input value="Cancel" name="Reset" type="reset"></td>
-					
-					
+
+
 				</tr>
 			</tbody>
 		</table>

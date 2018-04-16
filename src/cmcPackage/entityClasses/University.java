@@ -545,8 +545,14 @@ public class University
 	  if(newEmphases == null)
 		  throw new IllegalArgumentException("Emphases cannot be null");
 	  else
+	  {
+		  for(int i = 0; i < newEmphases.size(); i++)
+		  {
+			  newEmphases.set(i, newEmphases.get(i).toUpperCase());
+		  }
 		  this.emphases = newEmphases;
 		  Collections.sort(emphases);
+	  }
 	  
   }
 
