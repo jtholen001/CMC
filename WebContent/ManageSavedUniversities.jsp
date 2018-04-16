@@ -37,6 +37,7 @@ for(String u: savedUniversities)
 	<td style="vertical-align: top;">
 	<form method="post" action="ViewUniversity.jsp" name="View">
 	    <input name="View" value="View" type="submit">
+	    <input name="University" value=<%=u %> type="hidden">
 	</form>
 	</td>
 	</tr>

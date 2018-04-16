@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="cmcPackage.interfaces.*"%>
+    pageEncoding="UTF-8" import="cmcPackage.interfaces.*, java.util.*"%>
        
 <%
 UserInterface loggedUser = (UserInterface)session.getAttribute("userInt");
