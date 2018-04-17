@@ -71,7 +71,7 @@ border="1" cellpadding="2" cellspacing="2">
 </td>
 </tr>
 <tr>
-<td style="vertical-align: top;">by SAT MATN<br>
+<td style="vertical-align: top;">by SAT MATH<br>
 </td>
 <td style="vertical-align: top;">between <input name="SATMathLower"> and <input name="SATMathUpper"><br>
 </td>

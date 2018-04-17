@@ -66,44 +66,16 @@ catch (IllegalArgumentException iae) {
 catch (InputMismatchException ime) {
   	response.sendRedirect("Search.jsp?Error=-3");
 }
+String universityList = "?";
+for(University u : foundUniversities) {
+	universityList += "Universities=" + u.getName() + "&";
+}
+int length = universityList.length();
+if (length == 1) {
+	universityList = "";
+} 
+else {
+	universityList = universityList.substring(0, length - 1);
+}
+response.sendRedirect("ViewMatchedResults.jsp"+ universityList);
 %>
-
-<html>
-<head>
-
-<title>Search Results</title>
-</head>
-<body>
-<table style="text-align: left; width: 100%;" border="1" cellpadding="2"
-cellspacing="2">
-<tbody>
-<tr align="center">
-
-<td colspan="8" rowspan="1" style="vertical-align: top; text-align: center;">University
-</td>
-
-<%
-
-for(University u: foundUniversities)
-{
-%>
-	<tr>
-		<td style="vertical-align: top;">
-	<form method="post" action="SaveUniversity_action.jsp" name="SaveUniversity">
-	    <input name="Save" value="Save" type="submit">
-	    <input name="University" value='<%=u.getName()%>' type="hidden">
-	</form></td>
-	<td style="vertical-align: top;"><%=u.getName()%>
-	</td>
-	<td style="vertical-align: top;">
-	<form method="post" action="ViewSearchedUniversity.jsp" name="ViewUniversity">
-	    <input name="View" value="View" type="submit">
-	    <input name="University" value='<%=u.getName()%>' type="hidden">
-	</form></td>
-	</tr>
-<%}
-%>
-		</tbody>
-	</table>
-</body>
-</html>

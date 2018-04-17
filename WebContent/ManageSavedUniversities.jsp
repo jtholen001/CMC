@@ -48,6 +48,9 @@ for(String u: sortedUniversities)
 %>
 </tbody>
 </table>
+		<form method="post" action="StudentMenu.jsp">
+	    <input name="Return" value="Return to Menu" type="submit">
+	</form>
 </body>
 </html>
 
