@@ -69,5 +69,9 @@ for(User u: users.values())
 %>
 		</tbody>
 	</table>
+	<form method="post" action="AdminMenu.jsp" align="middle">
+	    <input name="Return" value="Return to Menu" type="submit"
+	    align="right">
+	</form>
 </body>
 </html>
