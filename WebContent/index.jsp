@@ -31,9 +31,9 @@ border="1" cellpadding="2" cellspacing="2">
 <td style="vertical-align: top;"><input type = "password" name="Password"> </td>
 </tr>
 <tr>
-<td><input value="Log in"
+<td style="vertical-align: top;"><input value="Log in"
 name="Log in" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td><input value="Reset"
+<td style="vertical-align: top;"><input value="Reset"
 name="Reset" type="reset"></td>
 </tr>
 <br>
