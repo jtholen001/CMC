@@ -31,7 +31,7 @@ for(String u: sortedUniversities)
 %>
 	<tr>
 	<td style="vertical-align: top;">
-	<form method="post" action="RemoveStudentUniversity_action.jsp" name="Remove">
+	<form method="post" action="DeleteSavedUniversitiy_action.jsp" name="Remove">
 	    <input name="Remove" value="Remove" type="submit">
 	    <input name="University" value='<%=u %>' type="hidden">
 	</form>
