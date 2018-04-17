@@ -48,6 +48,8 @@ public class SearchController
 	public SearchController(DBController temp)
 	{
 		this.dbc = temp;
+		this.universities = this.dbc.viewUniversities();
+		this.universityNames = this.universities.keySet();
 	}
 
 	/**

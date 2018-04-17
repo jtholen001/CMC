@@ -53,11 +53,11 @@ public class DBController implements Runnable
 			{
 				this.storedUniversities.put(universities[index][0], new University(universities[index][0], universities[index][1],
 						universities[index][2],universities[index][3],
-						Integer.parseInt(universities[index][4]), Integer.parseInt(universities[index][5]),
-						Integer.parseInt(universities[index][6]), Integer.parseInt(universities[index][7]), Integer.parseInt(universities[index][8]),
-						Integer.parseInt(universities[index][9]), Integer.parseInt(universities[index][10]),Integer.parseInt(universities[index][11]),
-						Integer.parseInt(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
-						Integer.parseInt(universities[index][15]), getUniversityEmphases(universities[index][0]))); //not sure how emphases are stored
+						Integer.parseInt(universities[index][4]), new Double(universities[index][5]),
+						new Double(universities[index][6]), new Double(universities[index][7]), new Double(universities[index][8]),
+						new Double(universities[index][9]), Integer.parseInt(universities[index][10]),new Double(universities[index][11]),
+						new Double(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
+						Integer.parseInt(universities[index][15]), getUniversityEmphases(universities[index][0])));  
 			}
 		}
 	}
@@ -386,6 +386,8 @@ public class DBController implements Runnable
 				univDBlib.university_removeUniversityEmphasis(university.getName(), emphasis);
 			}
 		}
+		if(success !=-1)
+			this.storedUniversities.put(university.getName(), university);
 		return success;
 	}
 
