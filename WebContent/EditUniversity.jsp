@@ -23,7 +23,7 @@
 				<tr>
 					<td style="vertical-align: top; width: 200px">NAME</td>
 					<td style="vertical-align: top"><input readonly="readonly"
-						name="name" value=<%out.println(university.getName());%>
+						name="name" value='<%out.println(university.getName());%>'
 						style="width: 258px;"></td>
 				</tr>
 				<tr>

@@ -232,10 +232,10 @@ public class DBController
 		{
 			universityMap.put(universities[index][0], new University(universities[index][0], universities[index][1],
 					universities[index][2],universities[index][3],
-					Integer.parseInt(universities[index][4]), Integer.parseInt(universities[index][5]),
-					Integer.parseInt(universities[index][6]), Integer.parseInt(universities[index][7]), Integer.parseInt(universities[index][8]),
-					Integer.parseInt(universities[index][9]), Integer.parseInt(universities[index][10]),Integer.parseInt(universities[index][11]),
-					Integer.parseInt(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
+					Integer.parseInt(universities[index][4]), Double.parseDouble(universities[index][5]),
+					Double.parseDouble(universities[index][6]), Double.parseDouble(universities[index][7]), Double.parseDouble(universities[index][8]),
+					Double.parseDouble(universities[index][9]), Integer.parseInt(universities[index][10]),Double.parseDouble(universities[index][11]),
+					Double.parseDouble(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
 					Integer.parseInt(universities[index][15]), getUniversityEmphases(universities[index][0]))); //not sure how emphases are stored
 		}
 		return universityMap;
