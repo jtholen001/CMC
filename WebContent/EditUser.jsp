@@ -41,6 +41,7 @@ border="1" >
 <td style="vertical-align: top;">Password<br>
 </td>
 <td style="vertical-align: top;"><input name="Password" id="Password" onblur="meetsPasswordCriteria()" value='<%=u.getPassword()%>'>
+<font color="red" id="error"></font>
 <script>
 	function meetsPasswordCriteria()
 	{
@@ -76,9 +77,26 @@ border="1" >
 		
 
 	   if(!validLength || !containsCapital || !containsLower || !containsNum || !containsSpecialChar)
-		   document.getElementById("Edit").disabled = true;	
+	   {
+		   document.getElementById("Edit").disabled = true;
+		   //TODO: FIX THESE IF STATEMENTS SO THAT THEY PRINT
+		   if(!invalidLength)
+		   	 document.getElementById("error").innerHTML = "Passwords must contain at least 6 characters";
+		   if(!containsCapital)
+			   document.getElementById("error").innerHTML = "Passwords must contain at least one capital letter";
+		   if(!containsLower)
+			   document.getElementById("error").innerHTML = "Passwords must contain at least one lower case letter";
+		   if(!containsNum)
+			   document.getElementById("error").innerHTML = "Passwords must contain at least one number";
+		   if(!containsSpecialChar)
+			   document.getElementById("error").innerHTML = "Passwords must contain at least one special character";
+	   }
+	   
 	   else
+		{
 		   document.getElementById("Edit").disabled = false;
+	  	   document.getElementById("error").innerHTML = "";
+		}
 	}
 </script>
 </tr>
