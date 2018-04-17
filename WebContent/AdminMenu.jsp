@@ -1,12 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="verifyLogin.jsp"  %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+<%
+	AdminInterface adminInt = (AdminInterface)session.getAttribute("userInt");
+%>
+
+Hello <%out.print(adminInt.getAdmin().getFirstName() + " " + adminInt.getAdmin().getLastName()); %>!
+<br><a href="ManageUsers.jsp"><br>Manage Users</a><br>
+<br><a href="ManageUniversities.jsp">Manage Universities</a><br>
+<br>
 
 </body>
 </html>

@@ -169,18 +169,26 @@ public class StudentInterface extends UserInterface
 	 * @param searchEmphases  areas of study
 	 * @return ArrayList<University>  found Universities
 	 */
-	public ArrayList<University> searchUniversities(String name, String state, String location, String control, int numStudentsLower, int numStudentsUpper, double percentFemaleLower, double percentFemaleUpper,
-			double SATVerbalLower, double SATVerbalUpper, double SATMathLower, double SATMathUpper, double expensesLower, double expensesUpper, double percentFinancialAidLower, double percentFinancialAidUpper, 
-			int numApplicantsLower, int numApplicantsUpper, double percentAdmittedLower, double percentAdmittedUpper, double percentEnrolledLower, double percentEnrolledUpper, 
-			int academicScaleLower, int academicScaleUpper, int socialScaleLower, int socialScaleUpper, int qualityOfLifeScaleLower, int qualityOfLifeScaleUpper,  
-			ArrayList<String> searchEmphases)
-	{
-		return sc.searchUniversities(name, state, location, control, numStudentsLower, numStudentsUpper, percentFemaleLower, percentFemaleUpper,
-				SATVerbalLower, SATVerbalUpper, SATMathLower, SATMathUpper, expensesLower, expensesUpper,percentFinancialAidLower, percentFinancialAidUpper, numApplicantsLower, numApplicantsUpper,
-				percentAdmittedLower, percentAdmittedUpper, percentEnrolledLower, percentEnrolledUpper,
-				academicScaleLower, academicScaleUpper, socialScaleLower, socialScaleUpper, qualityOfLifeScaleLower, qualityOfLifeScaleUpper,  
-				searchEmphases); 
-	}
+
+	public ArrayList<University> searchUniversities(String name, String state, String location, String control, String numStudentsLower, String numStudentsUpper, String percentFemaleLower, String percentFemaleUpper,
+			String SATVerbalLower, String SATVerbalUpper, String SATMathLower, String SATMathUpper, String expensesLower, String expensesUpper, String percentFinancialAidLower, String percentFinancialAidUpper, 
+			String numApplicantsLower, String numApplicantsUpper, String percentAdmittedLower, String percentAdmittedUpper, String percentEnrolledLower, String percentEnrolledUpper, 
+			String academicScaleLower, String academicScaleUpper, String socialScaleLower, String socialScaleUpper, String qualityOfLifeScaleLower, String qualityOfLifeScaleUpper,  
+		  ArrayList<String> searchEmphases)
+  {
+    return sc.searchUniversities(name, state, location, control, numStudentsLower, numStudentsUpper, percentFemaleLower, percentFemaleUpper,
+                                                                    SATVerbalLower, SATVerbalUpper, SATMathLower, SATMathUpper, expensesLower, expensesUpper,percentFinancialAidLower, percentFinancialAidUpper, numApplicantsLower, numApplicantsUpper,
+                                                                    percentAdmittedLower, percentAdmittedUpper, percentEnrolledLower, percentEnrolledUpper,
+                                                                    academicScaleLower, academicScaleUpper, socialScaleLower, socialScaleUpper, qualityOfLifeScaleLower, qualityOfLifeScaleUpper,  
+                                                                      searchEmphases); 
+  }
+	
+	/**
+	 * Method to view Universities from searching
+	 * 
+	 * @param foundUniversities the universities to be viewed from searching
+	 * @return a HashMap representing all the schools to be viewed
+	 */
 
 	public HashMap<String, University> viewUniversities(ArrayList<University> foundUniversities)
 	{

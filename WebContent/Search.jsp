@@ -11,6 +11,19 @@ http-equiv="content-type">
 <title></title>
 </head>
 <body>
+
+<%
+String error = request.getParameter("Error");
+if(error != null) {
+	if (error.equals("-1"))
+		out.print("Please enter valid numbers");
+	else if (error.equals("-2"))
+		out.print("Please enter a valid search range");
+	else if (error.equals("-3"))
+		out.print("You must fill in at least one field to search");
+}
+ %>
+<br>
 <form action="Search_action.jsp" name="Search"><br>
 <table style="text-align: left; width: 1621px; height: 161px;"
 border="1" cellpadding="2" cellspacing="2">

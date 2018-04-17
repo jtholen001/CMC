@@ -7,6 +7,7 @@
 package cmcPackage.Controllers;
 
 import java.util.HashMap;
+
 import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.List;
@@ -22,7 +23,17 @@ public class SearchController
 	 * DBController that will be accessed by the SearchController
 	 */
 	private DBController dbc;
+	
+	/**
+	 * HashMap containing all the universities in the database
+	 */
+	HashMap<String, University> universities;
 
+	/**
+	 * Set containing all the names of the universities in the database
+	 */
+	Set<String> universityNames;
+	
 	/**
 	 * Constructor for a SearchController
 	 * 
@@ -30,6 +41,8 @@ public class SearchController
 	public SearchController()
 	{
 		this.dbc = new DBController(); 
+		this.universities = this.dbc.viewUniversities();
+		this.universityNames = this.universities.keySet();
 	}
 	
 	public SearchController(DBController temp)
@@ -72,17 +85,187 @@ public class SearchController
 	 * 
 	 * @return ArrayList<University>  found Universities
 	 */
-	public ArrayList<University> searchUniversities(String name, String state, String location, String control, int numStudentsLower, int numStudentsUpper, double percentFemaleLower, double percentFemaleUpper,
-			double SATVerbalLower, double SATVerbalUpper, double SATMathLower, double SATMathUpper, double expensesLower, double expensesUpper, double percentFinancialAidLower, double percentFinancialAidUpper, 
-			int numApplicantsLower, int numApplicantsUpper, double percentAdmittedLower, double percentAdmittedUpper, double percentEnrolledLower, double percentEnrolledUpper, 
-			int academicScaleLower, int academicScaleUpper, int socialScaleLower, int socialScaleUpper, int qualityOfLifeScaleLower, int qualityOfLifeScaleUpper,  
+	public ArrayList<University> searchUniversities(String name, String state, String location, String control, String numStudentsLower, String numStudentsUpper, String percentFemaleLower, String percentFemaleUpper,
+			String SATVerbalLower, String SATVerbalUpper, String SATMathLower, String SATMathUpper, String expensesLower, String expensesUpper, String percentFinancialAidLower, String percentFinancialAidUpper, 
+			String numApplicantsLower, String numApplicantsUpper, String percentAdmittedLower, String percentAdmittedUpper, String percentEnrolledLower, String percentEnrolledUpper, 
+			String academicScaleLower, String academicScaleUpper, String socialScaleLower, String socialScaleUpper, String qualityOfLifeScaleLower, String qualityOfLifeScaleUpper,  
 		  ArrayList<String> searchEmphases) throws IllegalArgumentException, InputMismatchException
 	{
+		int intNumStudentsLower = 0;
+		int intNumStudentsUpper = 0;
+		double doublePercentFemaleLower = 0.0;
+		double doublePercentFemaleUpper = 0.0;
+		double doubleSATVerbalLower = 0.0;
+		double doubleSATVerbalUpper = 0.0;
+		double doubleSATMathLower = 0.0;
+		double doubleSATMathUpper = 0.0;
+		double doubleExpensesLower = 0.0;
+		double doubleExpensesUpper = 0.0;
+		double doublePercentFinancialAidLower = 0.0;
+		double doublePercentFinancialAidUpper = 0.0;
+		int intNumApplicantsLower = 0;
+		int intNumApplicantsUpper = 0;
+		double doublePercentAdmittedLower = 0.0;
+		double doublePercentAdmittedUpper = 0.0;
+		double doublePercentEnrolledLower = 0.0;
+		double doublePercentEnrolledUpper = 0.0;
+		int intAcademicScaleLower = 0;
+		int intAcademicScaleUpper = 0;
+		int intSocialScaleLower = 0;
+		int intSocialScaleUpper = 0;
+		int intQualityOfLifeScaleLower = 0;
+		int intQualityOfLifeScaleUpper = 0;
+		
+		try {
+			intNumStudentsLower = Integer.parseInt(numStudentsLower);				
+		} catch (Exception nfe) {
+			if (!numStudentsLower.isEmpty())
+			throw new NumberFormatException("Enter numbers correctly");
+		}
+		try {
+			intNumStudentsUpper = Integer.parseInt(numStudentsUpper);				
+		} catch (Exception nfe) {
+			if (!numStudentsUpper.isEmpty())
+			throw new NumberFormatException("Enter numbers correctly");
+		}
+		try {
+			doublePercentFemaleLower = Double.parseDouble(percentFemaleLower);				
+		} catch (Exception nfe) {
+			if (!percentFinancialAidLower.isEmpty())
+			throw new NumberFormatException("Enter numbers correctly");
+		}
+		try {
+			doublePercentFemaleUpper = Double.parseDouble(percentFemaleUpper);				
+		} catch (Exception nfe) {
+			if (!percentFinancialAidUpper.isEmpty())
+			throw new NumberFormatException("Enter numbers correctly");
+		}
+		try {
+			doubleSATVerbalLower = Double.parseDouble(SATVerbalLower);				
+		} catch (Exception nfe) {
+			if (!SATVerbalLower.isEmpty())
+			throw new NumberFormatException("Enter numbers correctly");
+		}
+		try {
+			doubleSATVerbalUpper = Double.parseDouble(SATVerbalUpper);				
+		} catch (Exception nfe) {
+			if (!SATVerbalUpper.isEmpty())
+			throw new NumberFormatException("Enter numbers correctly");
+		}
+		try {
+			doubleSATMathLower = Double.parseDouble(SATMathLower);				
+		} catch (Exception nfe) {
+			if (!SATMathLower.isEmpty())
+			throw new NumberFormatException("Enter numbers correctly");
+		}
+		try {
+			doubleSATMathUpper = Double.parseDouble(SATMathUpper);				
+		} catch (Exception nfe) {
+			if (!SATMathUpper.isEmpty())
+			throw new NumberFormatException("Enter numbers correctly");
+		}
+		try {
+			doubleExpensesLower = Double.parseDouble(expensesLower);				
+		} catch (Exception nfe) {
+			if (!expensesLower.isEmpty())
+			throw new NumberFormatException("Enter numbers correctly");
+		}
+		try {
+			doubleExpensesUpper = Double.parseDouble(expensesUpper);				
+		} catch (Exception nfe) {
+			if (!expensesUpper.isEmpty())
+			throw new NumberFormatException("Enter numbers correctly");
+		}
+		try {
+			doublePercentFinancialAidLower = Double.parseDouble(percentFinancialAidLower);				
+		} catch (Exception nfe) {
+			if (!percentFinancialAidLower.isEmpty())
+			throw new NumberFormatException("Enter numbers correctly");
+		}
+		try {
+			doublePercentFinancialAidUpper = Double.parseDouble(percentFinancialAidUpper);				
+		} catch (Exception nfe) {
+			if (!percentFinancialAidUpper.isEmpty())
+			throw new NumberFormatException("Enter numbers correctly");
+		}
+		try {
+			intNumApplicantsLower = Integer.parseInt(numApplicantsLower);				
+		} catch (Exception nfe) {
+			if (!numApplicantsLower.isEmpty())
+			throw new NumberFormatException("Enter numbers correctly");
+		}
+		try {
+			intNumApplicantsUpper = Integer.parseInt(numApplicantsUpper);				
+		} catch (Exception nfe) {
+			if (!numApplicantsUpper.isEmpty())
+			throw new NumberFormatException("Enter numbers correctly");
+		}
+		try {
+			doublePercentAdmittedLower = Double.parseDouble(percentAdmittedLower);				
+		} catch (Exception nfe) {
+			if (!percentAdmittedLower.isEmpty())
+			throw new NumberFormatException("Enter numbers correctly");
+		}
+		try {
+			doublePercentAdmittedUpper = Double.parseDouble(percentAdmittedUpper);				
+		} catch (Exception nfe) {
+			if (!percentAdmittedUpper.isEmpty())
+			throw new NumberFormatException("Enter numbers correctly");
+		}
+		try {
+			doublePercentEnrolledLower = Double.parseDouble(percentEnrolledLower);				
+		} catch (Exception nfe) {
+			if (!percentEnrolledLower.isEmpty())
+			throw new NumberFormatException("Enter numbers correctly");
+		}
+		try {
+			doublePercentEnrolledUpper = Double.parseDouble(percentEnrolledUpper);				
+		} catch (Exception nfe) {
+			if (!percentEnrolledUpper.isEmpty())
+			throw new NumberFormatException("Enter numbers correctly");
+		}
+		try {
+			intAcademicScaleLower = Integer.parseInt(academicScaleLower);				
+		} catch (Exception nfe) {
+			if (!academicScaleLower.isEmpty())
+			throw new NumberFormatException("Enter numbers correctly");
+		}
+		try {
+			intAcademicScaleUpper = Integer.parseInt(academicScaleUpper);				
+		} catch (Exception nfe) {
+			if (!academicScaleUpper.isEmpty())
+			throw new NumberFormatException("Enter numbers correctly");
+		}
+		try {
+			intSocialScaleLower = Integer.parseInt(socialScaleLower);				
+		} catch (Exception nfe) {
+			if (!socialScaleLower.isEmpty())
+			throw new NumberFormatException("Enter numbers correctly");
+		}
+		try {
+			intSocialScaleUpper = Integer.parseInt(socialScaleUpper);				
+		} catch (Exception nfe) {
+			if (!socialScaleUpper.isEmpty())
+			throw new NumberFormatException("Enter numbers correctly");
+		}
+		try {
+			intQualityOfLifeScaleLower = Integer.parseInt(qualityOfLifeScaleLower);				
+		} catch (Exception nfe) {
+			if (!qualityOfLifeScaleLower.isEmpty())
+			throw new NumberFormatException("Enter numbers correctly");
+		}
+		try {
+			intQualityOfLifeScaleUpper = Integer.parseInt(qualityOfLifeScaleUpper);				
+		} catch (Exception nfe) {
+			if (!qualityOfLifeScaleUpper.isEmpty())
+			throw new NumberFormatException("Enter numbers correctly");
+		}
+		
 		//If 1
-		if (name == null || state == null || location == null || control == null || !checkBounds(numStudentsLower, numStudentsUpper) || !checkBounds(percentFemaleLower, percentFemaleUpper) || !checkBounds(SATVerbalLower, SATVerbalUpper) ||
-				!checkBounds(SATMathLower, SATMathUpper) || !checkBounds(expensesLower, expensesUpper) || !checkBounds(numApplicantsLower, numApplicantsUpper) || 
-				!checkBounds(percentFinancialAidLower, percentFinancialAidUpper) || !checkBounds(percentAdmittedLower, percentAdmittedUpper) || !checkBounds(percentEnrolledLower, percentEnrolledUpper) ||
-				!checkBounds(academicScaleLower, academicScaleUpper) || !checkBounds(socialScaleLower, socialScaleUpper) || !checkBounds(qualityOfLifeScaleLower, qualityOfLifeScaleUpper) || searchEmphases == null)
+		if (name == null || state == null || location == null || control == null || !checkBounds(intNumStudentsLower, intNumStudentsUpper) || !checkBounds(doublePercentFemaleLower, doublePercentFemaleUpper) || !checkBounds(doubleSATVerbalLower, doubleSATVerbalUpper) ||
+				!checkBounds(doubleSATMathLower, doubleSATMathUpper) || !checkBounds(doubleExpensesLower, doubleExpensesUpper) || !checkBounds(intNumApplicantsLower, intNumApplicantsUpper) || 
+				!checkBounds(doublePercentFinancialAidLower, doublePercentFinancialAidUpper) || !checkBounds(doublePercentAdmittedLower, doublePercentAdmittedUpper) || !checkBounds(doublePercentEnrolledLower, doublePercentEnrolledUpper) ||
+				!checkBounds(intAcademicScaleLower, intAcademicScaleUpper) || !checkBounds(intSocialScaleLower, intSocialScaleUpper) || !checkBounds(intQualityOfLifeScaleLower, intQualityOfLifeScaleUpper) || searchEmphases == null)
 		{
 			
 			throw new IllegalArgumentException("Invalid range entered");
@@ -90,21 +273,15 @@ public class SearchController
 		
 		//If 2
 		if (name.equals("") && state.equals("") && location.equals("") && control.equals("") &&
-				numStudentsLower == 0 && numStudentsUpper == 0 && percentFemaleLower == 0 && percentFemaleUpper == 0 &&
-				SATVerbalLower == 0 && SATVerbalUpper==0 && SATMathLower == 0 && SATMathUpper == 0 && expensesLower == 0 &&
-				expensesUpper == 0 && numApplicantsLower == 0 && numApplicantsUpper == 0 && academicScaleLower == 0 && academicScaleUpper == 0 &&
-				socialScaleLower == 0 && socialScaleUpper == 0 && qualityOfLifeScaleLower == 0 && qualityOfLifeScaleUpper == 0 &&
-				percentFinancialAidLower == 0 && percentFinancialAidUpper == 0 && percentAdmittedLower == 0 && percentAdmittedUpper == 0 &&
-				percentEnrolledLower == 0 && percentEnrolledUpper == 0 && searchEmphases.isEmpty())
+				intNumStudentsLower == 0 && intNumStudentsUpper == 0 && doublePercentFemaleLower == 0 && doublePercentFemaleUpper == 0 &&
+				doubleSATVerbalLower == 0 && doubleSATVerbalUpper==0 && doubleSATMathLower == 0 && doubleSATMathUpper == 0 && doubleExpensesLower == 0 &&
+				doubleExpensesUpper == 0 && intNumApplicantsLower == 0 && intNumApplicantsUpper == 0 && intAcademicScaleLower == 0 && intAcademicScaleUpper == 0 &&
+				intSocialScaleLower == 0 && intSocialScaleUpper == 0 && intQualityOfLifeScaleLower == 0 && intQualityOfLifeScaleUpper == 0 &&
+				doublePercentFinancialAidLower == 0 && doublePercentFinancialAidUpper == 0 && doublePercentAdmittedLower == 0 && doublePercentAdmittedUpper == 0 &&
+				doublePercentEnrolledLower == 0 && doublePercentEnrolledUpper == 0 && searchEmphases.isEmpty())
 		{
 			throw new InputMismatchException("All fields cannot be empty");
 		}
-
-		//HashMap containing all the universities in the database
-		HashMap<String, University> universities = this.dbc.viewUniversities();
-
-		//Set containing all the names of the universities in the database
-		Set<String> universityNames = universities.keySet();
 
 		//ArrayList to keep track of universities that match search criteria
 		ArrayList<University> foundUniversities = new ArrayList<University>();
@@ -117,13 +294,13 @@ public class SearchController
 			boolean matched = false;
 			//If 3
 			if ((name.equals("") || u.contains(name)) && (state.equals("") || currentUniversity.getState().contains(state)) && (location.equals("") || currentUniversity.getLocation().contains(location)) &&
-					(control.equals("") || currentUniversity.getControl().contains(control)) && checkNumbers(currentUniversity.getNumStudents(), numStudentsLower, numStudentsUpper) &&
-					checkNumbers(currentUniversity.getPercentFemale(), percentFemaleLower, percentFemaleUpper) && checkNumbers(currentUniversity.getSATVerbal(), SATVerbalLower, SATVerbalUpper) &&
-					checkNumbers(currentUniversity.getSATMath(), SATMathLower, SATMathUpper) && checkNumbers(currentUniversity.getExpenses(), expensesLower, expensesUpper) &&
-					checkNumbers(currentUniversity.getPercentFinancialAid(), percentFinancialAidLower, percentFinancialAidUpper) && checkNumbers(currentUniversity.getNumApplicants(), numApplicantsLower, numApplicantsUpper) &&
-					checkNumbers(currentUniversity.getPercentAdmitted(), percentAdmittedLower, percentAdmittedUpper) && checkNumbers(currentUniversity.getPercentEnrolled(), percentEnrolledLower, percentEnrolledUpper) &&
-					checkNumbers(currentUniversity.getAcademicScale(), academicScaleLower, academicScaleUpper) && checkNumbers(currentUniversity.getSocialScale(), socialScaleLower, socialScaleUpper) && 
-					checkNumbers(currentUniversity.getQualityOfLifeScale(), qualityOfLifeScaleLower, qualityOfLifeScaleUpper))
+					(control.equals("") || currentUniversity.getControl().contains(control)) && checkNumbers(currentUniversity.getNumStudents(), intNumStudentsLower, intNumStudentsUpper) &&
+					checkNumbers(currentUniversity.getPercentFemale(), doublePercentFemaleLower, doublePercentFemaleUpper) && checkNumbers(currentUniversity.getSATVerbal(), doubleSATVerbalLower, doubleSATVerbalUpper) &&
+					checkNumbers(currentUniversity.getSATMath(), doubleSATMathLower, doubleSATMathUpper) && checkNumbers(currentUniversity.getExpenses(), doubleExpensesLower, doubleExpensesUpper) &&
+					checkNumbers(currentUniversity.getPercentFinancialAid(), doublePercentFinancialAidLower, doublePercentFinancialAidUpper) && checkNumbers(currentUniversity.getNumApplicants(), intNumApplicantsLower, intNumApplicantsUpper) &&
+					checkNumbers(currentUniversity.getPercentAdmitted(), doublePercentAdmittedLower, doublePercentAdmittedUpper) && checkNumbers(currentUniversity.getPercentEnrolled(), doublePercentEnrolledLower, doublePercentEnrolledUpper) &&
+					checkNumbers(currentUniversity.getAcademicScale(), intAcademicScaleLower, intAcademicScaleUpper) && checkNumbers(currentUniversity.getSocialScale(), intSocialScaleLower, intSocialScaleUpper) && 
+					checkNumbers(currentUniversity.getQualityOfLifeScale(), intQualityOfLifeScaleLower, intQualityOfLifeScaleUpper))
 			{
 				ArrayList<String> currentEmphases = currentUniversity.getEmphases();
 				//If 4
@@ -196,10 +373,10 @@ public class SearchController
 	{
 		if (u == null)
 			throw new IllegalArgumentException("University cannot be null");
-		HashMap<String, University> universityMap = this.dbc.viewUniversities();
+		//HashMap<String, University> universities = this.dbc.viewUniversities();
 		
 		//HashMap<String, University> universityMap = new HashMap<String, University>();
-		Set<String> keys = universityMap.keySet();
+		Set<String> keys = this.universities.keySet();
 		keys.remove(u.getName());
 		HashMap<String, Double> distanceMap = new HashMap<String, Double>();
 
@@ -231,7 +408,7 @@ public class SearchController
 		//For 1
 		for (String universityName : keys)
 		{
-			University university = universityMap.get(universityName);
+			University university = universities.get(universityName);
 
 			maxNumStudents = (int)findMax(university.getNumStudents(), maxNumStudents);
 			minNumStudents = (int)findMin(university.getNumStudents(), minNumStudents);
@@ -279,24 +456,24 @@ public class SearchController
 		{
 			//If 1
 			// Compares state name of parameter University with universities in database or see if its NA
-			if (u.getState().equals("-1") || universityMap.get(universityName).getState().equals("-1") ||
-					universityMap.get(universityName).getState().equals(u.getState()))
+			if (u.getState().equals("-1") || universities.get(universityName).getState().equals("-1") ||
+					universities.get(universityName).getState().equals(u.getState()))
 				stateDistance = 0; // state names equal
 			else
 				stateDistance = 1; // state names not equal
 			
 			//If 2
 			// Compares location String of parameter University with universities in database or see if its NA
-			if (u.getLocation().equals("-1")|| universityMap.get(universityName).getLocation().equals("-1") ||
-					universityMap.get(universityName).getLocation().equals(u.getLocation()))
+			if (u.getLocation().equals("-1")|| universities.get(universityName).getLocation().equals("-1") ||
+					universities.get(universityName).getLocation().equals(u.getLocation()))
 				locationDistance = 0; // location equal
 			else
 				locationDistance = 1; // location not equal
 
 			//If 3
 			// Compares control String of parameter University with universities in database or see if its NA
-			if (u.getControl().equals("-1") || universityMap.get(universityName).getControl().equals("-1") ||
-					universityMap.get(universityName).getControl().equals(u.getControl()))
+			if (u.getControl().equals("-1") || universities.get(universityName).getControl().equals("-1") ||
+					universities.get(universityName).getControl().equals(u.getControl()))
 				controlDistance = 0; // control equal
 			else
 				controlDistance = 1; // control not equal
@@ -304,18 +481,18 @@ public class SearchController
 			double numStudentsDistance, percentFemaleDistance, SATVerbalDistance, SATMathDistance,expensesDistance, percentFinancialAidDistance,
 			numApplicantsDistance, percentAdmittedDistance, percentEnrolledDistance, academicScaleDistance, socialScaleDistance, qualityOfLifeScaleDistance;
 
-			numStudentsDistance = calculateDistance(u.getNumStudents(), universityMap.get(universityName).getNumStudents(), maxNumStudents, minNumStudents);
-			percentFemaleDistance = calculateDistance(u.getPercentFemale(), universityMap.get(universityName).getPercentFemale(), maxPercentFemale, minPercentFemale);
-			SATVerbalDistance = calculateDistance(u.getSATVerbal(), universityMap.get(universityName).getSATVerbal(), maxSATVerbal, minSATVerbal);
-			SATMathDistance = calculateDistance(u.getSATMath(), universityMap.get(universityName).getSATMath(), maxSATMath, minSATMath);
-			expensesDistance = calculateDistance(u.getExpenses(), universityMap.get(universityName).getExpenses(), maxExpenses, minExpenses);
-			percentFinancialAidDistance = calculateDistance(u.getPercentFinancialAid(), universityMap.get(universityName).getPercentFinancialAid(), maxPercentFinancialAid, minPercentFinancialAid);	        
-			numApplicantsDistance = calculateDistance(u.getNumApplicants(), universityMap.get(universityName).getNumApplicants(), maxNumApplicants, minNumApplicants);	        
-			percentAdmittedDistance = calculateDistance(u.getPercentAdmitted(), universityMap.get(universityName).getPercentAdmitted(), maxPercentAdmitted, minPercentAdmitted);	     
-			percentEnrolledDistance = calculateDistance(u.getPercentEnrolled(), universityMap.get(universityName).getPercentEnrolled(), maxPercentEnrolled, minPercentEnrolled);
-			academicScaleDistance = calculateDistance(u.getAcademicScale(), universityMap.get(universityName).getAcademicScale(), maxAcademicScale, minAcademicScale);
-			socialScaleDistance = calculateDistance(u.getSocialScale(), universityMap.get(universityName).getSocialScale(), maxSocialScale, minSocialScale);
-			qualityOfLifeScaleDistance = calculateDistance(u.getQualityOfLifeScale(), universityMap.get(universityName).getQualityOfLifeScale(), maxQualityOfLifeScale, minQualityOfLifeScale);
+			numStudentsDistance = calculateDistance(u.getNumStudents(), universities.get(universityName).getNumStudents(), maxNumStudents, minNumStudents);
+			percentFemaleDistance = calculateDistance(u.getPercentFemale(), universities.get(universityName).getPercentFemale(), maxPercentFemale, minPercentFemale);
+			SATVerbalDistance = calculateDistance(u.getSATVerbal(), universities.get(universityName).getSATVerbal(), maxSATVerbal, minSATVerbal);
+			SATMathDistance = calculateDistance(u.getSATMath(), universities.get(universityName).getSATMath(), maxSATMath, minSATMath);
+			expensesDistance = calculateDistance(u.getExpenses(), universities.get(universityName).getExpenses(), maxExpenses, minExpenses);
+			percentFinancialAidDistance = calculateDistance(u.getPercentFinancialAid(), universities.get(universityName).getPercentFinancialAid(), maxPercentFinancialAid, minPercentFinancialAid);	        
+			numApplicantsDistance = calculateDistance(u.getNumApplicants(), universities.get(universityName).getNumApplicants(), maxNumApplicants, minNumApplicants);	        
+			percentAdmittedDistance = calculateDistance(u.getPercentAdmitted(), universities.get(universityName).getPercentAdmitted(), maxPercentAdmitted, minPercentAdmitted);	     
+			percentEnrolledDistance = calculateDistance(u.getPercentEnrolled(), universities.get(universityName).getPercentEnrolled(), maxPercentEnrolled, minPercentEnrolled);
+			academicScaleDistance = calculateDistance(u.getAcademicScale(), universities.get(universityName).getAcademicScale(), maxAcademicScale, minAcademicScale);
+			socialScaleDistance = calculateDistance(u.getSocialScale(), universities.get(universityName).getSocialScale(), maxSocialScale, minSocialScale);
+			qualityOfLifeScaleDistance = calculateDistance(u.getQualityOfLifeScale(), universities.get(universityName).getQualityOfLifeScale(), maxQualityOfLifeScale, minQualityOfLifeScale);
 
 			ArrayList<String> emphases = u.getEmphases();
 			double emphasesDistance = 0;
@@ -329,7 +506,7 @@ public class SearchController
 				{
 					//If 5
 					//if the potentially recommended school does not contain an emphasis
-					if (!universityMap.get(universityName).getEmphases().contains(emphasis))
+					if (!universities.get(universityName).getEmphases().contains(emphasis))
 						count++; 	  
 				}
 				emphasesDistance = count/emphases.size();

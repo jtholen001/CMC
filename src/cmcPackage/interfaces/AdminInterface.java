@@ -126,6 +126,17 @@ public class AdminInterface extends UserInterface
    return uCont.deleteUser(username);
   }
   
+  public University getUniversity(String name)
+  {
+    try {
+    	return uniCont.getUniversity(name);
+    }
+    catch(IllegalArgumentException j)
+	  {
+		  return null; 
+	  }
+  }
+  
   /**
    * A method that displays all University objects in the Database
    * 
@@ -213,6 +224,16 @@ public class AdminInterface extends UserInterface
   public int deleteUniversity(University university)
   {
    return uniCont.deleteUniversity(university);
+  }
+  
+  /**
+   * This method get the admin that is currently logged in
+   * 
+   * @return admin the admin logged into this interface
+   */
+  public Admin getAdmin()
+  {
+	  return this.admin;
   }
   
   /**

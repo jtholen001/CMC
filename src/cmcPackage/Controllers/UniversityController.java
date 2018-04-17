@@ -125,6 +125,17 @@ public class UniversityController
     }
   }
   
+  public University getUniversity(String name)
+  {
+	  try {
+		  return dbCont.getUniversity(name);
+	  }
+	  catch(IllegalArgumentException j)
+	  {
+		  throw j;
+	  }
+  }
+  
   /**
    * this method removes a University from the database
    * 
