@@ -28,7 +28,7 @@
 </tr> 
 <tr>
 	<td style="vertical-align: top">Password</td>
-	<td style="vertical-align: top"><input name="Password" id="Password" value=<%out.print(studentInt.getStudent().getPassword());%>>
+	<td style="vertical-align: top"><input name="Password" id="Password" onblur="meetsPasswordCriteria()" value='<%out.print(studentInt.getStudent().getPassword());%>'>
 	<script>
 	function meetsPasswordCriteria()
 	{
@@ -38,7 +38,7 @@
 		var containsNum = false;
 		var containsSpecialChar = false;
 		var s = document.getElementById("Password").value;
-
+		
 		if(s.length >= 6)
 			validLength = true;
 
@@ -64,9 +64,9 @@
 		
 
 	   if(!validLength || !containsCapital || !containsLower || !containsNum || !containsSpecialChar)
-		   document.getElementById("Edit").disabled = true;	
+		   document.getElementById("Submit").disabled = true;	
 	   else
-		   document.getElementById("Edit").disabled = false;
+		   document.getElementById("Submit").disabled = false;
 	}
 </script>
 	</td>
@@ -78,7 +78,7 @@
 </tbody>
 </table>
 <br>
-<button name = "Edit" id="Edit" type ="submit">Submit</button>
+<button name = "Submit" id="Submit" type ="submit">Submit</button>
 <input value="Reset Form"
 name="Reset" type="reset">
 </form>

@@ -9,7 +9,6 @@
 <br>
 Edit User form:<br>
 <br>
-
 <%
 	AdminInterface adminInt = (AdminInterface)session.getAttribute("userInt");
 	HashMap<String, User> users = adminInt.viewUsers();
