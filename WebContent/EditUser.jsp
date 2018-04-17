@@ -41,7 +41,61 @@ border="1" >
 <tr>
 <td style="vertical-align: top;">Password<br>
 </td>
-<td style="vertical-align: top;"><input name="Password" value=<%=u.getPassword()%>>
+<td style="vertical-align: top;"><input name="Password" id="Password" onblur="meetsPasswordCriteria()" value='<%=u.getPassword()%>'>
+<script>
+	function meetsPasswordCriteria()
+	{
+		var validLength = false;
+		var containsCapital = false;
+		var containsLower = false;
+		var containsNum = false;
+		var containsSpecialChar = false;
+		var s = document.getElementById("Password").value;
+
+		if(s.length >= 6)
+			validLength = true;
+
+		for (var i = 0; i < s.length; i++)
+		{
+			if(!isNaN(s.charAt(i)))
+			{
+				containsNum = true
+			}
+			else if(/^[a-zA-Z0-9- ]*$/.test(s.charAt(i)) == false)
+			{
+				containsSpecialChar = true;
+			}
+		    else if(s.charAt(i) == s.charAt(i).toUpperCase())
+			{
+		    	containsCapital = true;
+			}
+		   else if(s.charAt(i) == s.charAt(i).toLowerCase())
+			{
+			   containsLower = true;
+			}
+		}
+	   if(!validLength)
+		   {
+		  	 alert("Password must be at least 6 characters long");
+		   }
+	   else if(!containsCapital)
+		   {
+		  	 alert("Password must contain at least one capital letter");
+		   }
+	   else if(!containsLower)
+		   {
+		   	 alert("Password must contain at least one lower case letter");
+		   }
+	   else if(!containsNum)
+		   {
+		   	 alert("Password must contain at least one number");
+		   }
+	   else if(!containsSpecialChar)
+		   {
+		   	 alert("Password must contain at least one special character");
+		   }
+	}
+</script>
 </tr>
 <tr>
 <td style="vertical-align: top;">Type<br>
