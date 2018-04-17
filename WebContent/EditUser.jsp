@@ -74,7 +74,6 @@ border="1" >
 			   containsLower = true;
 			}
 		}
-		
 
 	   if(!validLength || !containsCapital || !containsLower || !containsNum || !containsSpecialChar)
 	   {
@@ -100,7 +99,6 @@ border="1" >
 			   document.getElementById("error").innerHTML = "Passwords must contain at least one special character";
 			   }
 	   }
-	   
 	   else
 		{
 		   document.getElementById("Edit").disabled = false;

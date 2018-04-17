@@ -28,8 +28,8 @@
 </tr> 
 <tr>
 	<td style="vertical-align: top">Password</td>
-	<td style="vertical-align: top"><input name="Password" id="Password" onblur="meetsPasswordCriteria()" value='<%out.print(studentInt.getStudent().getPassword());%>'>
-	<font color="red" id="error"></font>
+<td style="vertical-align: top;"><input name="Password" id="Password" onblur="meetsPasswordCriteria()" value=<%out.print(studentInt.getStudent().getPassword());%>>
+<font color="red" id="error"></font>
 <script>
 	function meetsPasswordCriteria()
 	{
@@ -62,11 +62,10 @@
 			   containsLower = true;
 			}
 		}
-		
 
 	   if(!validLength || !containsCapital || !containsLower || !containsNum || !containsSpecialChar)
 	   {
-		   document.getElementById("Edit").disabled = true;
+		   document.getElementById("Submit").disabled = true;
 		   if(!validLength)
 		   {
 	   			document.getElementById("error").innerHTML = "Passwords must contain at least 6 characters";
@@ -88,10 +87,9 @@
 			   document.getElementById("error").innerHTML = "Passwords must contain at least one special character";
 			   }
 	   }
-	   
 	   else
 		{
-		   document.getElementById("Edit").disabled = false;
+		   document.getElementById("Submit").disabled = false;
 	  	   document.getElementById("error").innerHTML = "";
 		}
 	}

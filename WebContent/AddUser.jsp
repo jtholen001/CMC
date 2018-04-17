@@ -70,11 +70,10 @@ border="1" cellpadding="2" cellspacing="2">
 			   containsLower = true;
 			}
 		}
-		
 
 	   if(!validLength || !containsCapital || !containsLower || !containsNum || !containsSpecialChar)
 	   {
-		   document.getElementById("Edit").disabled = true;
+		   document.getElementById("Add").disabled = true;
 		   if(!validLength)
 		   {
 	   			document.getElementById("error").innerHTML = "Passwords must contain at least 6 characters";
@@ -96,10 +95,9 @@ border="1" cellpadding="2" cellspacing="2">
 			   document.getElementById("error").innerHTML = "Passwords must contain at least one special character";
 			   }
 	   }
-	   
 	   else
 		{
-		   document.getElementById("Edit").disabled = false;
+		   document.getElementById("Add").disabled = false;
 	  	   document.getElementById("error").innerHTML = "";
 		}
 	}
