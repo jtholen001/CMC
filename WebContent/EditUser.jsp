@@ -74,26 +74,12 @@ border="1" >
 			   containsLower = true;
 			}
 		}
-	   if(!validLength)
-		   {
-		  	 alert("Password must be at least 6 characters long");
-		   }
-	   else if(!containsCapital)
-		   {
-		  	 alert("Password must contain at least one capital letter");
-		   }
-	   else if(!containsLower)
-		   {
-		   	 alert("Password must contain at least one lower case letter");
-		   }
-	   else if(!containsNum)
-		   {
-		   	 alert("Password must contain at least one number");
-		   }
-	   else if(!containsSpecialChar)
-		   {
-		   	 alert("Password must contain at least one special character");
-		   }
+		
+
+	   if(!validLength || !containsCapital || !containsLower || !containsNum || !containsSpecialChar)
+		   document.getElementById("Edit").disabled = true;	
+	   else
+		   document.getElementById("Edit").disabled = false;
 	}
 </script>
 </tr>
@@ -109,8 +95,7 @@ border="1" >
 </tr>
 
 <tr>
-<td style="vertical-align: top;"><input value="Edit"
-name="Edit" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="vertical-align: top;"><button name = "Edit" id="Edit" type ="submit">Submit</button></td>
 <td style="vertical-align: top;"><input value="Reset"
 name="Reset" type="reset"></td>
 </tr>
