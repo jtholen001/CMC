@@ -28,7 +28,48 @@
 </tr> 
 <tr>
 	<td style="vertical-align: top">Password</td>
-	<td style="vertical-align: top"><input name="Password" value=<%out.print(studentInt.getStudent().getPassword());%>></td>
+	<td style="vertical-align: top"><input name="Password" id="Password" value=<%out.print(studentInt.getStudent().getPassword());%>>
+	<script>
+	function meetsPasswordCriteria()
+	{
+		var validLength = false;
+		var containsCapital = false;
+		var containsLower = false;
+		var containsNum = false;
+		var containsSpecialChar = false;
+		var s = document.getElementById("Password").value;
+
+		if(s.length >= 6)
+			validLength = true;
+
+		for (var i = 0; i < s.length; i++)
+		{
+			if(!isNaN(s.charAt(i)))
+			{
+				containsNum = true
+			}
+			else if(/^[a-zA-Z0-9- ]*$/.test(s.charAt(i)) == false)
+			{
+				containsSpecialChar = true;
+			}
+		    else if(s.charAt(i) == s.charAt(i).toUpperCase())
+			{
+		    	containsCapital = true;
+			}
+		   else if(s.charAt(i) == s.charAt(i).toLowerCase())
+			{
+			   containsLower = true;
+			}
+		}
+		
+
+	   if(!validLength || !containsCapital || !containsLower || !containsNum || !containsSpecialChar)
+		   document.getElementById("Edit").disabled = true;	
+	   else
+		   document.getElementById("Edit").disabled = false;
+	}
+</script>
+	</td>
 </tr> 
 <tr>
 	<td style="vertical-align: top">Type</td>
@@ -37,8 +78,7 @@
 </tbody>
 </table>
 <br>
-<input value="Edit"
-name="Edit" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button name = "Edit" id="Edit" type ="submit">Submit</button>
 <input value="Reset Form"
 name="Reset" type="reset">
 </form>

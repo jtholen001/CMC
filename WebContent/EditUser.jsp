@@ -41,7 +41,47 @@ border="1" >
 <tr>
 <td style="vertical-align: top;">Password<br>
 </td>
-<td style="vertical-align: top;"><input name="Password" value=<%=u.getPassword()%>>
+<td style="vertical-align: top;"><input name="Password" id="Password" onblur="meetsPasswordCriteria()" value='<%=u.getPassword()%>'>
+<script>
+	function meetsPasswordCriteria()
+	{
+		var validLength = false;
+		var containsCapital = false;
+		var containsLower = false;
+		var containsNum = false;
+		var containsSpecialChar = false;
+		var s = document.getElementById("Password").value;
+
+		if(s.length >= 6)
+			validLength = true;
+
+		for (var i = 0; i < s.length; i++)
+		{
+			if(!isNaN(s.charAt(i)))
+			{
+				containsNum = true
+			}
+			else if(/^[a-zA-Z0-9- ]*$/.test(s.charAt(i)) == false)
+			{
+				containsSpecialChar = true;
+			}
+		    else if(s.charAt(i) == s.charAt(i).toUpperCase())
+			{
+		    	containsCapital = true;
+			}
+		   else if(s.charAt(i) == s.charAt(i).toLowerCase())
+			{
+			   containsLower = true;
+			}
+		}
+		
+
+	   if(!validLength || !containsCapital || !containsLower || !containsNum || !containsSpecialChar)
+		   document.getElementById("Edit").disabled = true;	
+	   else
+		   document.getElementById("Edit").disabled = false;
+	}
+</script>
 </tr>
 <tr>
 <td style="vertical-align: top;">Type<br>
@@ -55,8 +95,7 @@ border="1" >
 </tr>
 
 <tr>
-<td style="vertical-align: top;"><input value="Edit"
-name="Edit" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="vertical-align: top;"><button name = "Edit" id="Edit" type ="submit">Submit</button></td>
 <td style="vertical-align: top;"><input value="Reset"
 name="Reset" type="reset"></td>
 </tr>
