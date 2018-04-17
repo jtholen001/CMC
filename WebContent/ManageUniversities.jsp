@@ -83,7 +83,7 @@ for(String u: sortedUniversities.keySet())
 <td>
 <form method="post" action="EditUniversity.jsp" name="Edit">
     <input name="Edit" value="Edit" type="submit">
-    <input name="UniversityName" value= <%=university.getName()%> type="hidden">
+    <input name="UniversityName" value= '<%=university.getName()%>' type="hidden">
 </form>
 </td>
 <%}%>
