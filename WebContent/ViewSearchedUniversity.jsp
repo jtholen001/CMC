@@ -2,14 +2,27 @@
     pageEncoding="UTF-8" import="cmcPackage.entityClasses.*, cmcPackage.Controllers.*"%>
 <%@include file="verifyLogin.jsp"%>
 <%
+String[] values = request.getParameterValues("Universities");
 String universityName = request.getParameter("University");
 StudentInterface studentInt = (StudentInterface)session.getAttribute("userInt");
 University u = studentInt.viewUniversity(universityName);
- %>
-<form method="post" action="SaveUniversity_action.jsp" name="SaveUniversity">
+
+
+Student student = studentInt.getStudent();
+ArrayList<University> savedUniversities = student.getSavedSchools();
+ 
+ if (!savedUniversities.contains(u)) { %>
+	<form method="post" action="SaveUniversity_action.jsp" name="SaveUniversity">
 	    <input name="Save" value="Save" type="submit">
 	    <input name="University" value='<%=u.getName()%>' type="hidden">
-	</form>
+	    <input name="FromWhere" value="1" type="hidden">
+	     <%for(int i = 0; i < values.length; i++) { %>
+	    <input name="Universities" value='<%=values[i] %>' type="hidden">
+		<% } %>
+	    
+	</form> <%}
+		else { out.print("Saved"); }
+		 %>
 <table style="text-align: left; width: 700px; height: 228px;"
 border="1" >
 <tbody>
@@ -114,13 +127,24 @@ for(String emphasis: emphases){
 MAY WE ALSO RECOMMEND<br>
 
 <%
+
+
 ArrayList<University> recommendedUniversities = studentInt.getRecommendedUniversities(u);
 for (University uni: recommendedUniversities) {
  %>
-<form method="post" action="SaveUniversity_action.jsp" name="SaveUniversity">
+		<% if (!savedUniversities.contains(uni)) { %>
+	<form method="post" action="SaveUniversity_action.jsp" name="SaveUniversity">
 	    <input name="Save" value="Save" type="submit">
 	    <input name="University" value='<%=uni.getName()%>' type="hidden">
-</form>
+	    <input name="FromWhere" value="1" type="hidden">
+	    <input name="StartFrom" value='<%=u.getName() %>' type="hidden">
+	     <%for(int i = 0; i < values.length; i++) { %>
+  		<input name="Universities" value='<%=values[i] %>' type="hidden">
+	<% } %>
+	    
+	</form> <%}
+		else { out.print("Saved"); }
+		 %>
 <table style="text-align: left; width: 700px; height: 228px;"
 border="1" >
 <tbody>
@@ -222,4 +246,11 @@ for(String emphasis: emphases){
 </tr>
 </tbody>
 </table>
-<%} %>
+<%}
+ %>
+<form method="post" action="ViewMatchedResults.jsp" name="ViewResults">
+  <input name="Return" value="Return to Search Results" type="submit">
+  <%for(int i = 0; i < values.length; i++) { %>
+  <input name="Universities" value='<%=values[i] %>' type="hidden">
+<% } %>
+</form>
