@@ -79,17 +79,26 @@ border="1" >
 	   if(!validLength || !containsCapital || !containsLower || !containsNum || !containsSpecialChar)
 	   {
 		   document.getElementById("Edit").disabled = true;
-		   //TODO: FIX THESE IF STATEMENTS SO THAT THEY PRINT
-		   if(!invalidLength)
-		   	 document.getElementById("error").innerHTML = "Passwords must contain at least 6 characters";
-		   if(!containsCapital)
-			   document.getElementById("error").innerHTML = "Passwords must contain at least one capital letter";
-		   if(!containsLower)
+		   if(!validLength)
+		   {
+	   			document.getElementById("error").innerHTML = "Passwords must contain at least 6 characters";
+		   }
+		   else if(!containsCapital)
+			   {
+			   	document.getElementById("error").innerHTML = "Passwords must contain at least one capital letter";
+			   }
+		   else if(!containsLower)
+			   {
 			   document.getElementById("error").innerHTML = "Passwords must contain at least one lower case letter";
-		   if(!containsNum)
+			   }
+		   else if(!containsNum)
+			   {
 			   document.getElementById("error").innerHTML = "Passwords must contain at least one number";
-		   if(!containsSpecialChar)
+			   }
+		   else
+			   {
 			   document.getElementById("error").innerHTML = "Passwords must contain at least one special character";
+			   }
 	   }
 	   
 	   else

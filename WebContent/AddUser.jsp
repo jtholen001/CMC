@@ -36,7 +36,8 @@ border="1" cellpadding="2" cellspacing="2">
 <tr>
 <td style="vertical-align: top;">Password<br>
 </td>
-<td style="vertical-align: top;"><input name="Password" id="Password" onblur="meetsPasswordCriteria()"></td>
+<td style="vertical-align: top;"><input name="Password" id="Password" onblur="meetsPasswordCriteria()">
+<font color="red" id="error"></font>
 <script>
 	function meetsPasswordCriteria()
 	{
@@ -72,11 +73,38 @@ border="1" cellpadding="2" cellspacing="2">
 		
 
 	   if(!validLength || !containsCapital || !containsLower || !containsNum || !containsSpecialChar)
-		   document.getElementById("Add").disabled = true;	
+	   {
+		   document.getElementById("Edit").disabled = true;
+		   if(!validLength)
+		   {
+	   			document.getElementById("error").innerHTML = "Passwords must contain at least 6 characters";
+		   }
+		   else if(!containsCapital)
+			   {
+			   	document.getElementById("error").innerHTML = "Passwords must contain at least one capital letter";
+			   }
+		   else if(!containsLower)
+			   {
+			   document.getElementById("error").innerHTML = "Passwords must contain at least one lower case letter";
+			   }
+		   else if(!containsNum)
+			   {
+			   document.getElementById("error").innerHTML = "Passwords must contain at least one number";
+			   }
+		   else
+			   {
+			   document.getElementById("error").innerHTML = "Passwords must contain at least one special character";
+			   }
+	   }
+	   
 	   else
-		   document.getElementById("Add").disabled = false;
+		{
+		   document.getElementById("Edit").disabled = false;
+	  	   document.getElementById("error").innerHTML = "";
+		}
 	}
 </script>
+</td>
 </tr>
 <tr>
 <td style="vertical-align: top;">Type<br>

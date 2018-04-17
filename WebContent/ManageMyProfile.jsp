@@ -29,7 +29,8 @@
 <tr>
 	<td style="vertical-align: top">Password</td>
 	<td style="vertical-align: top"><input name="Password" id="Password" onblur="meetsPasswordCriteria()" value='<%out.print(studentInt.getStudent().getPassword());%>'>
-	<script>
+	<font color="red" id="error"></font>
+<script>
 	function meetsPasswordCriteria()
 	{
 		var validLength = false;
@@ -38,7 +39,7 @@
 		var containsNum = false;
 		var containsSpecialChar = false;
 		var s = document.getElementById("Password").value;
-		
+
 		if(s.length >= 6)
 			validLength = true;
 
@@ -64,9 +65,35 @@
 		
 
 	   if(!validLength || !containsCapital || !containsLower || !containsNum || !containsSpecialChar)
-		   document.getElementById("Submit").disabled = true;	
+	   {
+		   document.getElementById("Edit").disabled = true;
+		   if(!validLength)
+		   {
+	   			document.getElementById("error").innerHTML = "Passwords must contain at least 6 characters";
+		   }
+		   else if(!containsCapital)
+			   {
+			   	document.getElementById("error").innerHTML = "Passwords must contain at least one capital letter";
+			   }
+		   else if(!containsLower)
+			   {
+			   document.getElementById("error").innerHTML = "Passwords must contain at least one lower case letter";
+			   }
+		   else if(!containsNum)
+			   {
+			   document.getElementById("error").innerHTML = "Passwords must contain at least one number";
+			   }
+		   else
+			   {
+			   document.getElementById("error").innerHTML = "Passwords must contain at least one special character";
+			   }
+	   }
+	   
 	   else
-		   document.getElementById("Submit").disabled = false;
+		{
+		   document.getElementById("Edit").disabled = false;
+	  	   document.getElementById("error").innerHTML = "";
+		}
 	}
 </script>
 	</td>
