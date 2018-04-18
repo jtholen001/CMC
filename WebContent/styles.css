@@ -1,0 +1,7 @@
+/*
+To include the styles in your file, include the following tag inside the <head> tag
+
+<link rel="stylesheet" type="text/css" href="styles.css">
+*/
+
+tr:nth-child(even) {background-color: #f2f2f2;}
