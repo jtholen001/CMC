@@ -10,12 +10,39 @@
 <body>
 <%
 AdminInterface adminInt = (AdminInterface)session.getAttribute("userInt");
-adminInt.addUniversity(request.getParameter("SchoolName"), request.getParameter("State"), 
-		request.getParameter("Location"), request.getParameter("Control"), parseInt(request.getParameter("numberOfStudents")), 
-		parseDouble(request.getParameter("percentFemale")), parseDouble(request.getParameter("SATVerbal")), parseInt(request.getParameter("SATMath")),
-		parseDouble(request.getParameter("Expenses")), parseDouble(request.getParameter("percentFinancialAid")), parseInt(request.getParameter("numberOfApplicants")), 
-		parseDouble(request.getParameter("percentAdmitted")), parseDouble(request.getParameter("percentEnrolled")), parseInt(request.getParameter("academicScale")),
-		parseInt(request.getParameter("socialScale")), parseInt(request.getParameter("qualityOfLifeScale")), request.getParameter("emphases"));
+ArrayList<String> emphases = new ArrayList<String>();
+if(!request.getParameter("emphases1".toString()).trim().equals(""))
+	emphases.add(request.getParameter("emphases1"));
+if(!request.getParameter("emphases2".toString()).trim().equals(""))
+	emphases.add(request.getParameter("emphases2"));
+if(!request.getParameter("emphases3".toString()).trim().equals(""))
+	emphases.add(request.getParameter("emphases3"));
+
+String name = request.getParameter("SchoolName");
+String state = request.getParameter("State");
+String location = request.getParameter("Location");
+String control = request.getParameter("Control");
+int numberOfStudents;
+numberOfStudents = Integer.parseInt(request.getParameter("numberOfStudents"));
+double percentFemale = Double.parseDouble(request.getParameter("percentFemale"));
+double SATVerbal = Double.parseDouble(request.getParameter("SATVerbal"));
+double SATMath = Double.parseDouble(request.getParameter("SATMath"));
+double expenses = Double.parseDouble(request.getParameter("Expenses"));
+double percentFinancialAid = Double.parseDouble(request.getParameter("percentFinancialAid"));
+int numberOfApplicants = Integer.parseInt(request.getParameter("numberOfApplicants"));
+double percentAdmitted = Double.parseDouble(request.getParameter("percentAdmitted"));
+double percentEnrolled = Double.parseDouble(request.getParameter("percentEnrolled"));
+int academicScale = Integer.parseInt(request.getParameter("academicScale"));
+int socialScale = Integer.parseInt(request.getParameter("socialScale"));
+int qualityOfLifeScale = Integer.parseInt(request.getParameter("qualityOfLifeScale"));
+
+adminInt.addUniversity(name, state, location, control, numberOfStudents, 
+						percentFemale, SATVerbal, SATMath, expenses, 
+						percentFinancialAid, numberOfApplicants, percentAdmitted,
+						percentEnrolled, academicScale, socialScale,
+						qualityOfLifeScale, new ArrayList<String>());
+
+
 response.sendRedirect("ManageUniversities.jsp");
 %>
 </body>

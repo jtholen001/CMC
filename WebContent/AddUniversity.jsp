@@ -101,7 +101,8 @@ border="2" cellpadding="2" cellspacing="2">
 <tr>
 <td style="vertical-align: top;">Emphases<br>
 </td>
-<td style="vertical-align: top;"><input name="emphases"> </td>
+<td style="vertical-align: top;"><input name="emphases1"><input name="emphases2"><input name="emphases3">
+</td>
 </tr>
 
 <tr>
@@ -114,6 +115,9 @@ name="Reset" type="reset"></td>
 </table>
 <br>
 </form>
+	<form method="post" action="ManageUniversities.jsp">
+	    <input name="Cancel" value="Cancel" type="submit">
+	</form>
 <br>
 </body>
 </html>
