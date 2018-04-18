@@ -55,7 +55,7 @@ public class StudentInterface extends UserInterface
   }
   
   /**
-   * Method to veiw the Student's profile
+   * Method to view the Student's profile
    * 
    * @return a string representation of this student's profile
    */
@@ -74,12 +74,10 @@ public class StudentInterface extends UserInterface
    */
   public int editProfile(String firstName, String lastName, String password)
   {
-	  try {
-   return this.pc.editProfile(firstName, lastName, password); 
-	  }
-	  catch (IllegalArgumentException iae) {
-		  return -1;
-	  }
+	  if(meetsPasswordCriteria(password))
+		  return this.pc.editProfile(firstName, lastName, password); 
+	  else
+		  throw new IllegalArgumentException("Password requirements not met");
   }
   
   /**

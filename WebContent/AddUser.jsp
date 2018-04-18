@@ -55,7 +55,7 @@ border="1" cellpadding="2" cellspacing="2">
 		{
 			if(!isNaN(s.charAt(i)))
 			{
-				containsNum = true
+				containsNum = true;
 			}
 			else if(/^[a-zA-Z0-9- ]*$/.test(s.charAt(i)) == false)
 			{
