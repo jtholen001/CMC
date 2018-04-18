@@ -7,9 +7,14 @@
 	AdminInterface adminInt = (AdminInterface)session.getAttribute("userInt");
 	HashMap<String, User> users = adminInt.viewUsers();
 %>
+<link rel="stylesheet" type="text/css" href="styles.css">
 <head>
+<<<<<<< HEAD
 <link rel="stylesheet" type="text/css" href="styles.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+=======
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" type="text/css" href="styles.css">
+>>>>>>> db580171ccacf038cae32f9314e818331365ac2e
 <title>Manage Users</title>
 </head>
 <body>
@@ -18,7 +23,11 @@ cellspacing="2">
 		<tbody>
 			<tr align="center">
 
+<<<<<<< HEAD
 <td colspan="8" rowspan="1" style="vertical-align: top; text-align: center; font-size: 16px;"><a
+=======
+<td colspan="8" rowspan="1" style="vertical-align: top; text-align: center"><a
+>>>>>>> db580171ccacf038cae32f9314e818331365ac2e
 href="AddUser.jsp">ADD A USER</a>
 </td>
 
