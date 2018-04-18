@@ -4,4 +4,17 @@ To include the styles in your file, include the following tag inside the <head> 
 <link rel="stylesheet" type="text/css" href="styles.css">
 */
 
+/*zebra-stripes tables*/
 tr:nth-child(even) {background-color: #f2f2f2;}
+
+/*table borders and alignments*/
+table, td, th, tr {    
+    border: 1px solid maroon;
+    text-align: left;
+}
+
+/*table header*/
+th{
+	background-color: #808080;
+	color: maroon;
+}
