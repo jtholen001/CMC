@@ -16,9 +16,9 @@
 <tbody>
 <tr align="center">
 
-<td colspan="8" rowspan="1" style="vertical-align: top;">
+<td colspan="8" rowspan="1" style="vertical-align: top; font-size: 16px">
 	<form method="post" action="AdminMenu.jsp">
-	    <input name="Return" value="Return to Menu" type="submit" align="left"> 
+	    <input name="Return" value="Return to Menu" type="submit" align="center"> 
 	    <a href="AddUniversity.jsp">ADD A UNIVERSITY</a>
 	</form>
 </td>

@@ -8,6 +8,7 @@
 	HashMap<String, User> users = adminInt.viewUsers();
 %>
 <head>
+<link rel="stylesheet" type="text/css" href="styles.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Manage Users</title>
 </head>
@@ -17,7 +18,7 @@ cellspacing="2">
 		<tbody>
 			<tr align="center">
 
-<td colspan="8" rowspan="1" style="vertical-align: top;"><a
+<td colspan="8" rowspan="1" style="vertical-align: top; text-align: center; font-size: 16px;"><a
 href="AddUser.jsp">ADD A USER</a>
 </td>
 

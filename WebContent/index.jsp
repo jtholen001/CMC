@@ -1,6 +1,6 @@
 <html>
 <head>
-
+<link rel="stylesheet" type="text/css" href="styles.css">
 <title>Login Form</title>
 </head>
 <body>
@@ -36,7 +36,8 @@ name="Log in" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 <td style="vertical-align: top;"><input value="Reset"
 name="Reset" type="reset"></td>
 </tr>
-<br>
+</tbody>
+</table>
 </form>
 <br>
 </body>

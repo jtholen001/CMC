@@ -5,16 +5,28 @@ To include the styles in your file, include the following tag inside the <head> 
 */
 
 /*zebra-stripes tables*/
-tr:nth-child(even) {background-color: #f2f2f2;}
+tr:nth-child(even) {background-color: #C0C0C0;}
 
 /*table borders and alignments*/
-table, td, th, tr {    
-    border: 1px solid maroon;
+table{    
+    border: 5px solid maroon;
     text-align: left;
+}
+
+/*table data*/
+td{
+	border: 1px solid maroon;
+	text-align: left;
+	font-size: 12px;
 }
 
 /*table header*/
 th{
-	background-color: #808080;
+	background-color: #696969;
 	color: maroon;
+	font-size: 14px;
+}
+
+a:hover { 
+    background-color: yellow;
 }
