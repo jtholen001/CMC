@@ -1,13 +1,10 @@
 /**
- * Modified LoginController class controls the login logic for a user and allows for 2-factor authentication using Time-based One-time Password algorithm
+ * LoginController class controls the login logic for a user
  *
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
  * @version 2/26/18
  */
 package cmcPackage.Controllers;
-import java.security.GeneralSecurityException;
-
-import com.j256.twofactorauth.*;
 
 import cmcPackage.interfaces.UserInterface;
 import cmcPackage.entityClasses.User;
@@ -15,16 +12,9 @@ import cmcPackage.entityClasses.User;
 public class LoginController
 {
 	/**
-	 *  2-factor authentication utility
-	 */
-	TimeBasedOneTimePasswordUtil tfaUtil;
-	/**
 	 *  Database controller allows LoginController to communicate with Database
 	 */
 	private DBController dbc;
-	
-	private static final String SECRET_KEY = "VVDAKWRGH2NPTAN4";
-	private static final String QR_CODE = "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=200x200&chld=M|0&cht=qr&chl=otpauth://totp/CMC-internal%3Fsecret%3DVNBAZKGA4QRMBB6K";
 
 	/**
 	 * Default constructor
@@ -40,10 +30,9 @@ public class LoginController
 	 * @param username the username of the user
 	 * @param password the user's password of the user
 	 * @return user object that logged in
-	 * @throws GeneralSecurityException 
 	 */
-	public User login(String username, String password, String authKey) throws GeneralSecurityException
-	{				
+	public User login(String username, String password)
+	{
 		User user = dbc.getUser(username);
 		if (user != null)
 		{
@@ -53,14 +42,8 @@ public class LoginController
 
 			if ((password.equals(correctPassword)) && (!loggedIn) && (activated)) // successful login
 			{
-				if (authKey.equals(tfaUtil.generateCurrentNumberString(SECRET_KEY))) {
-					user.setLoggedInStatus(true);
-					return user;
-					}
-				else {
-					System.out.println("Two-step verification failed");
-					return null;
-				}
+				user.setLoggedInStatus(true);
+				return user;
 			}
 
 			//TODO: maybe we don't need to check the user's loggedInStatus because it is saved locally, not in DB
@@ -88,6 +71,8 @@ public class LoginController
 		}
 
 	}
+	
+	
 
 	//TODO: maybe we don't need to check the user's loggedInStatus because it is saved locally, not in DB
 	//   /**
