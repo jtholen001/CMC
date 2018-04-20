@@ -70,10 +70,7 @@ public class AdminInterface extends UserInterface
    */
   public void editUser(String username, String newFirst, String newLast, String newPassword, char newType, boolean newActivation, boolean newLoggedIn)
   {
-	  if(meetsPasswordCriteria(newPassword))
 		  uCont.editUser(username, newFirst, newLast, newPassword, newType, newActivation, newLoggedIn);
-	  else
-		  throw new IllegalArgumentException("Password requirements not met");
   }
   
   /**
@@ -92,10 +89,7 @@ public class AdminInterface extends UserInterface
   public void addUser(String firstName, String lastName, String username, String password, char type ,boolean isActivated,
                         boolean isLoggedIn)
   {
-	  if(meetsPasswordCriteria(password))
 		  uCont.addUser(firstName, lastName, username, password, type, isActivated, isLoggedIn);
-	  else
-		  throw new IllegalArgumentException("Password requirements not met");
   }
   
   /**
