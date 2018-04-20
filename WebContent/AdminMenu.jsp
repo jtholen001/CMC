@@ -1,6 +1,7 @@
 <%@include file="verifyLogin.jsp"  %>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="styles.css">
 <title></title>
 </head>
 <body>
