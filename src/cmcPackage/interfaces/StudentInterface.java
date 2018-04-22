@@ -73,11 +73,8 @@ public class StudentInterface extends UserInterface
    * @return integer representing success of edit
    */
   public int editProfile(String firstName, String lastName, String password)
-  {
-	  if(meetsPasswordCriteria(password))
+  {  
 		  return this.pc.editProfile(firstName, lastName, password); 
-	  else
-		  throw new IllegalArgumentException("Password requirements not met");
   }
   
   /**
