@@ -21,6 +21,8 @@ if(error != null) {
 		out.print("Please enter a valid search range");
 	else if (error.equals("-3"))
 		out.print("You must fill in at least one field to search");
+	else if (error.equals("-4"))
+		out.print("No universities match your criteria");
 }
  %>
 <br>

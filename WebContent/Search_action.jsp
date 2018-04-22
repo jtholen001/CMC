@@ -72,10 +72,12 @@ for(University u : foundUniversities) {
 }
 int length = universityList.length();
 if (length == 1) {
-	universityList = "";
+	//universityList = "";
+	response.sendRedirect("Search.jsp?Error=-4");
 } 
 else {
 	universityList = universityList.substring(0, length - 1);
+	response.sendRedirect("ViewMatchedResults.jsp"+ universityList);
 }
-response.sendRedirect("ViewMatchedResults.jsp"+ universityList);
+
 %>
