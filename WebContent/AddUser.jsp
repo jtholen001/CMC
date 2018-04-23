@@ -107,12 +107,15 @@ border="1" cellpadding="2" cellspacing="2">
 <tr>
 <td style="vertical-align: top;">Type<br>
 </td>
-<td style="vertical-align: top;"><input name="Type"> </td>
+<td><input type="radio" name="Type" value='u'>Student
+	<input type="radio" name="Type" value='a'>Admin
+	</td>
 </tr>
 <tr>
 <td style="vertical-align: top;">Status<br>
 </td>
-<td style="vertical-align: top;"><input name="Status"> </td>
+<td><input type="radio" name="Status" value='true'>Active
+	<input type="radio" name="Status" value='false'>Inactive</td>
 </tr>
 
 <tr>
