@@ -19,25 +19,46 @@ border="1" cellpadding="2" cellspacing="2">
 <tr>
 <td style="vertical-align: top;">First Name<br>
 </td>
-<td style="vertical-align: top;"><input name="FirstName"><br>
+<td style="vertical-align: top;"><input name="FirstName" id="First" onblur="isValidFirst()"><br>
+<font color="red" id="errorFN"></font>
+<script>
+	function isValidFirst()
+	{
+		alert("This script is being called");
+		var s = document.getElementById("First").value;
+
+		if(s.length() <= 0)
+			{
+			document.getElementById("Add").disabled = true;
+	   			document.getElementById("errorFN").innerHTML = "Name cannot be empty";
+		   }
+		else
+		{
+		   document.getElementById("Add").disabled = false;
+	  	   document.getElementById("errorFN").innerHTML = "";
+		}
+	}
+</script>
 </td>
 </tr>
 <tr>
 <td style="vertical-align: top;">Last Name<br>
 </td>
 <td style="vertical-align: top;"><input name="LastName"><br>
+<font color="red" id="errorLN"></font>
 </td>
 </tr>
 <tr>
 <td style="vertical-align: top;">Username<br>
 </td>
-<td style="vertical-align: top;"><input name="Username"> </td>
+<td style="vertical-align: top;"><input name="Username"><br>
+<font color="red" id="errorUN"></font> </td>
 </tr>
 <tr>
 <td style="vertical-align: top;">Password<br>
 </td>
 <td style="vertical-align: top;"><input name="Password" id="Password" onblur="meetsPasswordCriteria()">
-<font color="red" id="error"></font>
+<font color="red" id="errorP"></font>
 <script>
 	function meetsPasswordCriteria()
 	{
@@ -76,23 +97,23 @@ border="1" cellpadding="2" cellspacing="2">
 		   document.getElementById("Add").disabled = true;
 		   if(!validLength)
 		   {
-	   			document.getElementById("error").innerHTML = "Passwords must contain at least 6 characters";
+	   			document.getElementById("errorP").innerHTML = "Passwords must contain at least 6 characters";
 		   }
 		   else if(!containsCapital)
 			   {
-			   	document.getElementById("error").innerHTML = "Passwords must contain at least one capital letter";
+			   	document.getElementById("errorP").innerHTML = "Passwords must contain at least one capital letter";
 			   }
 		   else if(!containsLower)
 			   {
-			   document.getElementById("error").innerHTML = "Passwords must contain at least one lower case letter";
+			   document.getElementById("errorP").innerHTML = "Passwords must contain at least one lower case letter";
 			   }
 		   else if(!containsNum)
 			   {
-			   document.getElementById("error").innerHTML = "Passwords must contain at least one number";
+			   document.getElementById("errorP").innerHTML = "Passwords must contain at least one number";
 			   }
 		   else
 			   {
-			   document.getElementById("error").innerHTML = "Passwords must contain at least one special character";
+			   document.getElementById("errorP").innerHTML = "Passwords must contain at least one special character";
 			   }
 	   }
 	   else
@@ -107,14 +128,14 @@ border="1" cellpadding="2" cellspacing="2">
 <tr>
 <td style="vertical-align: top;">Type<br>
 </td>
-<td><input type="radio" name="Type" value='u'>Student
+<td><input type="radio" name="Type" value='u' checked="checked">Student
 	<input type="radio" name="Type" value='a'>Admin
 	</td>
 </tr>
 <tr>
 <td style="vertical-align: top;">Status<br>
 </td>
-<td><input type="radio" name="Status" value='true'>Active
+<td><input type="radio" name="Status" value='true' checked="checked">Active
 	<input type="radio" name="Status" value='false'>Inactive</td>
 </tr>
 
