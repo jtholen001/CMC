@@ -82,10 +82,6 @@ public class LoginController
    {
      System.out.println("Username or password is incorrect.");
    }
-   
-   public boolean twoFactorAuthenticate(String key, String username) {
-	   return dbc.tfaAuthenticate(key, username);
-   }
 
    /**
     * This method controls the log off logic of the system

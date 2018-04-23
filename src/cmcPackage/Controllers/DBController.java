@@ -8,6 +8,7 @@ package cmcPackage.Controllers;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
@@ -18,6 +19,8 @@ import cmcPackage.entityClasses.*;
 
 import java.util.HashMap;
 import java.util.Scanner;
+
+import javax.servlet.ServletContext;
 
 import com.j256.twofactorauth.*;
 
@@ -466,10 +469,11 @@ public class DBController
 	 */
 	public HashMap<String, String>readTfaFromFile() {
 	    HashMap<String, String> authKeys = new HashMap<String, String>();
-	    //System.out.println(new File(".").getAbsolutePath());
+	    System.out.println(new File(".").getAbsolutePath());
 	    
 	    try
 	    {
+	    	//InputStream in = this.getClass().getClassLoader().getResourceAsStream("/authentication_keys.txt");
 	      Scanner scan = new Scanner(new File("src/cmcPackage/authentication_keys.txt"));
 	      while(scan.hasNextLine())
 	      {
@@ -502,7 +506,7 @@ public class DBController
 		if (authKeys.containsKey(user.getUsername())) { // user already has 2FA enabled, this will reset it
 			authKeys.remove(user);
 			String newMasterKey = tfaUtil.generateBase32Secret();
-			String qrCodeUrl = tfaUtil.qrImageUrl("CMC" + "_" + user.getUsername(), newMasterKey);
+			String qrCodeUrl = tfaUtil.qrImageUrl("CMC" + " (" + user.getUsername() + ")", newMasterKey);
 			authKeys.put(user.getUsername(), newMasterKey);
 			this.writeTfaToFile(authKeys);
 			return qrCodeUrl;

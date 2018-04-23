@@ -51,6 +51,7 @@ public class StudentInterface extends UserInterface
     this.pc = new ProfileController(this.student);
     this.sc = new SearchController();
     this.suc = new StudentUniversitiesController(this.student);
+    this.dbc = new DBController();
   }
   
   /**
@@ -65,7 +66,7 @@ public class StudentInterface extends UserInterface
   
   public boolean isTfaEnabled()
   {
-	 return dbc.isTfaEnabled(student.getUsername());
+	 return dbc.isTfaEnabled(this.getStudent().getUsername());
   }
   
   /**
@@ -75,7 +76,7 @@ public class StudentInterface extends UserInterface
    */
   public Boolean isActivated()
   {
-	  return this.student.getActivationStatus(); 
+	  return this.getStudent().getActivationStatus(); 
   }
   
   /**
