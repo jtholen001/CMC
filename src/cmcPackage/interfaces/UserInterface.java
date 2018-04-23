@@ -45,7 +45,7 @@ public class UserInterface
    */
   public <t extends UserInterface> UserInterface login(String username, String password)
   {
-	  try {
+	try {
     User user = lc.login(username, password);
     if (user != null)
     {

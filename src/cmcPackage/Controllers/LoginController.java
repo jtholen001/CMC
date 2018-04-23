@@ -63,6 +63,7 @@ public class LoginController
       this.invalidCredentials();
       return null;
     }
+
    }
 
    //TODO: maybe we don't need to check the user's loggedInStatus because it is saved locally, not in DB
@@ -80,6 +81,10 @@ public class LoginController
    public void invalidCredentials()
    {
      System.out.println("Username or password is incorrect.");
+   }
+   
+   public boolean twoFactorAuthenticate(String key, String username) {
+	   return dbc.tfaAuthenticate(key, username);
    }
 
    /**
