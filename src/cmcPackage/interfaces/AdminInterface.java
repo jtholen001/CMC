@@ -210,9 +210,15 @@ public class AdminInterface extends UserInterface
          double expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
                              int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {
-     return uniCont.addUniversity(name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
-                             expenses,percentFinancialAid,numApplicants,percentAdmitted,percentEnrolled,
-                             academicScale,socialScale,qualityOfLifeScale,emphases);
+	  try {
+		  return uniCont.addUniversity(name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
+                  expenses,percentFinancialAid,numApplicants,percentAdmitted,percentEnrolled,
+                  academicScale,socialScale,qualityOfLifeScale,emphases);
+	  }
+	  catch(IllegalArgumentException e)
+	  {
+		  return -1;
+	  }
   }
   
   /**

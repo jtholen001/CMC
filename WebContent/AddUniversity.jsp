@@ -12,6 +12,17 @@
 <br>
 Add University Form:<br>
 <br>
+<p>
+<%
+String error = request.getParameter("Error");
+	if(error!=null){
+		if (error.equals("-1"))
+			out.print("Uh-Oh! Looks like that name already exists. Try re-naming your University.");
+		else
+			out.print("All fields but emphases are required! You appear to be missing some.");
+	}
+%>
+</p>
 <form method="post" action="AddUniversity_action.jsp" name="addUniversity"><br>
 <table style="width: 400; height: 128px;">
 <tbody>
