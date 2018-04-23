@@ -43,10 +43,10 @@ public class UserInterface
    * @param password of the user
    * @return boolean successful
    */
-  public <t extends UserInterface> UserInterface login(String username, String password, String authKey)
+  public <t extends UserInterface> UserInterface login(String username, String password)
   {
 	try {
-    User user = lc.login(username, password, authKey);
+    User user = lc.login(username, password);
     if (user != null)
     {
       char type = user.getType();
@@ -61,7 +61,7 @@ public class UserInterface
     }
       return null;
 	  }
-	  catch (IllegalArgumentException | GeneralSecurityException iae)
+	  catch (IllegalArgumentException iae)
 	  {
 		  return null;
 	  }

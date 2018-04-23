@@ -42,6 +42,8 @@ public class LoginController
 
 			if ((password.equals(correctPassword)) && (!loggedIn) && (activated)) // successful login
 			{
+				if (dbc.isTfaEnabled(username))
+					this.twoFactorAuthenticate(username)
 				user.setLoggedInStatus(true);
 				return user;
 			}
