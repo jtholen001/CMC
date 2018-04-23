@@ -22,66 +22,72 @@ Add University Form:<br>
 <tr>
 <td>State</td>
 <td> <select name="State" style="width: 172px;">
-		<option value="Alabama"></option>
-		<option value="Alaska"></option>
-		<option value="Arizona"></option>
-		<option value="Arkansas"></option>
-		<option value="California"></option>
-		<option value="Colorado"></option>
-		<option value="Connecticut"></option>
-		<option value="Delaware"></option>
-		<option value="Florida"></option>
-		<option value="Georgia"></option>
-		<option value="Hawaii"></option>
-		<option value="Idaho"></option>
-		<option value="Illinois"></option>
-		<option value="Indiana"></option>
-		<option value="Iowa"></option>
-		<option value="Kansas"></option>
-		<option value="Kentucky"></option>
-		<option value="Louisiana"></option>
-		<option value="Maine"></option>
-		<option value="Maryland"></option>
-		<option value="Massachusetts"></option>
-		<option value="Michigan"></option>
-		<option value="Minnesota"></option>
-		<option value="Mississippi"></option>
-		<option value="Missouri"></option>
-		<option value="Montana"></option>
-		<option value="Nebraska"></option>
-		<option value="Nevada"></option>
-		<option value="New Hampshire"></option>
-		<option value="New Jersey"></option>
-		<option value="New Mexico"></option>
-		<option value="New York"></option>
-		<option value="North Carolina"></option>
-		<option value="North Dakota"></option>
-		<option value="Ohio"></option>
-		<option value="Oklahoma"></option>
-		<option value="Oregon"></option>
-		<option value="Pennsylvania"></option>
-		<option value="Rhode Island"></option>
-		<option value="South Carolina"></option>
-		<option value="South Dakota"></option>
-		<option value="Tennessee"></option>
-		<option value="Texas"></option>
-		<option value="Utah"></option>
-		<option value="Vermont"></option>
-		<option value="Virrginia"></option>
-		<option value="Washington"></option>
-		<option value="West Virginia"></option>
-		<option value="Wisconsin"></option>
-		<option value="Wyoming"></option>
+		<option value="Alabama">Alabama</option>
+		<option value="Alaska">Alaska</option>
+		<option value="Arizona">Arizona</option>
+		<option value="Arkansas">Arkansas</option>
+		<option value="California">California</option>
+		<option value="Colorado">Colorado</option>
+		<option value="Connecticut">Connecticut</option>
+		<option value="Delaware">Delaware</option>
+		<option value="Florida">Florida</option>
+		<option value="Georgia">Georgia</option>
+		<option value="Hawaii">Hawaii</option>
+		<option value="Idaho">Idaho</option>
+		<option value="Illinois">Illinois</option>
+		<option value="Indiana">Indiana</option>
+		<option value="Iowa">Iowa</option>
+		<option value="Kansas">Kansas</option>
+		<option value="Kentucky">Kentucky</option>
+		<option value="Louisiana">Louisiana</option>
+		<option value="Maine">Maine</option>
+		<option value="Maryland">Maine</option>
+		<option value="Massachusetts">Massachusetts</option>
+		<option value="Michigan">Michigan</option>
+		<option value="Minnesota">Minnesota</option>
+		<option value="Mississippi">Mississippi</option>
+		<option value="Missouri">Missouri</option>
+		<option value="Montana">Montana</option>
+		<option value="Nebraska">Nebraska</option>
+		<option value="Nevada">Nevada</option>
+		<option value="New Hampshire">New Hampshire</option>
+		<option value="New Jersey">New Jersey</option>
+		<option value="New Mexico">New Mexico</option>
+		<option value="New York">New York</option>
+		<option value="North Carolina">North Carolina</option>
+		<option value="North Dakota">North Dakota</option>
+		<option value="Ohio">Ohio</option>
+		<option value="Oklahoma">Oklahoma</option>
+		<option value="Oregon">Oregon</option>
+		<option value="Pennsylvania">Pennsylvania</option>
+		<option value="Rhode Island">Rhode Island</option>
+		<option value="South Carolina">South Carolina</option>
+		<option value="South Dakota">South Dakota</option>
+		<option value="Tennessee">Tennessee</option>
+		<option value="Texas">Texas</option>
+		<option value="Utah">Utah</option>
+		<option value="Vermont">Vermont</option>
+		<option value="Virrginia">Virrginia</option>
+		<option value="Washington">Washington</option>
+		<option value="West Virginia">West Virginia</option>
+		<option value="Wisconsin">Wisconsin</option>
+		<option value="Wyoming">Wyoming</option>
 	</select>
 </td>
 </tr>
 <tr>
 <td>Location</td>
-<td><input name="Location"></td>
+<td><select name="Location" style="width: 172px;">
+		<option value="Suburban">Suburban</option>
+		<option value="Urban">Urban</option>
+		<option value="Small-City">Small-City</option>		
+		</select></td>
 </tr>
 <tr>
 <td>Control</td>
-<td><input name="Control"></td>
+<td><input type="radio" name="Control" value="Public">Public
+	<input type="radio" name="Control" value="Private">Private
+</td>
 </tr>
 <tr>
 <td>Number Of Students</td>
@@ -121,15 +127,27 @@ Add University Form:<br>
 </tr>
 <tr>
 <td>Academic Scale (1-5)</td>
-<td><input name="academicScale"></td>
+<td><input type="radio" name="academicScale" value="1">1
+	<input type="radio" name="academicScale" value="1">2
+	<input type="radio" name="academicScale" value="1">3
+	<input type="radio" name="academicScale" value="1">4
+	<input type="radio" name="academicScale" value="1">5</td>
 </tr>
 <tr>
 <td>Social Scale (1-5)</td>
-<td><input name="socialScale"></td>
+<td><input type="radio" name="socialScale" value="1">1
+	<input type="radio" name="socialScale" value="1">2
+	<input type="radio" name="socialScale" value="1">3
+	<input type="radio" name="socialScale" value="1">4
+	<input type="radio" name="socialScale" value="1">5</td>
 </tr>
 <tr>
 <td>Quality Of Life Scale (1-5)</td>
-<td><input name="qualityOfLifeScale"></td>
+<td><input type="radio" name="qualityOfLifeScale" value="1">1
+	<input type="radio" name="qualityOfLifeScale" value="1">2
+	<input type="radio" name="qualityOfLifeScale" value="1">3
+	<input type="radio" name="qualityOfLifeScale" value="1">4
+	<input type="radio" name="qualityOfLifeScale" value="1">5</td>
 </tr>
 <tr>
 <td>Emphases<br><br>*You may add more<br>emphases later</td>
