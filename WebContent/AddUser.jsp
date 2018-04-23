@@ -24,19 +24,18 @@ border="1" cellpadding="2" cellspacing="2">
 <script>
 	function isValidFirst()
 	{
-		alert("This script is being called");
 		var s = document.getElementById("First").value;
-
-		if(s.length() <= 0)
+		if(s == null)
 			{
-			document.getElementById("Add").disabled = true;
+				document.getElementById("Add").disabled = true;
 	   			document.getElementById("errorFN").innerHTML = "Name cannot be empty";
 		   }
 		else
 		{
+				alert(:got here";)
 		   document.getElementById("Add").disabled = false;
 	  	   document.getElementById("errorFN").innerHTML = "";
-		}
+		} 
 	}
 </script>
 </td>
@@ -148,6 +147,9 @@ name="Reset" type="reset"></td>
 </table>
 <br>
 </form>
+<form method="post" action="ManageUsers.jsp">
+	    <input name="Cancel" value="Cancel" type="submit">
+	</form>
 <br>
 </body>
 </html>
