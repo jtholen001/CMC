@@ -11,7 +11,8 @@ if (userInt == null){
 	response.sendRedirect("index.jsp?Error=-1");
 }
 else if (userInt instanceof StudentInterface) {
-	if (!userInt.isActivated())
+	StudentInterface studentInt = (StudentInterface)userInt;
+	if (!studentInt.isActivated())
 		response.sendRedirect("index.jsp?Error=-2");
 	else {
 	session.setAttribute("userInt", userInt);
@@ -19,7 +20,8 @@ else if (userInt instanceof StudentInterface) {
 	}
 }
 else {
-	if (!userInt.isActivated())
+	AdminInterface adminInt = (AdminInterface)userInt;
+	if (!adminInt.isActivated())
 		response.sendRedirect("index.jsp?Error=-2");
 	else {
 	session.setAttribute("userInt", userInt);

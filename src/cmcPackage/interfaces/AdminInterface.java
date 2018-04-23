@@ -56,6 +56,16 @@ public class AdminInterface extends UserInterface
   }
   
   /**
+   * Method to check if admin is deactivated
+   * 
+   * @return boolean representation of activation status
+   */
+  public Boolean isActivated()
+  {
+	  return this.admin.getActivationStatus(); 
+  }
+  
+  /**
    * A method that allows an Admin to edit a specific User
    * 
    * @param username the username of the user to edit

@@ -65,6 +65,16 @@ public class StudentInterface extends UserInterface
   }
   
   /**
+   * Method to check if student is deactivated
+   * 
+   * @return boolean representation of activation status
+   */
+  public Boolean isActivated()
+  {
+	  return this.student.getActivationStatus(); 
+  }
+  
+  /**
    * Method to edit the Student's profile 
    * 
    * @param firstName a String representing the first name of a Student
