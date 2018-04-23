@@ -1,7 +1,6 @@
 
-<%@page language="java" import="cmcPackage.interfaces.*"%>
+<%@page language="java" import="cmcPackage.interfaces.*" import="java.io.*"%>
 <%
-
 String username = request.getParameter("Username");
 String password = request.getParameter("Password");
 UserInterface ui = new UserInterface();

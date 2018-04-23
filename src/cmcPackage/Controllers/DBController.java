@@ -36,10 +36,12 @@ public class DBController
 	 *  2-factor authentication utility
 	 */
 	TimeBasedOneTimePasswordUtil tfaUtil;
+	
 
 	public DBController()
 	{
 	}
+	
  
 	/**
 	 * This method gets a user's data based on their username
@@ -474,7 +476,8 @@ public class DBController
 	    try
 	    {
 	    	//InputStream in = this.getClass().getClassLoader().getResourceAsStream("/authentication_keys.txt");
-	      Scanner scan = new Scanner(new File("src/cmcPackage/authentication_keys.txt"));
+	      	Scanner scan = new Scanner(new File("authentication_keys.txt"));
+	    	//Scanner scan = new Scanner(is);
 	      while(scan.hasNextLine())
 	      {
 	    	String line = scan.nextLine();
@@ -489,6 +492,7 @@ public class DBController
 	    }
 	    catch (FileNotFoundException e)
 	    {
+	    	//e.printStackTrace();
 	      System.out.println("2FA local database file not found");
 	    }
 	    
@@ -560,10 +564,7 @@ public class DBController
 	
 	public boolean tfaAuthenticate(String key, String username) {
 		try {
-			if (key.equals(tfaUtil.generateCurrentNumberString(this.readTfaFromFile().get(username))))
-				return true;
-			else
-				return false;
+			return key.equals(tfaUtil.generateCurrentNumberString(this.readTfaFromFile().get(username)));
 		}
 		catch (GeneralSecurityException e) { return false;}
 	}
