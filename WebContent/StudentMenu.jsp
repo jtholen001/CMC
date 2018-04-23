@@ -2,7 +2,7 @@
 <%@include file="verifyLogin.jsp"  %>
 <html>
 <head>
-<title>Insert title here</title>
+<title>Student Menu</title>
 </head>
 <body>
 <%
