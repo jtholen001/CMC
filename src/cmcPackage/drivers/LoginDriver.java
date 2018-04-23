@@ -42,7 +42,7 @@ public class LoginDriver
 		System.out.println("Testign 2FA functonalities");
 		System.out.println("Is 2FA working for juser (should be false): " + dbCont.isTfaEnabled("juser"));
 		System.out.println("2FA enabled for juser" + dbCont.enableTfa(dbCont.getUser("juser")));
-		System.out.println("2FA enabled for juser" + dbCont.enableTfa(dbCont.getUser("mcarroll")));
+		//System.out.println("2FA enabled for juser" + dbCont.enableTfa(dbCont.getUser("mcarroll")));
 		//System.out.println("Authenticated: " + dbCont.tfaAuthenticate("570415", "juser"));
 		//dbCont.disableTfa(dbCont.getUser("juser"));
 		
