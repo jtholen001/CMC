@@ -10,7 +10,23 @@
 <title>Manage Universities</title>
 </head>
 <body>
-
+<p style="color:green;">
+<%
+//message for adding a University
+String addSuccess = request.getParameter("AddSuccess");
+if (addSuccess != null && addSuccess.equals("1"))
+	out.print("Successfully added a University");
+		
+//message for editing a University
+String editSuccess = request.getParameter("EditSuccess");
+if (editSuccess != null && editSuccess.equals("1"))
+	out.print("Successfully edited a University");
+		
+//message for deleting a University
+String deleteSuccess = request.getParameter("DeleteSuccess");
+if (deleteSuccess != null && deleteSuccess.equals("1"))
+	out.print("Successfully deleted a University");%>
+</p>
 
 <table>
 <tbody>

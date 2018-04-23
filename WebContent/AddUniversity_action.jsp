@@ -18,7 +18,13 @@ if(!request.getParameter("emphases2".toString()).trim().equals(""))
 if(!request.getParameter("emphases3".toString()).trim().equals(""))
 	emphases.add(request.getParameter("emphases3"));
 
-boolean responded = false;
+/* 
+which page to direct the admin to.
+0: no errors, back to ManageUniversities.jsp
+1: error1, Database duplicate name, back to AddUniversities.jsp
+2: error2. not all field were filled out. back to AddUniversities.jsp
+*/
+int next = 0;
 try{
 String name = request.getParameter("SchoolName");
 String state = request.getParameter("State");
@@ -41,18 +47,21 @@ int result = adminInt.addUniversity(name, state, location, control, numberOfStud
 									percentFemale, SATVerbal, SATMath, expenses, 
 									percentFinancialAid, numberOfApplicants, percentAdmitted,
 									percentEnrolled, academicScale, socialScale,
-									qualityOfLifeScale, new ArrayList<String>());
+									qualityOfLifeScale, emphases);
 if (result==-1){
-	responded = true;
-	response.sendRedirect("AddUniversity.jsp?Error=-1");
+	next = 1;
 	}
 }
 catch(NumberFormatException nfe){
-	response.sendRedirect("AddUniversity.jsp?Error=-2");
+	next = 2;
 }
 
-if (responded = false)
-	response.sendRedirect("ManageUniversities.jsp");
+if (next == 0)
+	response.sendRedirect("ManageUniversities.jsp?AddSuccess=1");
+else if(next == 1)
+	response.sendRedirect("AddUniversity.jsp?Error=-1");
+else if(next == 2)
+	response.sendRedirect("AddUniversity.jsp?Error=-2");
 %>
 </body>
 </html>

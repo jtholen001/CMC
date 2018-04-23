@@ -8,7 +8,7 @@
 	AdminInterface adminInt = (AdminInterface)session.getAttribute("userInt");
     University toDelete = adminInt.getUniversity(request.getParameter("UniversityName"));
 	adminInt.deleteUniversity(toDelete);
-	response.sendRedirect("ManageUniversities.jsp");
+	response.sendRedirect("ManageUniversities.jsp?DeleteSuccess=1");
 %>
 <html>
 <head>
