@@ -18,12 +18,13 @@ if(!request.getParameter("emphases2".toString()).trim().equals(""))
 if(!request.getParameter("emphases3".toString()).trim().equals(""))
 	emphases.add(request.getParameter("emphases3"));
 
+boolean responded = false;
+try{
 String name = request.getParameter("SchoolName");
 String state = request.getParameter("State");
 String location = request.getParameter("Location");
 String control = request.getParameter("Control");
-int numberOfStudents;
-numberOfStudents = Integer.parseInt(request.getParameter("numberOfStudents"));
+int numberOfStudents = Integer.parseInt(request.getParameter("numberOfStudents"));
 double percentFemale = Double.parseDouble(request.getParameter("percentFemale"));
 double SATVerbal = Double.parseDouble(request.getParameter("SATVerbal"));
 double SATMath = Double.parseDouble(request.getParameter("SATMath"));
@@ -36,14 +37,22 @@ int academicScale = Integer.parseInt(request.getParameter("academicScale"));
 int socialScale = Integer.parseInt(request.getParameter("socialScale"));
 int qualityOfLifeScale = Integer.parseInt(request.getParameter("qualityOfLifeScale"));
 
-adminInt.addUniversity(name, state, location, control, numberOfStudents, 
-						percentFemale, SATVerbal, SATMath, expenses, 
-						percentFinancialAid, numberOfApplicants, percentAdmitted,
-						percentEnrolled, academicScale, socialScale,
-						qualityOfLifeScale, new ArrayList<String>());
+int result = adminInt.addUniversity(name, state, location, control, numberOfStudents, 
+									percentFemale, SATVerbal, SATMath, expenses, 
+									percentFinancialAid, numberOfApplicants, percentAdmitted,
+									percentEnrolled, academicScale, socialScale,
+									qualityOfLifeScale, new ArrayList<String>());
+if (result==-1){
+	responded = true;
+	response.sendRedirect("AddUniversity.jsp?Error=-1");
+	}
+}
+catch(NumberFormatException nfe){
+	response.sendRedirect("AddUniversity.jsp?Error=-2");
+}
 
-
-response.sendRedirect("ManageUniversities.jsp");
+if (responded = false)
+	response.sendRedirect("ManageUniversities.jsp");
 %>
 </body>
 </html>
