@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 
 import dblibrary.project.csci230.*;
@@ -453,12 +454,13 @@ public class DBController
 	 *
 	 * @return a hashmap of master 2fa keys where the user name is the key and the String key is a value
 	 */
-	public HashMap<User, String>readTfaFromFile() {
-	    HashMap<User, String> authKeys = new HashMap<User, String>();
+	public HashMap<String, String>readTfaFromFile() {
+	    HashMap<String, String> authKeys = new HashMap<String, String>();
+	    //System.out.println(new File(".").getAbsolutePath());
 	    
 	    try
 	    {
-	      Scanner scan = new Scanner(new File("authorization_keys.txt"));
+	      Scanner scan = new Scanner(new File("src/cmcPackage/authentication_keys.txt"));
 	      while(scan.hasNextLine())
 	      {
 	    	String line = scan.nextLine();
@@ -466,7 +468,7 @@ public class DBController
 	        String username = commaSeperator[0];
 	        String key = commaSeperator[1];
 	        
-	        authKeys.put(this.getUser(username), key);
+	        authKeys.put(username, key);
 	      }
 	      
 	      scan.close();
@@ -485,32 +487,42 @@ public class DBController
 	 * @return string representing URL of QR code for user to scan
 	 */
 	public String enableTfa(User user) {
-		HashMap<User, String> authKeys = this.readTfaFromFile();
+		HashMap<String, String> authKeys = this.readTfaFromFile();
 		
-		if (authKeys.containsKey(user)) { // user already has 2FA enabled, this will reset it
+		if (authKeys.containsKey(user.getUsername())) { // user already has 2FA enabled, this will reset it
 			authKeys.remove(user);
 			String newMasterKey = tfaUtil.generateBase32Secret();
 			String qrCodeUrl = tfaUtil.qrImageUrl("CMC" + "_" + user.getUsername(), newMasterKey);
-			authKeys.put(user, newMasterKey);
+			authKeys.put(user.getUsername(), newMasterKey);
 			this.writeTfaToFile(authKeys);
 			return qrCodeUrl;
 		}
 		else {
 			String masterKey = tfaUtil.generateBase32Secret();
 			String qrCodeUrl = tfaUtil.qrImageUrl("CMC" + "_" + user.getUsername(), masterKey);
-			authKeys.put(user, masterKey);
+			authKeys.put(user.getUsername(), masterKey);
 			this.writeTfaToFile(authKeys);
 			return qrCodeUrl;
 		}
 	}
 	
-	public void writeTfaToFile(HashMap<User, String> authKeys) {
+	public void disableTfa(User user) {
+		HashMap<String, String> authKeys = this.readTfaFromFile();
+		if (authKeys.containsKey(user.getUsername())) {
+			authKeys.remove(user.getUsername());
+			this.writeTfaToFile(authKeys);
+		}
+		else {
+			throw new IllegalArgumentException("User does not have 2FA enabled");
+		}
+	}
+	
+	public void writeTfaToFile(HashMap<String, String> authKeys) {
 		try {
-			PrintWriter out = new PrintWriter("authentication_keys.txt", "UTF-8");
+			PrintWriter out = new PrintWriter("src/cmcPackage/authentication_keys.txt", "UTF-8");
 			
-			for (User u : authKeys.keySet()) {
-				String username = u.getUsername();
-				String key = authKeys.get(u);
+			for (String username : authKeys.keySet()) {
+				String key = authKeys.get(username);
 				out.println(username + "," + key);
 			}
 			
@@ -524,12 +536,22 @@ public class DBController
 	
 	public boolean isTfaEnabled(String username) {
 		User u = this.getUser(username);
-		HashMap<User, String> authKeys = this.readTfaFromFile();
+		HashMap<String, String> authKeys = this.readTfaFromFile();
 		
-		if (authKeys.containsKey(u))
+		if (authKeys.containsKey(u.getUsername()))
 			return true;
 		else
 			return false;
+	}
+	
+	public boolean tfaAuthenticate(String key, String username) {
+		try {
+			if (key.equals(tfaUtil.generateCurrentNumberString(this.readTfaFromFile().get(username))))
+				return true;
+			else
+				return false;
+		}
+		catch (GeneralSecurityException e) { return false;}
 	}
 
 }

@@ -36,9 +36,9 @@ public class StudentInterface extends UserInterface
   private StudentUniversitiesController suc;
   
   /**
-   * LoginController that will be associated with the StudentInterface
+   * Database controller
    */
-  private LoginController lc;
+  private DBController dbc;
   
   /**
    * Constructor for a StudentInterface
@@ -51,7 +51,6 @@ public class StudentInterface extends UserInterface
     this.pc = new ProfileController(this.student);
     this.sc = new SearchController();
     this.suc = new StudentUniversitiesController(this.student);
-    this.lc = new LoginController(); 
   }
   
   /**
@@ -62,6 +61,11 @@ public class StudentInterface extends UserInterface
   public String viewProfile()
   {
    return this.pc.viewProfile(); 
+  }
+  
+  public boolean isTfaEnabled()
+  {
+	 return dbc.isTfaEnabled(student.getUsername());
   }
   
   /**
