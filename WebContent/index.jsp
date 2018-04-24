@@ -5,11 +5,12 @@
 </head>
 <body>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="cmcPackage.*" %>
+<h2>Welcome to CMC.</h2>
 <% 
 String error = request.getParameter("Error");
 if(error != null) {
 	if (error.equals("-1"))
-		out.print("Incorrect password or username");
+		out.print("Incorrect username or password");
 	else if (error.equals("-2"))
 		out.print("Account deactivated. Contact system administrator.");
 	else if (error.equals("-4"))

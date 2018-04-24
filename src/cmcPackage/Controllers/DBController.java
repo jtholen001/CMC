@@ -9,8 +9,11 @@ package cmcPackage.Controllers;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.io.Writer;
+import java.net.URL;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 
@@ -471,13 +474,13 @@ public class DBController
 	 */
 	public HashMap<String, String>readTfaFromFile() {
 	    HashMap<String, String> authKeys = new HashMap<String, String>();
-	    System.out.println(new File(".").getAbsolutePath());
+	    //System.out.println(new File(".").getAbsolutePath());
 	    
-	    try
-	    {
-	    	//InputStream in = this.getClass().getClassLoader().getResourceAsStream("/authentication_keys.txt");
-	      	Scanner scan = new Scanner(new File("authentication_keys.txt"));
-	    	//Scanner scan = new Scanner(is);
+	    //try
+	    //{
+	    	InputStream in = this.getClass().getResourceAsStream("authentication_keys.txt"); // works with authentication_keys.txt in src/Controllers but accesses from bin isntead of src
+	      	//Scanner scan = new Scanner(new File("authentication_keys.txt"));
+	    	Scanner scan = new Scanner(in);
 	      while(scan.hasNextLine())
 	      {
 	    	String line = scan.nextLine();
@@ -489,12 +492,12 @@ public class DBController
 	      }
 	      
 	      scan.close();
-	    }
-	    catch (FileNotFoundException e)
-	    {
-	    	//e.printStackTrace();
-	      System.out.println("2FA local database file not found");
-	    }
+	    //}
+	    //catch (FileNotFoundException e)
+	    //{
+	    //	//e.printStackTrace();
+	    //  System.out.println("2FA local database file not found");
+	    //}
 	    
 	    return authKeys;
 	}
@@ -537,7 +540,10 @@ public class DBController
 	
 	public void writeTfaToFile(HashMap<String, String> authKeys) {
 		try {
-			PrintWriter out = new PrintWriter("src/cmcPackage/authentication_keys.txt", "UTF-8");
+			//URL url = this.getClass().getResource("authentication_keys.txt");
+			//String path = url.getPath();
+			//PrintWriter out = new PrintWriter(path);
+			PrintWriter out = new PrintWriter("src/cmcPackage/Controllers/authentication_keys.txt", "UTF-8");
 			
 			for (String username : authKeys.keySet()) {
 				String key = authKeys.get(username);
@@ -564,6 +570,8 @@ public class DBController
 	
 	public boolean tfaAuthenticate(String key, String username) {
 		try {
+			System.out.println("Attempt: " + key);
+			System.out.println("Reply: " + this.readTfaFromFile().get(username));
 			return key.equals(tfaUtil.generateCurrentNumberString(this.readTfaFromFile().get(username)));
 		}
 		catch (GeneralSecurityException e) { return false;}

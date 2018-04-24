@@ -10,6 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Manage My Profile</title>
 </head>
+<h2>Manage My Profile</h2>
 <body>
 <form action="EditProfile_action.jsp" name="EditProfile">
 <table style="text-align: left; width: 50%;" border="1" cellpadding="2" cellspacing="2">
@@ -100,6 +101,7 @@
 	<td style="vertical-align: top">Type</td>
 	<td style="vertical-align: top"><input readonly="readonly" name="Type" value=<%out.print(studentInt.getStudent().getType());%>></td>
 </tr> 
+
 </tbody>
 </table>
 <br>
@@ -107,5 +109,47 @@
 <input value="Reset Form"
 name="Reset" type="reset">
 </form>
+<br>
+
+Security
+<table style="text-align: left; width: 50%;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+	<td style="vertical-align: top">2-Factor Authentication</td>
+	<%
+	if (studentInt.isTfaEnabled()) {
+	 %>
+	 <td style="vertical-align: top"><form action="Enable2FA_action.jsp"><input type="submit" value="Reset 2FA" /></form></td>
+	 <td style="vertical-align: top"><form action="Disable2FA_action.jsp"><input type="submit" value="Disable 2FA" /></form></td>
+	 <%
+	 } 
+	 else {%>
+	<td style="vertical-align: top"><form action="Enable2FA_action.jsp"><input type="submit" value="Enable 2FA" /></form></td>
+	<%}%>
+</tr>
+<%
+String error = request.getParameter("Error");
+if(error != null) {
+	if (error.equals("-9"))
+		out.print("2FA is not enabled.");
+		}
+		
+String disabled = request.getParameter("Disabled");
+if(disabled != null) {
+	if (disabled.equals("1"))
+		out.print("2FA is now disabled.");
+		}
+		
+String enabled = request.getParameter("Enabled");
+if(disabled != null) {
+	if (disabled.equals("1")) {
+		out.print("2FA is now enabled.");
+		out.println(request.getParameter("tfaUrl"));
+		}
+		}
+ %>
+
+</tbody>
+</table>
 </body>
 </html>
