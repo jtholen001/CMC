@@ -25,14 +25,14 @@ border="1" cellpadding="2" cellspacing="2">
 	function isValidFirst()
 	{
 		var s = document.getElementById("First").value;
-		if(s == null)
+		if(s == "")
 			{
 				document.getElementById("Add").disabled = true;
-	   			document.getElementById("errorFN").innerHTML = "Name cannot be empty";
+	   			document.getElementById("errorFN").innerHTML = "First name cannot be empty";
 		   }
 		else
 		{
-				alert(:got here";)
+				
 		   document.getElementById("Add").disabled = false;
 	  	   document.getElementById("errorFN").innerHTML = "";
 		} 
@@ -43,15 +43,49 @@ border="1" cellpadding="2" cellspacing="2">
 <tr>
 <td style="vertical-align: top;">Last Name<br>
 </td>
-<td style="vertical-align: top;"><input name="LastName"><br>
+<td style="vertical-align: top;"><input name="LastName" id="Last" onblur="isValidLast()"><br>
 <font color="red" id="errorLN"></font>
+<script>
+	function isValidLast()
+	{
+		var s = document.getElementById("Last").value;
+		if(s == "")
+			{
+				document.getElementById("Add").disabled = true;
+	   			document.getElementById("errorLN").innerHTML = "Last name cannot be empty";
+		   }
+		else
+		{
+				
+		   document.getElementById("Add").disabled = false;
+	  	   document.getElementById("errorLN").innerHTML = "";
+		} 
+	}
+</script>
 </td>
 </tr>
 <tr>
 <td style="vertical-align: top;">Username<br>
 </td>
-<td style="vertical-align: top;"><input name="Username"><br>
-<font color="red" id="errorUN"></font> </td>
+<td style="vertical-align: top;"><input name="Username" id="UserName" onblur="isValidUsername()"><br>
+<font color="red" id="errorUN"></font> 
+<script>
+	function isValidUsername()
+	{
+		var s = document.getElementById("UserName").value;
+		if(s == "")
+			{
+				document.getElementById("Add").disabled = true;
+	   			document.getElementById("errorUN").innerHTML = "Username cannot be empty";
+		   }
+		else
+		{
+				
+		   document.getElementById("Add").disabled = false;
+	  	   document.getElementById("errorUN").innerHTML = "";
+		} 
+	}
+</script></td>
 </tr>
 <tr>
 <td style="vertical-align: top;">Password<br>
