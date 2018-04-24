@@ -1,7 +1,8 @@
 <%@include file="verifyLogin.jsp"  %>
 <html>
 <head>
-<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<title></title>
 </head>
 <body>
 <%
@@ -11,6 +12,7 @@
 Hello <%out.print(adminInt.getAdmin().getFirstName() + " " + adminInt.getAdmin().getLastName()); %>!
 <br><a href="ManageUsers.jsp"><br>Manage Users</a><br>
 <br><a href="ManageUniversities.jsp">Manage Universities</a><br>
+<br><a href="Logout_Action.jsp">Logout</a><br>
 <br>
 
 </body>

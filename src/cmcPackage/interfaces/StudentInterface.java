@@ -15,29 +15,29 @@ import cmcPackage.Controllers.*;
 public class StudentInterface extends UserInterface
 {
 	/**
-	 * Student that will be associated with the StudentInterface
-	 */
-	private Student student;
-
-	/**
-	 * ProfileController that will be associated with the StudentInterface
-	 */
-	private ProfileController pc;
-
-	/**
-	 * SearchController that will be associated with the StudentInterface
-	 */
-	private SearchController sc;
-
-	/**
-	 * StudentUniversitiesController that will be associated with the StudentInterface
-	 */
-	private StudentUniversitiesController suc;
-
-	/**
-	 * LoginController that will be associated with the StudentInterface
-	 */
-	private LoginController lc;
+	   * Student that will be associated with the StudentInterface
+	   */
+	  private Student student;
+	  
+	  /**
+	   * ProfileController that will be associated with the StudentInterface
+	   */
+	  private ProfileController pc;
+	  
+	  /**
+	   * SearchController that will be associated with the StudentInterface
+	   */
+	  private SearchController sc;
+	  
+	  /**
+	   * StudentUniversitiesController that will be associated with the StudentInterface
+	   */
+	  private StudentUniversitiesController suc;
+	  
+	  /**
+	   * Database controller
+	   */
+	  private DBController dbc;
 
 	/**
 	 * Constructor for a StudentInterface
@@ -45,13 +45,13 @@ public class StudentInterface extends UserInterface
 	 * @param student the student that will be associated with the StudentInterface
 	 */
 	public StudentInterface(Student student)
-	{
-		DBController db = new DBController();
+	{	
+		this.dbc = new DBController();
 		this.student = student;
-		this.pc = new ProfileController(this.student,db);
-		this.sc = new SearchController(db);
-		this.suc = new StudentUniversitiesController(this.student,db);
-		this.lc = new LoginController(db); 
+	    this.pc = new ProfileController(this.student,dbc);
+	    this.sc = new SearchController(dbc);
+	    this.suc = new StudentUniversitiesController(this.student,dbc);
+	    
 	}
 	
 	public StudentInterface(Student student, DBController temp)
@@ -61,18 +61,31 @@ public class StudentInterface extends UserInterface
 		this.pc = new ProfileController(this.student,temp);
 		this.sc = new SearchController(temp);
 		this.suc = new StudentUniversitiesController(this.student,temp);
-		this.lc = new LoginController(temp); 
 	}
 
-	/**
-	 * Method to veiw the Student's profile
-	 * 
-	 * @return a string representation of this student's profile
-	 */
-
+  /**
+   * Method to view the Student's profile
+   * 
+   * @return a string representation of this student's profile
+   */
   public String viewProfile()
   {
    return this.pc.viewProfile(); 
+  }
+  
+  public boolean isTfaEnabled()
+  {
+	 return dbc.isTfaEnabled(this.getStudent().getUsername());
+  }
+  
+  /**
+   * Method to check if student is deactivated
+   * 
+   * @return boolean representation of activation status
+   */
+  public Boolean isActivated()
+  {
+	  return this.getStudent().getActivationStatus(); 
   }
   
   /**
@@ -84,13 +97,8 @@ public class StudentInterface extends UserInterface
    * @return integer representing success of edit
    */
   public int editProfile(String firstName, String lastName, String password)
-  {
-	  try {
-   return this.pc.editProfile(firstName, lastName, password); 
-	  }
-	  catch (IllegalArgumentException iae) {
-		  return -1;
-	  }
+  {  
+		  return this.pc.editProfile(firstName, lastName, password); 
   }
   
   /**

@@ -6,22 +6,38 @@
  */
 package cmcPackage.Controllers;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 
 import dblibrary.project.csci230.*;
 import cmcPackage.entityClasses.*;
 
 import java.util.HashMap;
+import java.util.Scanner;
+
+import javax.servlet.ServletContext;
+
+import com.j256.twofactorauth.*;
 
 public class DBController implements Runnable
 {
 	HashMap<String,University> storedUniversities;
+	private UniversityDBLibrary univDBlib;
+	private boolean run;
+	private Thread thread;
+	/**
+	 *  2-factor authentication utility
+	 */
+	TimeBasedOneTimePasswordUtil tfaUtil;
+	
 	/**
 	 * Construct a database controller
 	 */
-	private UniversityDBLibrary univDBlib;
-	private boolean run;
-	Thread thread;
 
 	public DBController()
 	{
@@ -61,8 +77,6 @@ public class DBController implements Runnable
 			}
 		}
 	}
-
-
 	/**
 	 * This method gets a user's data based on their username
 	 * 
@@ -534,5 +548,110 @@ public class DBController implements Runnable
 				j.printStackTrace();
 			}
 		}
+	}
+	
+	/**
+	 * Method to get all users who have 2FA enabled from local database file
+	 *
+	 * @return a hashmap of master 2fa keys where the user name is the key and the String key is a value
+	 */
+	public HashMap<String, String>readTfaFromFile() {
+	    HashMap<String, String> authKeys = new HashMap<String, String>();
+	    System.out.println(new File(".").getAbsolutePath());
+	    
+	    try
+	    {
+	    	//InputStream in = this.getClass().getClassLoader().getResourceAsStream("/authentication_keys.txt");
+	      	Scanner scan = new Scanner(new File("authentication_keys.txt"));
+	    	//Scanner scan = new Scanner(is);
+	      while(scan.hasNextLine())
+	      {
+	    	String line = scan.nextLine();
+	    	String[] commaSeperator = line.split(",");
+	        String username = commaSeperator[0];
+	        String key = commaSeperator[1];
+	        
+	        authKeys.put(username, key);
+	      }
+	      
+	      scan.close();
+	    }
+	    catch (FileNotFoundException e)
+	    {
+	    	//e.printStackTrace();
+	      System.out.println("2FA local database file not found");
+	    }
+	    
+	    return authKeys;
+	}
+	
+	/**
+	 * Method to enable 2FA for a user. If 2FA is already enabled, a new master key will be set
+	 *
+	 * @return string representing URL of QR code for user to scan
+	 */
+	public String enableTfa(User user) {
+		HashMap<String, String> authKeys = this.readTfaFromFile();
+		
+		if (authKeys.containsKey(user.getUsername())) { // user already has 2FA enabled, this will reset it
+			authKeys.remove(user);
+			String newMasterKey = tfaUtil.generateBase32Secret();
+			String qrCodeUrl = tfaUtil.qrImageUrl("CMC" + " (" + user.getUsername() + ")", newMasterKey);
+			authKeys.put(user.getUsername(), newMasterKey);
+			this.writeTfaToFile(authKeys);
+			return qrCodeUrl;
+		}
+		else {
+			String masterKey = tfaUtil.generateBase32Secret();
+			String qrCodeUrl = tfaUtil.qrImageUrl("CMC" + "_" + user.getUsername(), masterKey);
+			authKeys.put(user.getUsername(), masterKey);
+			this.writeTfaToFile(authKeys);
+			return qrCodeUrl;
+		}
+	}
+	
+	public void disableTfa(User user) {
+		HashMap<String, String> authKeys = this.readTfaFromFile();
+		if (authKeys.containsKey(user.getUsername())) {
+			authKeys.remove(user.getUsername());
+			this.writeTfaToFile(authKeys);
+		}
+		else {
+			throw new IllegalArgumentException("User does not have 2FA enabled");
+		}
+	}
+	
+	public void writeTfaToFile(HashMap<String, String> authKeys) {
+		try {
+			PrintWriter out = new PrintWriter("src/cmcPackage/authentication_keys.txt", "UTF-8");
+			
+			for (String username : authKeys.keySet()) {
+				String key = authKeys.get(username);
+				out.println(username + "," + key);
+			}
+			
+			out.close();
+			
+		} catch (FileNotFoundException | UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean isTfaEnabled(String username) {
+		User u = this.getUser(username);
+		HashMap<String, String> authKeys = this.readTfaFromFile();
+		
+		if (authKeys.containsKey(u.getUsername()))
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean tfaAuthenticate(String key, String username) {
+		try {
+			return key.equals(tfaUtil.generateCurrentNumberString(this.readTfaFromFile().get(username)));
+		}
+		catch (GeneralSecurityException e) { return false;}
 	}
 }

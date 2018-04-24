@@ -38,9 +38,8 @@ public class LoginController
      {
       String correctPassword = user.getPassword();
       boolean loggedIn = user.getLoggedInStatus();
-      boolean activated = user.getActivationStatus();
 
-      if ((password.equals(correctPassword)) && (!loggedIn) && (activated)) // successful login
+      if ((password.equals(correctPassword)) && (!loggedIn)) // successful login
       {
         user.setLoggedInStatus(true);
         return user;
@@ -52,12 +51,7 @@ public class LoginController
 //        this.loggedInAccount();
 //        return null;
 //      }
-      
-      else if (!activated) // deactivated account
-      {
-        this.deactivatedAccount();
-        return null;
-      }
+
       else
       {
         this.invalidCredentials(); // invalid password
@@ -69,7 +63,7 @@ public class LoginController
       this.invalidCredentials();
       return null;
     }
-   
+
    }
 
    //TODO: maybe we don't need to check the user's loggedInStatus because it is saved locally, not in DB
@@ -80,14 +74,6 @@ public class LoginController
 //   {
 //     System.out.println("Account already logged in from a different location.");
 //   }
-
-   /**
-    * This method prints a login outor message indicating that the account is deactivated
-    */
-   public void deactivatedAccount()
-   {
-     System.out.println("Account deactivated. Contact system administrator.");
-   }
 
    /**
     * This method prints a login outor message indicating that the credentials are invalid

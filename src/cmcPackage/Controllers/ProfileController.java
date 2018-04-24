@@ -6,6 +6,8 @@
 
 package cmcPackage.Controllers;
 
+import java.util.ArrayList;
+
 import cmcPackage.entityClasses.*;
 
 public class ProfileController
@@ -37,8 +39,8 @@ public class ProfileController
    */
   public int editProfile(String firstName, String lastName, String password)
   {
-	  if (firstName == null || lastName == null || password == null ||
-			  firstName.trim().isEmpty() || lastName.trim().isEmpty() || password.trim().isEmpty())
+	  if (firstName == null || lastName == null || !meetsPasswordCriteria(password) ||
+			  firstName.trim().isEmpty() || lastName.trim().isEmpty())
 		  throw new IllegalArgumentException();
 	  
     this.student.setFirstName(firstName);
@@ -56,4 +58,85 @@ public class ProfileController
   {
     return this.student.toString();
   }
+  
+  /**
+   * This method calculates if a given password meets the minimum criteria
+   * @param password
+   * @return true if the password meets requirements, false otherwise
+   */
+	private boolean meetsPasswordCriteria(String password)
+	  {
+				boolean validLength = false;
+				boolean containsCapital = false;
+				boolean containsLower = false;
+				boolean containsNum = false;
+				boolean containsSpecialChar = false;
+				ArrayList<Character> specialChars = new ArrayList<Character>();
+				specialChars.add('!');
+				specialChars.add('@');
+				specialChars.add('#');
+				specialChars.add('$');
+				specialChars.add('%');
+				specialChars.add('^');
+				specialChars.add('&');
+				specialChars.add('*');
+				specialChars.add('(');
+				specialChars.add(')');
+				specialChars.add('`');
+				specialChars.add('~');
+				specialChars.add('[');
+				specialChars.add(']');
+				specialChars.add('{');
+				specialChars.add('}');
+				specialChars.add('-');
+				specialChars.add('_');
+				specialChars.add('=');
+				specialChars.add('+');
+				specialChars.add('\\');
+				specialChars.add('|');
+				specialChars.add(';');
+				specialChars.add(':');
+				specialChars.add('\'');
+				specialChars.add('\"');
+				specialChars.add(',');
+				specialChars.add('<');
+				specialChars.add('.');
+				specialChars.add('>');
+				specialChars.add('/');
+				specialChars.add('?');
+				
+				
+				if(password.length() >= 6)
+					validLength = true;
+	
+				for (int i = 0; i < password.length(); i++)
+				{
+					if(Character.isDigit(password.charAt(i)))
+					{
+						containsNum = true;
+	
+					}
+					else if(specialChars.contains(password.charAt(i)))
+					{
+						containsSpecialChar = true;
+					}
+				    else if(Character.isUpperCase(password.charAt(i)))
+					{
+				    	containsCapital = true;
+					}
+				   else if(Character.isLowerCase(password.charAt(i)))
+					{
+					   containsLower = true;
+					}
+				}
+	
+			   if(!validLength || !containsCapital || !containsLower || !containsNum || !containsSpecialChar)
+			   {
+				   return false;
+			   }
+			   else
+				{
+				   return true;
+				}
+	  }
 }

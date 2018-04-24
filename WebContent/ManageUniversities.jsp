@@ -5,57 +5,60 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="styles.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Manage Universities</title>
 </head>
 <body>
+<p style="color:green;">
+<%
+//message for adding a University
+String addSuccess = request.getParameter("AddSuccess");
+if (addSuccess != null && addSuccess.equals("1"))
+	out.print("Successfully added a University");
+		
+//message for editing a University
+String editSuccess = request.getParameter("EditSuccess");
+if (editSuccess != null && editSuccess.equals("1"))
+	out.print("Successfully edited a University");
+		
+//message for deleting a University
+String deleteSuccess = request.getParameter("DeleteSuccess");
+if (deleteSuccess != null && deleteSuccess.equals("1"))
+	out.print("Successfully deleted a University");%>
+</p>
 
-<table style="text-align: left; width: 100%;" border="1" cellpadding="2"
-cellspacing="2">
+<table>
 <tbody>
 <tr align="center">
 
-<td colspan="8" rowspan="1" style="vertical-align: top;"><a
-href="Add.jsp">ADD A UNIVERSITY</a>
+<td colspan="18" style="vertical-align: top; text-align: center; font-size: 16px">
+	<form method="post" action="AdminMenu.jsp">
+	    <input name="Return" value="Return to Menu" type="submit"> 
+	    <a href="AddUniversity.jsp">ADD A UNIVERSITY</a>
+	</form>
 </td>
-
 </tr>
+
 <tr>
-<td></td>
-<td style="vertical-align: top; text-align: center;">School
-</td>
-<td style="vertical-align: top; text-align: center;">State
-</td>
-<td style="vertical-align: top; text-align: center;">Location
-</td>
-<td style="vertical-align: top; text-align: center;">Control
-</td>
-<td style="vertical-align: top; text-align: center;"># of Students
-</td>
-<td style="vertical-align: top; text-align: center;">% Females
-</td>
-<td style="vertical-align: top; text-align: center;">SAT Verbal
-</td>
-<td style="vertical-align: top; text-align: center;">SAT Math
-</td>
-<td style="vertical-align: top; text-align: center;">Expenses
-</td>
-<td style="vertical-align: top; text-align: center;">% with Financial Aid
-</td>
-<td style="vertical-align: top; text-align: center;"># of Applicants
-</td>
-<td style="vertical-align: top; text-align: center;">% Admitted
-</td>
-<td style="vertical-align: top; text-align: center;">% Enrolled
-</td>
-<td style="vertical-align: top; text-align: center;">Academic Scale (1-5)
-</td>
-<td style="vertical-align: top; text-align: center;">Social Scale (1-5)
-</td>
-<td style="vertical-align: top; text-align: center;">Quality of Life Scale (1-5)
-</td>
-<td style="vertical-align: top; text-align: center;">
-</td>
+<th></th>
+<th>School</th>
+<th>State</th>
+<th>Location</th>
+<th>Control</th>
+<th># of Students</th>
+<th>% Female</th>
+<th>SAT Verbal</th>
+<th>SAT Math</th>
+<th>Expenses</th>
+<th>% with Financial Aid</th>
+<th># of Applicants</th>
+<th>% Admitted</th>
+<th>% Enrolled</th>
+<th>Academic Scale (1-5)</th>
+<th>Social Scale (1-5)</th>
+<th>Quality of Life Scale (1-5)</th>
+<th></th>
 </tr>
 <%AdminInterface adminInt = (AdminInterface)session.getAttribute("userInt");
 HashMap<String, University> allUniversities = adminInt.viewUniversities();

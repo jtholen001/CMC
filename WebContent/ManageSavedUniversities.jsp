@@ -21,22 +21,24 @@ cellspacing="2">
 </td>
 
 <%
+
 Set<String> savedUniversities = studentInt.viewSavedUniversities().keySet();
+TreeSet<String> sortedUniversities = new TreeSet(savedUniversities);
 
 
-for(String u: savedUniversities)
+for(String u: sortedUniversities)
 {
 %>
 	<tr>
 	<td style="vertical-align: top;">
-	<form method="post" action="RemoveStudentUniversity_action.jsp" name="Remove">
+	<form method="post" action="DeleteSavedUniversity_action.jsp" name="Remove">
 	    <input name="Remove" value="Remove" type="submit">
 	    <input name="University" value='<%=u %>' type="hidden">
 	</form>
 	<td style="vertical-align: top;"><%=u%>
 	</td>
 	<td style="vertical-align: top;">
-	<form method="post" action="ViewUniversity.jsp" name="View">
+	<form method="post" action="ViewSavedUniversity.jsp" name="View">
 	    <input name="View" value="View" type="submit">
 	    <input name="University" value='<%=u %>' type="hidden">
 	</form>
@@ -46,6 +48,9 @@ for(String u: savedUniversities)
 %>
 </tbody>
 </table>
+		<form method="post" action="StudentMenu.jsp">
+	    <input name="Return" value="Return to Menu" type="submit">
+	</form>
 </body>
 </html>
 

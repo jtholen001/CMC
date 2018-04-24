@@ -152,11 +152,15 @@
 				<tr>
 					<td><input value="Submit" name="Log in" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 					<td><input value="Cancel" name="Reset" type="reset"></td>
+					
 
 
 				</tr>
 			</tbody>
 		</table>
+	</form>
+	<form method="post" action="AdminMenu.jsp">
+	    <input name="Return" value="Return to Menu" type="submit">
 	</form>
 </body>
 </html>

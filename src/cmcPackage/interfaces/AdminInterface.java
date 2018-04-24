@@ -66,6 +66,16 @@ public class AdminInterface extends UserInterface
   }
   
   /**
+   * Method to check if admin is deactivated
+   * 
+   * @return boolean representation of activation status
+   */
+  public Boolean isActivated()
+  {
+	  return this.admin.getActivationStatus(); 
+  }
+  
+  /**
    * A method that allows an Admin to edit a specific User
    * 
    * @param username the username of the user to edit
@@ -80,7 +90,7 @@ public class AdminInterface extends UserInterface
    */
   public void editUser(String username, String newFirst, String newLast, String newPassword, char newType, boolean newActivation, boolean newLoggedIn)
   {
-    uCont.editUser(username, newFirst, newLast, newPassword, newType, newActivation, newLoggedIn);
+		  uCont.editUser(username, newFirst, newLast, newPassword, newType, newActivation, newLoggedIn);
   }
   
   /**
@@ -99,7 +109,7 @@ public class AdminInterface extends UserInterface
   public void addUser(String firstName, String lastName, String username, String password, char type ,boolean isActivated,
                         boolean isLoggedIn)
   {
-	  uCont.addUser(firstName, lastName, username, password, type, isActivated, isLoggedIn);
+		  uCont.addUser(firstName, lastName, username, password, type, isActivated, isLoggedIn);
   }
   
   /**
@@ -183,7 +193,7 @@ public class AdminInterface extends UserInterface
                              academicScale,socialScale,qualityOfLifeScale,emphases);
   }
   
-  /**
+  /**String
    * A method that allows an Admin to add a new University
    * 
    * @param name a String representing the edited name of the University
@@ -210,9 +220,15 @@ public class AdminInterface extends UserInterface
          double expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
                              int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
   {
-     return uniCont.addUniversity(name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
-                             expenses,percentFinancialAid,numApplicants,percentAdmitted,percentEnrolled,
-                             academicScale,socialScale,qualityOfLifeScale,emphases);
+	  try {
+		  return uniCont.addUniversity(name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
+                  expenses,percentFinancialAid,numApplicants,percentAdmitted,percentEnrolled,
+                  academicScale,socialScale,qualityOfLifeScale,emphases);
+	  }
+	  catch(IllegalArgumentException e)
+	  {
+		  return -1;
+	  }
   }
   
   /**

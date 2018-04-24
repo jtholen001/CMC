@@ -1,6 +1,6 @@
 <html>
 <head>
-
+<link rel="stylesheet" type="text/css" href="styles.css">
 <title>Login Form</title>
 </head>
 <body>
@@ -10,6 +10,8 @@ String error = request.getParameter("Error");
 if(error != null) {
 	if (error.equals("-1"))
 		out.print("Incorrect password or username");
+	else if (error.equals("-2"))
+		out.print("Account deactivated. Contact system administrator.");
 	else if (error.equals("-4"))
 		out.print("User must be logged in to access system pages");
 }
@@ -31,12 +33,13 @@ border="1" cellpadding="2" cellspacing="2">
 <td style="vertical-align: top;"><input type = "password" name="Password"> </td>
 </tr>
 <tr>
-<td><input value="Log in"
+<td style="vertical-align: top;"><input value="Log in"
 name="Log in" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td><input value="Reset"
+<td style="vertical-align: top;"><input value="Reset"
 name="Reset" type="reset"></td>
 </tr>
-<br>
+</tbody>
+</table>
 </form>
 <br>
 </body>

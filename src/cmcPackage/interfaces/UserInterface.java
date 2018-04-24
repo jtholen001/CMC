@@ -6,10 +6,9 @@
  */
 package cmcPackage.interfaces;
 
-
-
-import cmcPackage.Controllers.LoginController;
+import java.util.ArrayList;
 import cmcPackage.Controllers.DBController;
+import cmcPackage.Controllers.LoginController;
 import cmcPackage.entityClasses.*;
 
 
@@ -29,6 +28,11 @@ public class UserInterface
    *  AdminInterface for the UserInterface
    */
   private AdminInterface ai;
+  
+  /**
+   *  Database controller for the UserInterface
+   */
+  private DBController dbc;
   
   /**
    * Default constructor
@@ -52,7 +56,7 @@ public class UserInterface
    */
   public <t extends UserInterface> UserInterface login(String username, String password)
   {
-	  try {
+	try {
     User user = lc.login(username, password);
     if (user != null)
     {
@@ -73,6 +77,11 @@ public class UserInterface
 		  return null;
 	  }
   }
+  
+  public boolean twoFactorAuthenticate(String key, String username) {
+	   return dbc.tfaAuthenticate(key, username);
+  }
+  
   /**
    * A method that logs out a user
    * 

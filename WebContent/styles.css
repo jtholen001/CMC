@@ -1,0 +1,39 @@
+/*
+To include the styles in your file, include the following tag inside the <head> tag
+
+<link rel="stylesheet" type="text/css" href="styles.css">
+*/
+
+/*zebra-stripes tables*/
+tr:nth-child(even) {background-color: #C0C0C0;}
+
+/*table borders and alignments*/
+table{    
+    border: 5px solid maroon;
+    text-align: left;
+}
+
+/*table data*/
+td{
+	border: 1px solid maroon;
+	text-align: left;
+	font-size: 12px;
+}
+
+/*table header*/
+th{
+	background-color: #696969;
+	color: maroon;
+	font-size: 14px;
+}
+
+a:hover { 
+    background-color: yellow;
+}
+
+/*defines a paragraph, use for error messages*/
+p{
+	font-size: 12px;
+	color: red;
+}
+
