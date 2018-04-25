@@ -12,39 +12,49 @@ import cmcPackage.entityClasses.*;
 
 public class AdminInterface extends UserInterface
 {  
-  /**
-   * an instance of UsersController
-   */
-  private UsersController uCont;
-  
-  /**
-   * an instance of UniversityController
-   */
-  private UniversityController uniCont;
-  
-  /**
-   * an instance of LoginController
-   */
-  private LoginController lc;
-  
-  /**
-   * an Admin object that is interacting with the program
-   */
-  private Admin admin;
-  
-  /**
-   * Constructor for an AdminInterface
-   * 
-   * @param admin the admin object to use
-   */
-  public AdminInterface(Admin admin)
-  {
-    this.admin = admin;
-    this.uCont = new UsersController();
-    this.uniCont = new UniversityController();
-    this.lc = new LoginController();
-  }
-  
+	/**
+	 * an instance of UsersController
+	 */
+	private UsersController uCont;
+
+	/**
+	 * an instance of UniversityController
+	 */
+	private UniversityController uniCont;
+
+	/**
+	 * an instance of LoginController
+	 */
+	private LoginController lc;
+
+	/**
+	 * an Admin object that is interacting with the program
+	 */
+	private Admin admin;
+
+	/**
+	 * Constructor for an AdminInterface
+	 * 
+	 * @param admin the admin object to use
+	 */
+	public AdminInterface(Admin admin)
+	{
+		DBController db = new DBController();
+		this.admin = admin;
+		this.uCont = new UsersController(db);
+		this.uniCont = new UniversityController(db);
+		this.lc = new LoginController(db);
+	}
+
+	public AdminInterface(Admin admin, DBController temp)
+	{
+		super(temp);
+		this.admin = admin;
+		this.uCont = new UsersController(temp);
+		this.uniCont = new UniversityController(temp);
+		this.lc = new LoginController(temp);
+	}
+
   /**
    * A method that displays all User objects in the Database
    * 

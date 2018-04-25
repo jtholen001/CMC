@@ -16,19 +16,57 @@
   <tbody>
 <tr>
 	<td style="vertical-align: top">First Name</td>
-	<td style="vertical-align: top"><input name="firstName" value=<%out.print(studentInt.getStudent().getFirstName());%>></td>
+	<td style="vertical-align: top;"><input name="FirstName" id="First" onblur="isValidFirst()"value=<%=studentInt.getStudent().getFirstName()%>><br>
+<font color="red" id="errorFN"></font>
+<script>
+	function isValidFirst()
+	{
+		var s = document.getElementById("First").value;
+		if(s == "")
+			{
+				document.getElementById("Edit").disabled = true;
+	   			document.getElementById("errorFN").innerHTML = "First name cannot be empty";
+		   }
+		else
+		{
+				
+		   document.getElementById("Edit").disabled = false;
+	  	   document.getElementById("errorFN").innerHTML = "";
+		} 
+	}
+</script>
+</td>
 </tr>
 <tr>
 	<td style="vertical-align: top">Last Name</td>
-	<td style="vertical-align: top"><input name="lastName" value=<%out.print(studentInt.getStudent().getLastName());%>></td>
+	<td style="vertical-align: top;"><input name="LastName" id="Last" onblur="isValidLast()" value=<%=studentInt.getStudent().getLastName()%>><br>
+<font color="red" id="errorLN"></font>
+<script>
+	function isValidLast()
+	{
+		var s = document.getElementById("Last").value;
+		if(s == "")
+			{
+				document.getElementById("Edit").disabled = true;
+	   			document.getElementById("errorLN").innerHTML = "Last name cannot be empty";
+		   }
+		else
+		{
+				
+		   document.getElementById("Edit").disabled = false;
+	  	   document.getElementById("errorLN").innerHTML = "";
+		} 
+	}
+</script>
+</td>
 </tr>  
 <tr>
 	<td style="vertical-align: top">Username</td>
-	<td style="vertical-align: top"><input readonly="readonly" name="Username" value=<%out.print(studentInt.getStudent().getUsername());%>></td>
+	<td style="vertical-align: top"><input readonly="readonly" name="Username" value=<%=studentInt.getStudent().getUsername()%>></td>
 </tr> 
 <tr>
 	<td style="vertical-align: top">Password</td>
-<td style="vertical-align: top;"><input name="Password" id="Password" onblur="meetsPasswordCriteria()" value=<%out.print(studentInt.getStudent().getPassword());%>>
+<td style="vertical-align: top;"><input name="Password" id="Password" onblur="meetsPasswordCriteria()" value=<%=studentInt.getStudent().getPassword()%>>
 <font color="red" id="error"></font>
 <script>
 	function meetsPasswordCriteria()
@@ -98,7 +136,7 @@
 </tr> 
 <tr>
 	<td style="vertical-align: top">Type</td>
-	<td style="vertical-align: top"><input readonly="readonly" name="Type" value=<%out.print(studentInt.getStudent().getType());%>></td>
+	<td style="vertical-align: top"><input readonly="readonly" name="Type" value=<%=studentInt.getStudent().getType()%>></td>
 </tr> 
 </tbody>
 </table>

@@ -23,10 +23,10 @@ public class ProfileController
    * 
    * @param student the name of this student
    */
-  public ProfileController(Student student)
+  public ProfileController(Student student, DBController db)
   {
     this.student = student;
-    dbc = new DBController();
+    dbc = db;
   }
 
   /**

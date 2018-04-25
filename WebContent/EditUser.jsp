@@ -22,14 +22,50 @@ border="1" >
 <tr>
 <td style="vertical-align: top;">First Name<br>
 </td>
-<td style="vertical-align: top;"><input name="FirstName" value=<%=u.getFirstName()%>><br>
+<td style="vertical-align: top;"><input name="FirstName" id="First" onblur="isValidFirst()"value=<%=u.getFirstName()%>><br>
+<font color="red" id="errorFN"></font>
+<script>
+	function isValidFirst()
+	{
+		var s = document.getElementById("First").value;
+		if(s == "")
+			{
+				document.getElementById("Edit").disabled = true;
+	   			document.getElementById("errorFN").innerHTML = "First name cannot be empty";
+		   }
+		else
+		{
+				
+		   document.getElementById("Edit").disabled = false;
+	  	   document.getElementById("errorFN").innerHTML = "";
+		} 
+	}
+</script>
 </td>
 </tr>
 <tr>
 <tr>
 <td style="vertical-align: top;">Last Name<br>
 </td>
-<td style="vertical-align: top;"><input name="LastName" value=<%=u.getLastName()%>><br>
+<td style="vertical-align: top;"><input name="LastName" id="Last" onblur="isValidLast()" value=<%=u.getLastName()%>><br>
+<font color="red" id="errorLN"></font>
+<script>
+	function isValidLast()
+	{
+		var s = document.getElementById("Last").value;
+		if(s == "")
+			{
+				document.getElementById("Edit").disabled = true;
+	   			document.getElementById("errorLN").innerHTML = "Last name cannot be empty";
+		   }
+		else
+		{
+				
+		   document.getElementById("Edit").disabled = false;
+	  	   document.getElementById("errorLN").innerHTML = "";
+		} 
+	}
+</script>
 </td>
 </tr>
 <tr>
@@ -110,12 +146,34 @@ border="1" >
 <tr>
 <td style="vertical-align: top;">Type<br>
 </td>
-<td style="vertical-align: top;"><input name="Type" value=<%=u.getType()%>> </td>
+<td>
+<%
+if(u.getType()=='u')
+{
+	out.println("<input type=\"radio\" name=\"Type\" value='u' checked=\"checked\">Student<input type=\"radio\" name=\"Type\" value='a'>Admin");
+}
+else
+{
+	out.println("<input type=\"radio\" name=\"Type\" value='u'>Student<input type=\"radio\" name=\"Type\" value='a' checked=\"checked\">Admin");
+}
+%>
+</td>
 </tr>
 <tr>
 <td style="vertical-align: top;">Status<br>
 </td>
-<td style="vertical-align: top;"><input name="Status" value=<%=u.getActivationStatus()%>> </td>
+<td>
+<%
+if(u.getActivationStatus() == true)
+{
+	out.println("<input type=\"radio\" name=\"Status\" value='true' checked=\"checked\">Active<input type=\"radio\" name=\"Status\" value='false'>Inactive</td>");
+}
+else
+{
+	out.println("<input type=\"radio\" name=\"Status\" value='true'>Active<input type=\"radio\" name=\"Status\" value='false' checked=\"checked\">Inactive</td>");
+}
+%>
+</td>
 </tr>
 
 <tr>

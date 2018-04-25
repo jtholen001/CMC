@@ -44,6 +44,13 @@ public class SearchController
 		this.universities = this.dbc.viewUniversities();
 		this.universityNames = this.universities.keySet();
 	}
+	
+	public SearchController(DBController temp)
+	{
+		this.dbc = temp;
+		this.universities = this.dbc.viewUniversities();
+		this.universityNames = this.universities.keySet();
+	}
 
 	/**
 	 * Method to search for universities

@@ -28,6 +28,7 @@ public class StudentUniversitiesControllerTest {
 	public void init(){
 		ArrayList<String> emphases = new ArrayList<String>();
 		emphases.add("MATH");
+		dbc = new DBController();
 		universities1 = new ArrayList<University>();
 		universities2 = new ArrayList<University>();
 		u1 = new University("TestUniversity1", "Minnesota", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, emphases );
@@ -35,8 +36,7 @@ public class StudentUniversitiesControllerTest {
 		universities1.add(u1);
 		universities1.add(u2);
 		student = new Student("Test", "Student", "user", "password", 'a', true, false, new ArrayList<University>());
-		suc = new StudentUniversitiesController(student);
-		dbc = new DBController();
+		suc = new StudentUniversitiesController(student,dbc);
 		dbc.addUser(student);
 		dbc.addUniversity(u1);
 		dbc.addUniversity(u2);
@@ -74,7 +74,7 @@ public class StudentUniversitiesControllerTest {
 	@Test
 	public void testViewUniversity() {
 		Assert.assertTrue("returned University should match expected result for viewing a university", suc.viewUniversity(u1.getName()).equals(u1));
-
+		
 	}
 
 	/**

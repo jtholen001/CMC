@@ -29,9 +29,9 @@ public class Driver
 		dbCont = new DBController();
 		student = new Student("John", "User", "juser", "password", 'u', true, false, new ArrayList<University>());
 		admin = new Admin("Noreen", "Admin", "nadmin", "admin", 'a', true, false);
-		userInt = new UserInterface();
-		studentInt = new StudentInterface(student);
-		adminInt = new AdminInterface(admin);
+		userInt = new UserInterface(dbCont);
+		studentInt = new StudentInterface(student,dbCont);
+		adminInt = new AdminInterface(admin,dbCont);
 	}
 	
 	/**
@@ -57,6 +57,7 @@ public class Driver
 	
 	public void searchForUniversities() 
 	{
+
 //		//U3
 //		System.out.println("Showing U3: Search for Schools\n");
 //		System.out.println("Searching with the following criteria: \"UNIVERSITY\", null, \"URBAN\", \"PRIVATE\", 0, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, new ArrayList<String>()");
@@ -98,6 +99,7 @@ public class Driver
 //		System.out.println(dummyUniversity);
 //
 //	
+
 		//U10
 		ArrayList<University> recommendedUniversities = studentInt.getRecommendedUniversities(dbCont.getUniversity("SMITH"));
 		System.out.println("\nShowing U10: View Recommended Schools\n");
@@ -166,7 +168,7 @@ public class Driver
 		System.out.println(studentInt.viewProfile() + "\n");
 		
 		System.out.println("Editing user using empty paramater - should fail");
-		success = studentInt.editProfile("", "Miller", "password");
+		//success = studentInt.editProfile("", "Miller", "password");
 		if (success == -1)
 			System.out.println("Edit failed - database returned -1");
 		
@@ -194,7 +196,7 @@ public class Driver
 		   */
 		  System.out.println("\nShowing U18: Add User");
 		  System.out.println("\nAdding Student User with following attributes: Miss, Pelled, mpelled001, password0, 'u', true, false");
-		 // success = adminInt.addUser("Miss", "Pelled", "mpelled001", "password0", 'u', true, false);
+		  adminInt.addUser("Miss", "Pelled", "mpelled001", "password0", 'u', true, false);
 //		  if (success == -1)
 //		   System.out.println("Add User failed because Database returned -1");
 //		  else
@@ -202,10 +204,7 @@ public class Driver
 		  
 		  //showing add user functionality fails if the username already exists
 		  System.out.println("\nTry to add User with following attributes: Pant, Olones, mpelled001, password0, 'u', true, false");
-		 // success = adminInt.addUser("Pant", "Olones", "mpelled001", "password0", 'u', true, false);
-//		  if (success == -1)
-//		   System.out.println("Add User failed; username already exists in the Database");
-//		  else
+		  adminInt.addUser("Pant", "Olones", "mpelled001", "password0", 'u', true, false);
 		   System.out.println("Add User successful, Database did not return -1");
 		  
 		  //creating temporary User object to show manipulating functionalities
@@ -245,6 +244,7 @@ public class Driver
 		   * showing edit User functionality
 		   */
 		  System.out.println("\nEdit User Miss Pelled's last name to \"Takes\"");
+		  adminInt.editUser("mpelled001", "Miss", "Takes", "password0", 'u', false, false);
 		 // success = adminInt.editUser("mpelled001", "Miss", "Takes", "password0", 'u', false, false);
 		  if (success == -1)
 		   System.out.println("Edit User failed because Database returned -1");
@@ -253,6 +253,7 @@ public class Driver
 		  
 		  //showing edit User functionality does not work when feeding an empty attribute
 		  System.out.println("\nTry to edit User Miss Pelled's last name to \"[Empty String]\"");
+		  adminInt.editUser("mpelled001", "Miss", "", "mpelled001", 'u', false, false);
 		//  success = adminInt.editUser("mpelled001", "Miss", "", "mpelled001", 'u', false, false);
 		  if (success == -1)
 		   System.out.println("Edit User failed because an attribute was left blank");
@@ -281,34 +282,34 @@ public class Driver
 		System.out.println("Viewing Universities");
 		System.out.println(adminInt.viewUniversities());
 		
-		System.out.println("Adding a University: \"University of CMC\" with attributes \"University of CMC\", \"Arizona\", \"urban\", \"public\", 5, 0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>()");
-		int success = adminInt.addUniversity("University of CMC", "Arizona", "urban", "public", 5, 0.0, 500.0, 500.0, 100.0, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
-		if (success != -1) {
-			System.out.println("\"University of CMC\" added to Database\n");
-			System.out.println(dbCont.getUniversity("University of CMC")+ "\n");
-		}
-		else
-			System.out.println("Adding University failed.");
-		
-		System.out.println("\nAttempting to add University that already exists: \"University of CMC\" with attributes \"University of CMC\", \"Arizona\", \"urban\", \"public\", 5, 0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>()");
-		success = adminInt.addUniversity("University of CMC", "Arizona", "urban", "public", 5, 0.0, 500.0, 500.0, 100.0, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
-		if (success != -1)
-			System.out.println("\"University of CMC\" added to Database");
-		else
-			System.out.println("Adding University failed.");
-		
-		System.out.println("\nEditing a University: \"University of CMC\"");
-
-		University toBeEdited = new University("University of CMC", "Arizona", "urban", "public", 5, 0.0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
-		success = adminInt.editUniversity(toBeEdited, "University of CMC", "urban", "public", 5, 0.0, 500.0, 500.0, 100.0, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
-		if (success != -1) {
-			System.out.println("Changed the state of University of CMC: \"Arizona\" to \"Hawaii\"" + "\n");
-			System.out.println(dbCont.getUniversity("University of CMC")+ "\n");
-		}
-		else
-			System.out.println("Editing University failed.");
-		
-	    adminInt.deleteUniversity(toBeEdited);
+//		System.out.println("Adding a University: \"University of CMC\" with attributes \"University of CMC\", \"Arizona\", \"urban\", \"public\", 5, 0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>()");
+//		int success = adminInt.addUniversity("University of CMC", "Arizona", "urban", "public", 5, 0.0, 500.0, 500.0, 100.0, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
+//		if (success != -1) {
+//			System.out.println("\"University of CMC\" added to Database\n");
+//			System.out.println(dbCont.getUniversity("University of CMC")+ "\n");
+//		}
+//		else
+//			System.out.println("Adding University failed.");
+//		
+//		System.out.println("\nAttempting to add University that already exists: \"University of CMC\" with attributes \"University of CMC\", \"Arizona\", \"urban\", \"public\", 5, 0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>()");
+//		success = adminInt.addUniversity("University of CMC", "Arizona", "urban", "public", 5, 0.0, 500.0, 500.0, 100.0, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
+//		if (success != -1)
+//			System.out.println("\"University of CMC\" added to Database");
+//		else
+//			System.out.println("Adding University failed.");
+//		
+//		System.out.println("\nEditing a University: \"University of CMC\"");
+//
+//		University toBeEdited = new University("University of CMC", "Arizona", "urban", "public", 5, 0.0, 500, 500, 100, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
+//		success = adminInt.editUniversity(toBeEdited, "University of CMC", "urban", "public", 5, 0.0, 500.0, 500.0, 100.0, 0.0, 5, 100.0, 100.0, 1, 1, 1, new ArrayList<String>());
+//		if (success != -1) {
+//			System.out.println("Changed the state of University of CMC: \"Arizona\" to \"Hawaii\"" + "\n");
+//			System.out.println(dbCont.getUniversity("University of CMC")+ "\n");
+//		}
+//		else
+//			System.out.println("Editing University failed.");
+//		
+//	    adminInt.deleteUniversity(toBeEdited);
 
 	}
 	
@@ -319,9 +320,9 @@ public class Driver
 	public static void main(String[] args)
 	{
 		Driver driver = new Driver();
-		System.out.println("Testing U1: Login, U20: Logout\n");
-		//driver.login();
-		System.out.println("\n----------------------------------------------");
+//		System.out.println("Testing U1: Login, U20: Logout\n");
+//		//driver.login();
+//		System.out.println("\n----------------------------------------------");
 		System.out.println("Testing U3: Search For Schools, U6: View Matched Schools, U7: View Specific School, U10 View Recommended Schools\n");
 		driver.searchForUniversities();
 //		System.out.println("\n----------------------------------------------");
