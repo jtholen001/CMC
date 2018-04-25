@@ -57,7 +57,7 @@ catch(NumberFormatException nfe){
 }
 
 if (next == 0)
-	response.sendRedirect("ManageUniversities.jsp?AddSuccess=1");
+	response.sendRedirect("ManageUniversities.jsp?AddSuccess=1%Name=" + name);
 else if(next == 1)
 	response.sendRedirect("AddUniversity.jsp?Error=-1");
 else if(next == 2)
