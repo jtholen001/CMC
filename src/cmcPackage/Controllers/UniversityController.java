@@ -64,25 +64,25 @@ public class UniversityController
    * 
    * @return -1 if unsucessfull, 0 otherwise
    */
-  public int editUniversity(University university, String state, String location, String control, int numStudents, double percentFemale, double SATVerbal, double SATMath,
-         double expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
-                             int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
+  public int editUniversity(University university, String state, String location, String control, String numStudents, String percentFemale, String SATVerbal, String SATMath,
+         String expenses, String percentFinancialAid, String numApplicants, String percentAdmitted, String percentEnrolled,
+                             String academicScale, String socialScale, String qualityOfLifeScale, ArrayList<String> emphases)
   { 
     university.setState(state);
     university.setLocation(location);
     university.setControl(control);
-    university.setNumStudents(numStudents);
-    university.setPercentFemale(percentFemale);
-    university.setSATVerbal(SATVerbal);
-    university.setSATMath(SATMath);
-    university.setExpenses(expenses);
-    university.setPercentFinancialAid(percentFinancialAid);
-    university.setNumApplicants(numApplicants);
-    university.setPercentAdmitted(percentAdmitted);
-    university.setPercentEnrolled(percentEnrolled);
-    university.setAcademicScale(academicScale);
-    university.setSocialScale(socialScale);
-    university.setQualityOfLifeScale(qualityOfLifeScale);
+    university.setNumStudents(Integer.parseInt(numStudents));
+    university.setPercentFemale(Double.parseDouble(percentFemale));
+    university.setSATVerbal(Double.parseDouble(SATVerbal));
+    university.setSATMath(Double.parseDouble(SATMath));
+    university.setExpenses(Double.parseDouble(expenses));
+    university.setPercentFinancialAid(Double.parseDouble(percentFinancialAid));
+    university.setNumApplicants(Integer.parseInt(numApplicants));
+    university.setPercentAdmitted(Double.parseDouble(percentAdmitted));
+    university.setPercentEnrolled(Double.parseDouble(percentEnrolled));
+    university.setAcademicScale(Integer.parseInt(academicScale));
+    university.setSocialScale(Integer.parseInt(socialScale));
+    university.setQualityOfLifeScale(Integer.parseInt(qualityOfLifeScale));
     university.setEmphases(emphases);
     
     return dbCont.saveEditedUniversity(university);
@@ -111,14 +111,14 @@ public class UniversityController
    * 
    * @return -1 if unsucessfull, 0 otherwise
    */
-  public int addUniversity(String name, String state, String location, String control, int numStudents, double percentFemale, double SATVerbal, double SATMath,
-         double expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
-                             int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
+  public int addUniversity(String name, String state, String location, String control, String numStudents, String percentFemale, String SATVerbal, String SATMath,
+         String expenses, String percentFinancialAid, String numApplicants, String percentAdmitted, String percentEnrolled,
+                             String academicScale, String socialScale, String qualityOfLifeScale, ArrayList<String> emphases)
   {    
     try{
-    	return dbCont.addUniversity(new University(name, state, location, control, numStudents, percentFemale, SATVerbal, SATMath, 
-                                        expenses, percentFinancialAid, numApplicants, percentAdmitted, percentEnrolled, 
-                                        academicScale, socialScale, qualityOfLifeScale, emphases));
+    	return dbCont.addUniversity(new University(name, state, location, control, Integer.parseInt(numStudents), Double.parseDouble(percentFemale), Double.parseDouble(SATVerbal), Double.parseDouble(SATMath), 
+                                        Double.parseDouble(expenses), Double.parseDouble(percentFinancialAid), Integer.parseInt(numApplicants), Double.parseDouble(percentAdmitted), Double.parseDouble(percentEnrolled), 
+                                        Integer.parseInt(academicScale), Integer.parseInt(socialScale), Integer.parseInt(qualityOfLifeScale), emphases));
     }
     catch(IllegalArgumentException illegalArg) {
     	throw illegalArg;

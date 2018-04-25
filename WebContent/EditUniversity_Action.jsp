@@ -24,37 +24,20 @@ for(i = 0; i < university.getEmphases().size(); i++)
 if(!request.getParameter("end").trim().equals(""))
 	emphases.add(request.getParameter("end"));
 
-int numStudents;
-int academicScale;
-int socialScale;
-int qualityOfLifeScale;
-int numApplicants;
+String numStudents = request.getParameter("numStudents");
+String academicScale = request.getParameter("academicScale");
+String socialScale = request.getParameter("socialScale");
+String qualityOfLifeScale = request.getParameter("qualityOfLife");
+String numApplicants = request.getParameter("numberOfApplicants");
 
-double percentFemale;
-double SATVerbal;
-double SATMath;
-double expenses;
-double percentFinancialAid;
-double percentAdmitted;
-double percentEnrolled;
-
-
-	numStudents = Integer.parseInt(request.getParameter("numStudents"));
-	academicScale = Integer.parseInt(request.getParameter("academicScale"));
-	socialScale = Integer.parseInt(request.getParameter("socialScale"));
-	qualityOfLifeScale = Integer.parseInt(request.getParameter("qualityOfLife"));
-	numApplicants = Integer.parseInt(request.getParameter("numberOfApplicants"));
+String percentFemale = request.getParameter("percentFemale");
+String SATVerbal = request.getParameter("SATVerbal");
+String SATMath = request.getParameter("SATMath");
+String expenses = request.getParameter("expenses");
+String percentFinancialAid = request.getParameter("percentFinancialAid");
+String percentAdmitted = request.getParameter("percentAdmitted");
+String percentEnrolled = request.getParameter("percentEnrolled");
 	
-	percentFemale = Double.parseDouble(request.getParameter("percentFemale"));
-	SATVerbal = Double.parseDouble(request.getParameter("SATVerbal"));
-	SATMath = Double.parseDouble(request.getParameter("SATMath"));
-	expenses = Double.parseDouble(request.getParameter("expenses"));
-	percentFinancialAid = Double.parseDouble(request.getParameter("percentFinancialAid"));
-	percentAdmitted = Double.parseDouble(request.getParameter("percentAdmitted"));
-	percentEnrolled = Double.parseDouble(request.getParameter("percentEnrolled"));
-
-
-
 adminInt.editUniversity(university, request.getParameter("state"), request.getParameter("location"), request.getParameter("control"), 
 		numStudents, percentFemale, SATVerbal, 
 		SATMath, expenses, percentFinancialAid, 

@@ -183,10 +183,10 @@ public class AdminInterface extends UserInterface
    */
   
   public int editUniversity(University university, String state, String location, String control, 
-                             int numStudents, double percentFemale, double SATVerbal, double SATMath,
-                             double expenses, double percentFinancialAid, int numApplicants, double percentAdmitted,
-                             double percentEnrolled,
-                             int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
+                             String numStudents, String percentFemale, String SATVerbal, String SATMath,
+                             String expenses, String percentFinancialAid, String numApplicants, String percentAdmitted,
+                             String percentEnrolled,
+                             String academicScale, String socialScale, String qualityOfLifeScale, ArrayList<String> emphases)
   {
     return uniCont.editUniversity(university,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
                              expenses,percentFinancialAid,numApplicants,percentAdmitted,percentEnrolled,
@@ -216,9 +216,9 @@ public class AdminInterface extends UserInterface
    * 
    * @return -1 if unsucessfull, 0 otherwise
    */
-  public int addUniversity(String name, String state, String location, String control, int numStudents, double percentFemale, double SATVerbal, double SATMath,
-         double expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
-                             int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
+  public int addUniversity(String name, String state, String location, String control, String numStudents, String percentFemale, String SATVerbal, String SATMath,
+         String expenses, String percentFinancialAid, String numApplicants, String percentAdmitted, String percentEnrolled,
+                             String academicScale, String socialScale, String qualityOfLifeScale, ArrayList<String> emphases)
   {
 	  try {
 		  return uniCont.addUniversity(name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,

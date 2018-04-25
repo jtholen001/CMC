@@ -30,20 +30,20 @@ String name = request.getParameter("SchoolName");
 String state = request.getParameter("State");
 String location = request.getParameter("Location");
 String control = request.getParameter("Control");
-int numberOfStudents = Integer.parseInt(request.getParameter("numberOfStudents"));
-double percentFemale = Double.parseDouble(request.getParameter("percentFemale"));
-double SATVerbal = Double.parseDouble(request.getParameter("SATVerbal"));
-double SATMath = Double.parseDouble(request.getParameter("SATMath"));
-double expenses = Double.parseDouble(request.getParameter("Expenses"));
-double percentFinancialAid = Double.parseDouble(request.getParameter("percentFinancialAid"));
-int numberOfApplicants = Integer.parseInt(request.getParameter("numberOfApplicants"));
-double percentAdmitted = Double.parseDouble(request.getParameter("percentAdmitted"));
-double percentEnrolled = Double.parseDouble(request.getParameter("percentEnrolled"));
-int academicScale = Integer.parseInt(request.getParameter("academicScale"));
-int socialScale = Integer.parseInt(request.getParameter("socialScale"));
-int qualityOfLifeScale = Integer.parseInt(request.getParameter("qualityOfLifeScale"));
+String numberOfStudents = request.getParameter("numberOfStudents");
+String percentFemale = request.getParameter("percentFemale");
+String SATVerbal = request.getParameter("SATVerbal");
+String SATMath = request.getParameter("SATMath");
+String expenses = request.getParameter("Expenses");
+String percentFinancialAid = request.getParameter("percentFinancialAid");
+String numberOfApplicants = request.getParameter("numberOfApplicants");
+String percentAdmitted = request.getParameter("percentAdmitted");
+String percentEnrolled = request.getParameter("percentEnrolled");
+String academicScale = request.getParameter("academicScale");
+String socialScale = request.getParameter("socialScale");
+String qualityOfLifeScale = request.getParameter("qualityOfLifeScale");
 
-int result = adminInt.addUniversity(name, state, location, control, numberOfStudents, 
+int result = adminInt.addUniversity((String)name, state, location, control, numberOfStudents, 
 									percentFemale, SATVerbal, SATMath, expenses, 
 									percentFinancialAid, numberOfApplicants, percentAdmitted,
 									percentEnrolled, academicScale, socialScale,
@@ -57,7 +57,7 @@ catch(NumberFormatException nfe){
 }
 
 if (next == 0)
-	response.sendRedirect("ManageUniversities.jsp?AddSuccess=1%Name=" + name);
+	response.sendRedirect("ManageUniversities.jsp");
 else if(next == 1)
 	response.sendRedirect("AddUniversity.jsp?Error=-1");
 else if(next == 2)
