@@ -45,7 +45,7 @@ adminInt.editUniversity(university, request.getParameter("state"), request.getPa
 		academicScale, socialScale, 
 		qualityOfLifeScale, emphases);
 
-response.sendRedirect("ManageUniversities.jsp?EditSuccess=1");
+response.sendRedirect("ManageUniversities.jsp?EditSuccess=1&editedName="+ university.getName());
 
 
 %>

@@ -471,7 +471,10 @@ public class DBController implements Runnable
 		{
 			return -1;
 		}
-		return univDBlib.university_deleteUniversity(university.getName());
+		univDBlib.university_deleteUniversity(university.getName());
+		if(this.storedUniversities.remove(university) != null)
+			return 1;
+		return -1;
 	}
 
 	/**

@@ -68,21 +68,81 @@ public class UniversityController
          String expenses, String percentFinancialAid, String numApplicants, String percentAdmitted, String percentEnrolled,
                              String academicScale, String socialScale, String qualityOfLifeScale, ArrayList<String> emphases)
   { 
-    university.setState(state);
-    university.setLocation(location);
-    university.setControl(control);
-    university.setNumStudents(Integer.parseInt(numStudents));
-    university.setPercentFemale(Double.parseDouble(percentFemale));
-    university.setSATVerbal(Double.parseDouble(SATVerbal));
-    university.setSATMath(Double.parseDouble(SATMath));
-    university.setExpenses(Double.parseDouble(expenses));
-    university.setPercentFinancialAid(Double.parseDouble(percentFinancialAid));
-    university.setNumApplicants(Integer.parseInt(numApplicants));
-    university.setPercentAdmitted(Double.parseDouble(percentAdmitted));
-    university.setPercentEnrolled(Double.parseDouble(percentEnrolled));
-    university.setAcademicScale(Integer.parseInt(academicScale));
-    university.setSocialScale(Integer.parseInt(socialScale));
-    university.setQualityOfLifeScale(Integer.parseInt(qualityOfLifeScale));
+	if(state.equals(""))
+		university.setState("-1");
+	else
+    	university.setState(state);
+	
+	if(location.equals(""))
+		university.setLocation("-1");
+	else
+		university.setLocation(location);
+	
+	if(control.equals(""))
+		university.setControl("-1");
+	else
+		university.setControl(control);
+	
+	if(numStudents.equals(""))
+		university.setNumStudents(-1);
+	else
+		university.setNumStudents(Integer.parseInt(numStudents));
+	
+	if(percentFemale.equals(""))
+		university.setPercentFemale(-1.0);
+	else
+		university.setPercentFemale(Double.parseDouble(percentFemale));
+	
+	if(SATVerbal.equals(""))
+		university.setSATVerbal(-1.0);
+	else
+		university.setSATVerbal(Double.parseDouble(SATVerbal));
+	
+	if(SATMath.equals(""))
+		university.setSATMath(-1.0);
+	else
+		university.setSATMath(Double.parseDouble(SATMath));
+	
+	if(expenses.equals(""))
+		university.setExpenses(-1.0);
+	else
+		university.setExpenses(Double.parseDouble(expenses));
+	
+	if(percentFinancialAid.equals(""))
+		university.setPercentFinancialAid(-1.0);
+	else
+		university.setPercentFinancialAid(Double.parseDouble(percentFinancialAid));
+	
+	if(numApplicants.equals(""))
+		university.setNumApplicants(-1);
+	else
+		university.setNumApplicants(Integer.parseInt(numApplicants));
+	
+	if(percentAdmitted.equals(""))
+		university.setPercentAdmitted(-1.0);
+	else
+		university.setPercentAdmitted(Double.parseDouble(percentAdmitted));
+	
+	if(percentEnrolled.equals(""))
+		university.setPercentEnrolled(-1.0);
+	else
+		university.setPercentEnrolled(Double.parseDouble(percentEnrolled));
+	
+	if(academicScale.equals(""))
+		university.setAcademicScale(-1);
+	else
+		university.setAcademicScale(Integer.parseInt(academicScale));
+	
+	if(socialScale.equals(""))
+		university.setSocialScale(-1);
+	else
+		university.setSocialScale(Integer.parseInt(socialScale));
+	
+	if(qualityOfLifeScale.equals(""))
+		university.setQualityOfLifeScale(-1);
+	else
+		university.setQualityOfLifeScale(Integer.parseInt(qualityOfLifeScale));
+	
     university.setEmphases(emphases);
     
     return dbCont.saveEditedUniversity(university);
@@ -95,18 +155,18 @@ public class UniversityController
    * @param state a String representing the added state of the University
    * @param location a String representing the added location of the University
    * @param control a String representing the added control of the University
-   * @param numStudents an int representing the added numStudents of the University
-   * @param percentFemale a double representing the added percentFemale of the University
-   * @param SATVerbal an int representing the added SATVerbal of the University
-   * @param SATMath an int representing the added SATMath of the University
-   * @param expenses an int representing the added expenses of the University
-   * @param percentFinancialAid a double representing the added percentFinancialAid of the University
-   * @param numApplicants an int representing the added numApplicants of the University
-   * @param percentAdmitted a double representing the added percentAdmitted of the University
-   * @param percentEnrolled a double representing the added percentEnrolled of the University
-   * @param academicScale an int representing the addded academicScale of the University
-   * @param socialScale an intrepresenting the added socialScale of the University
-   * @param qualityOfLifeScale an int representing the added qualityOfLifeScale of the University
+   * @param numStudents a String representing the added numStudents of the University
+   * @param percentFemale a string representing the added percentFemale of the University
+   * @param SATVerbal a string representing the added SATVerbal of the University
+   * @param SATMath a string representing the added SATMath of the University
+   * @param expenses a string representing the added expenses of the University
+   * @param percentFinancialAid a string representing the added percentFinancialAid of the University
+   * @param numApplicants a string representing the added numApplicants of the University
+   * @param percentAdmitted a string representing the added percentAdmitted of the University
+   * @param percentEnrolled a string representing the added percentEnrolled of the University
+   * @param academicScale a string representing the addded academicScale of the University
+   * @param socialScale a string representing the added socialScale of the University
+   * @param qualityOfLifeScale a string representing the added qualityOfLifeScale of the University
    * @param emphases an ArrayList<String> representing the added emphases of the University
    * 
    * @return -1 if unsucessfull, 0 otherwise
@@ -114,7 +174,39 @@ public class UniversityController
   public int addUniversity(String name, String state, String location, String control, String numStudents, String percentFemale, String SATVerbal, String SATMath,
          String expenses, String percentFinancialAid, String numApplicants, String percentAdmitted, String percentEnrolled,
                              String academicScale, String socialScale, String qualityOfLifeScale, ArrayList<String> emphases)
-  {    
+  {
+	  if(name.equals(""))
+		  throw new IllegalArgumentException();
+	  if(state.equals(""))
+		  	state = "-1";
+	  if(location.equals(""))
+		  	location = "-1";
+	  if(control.equals(""))
+		  	control = "Public";
+	  if(numStudents.equals(""))
+		  	numStudents = "-1";
+	  if(percentFemale.equals(""))
+		  	percentFemale = "-1";
+	  if(SATVerbal.equals(""))
+		  	SATVerbal = "-1";
+	  if(SATMath.equals(""))
+		  	SATMath = "-1";
+	  if(expenses.equals(""))
+		  	expenses = "-1";
+	  if(percentFinancialAid.equals(""))
+		  	percentFinancialAid = "-1";
+	  if(numApplicants.equals(""))
+		  	numApplicants = "-1";
+	  if(percentAdmitted.equals(""))
+		  	percentAdmitted = "-1";
+	  if(percentEnrolled.equals(""))
+		  	percentEnrolled = "-1";
+	  if(academicScale.equals(""))
+		  	academicScale = "-1";
+	  if(socialScale.equals(""))
+		  	socialScale = "-1";
+	  if(qualityOfLifeScale.equals(""))
+		  	qualityOfLifeScale = "-1";
     try{
     	return dbCont.addUniversity(new University(name, state, location, control, Integer.parseInt(numStudents), Double.parseDouble(percentFemale), Double.parseDouble(SATVerbal), Double.parseDouble(SATMath), 
                                         Double.parseDouble(expenses), Double.parseDouble(percentFinancialAid), Integer.parseInt(numApplicants), Double.parseDouble(percentAdmitted), Double.parseDouble(percentEnrolled), 
