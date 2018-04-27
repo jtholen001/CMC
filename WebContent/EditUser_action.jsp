@@ -15,11 +15,6 @@
 </head>
 <body>
 <%
-boolean activationStatus = false;
-
-if(request.getParameter("Status").equals("true"))
-		activationStatus = true;
-
-adminInt.editUser(request.getParameter("Username"), request.getParameter("FirstName"), request.getParameter("LastName"), request.getParameter("Password"), request.getParameter("Type").charAt(0), activationStatus, false);
+adminInt.editUser(request.getParameter("Username"), request.getParameter("FirstName"), request.getParameter("LastName"), request.getParameter("Password"), request.getParameter("Type"), request.getParameter("Status"), "false");
 response.sendRedirect("ManageUsers.jsp");
 %>

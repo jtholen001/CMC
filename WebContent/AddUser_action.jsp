@@ -10,13 +10,9 @@
 <body>
 <%
 	AdminInterface adminInt = (AdminInterface)session.getAttribute("userInt");
-boolean activated = false;
-if(request.getParameter("Status").equals("true"))
-{
-	activated = true;
-}
+
 adminInt.addUser(request.getParameter("FirstName"), request.getParameter("LastName"), request.getParameter("Username"),
-		request.getParameter("Password"), request.getParameter("Type").charAt(0), activated, false);
+		request.getParameter("Password"), request.getParameter("Type"), request.getParameter("Status"), "false");
 response.sendRedirect("ManageUsers.jsp");
 %>
 </body>
