@@ -18,6 +18,7 @@ if(error != null) {
 }
  %>
  </p>
+ <img src="assets/img/Logo.png" alt="CMC Logo">
 <form method="post" action="Login_action.jsp" name="Login"><br>
 <table style="text-align: left; width: 266px; height: 228px;"
 border="1">

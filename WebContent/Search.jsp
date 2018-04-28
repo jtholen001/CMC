@@ -6,6 +6,7 @@
 <body>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="styles.css">
 <meta content="text/html; charset=ISO-8859-1"
 http-equiv="content-type">
 <title></title>
