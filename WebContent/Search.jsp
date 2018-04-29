@@ -170,6 +170,9 @@ name="Search" id="Submit" type="submit">Search </button>&nbsp;&nbsp;&nbsp;&nbsp;
 <input value="Reset Form"
 name="Reset" type="reset">
 </form>
+<form method="post" action="StudentMenu.jsp">
+	    <input name="Return" value="Return to Menu" type="submit">
+	</form>
 </body>
 
 </html>
