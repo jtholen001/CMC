@@ -133,13 +133,13 @@ public class SearchController
 		try {
 			doublePercentFemaleLower = Double.parseDouble(percentFemaleLower);				
 		} catch (Exception nfe) {
-			if (!percentFinancialAidLower.isEmpty())
+			if (!percentFemaleLower.isEmpty())
 			throw new NumberFormatException("Enter numbers correctly");
 		}
 		try {
 			doublePercentFemaleUpper = Double.parseDouble(percentFemaleUpper);				
 		} catch (Exception nfe) {
-			if (!percentFinancialAidUpper.isEmpty())
+			if (!percentFemaleUpper.isEmpty())
 			throw new NumberFormatException("Enter numbers correctly");
 		}
 		try {
@@ -295,8 +295,8 @@ public class SearchController
 
 			boolean matched = false;
 			//If 3
-			if ((name.equals("") || u.contains(name)) && (state.equals("") || currentUniversity.getState().contains(state)) && (location.equals("") || currentUniversity.getLocation().contains(location)) &&
-					(control.equals("") || currentUniversity.getControl().contains(control)) && checkNumbers(currentUniversity.getNumStudents(), intNumStudentsLower, intNumStudentsUpper) &&
+			if ((name.equals("") || u.contains(name.toUpperCase())) && (state.equals("") || currentUniversity.getState().contains(state.toUpperCase())) && (location.equals("") || currentUniversity.getLocation().equalsIgnoreCase(location)) &&
+					(control.equals("") || currentUniversity.getControl().equalsIgnoreCase(control)) && checkNumbers(currentUniversity.getNumStudents(), intNumStudentsLower, intNumStudentsUpper) &&
 					checkNumbers(currentUniversity.getPercentFemale(), doublePercentFemaleLower, doublePercentFemaleUpper) && checkNumbers(currentUniversity.getSATVerbal(), doubleSATVerbalLower, doubleSATVerbalUpper) &&
 					checkNumbers(currentUniversity.getSATMath(), doubleSATMathLower, doubleSATMathUpper) && checkNumbers(currentUniversity.getExpenses(), doubleExpensesLower, doubleExpensesUpper) &&
 					checkNumbers(currentUniversity.getPercentFinancialAid(), doublePercentFinancialAidLower, doublePercentFinancialAidUpper) && checkNumbers(currentUniversity.getNumApplicants(), intNumApplicantsLower, intNumApplicantsUpper) &&
@@ -314,7 +314,7 @@ public class SearchController
 					for (String emphasis : searchEmphases)
 					{
 						//If 5
-						if (currentEmphases.contains(emphasis))
+						if (currentEmphases.contains(emphasis.toUpperCase()))
 							matched = true; 
 					}
 				}	

@@ -61,7 +61,7 @@ public class Driver
 //		//U3
 //		System.out.println("Showing U3: Search for Schools\n");
 //		System.out.println("Searching with the following criteria: \"UNIVERSITY\", null, \"URBAN\", \"PRIVATE\", 0, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, new ArrayList<String>()");
-//		ArrayList<University> foundUniversities = studentInt.searchUniversities("UNIVERSITY", null, "URBAN", "PRIVATE", 0, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0 ,0 ,0, new ArrayList<String>() );
+		ArrayList<University> foundUniversities = studentInt.searchUniversities("", "", "", "", "","", "", "", "", "", "", "", "", "100", "5", "10","", "", "", "", "","" ,"" ,"" ,"" ,"" ,"" ,"", new ArrayList<String>() );
 //
 //		if (foundUniversities == null)
 //			System.out.println("Search Failed: No search criteria specified");

@@ -124,7 +124,30 @@ border="1" cellpadding="2" cellspacing="2">
 <tr>
 <td style="vertical-align: top;">by QUALITY OF LIFE SCALE (1-5)<br>
 </td>
-<td style="vertical-align: top;">between <input name="QualityOfLifeScaleLower"> and <input name="QualityOfLifeScaleUpper"><br>
+<td style="vertical-align: top;">between <input name="QualityOfLifeScaleLower" id = "QualityOfLifeScaleLower" onblur="meetsCriteria()">
+ and <input name="QualityOfLifeScaleUpper"> <font color="red" id="error"></font><br>
+ <script>
+	function meetsCriteria()
+	{
+		
+		var s = document.getElementById("QualityOfLifeScaleLower").value;
+		
+		var value = Integer.parseInt(s);
+		if(s.length >= 1)
+			validLength = true;
+
+	   if(validLength)
+	   {
+		   document.getElementById("Submit").disabled = true;
+
+	   			document.getElementById("error").innerHTML = "Try harder";
+	   else
+		{
+		   document.getElementById("Submit").disabled = false;
+	  	   document.getElementById("error").innerHTML = "";
+		}
+	}
+</script>
 </td>
 </tr>
 <tr>
@@ -143,9 +166,10 @@ border="1" cellpadding="2" cellspacing="2">
 </table>
 <br>
 <input value="Search for Universities"
-name="Search" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+name="Search" id="Search" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input value="Reset Form"
 name="Reset" type="reset">
 </form>
 </body>
+
 </html>
