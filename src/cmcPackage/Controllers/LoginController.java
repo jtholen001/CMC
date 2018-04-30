@@ -19,9 +19,9 @@ public class LoginController
   /**
    * Default constructor
    */
-   public LoginController()
+   public LoginController(DBController db)
    {
-     dbc = new DBController();
+     dbc = db;
    }
 
    /**

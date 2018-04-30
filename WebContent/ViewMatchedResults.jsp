@@ -7,6 +7,9 @@
 
 <title>Search Results</title>
 </head>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<meta content="text/html; charset=ISO-8859-1"
+http-equiv="content-type">
 <body>
 <table style="text-align: left; width: 100%;" border="1" cellpadding="2"
 cellspacing="2">

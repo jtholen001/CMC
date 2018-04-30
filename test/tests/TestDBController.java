@@ -11,6 +11,7 @@ import java.util.HashMap;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import cmcPackage.Controllers.DBController;
@@ -26,10 +27,17 @@ import cmcPackage.entityClasses.User;
 public class TestDBController {
 
 	University university;
-	DBController dbController = new DBController();
+	 DBController dbController ;
 	Student student, student1;
 	Admin admin;
+	
 
+//	@BeforeClass
+//	public static void before()
+//	{
+//		dbController = new DBController();
+//
+//	}
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -39,14 +47,14 @@ public class TestDBController {
 		university = new University("UNIVERSITY OF CMC", "ARIZONA", "URBAN", "PUBLIC", 5, 0.0, 500.0, 500.0, 90.0, 0.0, 5, 90.0, 90.0, 1, 1, 1, new ArrayList<String>());
 		student1 = new Student("Jordan","Tholen","jtholen001","password",'u',true,false,new ArrayList<University>());
 		admin = new Admin("Rahal","Imad","irahal","admin",'a',true,false);
+		dbController = new DBController();
+
 
 		dbController.addUniversity(university);
-		//student1.addSchool(university);
 		dbController.addUser(student);
 		dbController.addUser(student1);
 		dbController.saveUniversityToStudent(student1, university);
 		dbController.addUser(admin);
-
 	}
 
 	/**

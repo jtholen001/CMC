@@ -14,46 +14,55 @@ import cmcPackage.Controllers.*;
 
 public class StudentInterface extends UserInterface
 {
-  
-  /**
-   * Student that will be associated with the StudentInterface
-   */
-  private Student student;
-  
-  /**
-   * ProfileController that will be associated with the StudentInterface
-   */
-  private ProfileController pc;
-  
-  /**
-   * SearchController that will be associated with the StudentInterface
-   */
-  private SearchController sc;
-  
-  /**
-   * StudentUniversitiesController that will be associated with the StudentInterface
-   */
-  private StudentUniversitiesController suc;
-  
-  /**
-   * Database controller
-   */
-  private DBController dbc;
-  
-  /**
-   * Constructor for a StudentInterface
-   * 
-   * @param student the student that will be associated with the StudentInterface
-   */
-  public StudentInterface(Student student)
-  {
-    this.student = student;
-    this.pc = new ProfileController(this.student);
-    this.sc = new SearchController();
-    this.suc = new StudentUniversitiesController(this.student);
-    this.dbc = new DBController();
-  }
-  
+	/**
+	   * Student that will be associated with the StudentInterface
+	   */
+	  private Student student;
+	  
+	  /**
+	   * ProfileController that will be associated with the StudentInterface
+	   */
+	  private ProfileController pc;
+	  
+	  /**
+	   * SearchController that will be associated with the StudentInterface
+	   */
+	  private SearchController sc;
+	  
+	  /**
+	   * StudentUniversitiesController that will be associated with the StudentInterface
+	   */
+	  private StudentUniversitiesController suc;
+	  
+	  /**
+	   * Database controller
+	   */
+	  private DBController dbc;
+
+	/**
+	 * Constructor for a StudentInterface
+	 * 
+	 * @param student the student that will be associated with the StudentInterface
+	 */
+	public StudentInterface(Student student)
+	{	
+		this.dbc = new DBController();
+		this.student = student;
+	    this.pc = new ProfileController(this.student,dbc);
+	    this.sc = new SearchController(dbc);
+	    this.suc = new StudentUniversitiesController(this.student,dbc);
+	    
+	}
+	
+	public StudentInterface(Student student, DBController temp)
+	{
+		super(temp);
+		this.student = student;
+		this.pc = new ProfileController(this.student,temp);
+		this.sc = new SearchController(temp);
+		this.suc = new StudentUniversitiesController(this.student,temp);
+	}
+
   /**
    * Method to view the Student's profile
    * 
@@ -111,7 +120,7 @@ public class StudentInterface extends UserInterface
   {
    return this.suc.viewSavedUniversities();
   }
-  
+
 	/**
 	 * Method to view a specific university from searching
 	 * @param universityName  the name of the university to be viewed
@@ -122,29 +131,29 @@ public class StudentInterface extends UserInterface
 		return sc.viewUniversity(universityName);
 	}
 
-  /**
-   * Method to save a university to the Student's current list of saved universities
-   * 
-   * @param university the University to be saved to the Student
-   * @return integer representing success of save
-   */
-  public int saveUniversity(University university)
-  {
-   return this.sc.saveUniversity(this.student, university);
-  }
-  
-  /**
-   * Method to remove a university from the Student's saved universities
-   * 
-   * @param university the University to be removed from the student
-   * @return university 
-   */
-  public int removeUniversity(University university)
-  {
-    return this.suc.removeUniversity(university);
-  }
-  
-  /**
+	/**
+	 * Method to save a university to the Student's current list of saved universities
+	 * 
+	 * @param university the University to be saved to the Student
+	 * @return integer representing success of save
+	 */
+	public int saveUniversity(University university)
+	{
+		return this.sc.saveUniversity(this.student, university);
+	}
+
+	/**
+	 * Method to remove a university from the Student's saved universities
+	 * 
+	 * @param university the University to be removed from the student
+	 * @return university 
+	 */
+	public int removeUniversity(University university)
+	{
+		return this.suc.removeUniversity(university);
+	}
+
+	/**
 	 * Method to search for universities
 	 * 
 	 * @param name the name of this university as a String
@@ -178,6 +187,7 @@ public class StudentInterface extends UserInterface
 	 * @param searchEmphases  areas of study
 	 * @return ArrayList<University>  found Universities
 	 */
+
 	public ArrayList<University> searchUniversities(String name, String state, String location, String control, String numStudentsLower, String numStudentsUpper, String percentFemaleLower, String percentFemaleUpper,
 			String SATVerbalLower, String SATVerbalUpper, String SATMathLower, String SATMathUpper, String expensesLower, String expensesUpper, String percentFinancialAidLower, String percentFinancialAidUpper, 
 			String numApplicantsLower, String numApplicantsUpper, String percentAdmittedLower, String percentAdmittedUpper, String percentEnrolledLower, String percentEnrolledUpper, 
@@ -197,6 +207,7 @@ public class StudentInterface extends UserInterface
 	 * @param foundUniversities the universities to be viewed from searching
 	 * @return a HashMap representing all the schools to be viewed
 	 */
+
 	public HashMap<String, University> viewUniversities(ArrayList<University> foundUniversities)
 	{
 		return sc.viewUniversities(foundUniversities);

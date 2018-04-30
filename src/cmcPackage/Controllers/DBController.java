@@ -27,25 +27,59 @@ import javax.servlet.ServletContext;
 
 import com.j256.twofactorauth.*;
 
-public class DBController
-
+public class DBController implements Runnable
 {
-	/**
-	 * Construct a database controller
-	 */
-	private UniversityDBLibrary univDBlib = new UniversityDBLibrary("byteme","byteme","csci230");
-	
+	HashMap<String,University> storedUniversities;
+	private UniversityDBLibrary univDBlib;
+	private boolean run;
+	private Thread thread;
 	/**
 	 *  2-factor authentication utility
 	 */
 	TimeBasedOneTimePasswordUtil tfaUtil;
 	
+	/**
+	 * Construct a database controller
+	 */
 
 	public DBController()
 	{
+		univDBlib =  new UniversityDBLibrary("byteme","byteme","csci230");
+		this.startThread();
+		//this.storedUniversities = this.viewUniversities();
 	}
-	
- 
+
+	private void startThread()
+	{
+		this.run = true;
+		thread = new Thread(this);
+		thread.getThreadGroup().setDaemon(true);
+		thread.start();
+	}
+
+	public void stop()
+	{
+		this.run = false;
+	}
+
+	private void updateSavedSchools()
+	{
+		String[][] universities = univDBlib.university_getUniversities();
+
+		for(int index = 0; index < universities.length; index++)
+		{
+			if(!(this.storedUniversities.containsKey(universities[index][0]))) 
+			{
+				this.storedUniversities.put(universities[index][0], new University(universities[index][0], universities[index][1],
+						universities[index][2],universities[index][3],
+						Integer.parseInt(universities[index][4]), new Double(universities[index][5]),
+						new Double(universities[index][6]), new Double(universities[index][7]), new Double(universities[index][8]),
+						new Double(universities[index][9]), Integer.parseInt(universities[index][10]),new Double(universities[index][11]),
+						new Double(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
+						Integer.parseInt(universities[index][15]), getUniversityEmphases(universities[index][0])));  
+			}
+		}
+	}
 	/**
 	 * This method gets a user's data based on their username
 	 * 
@@ -56,7 +90,7 @@ public class DBController
 	{
 		if(username == null)
 			throw new IllegalArgumentException("username is a null value");
-		
+
 		username = username.trim();
 		String[][] users = univDBlib.user_getUsers();
 		boolean status = false;
@@ -91,7 +125,7 @@ public class DBController
 	 * 
 	 * @return an ArrayList of universities the student has saved
 	 */
-	 private ArrayList<University> getUniversitiesForStudent(String username)
+	private ArrayList<University> getUniversitiesForStudent(String username)
 	{
 		String[][] usersUniversities = univDBlib.user_getUsernamesWithSavedSchools();
 		ArrayList<University> list = new ArrayList<University>();
@@ -185,6 +219,7 @@ public class DBController
 	}
 	
 	//TODO change save edited user to this
+
 	  public int saveUniversityToStudent(Student student, University university)
 	  {
 		  String[][] savedUniversities = univDBlib.user_getUsernamesWithSavedSchools();
@@ -206,6 +241,7 @@ public class DBController
 		  throw new IllegalArgumentException("Saved schools in student contains a school not in the databse");
 	  }
 
+
 	/**
 	 * method to delete a user from the database
 	 * 
@@ -217,7 +253,7 @@ public class DBController
 	{
 		if (username == null)
 			throw new IllegalArgumentException("user was not found in the database");
-		
+
 		User user = this.getUser(username);
 		if(user instanceof Student) {
 			Student stu = (Student) user;
@@ -247,13 +283,19 @@ public class DBController
 	 */
 	public HashMap<String, University> viewUniversities()
 	{
+		if(!(this.storedUniversities == null)) {
+			synchronized(this.storedUniversities)
+			{
+				return new HashMap<String,University>(this.storedUniversities);
+			}
+		}
 		String[][] universities = univDBlib.university_getUniversities();
-		HashMap<String, University> universityMap = new HashMap<String, University>();
+		storedUniversities= new HashMap<String, University>();
 
 		for(int index = 0; index < universities.length; index++)
 		{
 			if(!universities[index][0].contains("%2FA-MASTER%")) {
-				universityMap.put(universities[index][0], new University(universities[index][0], universities[index][1],
+				storedUniversities.put(universities[index][0], new University(universities[index][0], universities[index][1],
 						universities[index][2],universities[index][3],
 						Integer.parseInt(universities[index][4]), Double.parseDouble(universities[index][5]),
 						Double.parseDouble(universities[index][6]), Double.parseDouble(universities[index][7]), Double.parseDouble(universities[index][8]),
@@ -262,7 +304,7 @@ public class DBController
 						Integer.parseInt(universities[index][15]), getUniversityEmphases(universities[index][0]))); //not sure how emphases are stored
 			}
 		}
-		return universityMap;
+		return this.storedUniversities;
 	}
 
 	/**
@@ -277,6 +319,16 @@ public class DBController
 		if(name == null)
 			throw new IllegalArgumentException("Given name was null");
 		name = name.toUpperCase().trim();
+
+		if(this.storedUniversities != null)
+		{
+			synchronized(this.storedUniversities)
+			{
+				if(storedUniversities.containsKey(name))
+					return storedUniversities.get(name);
+			}
+		}
+
 		String[][] universities = univDBlib.university_getUniversities();
 		HashMap<String, University> universityMap = new HashMap<String, University>();
 
@@ -327,7 +379,7 @@ public class DBController
 	{
 		if(university == null)
 			throw new IllegalArgumentException("Given university was null");
-		
+
 		int success = univDBlib.university_editUniversity(university.getName(), university.getState(), university.getLocation(),
 				university.getControl(), university.getNumStudents(), university.getPercentFemale(),
 				university.getSATVerbal(), university.getSATMath(), university.getExpenses(),
@@ -353,6 +405,8 @@ public class DBController
 				univDBlib.university_removeUniversityEmphasis(university.getName(), emphasis);
 			}
 		}
+		if(success !=-1)
+			this.storedUniversities.put(university.getName(), university);
 		return success;
 	}
 
@@ -367,6 +421,7 @@ public class DBController
 	{
 		if(university == null)
 			throw new IllegalArgumentException("university is null");
+		
 		int ret =  univDBlib.university_addUniversity(university.getName().toUpperCase(), university.getState().toUpperCase(), university.getLocation().toUpperCase(),
 				university.getControl().toUpperCase(), university.getNumStudents(), university.getPercentFemale(),
 				university.getSATVerbal(), university.getSATMath(), university.getExpenses(),
@@ -384,6 +439,13 @@ public class DBController
 			for(int i = 0; i < university.getEmphases().size(); i++)
 			{
 				univDBlib.university_addUniversityEmphasis(university.getName(), university.getEmphases().get(i).toUpperCase());
+			}
+		}
+		if(this.storedUniversities!= null)
+		{
+			synchronized(this.storedUniversities)
+			{
+				this.storedUniversities.put(university.getName(), university);
 			}
 		}
 		return ret;
@@ -414,7 +476,15 @@ public class DBController
 		{
 			return -1;
 		}
-		return univDBlib.university_deleteUniversity(university.getName());
+		synchronized(this.storedUniversities) {
+			if(storedUniversities.remove(university.getName()) == null)
+			{
+				return -1;
+			}
+		univDBlib.university_deleteUniversity(university.getName());
+		
+		}
+		return -1;
 	}
 
 	/**
@@ -427,13 +497,13 @@ public class DBController
 	{
 		if(this.getUniversity(university.getName()) == null)
 			throw new IllegalArgumentException("University does not exist in the database");
-		
+
 		if(this.getUser(student.getUsername()) == null)
 			throw new IllegalArgumentException("User does not exist in the database");
-		
+
 		student.removeUniversity(university);
 		int temp = univDBlib.user_removeSchool(student.getUsername(),university.getName());
-		
+
 		if(temp == -1)
 			throw new IllegalArgumentException("Deleting saved school returned an error");
 		return temp;
@@ -467,6 +537,30 @@ public class DBController
 		}
 
 		return 1;
+	}
+
+	@Override 
+	public void run()
+	{
+		while(run != false) {
+			if(!(this.storedUniversities == null))
+				synchronized(this.storedUniversities){
+					this.updateSavedSchools();
+				}
+			else
+			{
+				this.viewUniversities();
+			}
+
+
+			try {
+				Thread.sleep((1 * 1000));
+			}
+			catch(InterruptedException j)
+			{
+				j.printStackTrace();
+			}
+		}
 	}
 	
 	/**
@@ -538,5 +632,4 @@ public class DBController
 		}
 		catch (GeneralSecurityException e) { return false;}   
 	}
-
 }

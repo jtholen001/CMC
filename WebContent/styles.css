@@ -30,3 +30,10 @@ th{
 a:hover { 
     background-color: yellow;
 }
+
+/*defines a paragraph, use for error messages*/
+p{
+	font-size: 12px;
+	color: red;
+}
+

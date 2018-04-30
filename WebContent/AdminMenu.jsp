@@ -10,9 +10,9 @@
 %>
 
 Hello <%out.print(adminInt.getAdmin().getFirstName() + " " + adminInt.getAdmin().getLastName()); %>!
-<br><a href="ManageUsers.jsp"><br>Manage Users</a><br>
-<br><a href="ManageUniversities.jsp">Manage Universities</a><br>
-<br><a href="Logout_Action.jsp">Logout</a><br>
+<br><a href="ManageUsers.jsp"><br><img src="assets/img/ManageUsers.png"></a><br>
+<br><a href="ManageUniversities.jsp"><img src="assets/img/ManageUniversities.png"></a><br>
+<br><a href="Logout_Action.jsp"><img src="assets/img/Logout.png"></a><br>
 <br>
 
 </body>

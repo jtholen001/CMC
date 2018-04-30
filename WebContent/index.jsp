@@ -5,7 +5,6 @@
 </head>
 <body>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="cmcPackage.*" %>
-<h2>Welcome to CMC.</h2>
 <% 
 String error = request.getParameter("Error");
 if(error != null) {
@@ -17,11 +16,11 @@ if(error != null) {
 		out.print("User must be logged in to access system pages");
 }
  %>
-
-
+ </p>
+ <img src="assets/img/Logo.png" alt="CMC Logo">
 <form method="post" action="Login_action.jsp" name="Login"><br>
 <table style="text-align: left; width: 266px; height: 228px;"
-border="1" cellpadding="2" cellspacing="2">
+border="1">
 <tbody>
 <tr>
 <td style="vertical-align: top;">Username<br>

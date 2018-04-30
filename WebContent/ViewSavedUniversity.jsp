@@ -7,6 +7,9 @@ StudentInterface studentInt = (StudentInterface)session.getAttribute("userInt");
 University u = studentInt.viewUniversity(universityName);
 
  %>
+ <link rel="stylesheet" type="text/css" href="styles.css">
+<meta content="text/html; charset=ISO-8859-1"
+http-equiv="content-type">
 <table style="text-align: left; width: 700px; height: 228px;"
 border="1" >
 <tbody>

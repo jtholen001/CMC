@@ -22,9 +22,9 @@ public class UsersController
   /**
    * Constuctor for UsersController
    */
-  public UsersController()
+  public UsersController(DBController temp)
   {
-    this.dbCont = new DBController();
+    this.dbCont = temp;
     users = dbCont.getUsers();
   }
 
@@ -52,22 +52,34 @@ public class UsersController
    * @throws IllegalArgumentException
    * @return an int representing the success of editing a user
    */
-  public void editUser(String username,String firstName, String lastName, String password, char type ,boolean isActivated,
-                        boolean isLoggedIn)
+  public void editUser(String username,String firstName, String lastName, String password, String type ,String isActivated,
+                        String isLoggedIn)
   {
- if (username.equals("") || firstName.equals("") || lastName.equals("") || !meetsPasswordCriteria(password) || type != 'a' && type != 'u')
+ if (username.equals("") || firstName.equals("") || lastName.equals("") || !meetsPasswordCriteria(password) || !type.equals("a") && !type.equals("u"))
   throw new IllegalArgumentException("Fields cannot be empty");
  else
  {
+	 boolean activated = false;
+	  if(isActivated.equals("true"))
+	  {
+	  	activated = true;
+	  }
+
+	  boolean loggedIn = false;
+	  if(isLoggedIn.equals("true"))
+	  {
+	  	loggedIn = true;
+	  }
+	  
     User toEdit = dbCont.getUser(username);
 
     //admin can edit anything except for username
     toEdit.setFirstName(firstName);
     toEdit.setLastName(lastName);
     toEdit.setPassword(password);
-    toEdit.setType(type);
-    toEdit.setActivationStatus(isActivated);
-    toEdit.setLoggedInStatus(isLoggedIn);
+    toEdit.setType(type.charAt(0));
+    toEdit.setActivationStatus(activated);
+    toEdit.setLoggedInStatus(loggedIn);
     
     dbCont.saveEditedUser(toEdit);
  }
@@ -86,14 +98,28 @@ public class UsersController
    * @throws IllegalArgumentException
    * @return an int representing the success of adding a user
    */
-  public void addUser(String firstName, String lastName, String username, String password, char type ,boolean isActivated,
-                        boolean isLoggedIn)
+  public void addUser(String firstName, String lastName, String username, String password, String type ,String isActivated,
+                        String isLoggedIn)
   {
-	  if (firstName.equals("") || lastName.equals("") || username.equals("") || !meetsPasswordCriteria(password) || type != 'a' && type != 'u')
+	  if (firstName.equals("") || lastName.equals("") || username.equals("") || !meetsPasswordCriteria(password) || type.equals("a") && type.equals("u"))
 		  throw new IllegalArgumentException("Fields cannot be empty");
 	  else
-		  dbCont.addUser(new User(firstName, lastName, username, password, type, isActivated, isLoggedIn));
-	      users.put(username, new User(firstName, lastName, username, password, type ,isActivated, isLoggedIn));
+	  {
+		  boolean activated = false;
+		  if(isActivated.equals("true"))
+		  {
+		  	activated = true;
+		  }
+
+		  boolean loggedIn = false;
+		  if(isLoggedIn.equals("true"))
+		  {
+		  	loggedIn = true;
+		  }
+		  
+		  dbCont.addUser(new User(firstName, lastName, username, password, type.charAt(0), activated, loggedIn));
+	      users.put(username, new User(firstName, lastName, username, password, type.charAt(0), activated, loggedIn));
+	  }
   }
 
   /**

@@ -18,32 +18,39 @@ if(!request.getParameter("emphases2".toString()).trim().equals(""))
 if(!request.getParameter("emphases3".toString()).trim().equals(""))
 	emphases.add(request.getParameter("emphases3"));
 
+/* 
+which page to direct the admin to.
+0: no errors, back to ManageUniversities.jsp
+1: error1, Database duplicate name, back to AddUniversities.jsp
+*/
+
 String name = request.getParameter("SchoolName");
 String state = request.getParameter("State");
 String location = request.getParameter("Location");
 String control = request.getParameter("Control");
-int numberOfStudents;
-numberOfStudents = Integer.parseInt(request.getParameter("numberOfStudents"));
-double percentFemale = Double.parseDouble(request.getParameter("percentFemale"));
-double SATVerbal = Double.parseDouble(request.getParameter("SATVerbal"));
-double SATMath = Double.parseDouble(request.getParameter("SATMath"));
-double expenses = Double.parseDouble(request.getParameter("Expenses"));
-double percentFinancialAid = Double.parseDouble(request.getParameter("percentFinancialAid"));
-int numberOfApplicants = Integer.parseInt(request.getParameter("numberOfApplicants"));
-double percentAdmitted = Double.parseDouble(request.getParameter("percentAdmitted"));
-double percentEnrolled = Double.parseDouble(request.getParameter("percentEnrolled"));
-int academicScale = Integer.parseInt(request.getParameter("academicScale"));
-int socialScale = Integer.parseInt(request.getParameter("socialScale"));
-int qualityOfLifeScale = Integer.parseInt(request.getParameter("qualityOfLifeScale"));
+String numberOfStudents = request.getParameter("numberOfStudents");
+String percentFemale = request.getParameter("percentFemale");
+String SATVerbal = request.getParameter("SATVerbal");
+String SATMath = request.getParameter("SATMath");
+String expenses = request.getParameter("Expenses");
+String percentFinancialAid = request.getParameter("percentFinancialAid");
+String numberOfApplicants = request.getParameter("numberOfApplicants");
+String percentAdmitted = request.getParameter("percentAdmitted");
+String percentEnrolled = request.getParameter("percentEnrolled");
+String academicScale = request.getParameter("academicScale");
+String socialScale = request.getParameter("socialScale");
+String qualityOfLifeScale = request.getParameter("qualityOfLifeScale");
 
-adminInt.addUniversity(name, state, location, control, numberOfStudents, 
-						percentFemale, SATVerbal, SATMath, expenses, 
-						percentFinancialAid, numberOfApplicants, percentAdmitted,
-						percentEnrolled, academicScale, socialScale,
-						qualityOfLifeScale, new ArrayList<String>());
+int result = adminInt.addUniversity((String)name, state, location, control, numberOfStudents, 
+									percentFemale, SATVerbal, SATMath, expenses, 
+									percentFinancialAid, numberOfApplicants, percentAdmitted,
+									percentEnrolled, academicScale, socialScale,
+									qualityOfLifeScale, emphases);
 
+if(result == -1)
+	response.sendRedirect("AddUniversity.jsp?Error=-1");
 
-response.sendRedirect("ManageUniversities.jsp");
+response.sendRedirect("ManageUniversities.jsp?addSuccess=1&addedUniversity=" + name);
 %>
 </body>
 </html>

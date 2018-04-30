@@ -7,10 +7,10 @@
 package cmcPackage.interfaces;
 
 import java.util.ArrayList;
-
 import cmcPackage.Controllers.DBController;
 import cmcPackage.Controllers.LoginController;
 import cmcPackage.entityClasses.*;
+
 
 public class UserInterface
 {  
@@ -29,8 +29,17 @@ public class UserInterface
    */
   public UserInterface()
   {
+<<<<<<< HEAD
     lc = new LoginController();
     dbc = new DBController();
+=======
+    this.lc = new LoginController(new DBController());
+  }
+  
+  public UserInterface(DBController temp)
+  {
+    this.lc = new LoginController(temp);
+>>>>>>> d0dbe078f17d256c89a7dc577bcacc672a8e0ee6
   }
   
   /**

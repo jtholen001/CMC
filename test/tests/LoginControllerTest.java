@@ -20,9 +20,10 @@ public class LoginControllerTest
 	@Before
 	public void init()
 	{
+		dbCont = new DBController();
 		user2 = new User("New", "User", "nUser", "password", 'u', false, false);
-		loginCont = new LoginController();
-		uCont = new UsersController();
+		loginCont = new LoginController(dbCont);
+		uCont = new UsersController(dbCont);
 		uCont.addUser("Nicholas", "Tawil", "ntawil001", "password", 'u', true, false);
 		uCont.addUser("New", "User", "nUser", "password", 'u', true, false);
 		uCont.deactivate(user2);
@@ -35,6 +36,7 @@ public class LoginControllerTest
 		uCont.deleteUser("ntawil001");
 		uCont.deleteUser("nUser");
 		uCont.deleteUser("mcarroll001");
+		dbCont.stop();
 	}
 	
 	/**

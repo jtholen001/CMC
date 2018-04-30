@@ -37,9 +37,9 @@ public class FunctionalTests
 		dbCont = new DBController();
 		dbCont.addUser(admin);
 		dbCont.addUser(student);
-		adminInt = new AdminInterface(admin);
-		studentInt = new StudentInterface(student);
-		userInt = new UserInterface();
+		adminInt = new AdminInterface(admin,dbCont);
+		studentInt = new StudentInterface(student,dbCont);
+		userInt = new UserInterface(dbCont);
 		university = new University("UNIVERSITY 1", "MINNESOTA", "URBAN", "PRIVATE", 5000, 60.0, 700, 550, 40200, 45, 50000, 30, 20, 4, 3, 2, new ArrayList<String>() );
 		university2 = new University("UNIVERSITY 2", "IOWA", "SUBURBAN", "PRIVATE", 5000, 65.0, 600, 800, 15000, 50, 25000, 50, 40, 2, 1, 4, new ArrayList<String>() );
 		dbCont.addUniversity(university2);
@@ -111,6 +111,7 @@ public class FunctionalTests
 //		dbCont.deleteUniversity(u12);
 //		dbCont.deleteUniversity(searchUniversity1);
 //		dbCont.deleteUniversity(searchUniversity2);
+		dbCont.stop();
 	}
 	
 	//U1 Login

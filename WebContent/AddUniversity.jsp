@@ -10,8 +10,17 @@
 </head>
 <body>
 <br>
-Add University Form:<br>
+Add University:<br>
 <br>
+<p>
+<%
+String error = request.getParameter("Error");
+	if(error!=null){
+		if (error.equals("-1"))
+			out.print("Uh-Oh! Something went wrong. Please check your input again and make sure your University name is unique.");
+	}
+%>
+</p>
 <form method="post" action="AddUniversity_action.jsp" name="addUniversity"><br>
 <table style="width: 400; height: 128px;">
 <tbody>
@@ -22,6 +31,7 @@ Add University Form:<br>
 <tr>
 <td>State</td>
 <td> <select name="State" style="width: 172px;">
+		<option value="-1">Not Applicable</option>
 		<option value="Alabama">Alabama</option>
 		<option value="Alaska">Alaska</option>
 		<option value="Arizona">Arizona</option>
@@ -78,6 +88,7 @@ Add University Form:<br>
 <tr>
 <td>Location</td>
 <td><select name="Location" style="width: 172px;">
+		<option value="-1">Not Applicable</option>
 		<option value="Suburban">Suburban</option>
 		<option value="Urban">Urban</option>
 		<option value="Small-City">Small-City</option>		
@@ -85,7 +96,7 @@ Add University Form:<br>
 </tr>
 <tr>
 <td>Control</td>
-<td><input type="radio" name="Control" value="Public">Public
+<td><input type="radio" name="Control" value="Public" checked="checked">Public
 	<input type="radio" name="Control" value="Private">Private
 </td>
 </tr>
@@ -127,27 +138,27 @@ Add University Form:<br>
 </tr>
 <tr>
 <td>Academic Scale (1-5)</td>
-<td><input type="radio" name="academicScale" value="1">1
-	<input type="radio" name="academicScale" value="1">2
-	<input type="radio" name="academicScale" value="1">3
-	<input type="radio" name="academicScale" value="1">4
-	<input type="radio" name="academicScale" value="1">5</td>
+<td><input type="radio" name="academicScale" value="1" checked = "checked">1
+	<input type="radio" name="academicScale" value="2">2
+	<input type="radio" name="academicScale" value="3">3
+	<input type="radio" name="academicScale" value="4">4
+	<input type="radio" name="academicScale" value="5">5</td>
 </tr>
 <tr>
 <td>Social Scale (1-5)</td>
-<td><input type="radio" name="socialScale" value="1">1
-	<input type="radio" name="socialScale" value="1">2
-	<input type="radio" name="socialScale" value="1">3
-	<input type="radio" name="socialScale" value="1">4
-	<input type="radio" name="socialScale" value="1">5</td>
+<td><input type="radio" name="socialScale" value="1" checked = "checked">1
+	<input type="radio" name="socialScale" value="2">2
+	<input type="radio" name="socialScale" value="3">3
+	<input type="radio" name="socialScale" value="4">4
+	<input type="radio" name="socialScale" value="5">5</td>
 </tr>
 <tr>
 <td>Quality Of Life Scale (1-5)</td>
-<td><input type="radio" name="qualityOfLifeScale" value="1">1
-	<input type="radio" name="qualityOfLifeScale" value="1">2
-	<input type="radio" name="qualityOfLifeScale" value="1">3
-	<input type="radio" name="qualityOfLifeScale" value="1">4
-	<input type="radio" name="qualityOfLifeScale" value="1">5</td>
+<td><input type="radio" name="qualityOfLifeScale" value="1" checked = "checked">1
+	<input type="radio" name="qualityOfLifeScale" value="2">2
+	<input type="radio" name="qualityOfLifeScale" value="3">3
+	<input type="radio" name="qualityOfLifeScale" value="4">4
+	<input type="radio" name="qualityOfLifeScale" value="5">5</td>
 </tr>
 <tr>
 <td>Emphases<br><br>*You may add more<br>emphases later</td>

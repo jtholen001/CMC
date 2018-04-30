@@ -12,39 +12,49 @@ import cmcPackage.entityClasses.*;
 
 public class AdminInterface extends UserInterface
 {  
-  /**
-   * an instance of UsersController
-   */
-  private UsersController uCont;
-  
-  /**
-   * an instance of UniversityController
-   */
-  private UniversityController uniCont;
-  
-  /**
-   * an instance of LoginController
-   */
-  private LoginController lc;
-  
-  /**
-   * an Admin object that is interacting with the program
-   */
-  private Admin admin;
-  
-  /**
-   * Constructor for an AdminInterface
-   * 
-   * @param admin the admin object to use
-   */
-  public AdminInterface(Admin admin)
-  {
-    this.admin = admin;
-    this.uCont = new UsersController();
-    this.uniCont = new UniversityController();
-    this.lc = new LoginController();
-  }
-  
+	/**
+	 * an instance of UsersController
+	 */
+	private UsersController uCont;
+
+	/**
+	 * an instance of UniversityController
+	 */
+	private UniversityController uniCont;
+
+	/**
+	 * an instance of LoginController
+	 */
+	private LoginController lc;
+
+	/**
+	 * an Admin object that is interacting with the program
+	 */
+	private Admin admin;
+
+	/**
+	 * Constructor for an AdminInterface
+	 * 
+	 * @param admin the admin object to use
+	 */
+	public AdminInterface(Admin admin)
+	{
+		DBController db = new DBController();
+		this.admin = admin;
+		this.uCont = new UsersController(db);
+		this.uniCont = new UniversityController(db);
+		this.lc = new LoginController(db);
+	}
+
+	public AdminInterface(Admin admin, DBController temp)
+	{
+		super(temp);
+		this.admin = admin;
+		this.uCont = new UsersController(temp);
+		this.uniCont = new UniversityController(temp);
+		this.lc = new LoginController(temp);
+	}
+
   /**
    * A method that displays all User objects in the Database
    * 
@@ -78,7 +88,7 @@ public class AdminInterface extends UserInterface
    * 
    * @return -1 if unsucessfull, 0 otherwise
    */
-  public void editUser(String username, String newFirst, String newLast, String newPassword, char newType, boolean newActivation, boolean newLoggedIn)
+  public void editUser(String username, String newFirst, String newLast, String newPassword, String newType, String newActivation, String newLoggedIn)
   {
 		  uCont.editUser(username, newFirst, newLast, newPassword, newType, newActivation, newLoggedIn);
   }
@@ -96,10 +106,11 @@ public class AdminInterface extends UserInterface
    * 
    * @return -1 if unsucessfull, 0 otherwise
    */
-  public void addUser(String firstName, String lastName, String username, String password, char type ,boolean isActivated,
-                        boolean isLoggedIn)
+  public void addUser(String firstName, String lastName, String username, String password, String type ,String isActivated,
+                        String isLoggedIn)
   {
 		  uCont.addUser(firstName, lastName, username, password, type, isActivated, isLoggedIn);
+
   }
   
   /**
@@ -173,10 +184,10 @@ public class AdminInterface extends UserInterface
    */
   
   public int editUniversity(University university, String state, String location, String control, 
-                             int numStudents, double percentFemale, double SATVerbal, double SATMath,
-                             double expenses, double percentFinancialAid, int numApplicants, double percentAdmitted,
-                             double percentEnrolled,
-                             int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
+                             String numStudents, String percentFemale, String SATVerbal, String SATMath,
+                             String expenses, String percentFinancialAid, String numApplicants, String percentAdmitted,
+                             String percentEnrolled,
+                             String academicScale, String socialScale, String qualityOfLifeScale, ArrayList<String> emphases)
   {
     return uniCont.editUniversity(university,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
                              expenses,percentFinancialAid,numApplicants,percentAdmitted,percentEnrolled,
@@ -206,13 +217,19 @@ public class AdminInterface extends UserInterface
    * 
    * @return -1 if unsucessfull, 0 otherwise
    */
-  public int addUniversity(String name, String state, String location, String control, int numStudents, double percentFemale, double SATVerbal, double SATMath,
-         double expenses, double percentFinancialAid, int numApplicants, double percentAdmitted, double percentEnrolled,
-                             int academicScale, int socialScale, int qualityOfLifeScale, ArrayList<String> emphases)
+  public int addUniversity(String name, String state, String location, String control, String numStudents, String percentFemale, String SATVerbal, String SATMath,
+         String expenses, String percentFinancialAid, String numApplicants, String percentAdmitted, String percentEnrolled,
+                             String academicScale, String socialScale, String qualityOfLifeScale, ArrayList<String> emphases)
   {
-     return uniCont.addUniversity(name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
-                             expenses,percentFinancialAid,numApplicants,percentAdmitted,percentEnrolled,
-                             academicScale,socialScale,qualityOfLifeScale,emphases);
+	  try {
+		  return uniCont.addUniversity(name,state,location,control,numStudents,percentFemale,SATVerbal,SATMath,
+                  expenses,percentFinancialAid,numApplicants,percentAdmitted,percentEnrolled,
+                  academicScale,socialScale,qualityOfLifeScale,emphases);
+	  }
+	  catch(IllegalArgumentException e)
+	  {
+		  return -1;
+	  }
   }
   
   /**
