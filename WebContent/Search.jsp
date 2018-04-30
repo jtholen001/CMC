@@ -1,4 +1,5 @@
 <%@include file="verifyLogin.jsp"  %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>Search</title>
@@ -124,23 +125,22 @@ border="1" cellpadding="2" cellspacing="2">
 <tr>
 <td style="vertical-align: top;">by QUALITY OF LIFE SCALE (1-5)<br>
 </td>
-<td style="vertical-align: top;">between <input name="QualityOfLifeScaleLower" id = "QualityOfLifeScaleLower" onblur="meetsCriteria()">
+<td style="vertical-align: top;">between <input name="QualityOfLifeScaleLower" id = "QualityOfLifeScaleLower" onkeydown="meetsCriteria()">
  and <input name="QualityOfLifeScaleUpper"> <font color="red" id="error"></font><br>
  <script>
 	function meetsCriteria()
 	{
 		
 		var s = document.getElementById("QualityOfLifeScaleLower").value;
-		
+		var validLength = false;
 		var value = Integer.parseInt(s);
-		if(s.length >= 1)
+		if(s.contains("-1"))
 			validLength = true;
 
-	   if(validLength)
+	   if(!validLength)
 	   {
 		   document.getElementById("Submit").disabled = true;
-
-	   			document.getElementById("error").innerHTML = "Try harder";
+	   	   document.getElementById("error").innerHTML = "Try harder";
 	   else
 		{
 		   document.getElementById("Submit").disabled = false;
@@ -165,8 +165,8 @@ border="1" cellpadding="2" cellspacing="2">
 </tbody>
 </table>
 <br>
-<input value="Search for Universities"
-name="Search" id="Search" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button value="Search for Universities"
+name="Search" id="Submit" type="submit">Search </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input value="Reset Form"
 name="Reset" type="reset">
 </form>

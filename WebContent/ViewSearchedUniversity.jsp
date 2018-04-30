@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="cmcPackage.entityClasses.*, cmcPackage.Controllers.*"%>
 <%@include file="verifyLogin.jsp"%>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<meta content="text/html; charset=ISO-8859-1"
+http-equiv="content-type">
 <%
 String[] values = request.getParameterValues("Universities");
 String universityName = request.getParameter("University");
