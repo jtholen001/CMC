@@ -8,6 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="styles.css">
 <title>Manage My Profile</title>
 </head>
 <body>
@@ -145,5 +146,8 @@
 <input value="Reset Form"
 name="Reset" type="reset">
 </form>
+<form method="post" action="StudentMenu.jsp">
+	    <input name="Return" value="Return to Menu" type="submit">
+	</form>
 </body>
 </html>

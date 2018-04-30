@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="cmcPackage.entityClasses.*, cmcPackage.Controllers.*"%>
+    pageEncoding="UTF-8" import="cmcPackage.entityClasses.*, cmcPackage.Controllers.*, java.util.*"%>
 <%@include file="verifyLogin.jsp"%>
 <%
 StudentInterface studentInt = (StudentInterface)session.getAttribute("userInt");
@@ -59,25 +59,32 @@ try {
 } 
 catch (NumberFormatException nfe) {
   	response.sendRedirect("Search.jsp?Error=-1");
+  	return;  	
 }
 catch (IllegalArgumentException iae) {
   	response.sendRedirect("Search.jsp?Error=-2");
+  	return;
 }
 catch (InputMismatchException ime) {
   	response.sendRedirect("Search.jsp?Error=-3");
+  	return;
 }
+if (foundUniversities.isEmpty()) {
+	response.sendRedirect("Search.jsp?Error=-4");
+	return;
+}
+
+HashMap<String, University> allUniversities = studentInt.viewUniversities(foundUniversities);
+TreeMap<String, University> sortedUniversities = new TreeMap<String, University>();
+sortedUniversities.putAll(allUniversities);
+
 String universityList = "?";
-for(University u : foundUniversities) {
-	universityList += "Universities=" + u.getName() + "&";
+for(String u: sortedUniversities.keySet()){
+	universityList += "Universities=" + u + "&";
 }
 int length = universityList.length();
-if (length == 1) {
-	//universityList = "";
-	response.sendRedirect("Search.jsp?Error=-4");
-} 
-else {
-	universityList = universityList.substring(0, length - 1);
-	response.sendRedirect("ViewMatchedResults.jsp"+ universityList);
-}
+ 
+universityList = universityList.substring(0, length - 1);
+response.sendRedirect("ViewMatchedResults.jsp"+ universityList);
 
 %>

@@ -14,14 +14,10 @@ for(int i = 0; i < values.length; i++) {
 	universityList += "Universities=" + values[i] + "&";
 }
 int length = universityList.length();
-if (length == 1) {
-	universityList = "";
-} 
-else {
-	universityList = universityList.substring(0, length - 1);
-}
+universityList = universityList.substring(0, length - 1);
+
 if (fromWhere.equals("0")) {
-	response.sendRedirect("ViewMatchedResults.jsp"+ universityList);
+	response.sendRedirect("ViewMatchedResults.jsp?"+ universityList);
 }
 else {
 	String startFrom = request.getParameter("StartFrom");
