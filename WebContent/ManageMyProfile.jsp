@@ -17,7 +17,7 @@
   <tbody>
 <tr>
 	<td style="vertical-align: top">First Name</td>
-	<td style="vertical-align: top;"><input name="FirstName" id="First" onblur="isValidFirst()"value=<%=studentInt.getStudent().getFirstName()%>><br>
+	<td style="vertical-align: top;"><input name="FirstName" id="First" onblur="isValidFirst()"value=<%=studentInt.getStudent().getFirstName()%>>
 <font color="red" id="errorFN"></font>
 <script>
 	function isValidFirst()
@@ -25,13 +25,13 @@
 		var s = document.getElementById("First").value;
 		if(s == "")
 			{
-				document.getElementById("Edit").disabled = true;
+				document.getElementById("Submit").disabled = true;
 	   			document.getElementById("errorFN").innerHTML = "First name cannot be empty";
 		   }
 		else
 		{
 				
-		   document.getElementById("Edit").disabled = false;
+		   document.getElementById("Submit").disabled = false;
 	  	   document.getElementById("errorFN").innerHTML = "";
 		} 
 	}
@@ -40,7 +40,7 @@
 </tr>
 <tr>
 	<td style="vertical-align: top">Last Name</td>
-	<td style="vertical-align: top;"><input name="LastName" id="Last" onblur="isValidLast()" value=<%=studentInt.getStudent().getLastName()%>><br>
+	<td style="vertical-align: top;"><input name="LastName" id="Last" onblur="isValidLast()" value=<%=studentInt.getStudent().getLastName()%>>
 <font color="red" id="errorLN"></font>
 <script>
 	function isValidLast()
@@ -48,13 +48,12 @@
 		var s = document.getElementById("Last").value;
 		if(s == "")
 			{
-				document.getElementById("Edit").disabled = true;
+				document.getElementById("Submit").disabled = true;
 	   			document.getElementById("errorLN").innerHTML = "Last name cannot be empty";
 		   }
 		else
 		{
-				
-		   document.getElementById("Edit").disabled = false;
+		   document.getElementById("Submit").disabled = false;
 	  	   document.getElementById("errorLN").innerHTML = "";
 		} 
 	}
