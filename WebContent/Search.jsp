@@ -125,29 +125,26 @@ border="1" cellpadding="2" cellspacing="2">
 <tr>
 <td style="vertical-align: top;">by QUALITY OF LIFE SCALE (1-5)<br>
 </td>
-<td style="vertical-align: top;">between <input name="QualityOfLifeScaleLower" id = "QualityOfLifeScaleLower" onkeydown="meetsCriteria()">
+<td style="vertical-align: top;">between <input name="QualityOfLifeScaleLower" id = "QualityOfLifeScaleLower" onblur='meetsCriteria("QualityOfLifeScaleLower")'>
  and <input name="QualityOfLifeScaleUpper"> <font color="red" id="error"></font><br>
  <script>
-	function meetsCriteria()
+	function meetsCriteria(name)
 	{
 		
-		var s = document.getElementById("QualityOfLifeScaleLower").value;
-		var validLength = false;
-		var value = Integer.parseInt(s);
-		if(s.contains("-1"))
-			validLength = true;
+		var s = document.getElementById(name).value;
+		
+			if (s == "n") {
+				document.getElementById("Submit").disabled = true;
+				document.getElementById("error").innerHTML = "Try harder";
+			}
 
-	   if(!validLength)
-	   {
-		   document.getElementById("Submit").disabled = true;
-	   	   document.getElementById("error").innerHTML = "Try harder";
-	   else
-		{
-		   document.getElementById("Submit").disabled = false;
-	  	   document.getElementById("error").innerHTML = "";
+			else {
+				document.getElementById("Submit").disabled = false;
+				document.getElementById("error").innerHTML = "test";
+			}
+				alert("please work");
 		}
-	}
-</script>
+	</script>
 </td>
 </tr>
 <tr>
