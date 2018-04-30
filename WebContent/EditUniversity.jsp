@@ -17,6 +17,15 @@
 // 	University university = db.getUniversity("ADELPHI");
 %>
 <body>
+<p>
+<%
+String error = request.getParameter("Error");
+	if(error!=null){
+		if (error.equals("-1"))
+			out.print("Uh-Oh! Something went wrong. Please check your input again before submitting your changes.");
+	}
+%>
+</p>
 	<form action="EditUniversity_Action.jsp" name="Edit University">
 		<table>
 			<tbody>
@@ -95,8 +104,9 @@
 				<tr>
 					<td>CONTROL</td>
 					<td><%String control = university.getControl(); %>
-						<input type="radio" name="control" value="Public"<%if (control.equals("PUBLIC")){ %>checked="checked"<%}%>>Public
+						<input type="radio" name="control" value="City"<%if (control.equals("CITY")){ %>checked="checked"<%}%>>City
 						<input type="radio" name="control" value="Private"<%if (control.equals("PRIVATE")){ %>checked="checked"<%}%>>Private
+						<input type="radio" name="control" value="State"<%if (control.equals("STATE")){ %>checked="checked"<%}%>>State
 						</td>
 				</tr>
 				<tr>
