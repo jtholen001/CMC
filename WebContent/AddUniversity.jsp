@@ -31,7 +31,7 @@ String error = request.getParameter("Error");
 <tr>
 <td>State</td>
 <td> <select name="State" style="width: 172px;">
-		<option value="-1">-1</option>
+		<option value="-1">Not Applicable</option>
 		<option value="Alabama">Alabama</option>
 		<option value="Alaska">Alaska</option>
 		<option value="Arizona">Arizona</option>
@@ -88,6 +88,7 @@ String error = request.getParameter("Error");
 <tr>
 <td>Location</td>
 <td><select name="Location" style="width: 172px;">
+		<option value="-1">Not Applicable</option>
 		<option value="Suburban">Suburban</option>
 		<option value="Urban">Urban</option>
 		<option value="Small-City">Small-City</option>		
@@ -138,26 +139,26 @@ String error = request.getParameter("Error");
 <tr>
 <td>Academic Scale (1-5)</td>
 <td><input type="radio" name="academicScale" value="1" checked = "checked">1
-	<input type="radio" name="academicScale" value="1">2
-	<input type="radio" name="academicScale" value="1">3
-	<input type="radio" name="academicScale" value="1">4
-	<input type="radio" name="academicScale" value="1">5</td>
+	<input type="radio" name="academicScale" value="2">2
+	<input type="radio" name="academicScale" value="3">3
+	<input type="radio" name="academicScale" value="4">4
+	<input type="radio" name="academicScale" value="5">5</td>
 </tr>
 <tr>
 <td>Social Scale (1-5)</td>
 <td><input type="radio" name="socialScale" value="1" checked = "checked">1
-	<input type="radio" name="socialScale" value="1">2
-	<input type="radio" name="socialScale" value="1">3
-	<input type="radio" name="socialScale" value="1">4
-	<input type="radio" name="socialScale" value="1">5</td>
+	<input type="radio" name="socialScale" value="2">2
+	<input type="radio" name="socialScale" value="3">3
+	<input type="radio" name="socialScale" value="4">4
+	<input type="radio" name="socialScale" value="5">5</td>
 </tr>
 <tr>
 <td>Quality Of Life Scale (1-5)</td>
 <td><input type="radio" name="qualityOfLifeScale" value="1" checked = "checked">1
-	<input type="radio" name="qualityOfLifeScale" value="1">2
-	<input type="radio" name="qualityOfLifeScale" value="1">3
-	<input type="radio" name="qualityOfLifeScale" value="1">4
-	<input type="radio" name="qualityOfLifeScale" value="1">5</td>
+	<input type="radio" name="qualityOfLifeScale" value="2">2
+	<input type="radio" name="qualityOfLifeScale" value="3">3
+	<input type="radio" name="qualityOfLifeScale" value="4">4
+	<input type="radio" name="qualityOfLifeScale" value="5">5</td>
 </tr>
 <tr>
 <td>Emphases<br><br>*You may add more<br>emphases later</td>
