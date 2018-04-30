@@ -252,13 +252,15 @@ public class DBController
 
 		for(int index = 0; index < universities.length; index++)
 		{
-			universityMap.put(universities[index][0], new University(universities[index][0], universities[index][1],
-					universities[index][2],universities[index][3],
-					Integer.parseInt(universities[index][4]), Double.parseDouble(universities[index][5]),
-					Double.parseDouble(universities[index][6]), Double.parseDouble(universities[index][7]), Double.parseDouble(universities[index][8]),
-					Double.parseDouble(universities[index][9]), Integer.parseInt(universities[index][10]),Double.parseDouble(universities[index][11]),
-					Double.parseDouble(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
-					Integer.parseInt(universities[index][15]), getUniversityEmphases(universities[index][0]))); //not sure how emphases are stored
+			if(!universities[index][0].contains("%2FA-MASTER%")) {
+				universityMap.put(universities[index][0], new University(universities[index][0], universities[index][1],
+						universities[index][2],universities[index][3],
+						Integer.parseInt(universities[index][4]), Double.parseDouble(universities[index][5]),
+						Double.parseDouble(universities[index][6]), Double.parseDouble(universities[index][7]), Double.parseDouble(universities[index][8]),
+						Double.parseDouble(universities[index][9]), Integer.parseInt(universities[index][10]),Double.parseDouble(universities[index][11]),
+						Double.parseDouble(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
+						Integer.parseInt(universities[index][15]), getUniversityEmphases(universities[index][0]))); //not sure how emphases are stored
+			}
 		}
 		return universityMap;
 	}
@@ -468,113 +470,73 @@ public class DBController
 	}
 	
 	/**
-	 * Method to get all users who have 2FA enabled from local database file
-	 *
-	 * @return a hashmap of master 2fa keys where the user name is the key and the String key is a value
-	 */
-	public HashMap<String, String>readTfaFromFile() {
-	    HashMap<String, String> authKeys = new HashMap<String, String>();
-	    //System.out.println(new File(".").getAbsolutePath());
-	    
-	    //try
-	    //{
-	    	InputStream in = this.getClass().getResourceAsStream("authentication_keys.txt"); // works with authentication_keys.txt in src/Controllers but accesses from bin isntead of src
-	      	//Scanner scan = new Scanner(new File("authentication_keys.txt"));
-	    	Scanner scan = new Scanner(in);
-	      while(scan.hasNextLine())
-	      {
-	    	String line = scan.nextLine();
-	    	String[] commaSeperator = line.split(",");
-	        String username = commaSeperator[0];
-	        String key = commaSeperator[1];
-	        
-	        authKeys.put(username, key);
-	      }
-	      
-	      scan.close();
-	    //}
-	    //catch (FileNotFoundException e)
-	    //{
-	    //	//e.printStackTrace();
-	    //  System.out.println("2FA local database file not found");
-	    //}
-	    
-	    return authKeys;
-	}
-	
-	/**
 	 * Method to enable 2FA for a user. If 2FA is already enabled, a new master key will be set
 	 *
 	 * @return string representing URL of QR code for user to scan
 	 */
-	public String enableTfa(User user) {
-		HashMap<String, String> authKeys = this.readTfaFromFile();
+	public String enableTfa(User user) {	  
+		String uTfa = "%2FA-MASTER%_";
+		uTfa = uTfa.concat(user.getUsername());
 		
-		if (authKeys.containsKey(user.getUsername())) { // user already has 2FA enabled, this will reset it
-			authKeys.remove(user);
+		if (this.isTfaEnabled(user.getUsername())){ // user already has 2FA enabled, this will reset it
+			this.deleteUniversity(this.getUniversity(uTfa));
 			String newMasterKey = tfaUtil.generateBase32Secret();
 			String qrCodeUrl = tfaUtil.qrImageUrl("CMC" + " (" + user.getUsername() + ")", newMasterKey);
-			authKeys.put(user.getUsername(), newMasterKey);
-			this.writeTfaToFile(authKeys);
+			University univTfa = new University("%2FA-MASTER%", newMasterKey, "-1", "-1", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, new ArrayList<String>());
+			this.addUniversity(univTfa);
 			return qrCodeUrl;
 		}
 		else {
 			String masterKey = tfaUtil.generateBase32Secret();
 			String qrCodeUrl = tfaUtil.qrImageUrl("CMC" + "_" + user.getUsername(), masterKey);
-			authKeys.put(user.getUsername(), masterKey);
-			this.writeTfaToFile(authKeys);
+			University univTfa = new University("%2FA-MASTER%", masterKey, "-1", "-1", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, new ArrayList<String>());
+			this.saveUniversityToStudent((Student)user, univTfa);
 			return qrCodeUrl;
 		}
 	}
 	
 	public void disableTfa(User user) {
-		HashMap<String, String> authKeys = this.readTfaFromFile();
-		if (authKeys.containsKey(user.getUsername())) {
-			authKeys.remove(user.getUsername());
-			this.writeTfaToFile(authKeys);
+		if (!this.isTfaEnabled(user.getUsername())) {
+			String uTfa = "%2FA-MASTER%_";
+			uTfa = uTfa.concat(user.getUsername());
+			this.deleteUniversity(this.getUniversity(uTfa));
 		}
 		else {
 			throw new IllegalArgumentException("User does not have 2FA enabled");
 		}
 	}
 	
-	public void writeTfaToFile(HashMap<String, String> authKeys) {
+	public boolean isTfaEnabled(String username) {
 		try {
-			//URL url = this.getClass().getResource("authentication_keys.txt");
-			//String path = url.getPath();
-			//PrintWriter out = new PrintWriter(path);
-			PrintWriter out = new PrintWriter("src/cmcPackage/Controllers/authentication_keys.txt", "UTF-8");
-			
-			for (String username : authKeys.keySet()) {
-				String key = authKeys.get(username);
-				out.println(username + "," + key);
-			}
-			
-			out.close();
-			
-		} catch (FileNotFoundException | UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			String uTfa = "%2FA-MASTER%_";
+			uTfa = uTfa.concat(username);
+			University u = this.getUniversity(uTfa);
+			return true;
+		}
+		catch (IllegalArgumentException iae) {
+			return false;
 		}
 	}
 	
-	public boolean isTfaEnabled(String username) {
-		User u = this.getUser(username);
-		HashMap<String, String> authKeys = this.readTfaFromFile();
-		
-		if (authKeys.containsKey(u.getUsername()))
-			return true;
-		else
-			return false;
+	public String getMasterKey(User user) {
+		if (this.isTfaEnabled(user.getUsername())) {
+			String uTfa = "%2FA-MASTER%_";
+			uTfa = uTfa.concat(user.getUsername());
+			return this.getUniversity(uTfa).getState();
+			
+		}
+		else {
+			throw new IllegalArgumentException("User does not have 2FA enabled");
+		}
 	}
 	
 	public boolean tfaAuthenticate(String key, String username) {
 		try {
 			System.out.println("Attempt: " + key);
-			System.out.println("Reply: " + this.readTfaFromFile().get(username));
-			return key.equals(tfaUtil.generateCurrentNumberString(this.readTfaFromFile().get(username)));
+			System.out.println("Reply: " + this.getMasterKey(this.getUser(username)));
+			return key.equals(tfaUtil.generateCurrentNumberString(this.getMasterKey(this.getUser(username))));
 		}
-		catch (GeneralSecurityException e) { return false;}
+		catch (GeneralSecurityException e) { return false;}   
 	}
 
 }

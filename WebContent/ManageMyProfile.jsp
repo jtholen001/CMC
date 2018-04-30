@@ -119,12 +119,12 @@ Security
 	<%
 	if (studentInt.isTfaEnabled()) {
 	 %>
-	 <td style="vertical-align: top"><form action="Enable2FA_action.jsp"><input type="submit" value="Reset 2FA" /></form></td>
-	 <td style="vertical-align: top"><form action="Disable2FA_action.jsp"><input type="submit" value="Disable 2FA" /></form></td>
+	 <td style="vertical-align: top"><form action="EnableTFA_action.jsp"><input type="submit" value="Reset 2FA" /></form></td>
+	 <td style="vertical-align: top"><form action="DisableTFA_action.jsp"><input type="submit" value="Disable 2FA" /></form></td>
 	 <%
 	 } 
 	 else {%>
-	<td style="vertical-align: top"><form action="Enable2FA_action.jsp"><input type="submit" value="Enable 2FA" /></form></td>
+	<td style="vertical-align: top"><form action="EnableTFA_action.jsp"><input type="submit" value="Enable 2FA" /></form></td>
 	<%}%>
 </tr>
 <%
@@ -134,17 +134,15 @@ if(error != null) {
 		out.print("2FA is not enabled.");
 		}
 		
-String disabled = request.getParameter("Disabled");
-if(disabled != null) {
-	if (disabled.equals("1"))
+String toggle = request.getParameter("gtpl");
+if(toggle != null) {
+	if (toggle.equals("2"))
 		out.print("2FA is now disabled.");
 		}
-		
-String enabled = request.getParameter("Enabled");
-if(disabled != null) {
-	if (disabled.equals("1")) {
+if(toggle != null) {
+	if (toggle.equals("1")) {
 		out.print("2FA is now enabled.");
-		out.println(request.getParameter("tfaUrl"));
+		out.println((String)session.getAttribute("tfaUrl"));
 		}
 		}
  %>

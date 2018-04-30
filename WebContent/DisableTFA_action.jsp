@@ -7,6 +7,6 @@ if (!studentInt.isTfaEnabled())
 	response.sendRedirect("ManageMyProfile.jsp?Error=-9");
 else {
 	studentInt.disableTfa();
-	response.sendRedirect("TwoFactorAuthentication.jsp?Disabled=1");
+	response.sendRedirect("ManageMyProfile.jsp?gtpl=2");
 	}
 %>
