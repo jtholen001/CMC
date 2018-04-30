@@ -107,7 +107,8 @@ border="1" cellpadding="2" cellspacing="2">
 <tr>
 <td style="vertical-align: top;">by % ENROLLED<br>
 </td>
-<td style="vertical-align: top;">between <input name="PercentEnrolledLower"> and <input name="PercentEnrolledUpper"><br>
+<td style="vertical-align: top;">between <input name="PercentEnrolledLower" id="PercentEnrolledLower" onblur='meetsCriteria("PercentEnrolled", 0.0, 100.0, "double")'>
+ and <input name="PercentEnrolledUpper"> <font color="red" id="PercentEnrolledError"></font> <br>
 </td>
 </tr>
 <tr>
@@ -125,26 +126,9 @@ border="1" cellpadding="2" cellspacing="2">
 <tr>
 <td style="vertical-align: top;">by QUALITY OF LIFE SCALE (1-5)<br>
 </td>
-<td style="vertical-align: top;">between <input name="QualityOfLifeScaleLower" id = "QualityOfLifeScaleLower" onblur='meetsCriteria("QualityOfLifeScaleLower")'>
- and <input name="QualityOfLifeScaleUpper"> <font color="red" id="error"></font><br>
- <script>
-	function meetsCriteria(name)
-	{
-		
-		var s = document.getElementById(name).value;
-		
-			if (s == "n") {
-				document.getElementById("Submit").disabled = true;
-				document.getElementById("error").innerHTML = "Try harder";
-			}
-
-			else {
-				document.getElementById("Submit").disabled = false;
-				document.getElementById("error").innerHTML = "test";
-			}
-				alert("please work");
-		}
-	</script>
+<td style="vertical-align: top;">between <input name="QualityOfLifeScaleLower" id = "QualityOfLifeScaleLower" onblur='meetsCriteria("QualityOfLifeScale", 1, 5, "int")'>
+ and <input name="QualityOfLifeScaleUpper" id="QualityOfLifeScaleUpper" onblur='meetsCriteria("QualityOfLifeScale", 1, 5, "int")'> 
+ <font color="red" id="QualityOfLifeScaleError"></font><br>
 </td>
 </tr>
 <tr>
@@ -171,5 +155,35 @@ name="Reset" type="reset">
 	    <input name="Return" value="Return to Menu" type="submit">
 	</form>
 </body>
-
+ <script>
+	function meetsCriteria(name, minRequired, maxRequired, type)
+	{
+		var lowerValue = document.getElementById(name+"Lower").value;
+	    var upperValue = document.getElementById(name+"Upper").value;
+			var valid = false;
+			if (type == "int") {
+				if (!lowerValue.match(/[^0-9]/g) && !upperValue.match(/[^0-9]/g)) {
+					var num1 = parseInt(lowerValue);
+					var num2 = parseInt(upperValue);
+					if (num1 >= minRequired && num2 <= maxRequired && num1 <= num2)
+						valid = true;
+				}
+			} else {
+				var firstDot = lowerValue.indexOf(".");
+				var lastDot = lowerValue.lastIndexOf(".");
+				if (!lowerValue.match(/[^0-9.]/g) && (firstDot == -1 || firstDot == lastDot) && lastDot != lowerValue.length - 1) {
+					var number = parseFloat(lowerValue);
+					if (number >= minRequired && number <= maxRequired)
+						valid = true;
+				}
+			}
+			if (valid || lowerValue == "") {
+				document.getElementById("Submit").disabled = false;
+				document.getElementById(name+"Error").innerHTML = "";
+			} else {
+				document.getElementById("Submit").disabled = true;
+				document.getElementById(name+"Error").innerHTML = "enter valid numbers between " + minRequired + " and " + maxRequired;
+			}
+		}
+	</script>
 </html>
