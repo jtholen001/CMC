@@ -29,17 +29,13 @@ public class UserInterface
    */
   public UserInterface()
   {
-<<<<<<< HEAD
-    lc = new LoginController();
-    dbc = new DBController();
-=======
     this.lc = new LoginController(new DBController());
+    this.dbc = new DBController();
   }
   
   public UserInterface(DBController temp)
   {
     this.lc = new LoginController(temp);
->>>>>>> d0dbe078f17d256c89a7dc577bcacc672a8e0ee6
   }
   
   /**

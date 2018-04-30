@@ -180,16 +180,22 @@ if(toggle != null) {
 	if (toggle.equals("2"))
 		out.print("2FA is now disabled.");
 		}
-if(toggle != null) {
-	if (toggle.equals("1")) {
-		out.print("2FA is now enabled.");
-		out.println((String)session.getAttribute("tfaUrl"));
-		}
-		}
  %>
 
 </tbody>
 </table>
+<br>
+
+<%
+if(toggle != null) {
+	if (toggle.equals("1")) {
+		String tfaUrl = (String)session.getAttribute("tfaUrl");
+%>
+	2FA is now enabled. To complete setup, download Google Authenticator for <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">iOS</a> or <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en_US">Android</a> and scan the QR code.
+	<br>
+	<img src=<%out.println(tfaUrl);%>>
+	<%}
+	} %>
 
 </body>
 </html>
