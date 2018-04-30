@@ -471,9 +471,14 @@ public class DBController implements Runnable
 		{
 			return -1;
 		}
+		synchronized(this.storedUniversities) {
+			if(storedUniversities.remove(university.getName()) == null)
+			{
+				return -1;
+			}
 		univDBlib.university_deleteUniversity(university.getName());
-		if(this.storedUniversities.remove(university) != null)
-			return 1;
+		
+		}
 		return -1;
 	}
 
@@ -544,7 +549,7 @@ public class DBController implements Runnable
 
 
 			try {
-				Thread.sleep((4 * 1000));
+				Thread.sleep((1 * 1000));
 			}
 			catch(InterruptedException j)
 			{
