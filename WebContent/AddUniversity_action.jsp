@@ -47,8 +47,10 @@ int result = adminInt.addUniversity((String)name, state, location, control, numb
 									percentEnrolled, academicScale, socialScale,
 									qualityOfLifeScale, emphases);
 
-if(result == -1)
+if(result == -1){
 	response.sendRedirect("AddUniversity.jsp?Error=-1");
+	return;
+}
 
 response.sendRedirect("ManageUniversities.jsp?addSuccess=1&addedUniversity=" + name);
 %>

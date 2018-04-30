@@ -38,13 +38,18 @@ String percentFinancialAid = request.getParameter("percentFinancialAid");
 String percentAdmitted = request.getParameter("percentAdmitted");
 String percentEnrolled = request.getParameter("percentEnrolled");
 	
-adminInt.editUniversity(university, request.getParameter("state"), request.getParameter("location"), request.getParameter("control"), 
+int result = adminInt.editUniversity(university, request.getParameter("state"), request.getParameter("location"), request.getParameter("control"), 
 		numStudents, percentFemale, SATVerbal, 
 		SATMath, expenses, percentFinancialAid, 
 		numApplicants, percentAdmitted, percentEnrolled, 
 		academicScale, socialScale, 
 		qualityOfLifeScale, emphases);
 
+if (result == -1){
+	response.sendRedirect("EditUniversity.jsp?Error=-1&UniversityName="+ university.getName());
+	return;
+}
+	
 response.sendRedirect("ManageUniversities.jsp?EditSuccess=1&editedName="+ university.getName());
 
 

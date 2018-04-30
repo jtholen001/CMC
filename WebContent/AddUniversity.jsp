@@ -96,8 +96,9 @@ String error = request.getParameter("Error");
 </tr>
 <tr>
 <td>Control</td>
-<td><input type="radio" name="Control" value="Public" checked="checked">Public
+<td><input type="radio" name="Control" value="City">City
 	<input type="radio" name="Control" value="Private">Private
+	<input type="radio" name="Control" value="State">State
 </td>
 </tr>
 <tr>
@@ -138,7 +139,7 @@ String error = request.getParameter("Error");
 </tr>
 <tr>
 <td>Academic Scale (1-5)</td>
-<td><input type="radio" name="academicScale" value="1" checked = "checked">1
+<td><input type="radio" name="academicScale" value="1">1
 	<input type="radio" name="academicScale" value="2">2
 	<input type="radio" name="academicScale" value="3">3
 	<input type="radio" name="academicScale" value="4">4
@@ -146,7 +147,7 @@ String error = request.getParameter("Error");
 </tr>
 <tr>
 <td>Social Scale (1-5)</td>
-<td><input type="radio" name="socialScale" value="1" checked = "checked">1
+<td><input type="radio" name="socialScale" value="1">1
 	<input type="radio" name="socialScale" value="2">2
 	<input type="radio" name="socialScale" value="3">3
 	<input type="radio" name="socialScale" value="4">4
@@ -154,7 +155,7 @@ String error = request.getParameter("Error");
 </tr>
 <tr>
 <td>Quality Of Life Scale (1-5)</td>
-<td><input type="radio" name="qualityOfLifeScale" value="1" checked = "checked">1
+<td><input type="radio" name="qualityOfLifeScale" value="1">1
 	<input type="radio" name="qualityOfLifeScale" value="2">2
 	<input type="radio" name="qualityOfLifeScale" value="3">3
 	<input type="radio" name="qualityOfLifeScale" value="4">4

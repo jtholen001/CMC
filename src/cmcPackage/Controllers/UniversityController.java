@@ -68,6 +68,7 @@ public class UniversityController
          String expenses, String percentFinancialAid, String numApplicants, String percentAdmitted, String percentEnrolled,
                              String academicScale, String socialScale, String qualityOfLifeScale, ArrayList<String> emphases)
   { 
+	  try {
 	if(state.equals(""))
 		university.setState("-1");
 	else
@@ -78,7 +79,7 @@ public class UniversityController
 	else
 		university.setLocation(location);
 	
-	if(control.equals(""))
+	if(control == null || control.equals(""))
 		university.setControl("-1");
 	else
 		university.setControl(control);
@@ -128,17 +129,17 @@ public class UniversityController
 	else
 		university.setPercentEnrolled(Double.parseDouble(percentEnrolled));
 	
-	if(academicScale.equals(""))
+	if(academicScale == null || academicScale.equals(""))
 		university.setAcademicScale(-1);
 	else
 		university.setAcademicScale(Integer.parseInt(academicScale));
 	
-	if(socialScale.equals(""))
+	if(socialScale == null || socialScale.equals(""))
 		university.setSocialScale(-1);
 	else
 		university.setSocialScale(Integer.parseInt(socialScale));
 	
-	if(qualityOfLifeScale.equals(""))
+	if(qualityOfLifeScale == null || qualityOfLifeScale.equals(""))
 		university.setQualityOfLifeScale(-1);
 	else
 		university.setQualityOfLifeScale(Integer.parseInt(qualityOfLifeScale));
@@ -146,6 +147,11 @@ public class UniversityController
     university.setEmphases(emphases);
     
     return dbCont.saveEditedUniversity(university);
+	}
+	  catch(NumberFormatException | NullPointerException ex)
+	  {
+		  return -1;
+	  }
   }
   
   /**
@@ -181,7 +187,7 @@ public class UniversityController
 		  	state = "-1";
 	  if(location.equals(""))
 		  	location = "-1";
-	  if(control.equals(""))
+	  if(control == null || control.equals(""))
 		  	control = "Public";
 	  if(numStudents.equals(""))
 		  	numStudents = "-1";
@@ -201,11 +207,11 @@ public class UniversityController
 		  	percentAdmitted = "-1";
 	  if(percentEnrolled.equals(""))
 		  	percentEnrolled = "-1";
-	  if(academicScale.equals(""))
+	  if(academicScale == null || academicScale.equals(""))
 		  	academicScale = "-1";
-	  if(socialScale.equals(""))
+	  if(socialScale == null || socialScale.equals(""))
 		  	socialScale = "-1";
-	  if(qualityOfLifeScale.equals(""))
+	  if(qualityOfLifeScale == null || qualityOfLifeScale.equals(""))
 		  	qualityOfLifeScale = "-1";
     try{
     	return dbCont.addUniversity(new University(name, state, location, control, Integer.parseInt(numStudents), Double.parseDouble(percentFemale), Double.parseDouble(SATVerbal), Double.parseDouble(SATMath), 
