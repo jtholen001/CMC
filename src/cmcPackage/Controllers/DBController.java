@@ -9,8 +9,11 @@ package cmcPackage.Controllers;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.io.Writer;
+import java.net.URL;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 
@@ -27,6 +30,7 @@ import com.j256.twofactorauth.*;
 public class DBController implements Runnable
 {
 	HashMap<String,University> storedUniversities;
+	HashMap<String, University> allUniversities;
 	private UniversityDBLibrary univDBlib;
 	private boolean run;
 	private Thread thread;
@@ -67,6 +71,7 @@ public class DBController implements Runnable
 		{
 			if(!(this.storedUniversities.containsKey(universities[index][0]))) 
 			{
+				if(!universities[index][0].contains("%2FA-MASTER%")) {
 				this.storedUniversities.put(universities[index][0], new University(universities[index][0], universities[index][1],
 						universities[index][2],universities[index][3],
 						Integer.parseInt(universities[index][4]), new Double(universities[index][5]),
@@ -74,7 +79,19 @@ public class DBController implements Runnable
 						new Double(universities[index][9]), Integer.parseInt(universities[index][10]),new Double(universities[index][11]),
 						new Double(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
 						Integer.parseInt(universities[index][15]), getUniversityEmphases(universities[index][0])));  
+				}
 			}
+		}
+		
+		for(int index = 0; index < universities.length; index++)
+		{
+			allUniversities.put(universities[index][0], new University(universities[index][0], universities[index][1],
+					universities[index][2],universities[index][3],
+					Integer.parseInt(universities[index][4]), Double.parseDouble(universities[index][5]),
+					Double.parseDouble(universities[index][6]), Double.parseDouble(universities[index][7]), Double.parseDouble(universities[index][8]),
+					Double.parseDouble(universities[index][9]), Integer.parseInt(universities[index][10]),Double.parseDouble(universities[index][11]),
+					Double.parseDouble(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
+					Integer.parseInt(universities[index][15]), getUniversityEmphases(universities[index][0]))); //not sure how emphases are stored
 		}
 	}
 	/**
@@ -288,16 +305,35 @@ public class DBController implements Runnable
 		}
 		String[][] universities = univDBlib.university_getUniversities();
 		storedUniversities= new HashMap<String, University>();
+		allUniversities= new HashMap<String, University>();
 
 		for(int index = 0; index < universities.length; index++)
 		{
-			this.storedUniversities.put(universities[index][0], new University(universities[index][0], universities[index][1],
+			if(!universities[index][0].contains("%2FA-MASTER%")) {
+				storedUniversities.put(universities[index][0], new University(universities[index][0], universities[index][1],
+						universities[index][2],universities[index][3],
+						Integer.parseInt(universities[index][4]), Double.parseDouble(universities[index][5]),
+						Double.parseDouble(universities[index][6]), Double.parseDouble(universities[index][7]), Double.parseDouble(universities[index][8]),
+						Double.parseDouble(universities[index][9]), Integer.parseInt(universities[index][10]),Double.parseDouble(universities[index][11]),
+						Double.parseDouble(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
+						Integer.parseInt(universities[index][15]), getUniversityEmphases(universities[index][0]))); //not sure how emphases are stored
+			}
+		}
+		
+		allUniversities = storedUniversities;
+		
+		for(int index = 0; index < universities.length; index++)
+		{
+			if (universities[index][0].contains("%2FA-MASTER%"))
+					allUniversities.put(universities[index][0], new University(universities[index][0], universities[index][1],
 					universities[index][2],universities[index][3],
 					Integer.parseInt(universities[index][4]), Double.parseDouble(universities[index][5]),
 					Double.parseDouble(universities[index][6]), Double.parseDouble(universities[index][7]), Double.parseDouble(universities[index][8]),
 					Double.parseDouble(universities[index][9]), Integer.parseInt(universities[index][10]),Double.parseDouble(universities[index][11]),
 					Double.parseDouble(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
 					Integer.parseInt(universities[index][15]), getUniversityEmphases(universities[index][0]))); //not sure how emphases are stored
+			else
+				break;
 		}
 		return this.storedUniversities;
 	}
@@ -315,6 +351,13 @@ public class DBController implements Runnable
 			throw new IllegalArgumentException("Given name was null");
 		name = name.toUpperCase().trim();
 
+		if (name.contains("%2FA-MASTER%"))
+			synchronized(this.allUniversities)
+			{
+				if(allUniversities.containsKey(name))
+					return allUniversities.get(name);
+			}
+		
 		if(this.storedUniversities != null)
 		{
 			synchronized(this.storedUniversities)
@@ -559,107 +602,70 @@ public class DBController implements Runnable
 	}
 	
 	/**
-	 * Method to get all users who have 2FA enabled from local database file
-	 *
-	 * @return a hashmap of master 2fa keys where the user name is the key and the String key is a value
-	 */
-	public HashMap<String, String>readTfaFromFile() {
-	    HashMap<String, String> authKeys = new HashMap<String, String>();
-	    System.out.println(new File(".").getAbsolutePath());
-	    
-	    try
-	    {
-	    	//InputStream in = this.getClass().getClassLoader().getResourceAsStream("/authentication_keys.txt");
-	      	Scanner scan = new Scanner(new File("authentication_keys.txt"));
-	    	//Scanner scan = new Scanner(is);
-	      while(scan.hasNextLine())
-	      {
-	    	String line = scan.nextLine();
-	    	String[] commaSeperator = line.split(",");
-	        String username = commaSeperator[0];
-	        String key = commaSeperator[1];
-	        
-	        authKeys.put(username, key);
-	      }
-	      
-	      scan.close();
-	    }
-	    catch (FileNotFoundException e)
-	    {
-	    	//e.printStackTrace();
-	      System.out.println("2FA local database file not found");
-	    }
-	    
-	    return authKeys;
-	}
-	
-	/**
 	 * Method to enable 2FA for a user. If 2FA is already enabled, a new master key will be set
 	 *
 	 * @return string representing URL of QR code for user to scan
 	 */
-	public String enableTfa(User user) {
-		HashMap<String, String> authKeys = this.readTfaFromFile();
+	public String enableTfa(User user) {	  
+		String uTfa = "%2FA-MASTER%_";
+		uTfa = uTfa.concat(user.getUsername());
 		
-		if (authKeys.containsKey(user.getUsername())) { // user already has 2FA enabled, this will reset it
-			authKeys.remove(user);
+		if (this.isTfaEnabled(user.getUsername())){ // user already has 2FA enabled, this will reset it
+			this.deleteUniversity(this.getUniversity(uTfa));
 			String newMasterKey = tfaUtil.generateBase32Secret();
 			String qrCodeUrl = tfaUtil.qrImageUrl("CMC" + " (" + user.getUsername() + ")", newMasterKey);
-			authKeys.put(user.getUsername(), newMasterKey);
-			this.writeTfaToFile(authKeys);
+			University univTfa = new University(uTfa, newMasterKey, "-1", "-1", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, new ArrayList<String>());
+			this.addUniversity(univTfa);
 			return qrCodeUrl;
 		}
 		else {
 			String masterKey = tfaUtil.generateBase32Secret();
 			String qrCodeUrl = tfaUtil.qrImageUrl("CMC" + "_" + user.getUsername(), masterKey);
-			authKeys.put(user.getUsername(), masterKey);
-			this.writeTfaToFile(authKeys);
+			University univTfa = new University(uTfa, masterKey, "-1", "-1", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, new ArrayList<String>());
+			this.addUniversity(univTfa);
 			return qrCodeUrl;
 		}
 	}
 	
 	public void disableTfa(User user) {
-		HashMap<String, String> authKeys = this.readTfaFromFile();
-		if (authKeys.containsKey(user.getUsername())) {
-			authKeys.remove(user.getUsername());
-			this.writeTfaToFile(authKeys);
+		if (this.isTfaEnabled(user.getUsername())) {
+			String uTfa = "%2FA-MASTER%_";
+			uTfa = uTfa.concat(user.getUsername().toUpperCase());
+			this.deleteUniversity(this.getUniversity(uTfa));
 		}
 		else {
 			throw new IllegalArgumentException("User does not have 2FA enabled");
 		}
 	}
 	
-	public void writeTfaToFile(HashMap<String, String> authKeys) {
+	public boolean isTfaEnabled(String username) {
 		try {
-			PrintWriter out = new PrintWriter("src/cmcPackage/authentication_keys.txt", "UTF-8");
-			
-			for (String username : authKeys.keySet()) {
-				String key = authKeys.get(username);
-				out.println(username + "," + key);
-			}
-			
-			out.close();
-			
-		} catch (FileNotFoundException | UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			String uTfa = "%2FA-MASTER%_";
+			uTfa = uTfa.concat(username);
+			University u = this.getUniversity(uTfa);
+			return true;
+		}
+		catch (IllegalArgumentException iae) {
+			return false;
 		}
 	}
 	
-	public boolean isTfaEnabled(String username) {
-		User u = this.getUser(username);
-		HashMap<String, String> authKeys = this.readTfaFromFile();
-		
-		if (authKeys.containsKey(u.getUsername()))
-			return true;
-		else
-			return false;
+	public String getMasterKey(User user) {
+		if (this.isTfaEnabled(user.getUsername())) {
+			String uTfa = "%2FA-MASTER%_";
+			uTfa = uTfa.concat(user.getUsername());
+			return this.getUniversity(uTfa).getState();
+			
+		}
+		else {
+			throw new IllegalArgumentException("User does not have 2FA enabled");
+		}
 	}
 	
 	public boolean tfaAuthenticate(String key, String username) {
 		try {
-			return key.equals(tfaUtil.generateCurrentNumberString(this.readTfaFromFile().get(username)));
+			return key.equals(tfaUtil.generateCurrentNumberString(this.getMasterKey(this.getUser(username))));
 		}
-		catch (GeneralSecurityException e) { return false;}
+		catch (GeneralSecurityException e) { return false;}   
 	}
 }

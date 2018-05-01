@@ -101,6 +101,16 @@ public class StudentInterface extends UserInterface
 		  return this.pc.editProfile(firstName, lastName, password); 
   }
   
+  public String enableTfa()
+  {
+	  return dbc.enableTfa(this.getStudent());
+  }
+  
+  public void disableTfa()
+  {
+	  dbc.disableTfa(this.getStudent());
+  }
+  
   /**
    * Method to view the Student's saved universities
    * 
