@@ -1,7 +1,8 @@
 /**
  * This class represents a profile controller
  * 
- * @Author: Michael Carroll, Brandan Kalsow, Nicholas Tawil, Ryan Strelow, Jordan Tholen
+ * @author Michael Carroll, Brandan Kalsow, Nicholas Tawil, Ryan Strelow, Jordan Tholen
+ * @version 5/2/18
  */
 
 package cmcPackage.Controllers;

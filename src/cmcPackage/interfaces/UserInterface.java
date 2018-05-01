@@ -2,7 +2,7 @@
  * UserInterface is the entry point for the user in the application
  *
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
- * @version 2/21/18
+ * @version 5/2/18
  */
 package cmcPackage.interfaces;
 
@@ -20,16 +20,6 @@ public class UserInterface
   private LoginController lc;
   
   /**
-   *  StudentInterface for the UserInterface
-   */
-  private StudentInterface si;
-  
-  /**
-   *  AdminInterface for the UserInterface
-   */
-  private AdminInterface ai;
-  
-  /**
    *  Database controller for the UserInterface
    */
   private DBController dbc;
@@ -40,6 +30,7 @@ public class UserInterface
   public UserInterface()
   {
     this.lc = new LoginController(new DBController());
+    this.dbc = new DBController();
   }
   
   public UserInterface(DBController temp)
