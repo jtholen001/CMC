@@ -1,6 +1,7 @@
 <html>
 <head>
 <title>Edit User Form</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     import= "cmcPackage.entityClasses.*, java.util.HashMap" pageEncoding="UTF-8"%>
@@ -183,8 +184,10 @@ name="Reset" type="reset"></td>
 </tr>
 </tbody>
 </table>
-<br>
 </form>
+<form method="post" action="ManageUsers.jsp">
+	    <input name="Return" value="Return to Menu" type="submit">
+	</form>
 <br>
 </body>
 </html>

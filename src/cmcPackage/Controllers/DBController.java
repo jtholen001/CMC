@@ -35,6 +35,8 @@ public class DBController implements Runnable
 
 	public DBController()
 	{
+		this.storedUniversities = new HashMap<String, University>();
+		this.allUniversities = new HashMap<String, University>();
 		univDBlib =  new UniversityDBLibrary("byteme","byteme","csci230");
 		this.startThread();
 		//this.storedUniversities = this.viewUniversities();
@@ -81,7 +83,7 @@ public class DBController implements Runnable
 					Double.parseDouble(universities[index][6]), Double.parseDouble(universities[index][7]), Double.parseDouble(universities[index][8]),
 					Double.parseDouble(universities[index][9]), Integer.parseInt(universities[index][10]),Double.parseDouble(universities[index][11]),
 					Double.parseDouble(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
-					Integer.parseInt(universities[index][15]), getUniversityEmphases(universities[index][0]))); //not sure how emphases are stored
+					Integer.parseInt(universities[index][15]), getUniversityEmphases(universities[index][0])));
 		}
 	}
 	/**

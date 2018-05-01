@@ -1,15 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="cmcPackage.entityClasses.*"%>
-<%@include file="verifyLogin.jsp"%>
-
-<html>
 <head>
-
 <title>Search Results</title>
 </head>
 <link rel="stylesheet" type="text/css" href="styles.css">
 <meta content="text/html; charset=ISO-8859-1"
 http-equiv="content-type">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="cmcPackage.entityClasses.*"%>
+<%@include file="verifyLogin.jsp"%>
+
+<html>
 <body>
 <table style="text-align: left; width: 100%;" border="1" cellpadding="2"
 cellspacing="2">
@@ -62,7 +61,7 @@ for(int i=0;i<values.length;i++)
 %>
 		</tbody>
 	</table>
-		<form method="post" action="StudentMenu.jsp">
+		<form method="post" action="Search.jsp">
 	    <input name="Return" value="Return to Menu" type="submit">
 	</form>
 </body>
