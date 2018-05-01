@@ -8,9 +8,10 @@ http-equiv="content-type">
 </head>
 <body>
 <%@include file="verifyLogin.jsp"  %>
-<title></title>
 </head>
 <body>
+
+<h2>Search</h2>
 
 <%
 String error = request.getParameter("Error");
