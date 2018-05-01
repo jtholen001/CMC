@@ -292,7 +292,6 @@ public class DBController implements Runnable
 		}
 		String[][] universities = univDBlib.university_getUniversities();
 		storedUniversities= new HashMap<String, University>();
-		allUniversities= new HashMap<String, University>();
 
 		for(int index = 0; index < universities.length; index++)
 		{
@@ -307,7 +306,7 @@ public class DBController implements Runnable
 			}
 		}
 		
-		allUniversities = storedUniversities;
+		allUniversities = new HashMap<String, University>(storedUniversities);
 		
 		for(int index = 0; index < universities.length; index++)
 		{
