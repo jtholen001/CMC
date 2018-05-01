@@ -98,7 +98,7 @@ public class StudentInterface extends UserInterface
    */
   public int editProfile(String firstName, String lastName, String password)
   {  
-		  return this.pc.editProfile(firstName, lastName, password); 
+		 return this.pc.editProfile(firstName, lastName, password); 
   }
   
   public String enableTfa()

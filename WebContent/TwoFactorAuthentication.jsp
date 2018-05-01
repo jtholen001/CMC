@@ -5,7 +5,7 @@
 </head>
 <body>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="cmcPackage.interfaces.*" %>
-<% 
+<p><% 
 	String error = request.getParameter("Error");
 	if(error != null) {
 		if (error.equals("-1"))
@@ -14,6 +14,7 @@
 
 	StudentInterface studentInt = (StudentInterface)session.getAttribute("userInt");
 %>
+</p>
 
 <form method="post" action="TwoFactorAuthentication_action.jsp" name="Authenticate"><br>
 <h2>2-Factor Authentication</h2>
