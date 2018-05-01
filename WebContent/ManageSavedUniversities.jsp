@@ -1,11 +1,11 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="cmcPackage.entityClasses.*" import="java.util.HashMap" import="java.util.Set"%>
-<%@include file="verifyLogin.jsp"  %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<link rel="stylesheet" type="text/css" href="styles.css">
 <html>
 <head>
 <title>Manage Saved Universities</title>
 </head>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="cmcPackage.entityClasses.*" import="java.util.HashMap" import="java.util.Set"%>
+<%@include file="verifyLogin.jsp"  %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<link rel="stylesheet" type="text/css" href="styles.css">
 <body>
 
 <%

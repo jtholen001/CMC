@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    import= "cmcPackage.entityClasses.*, java.util.HashMap" pageEncoding="UTF-8"%>
-    <%@include file="verifyLogin.jsp"%>
 <html>
 <head>
 <title>Edit User Form</title>
 </head>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    import= "cmcPackage.entityClasses.*, java.util.HashMap" pageEncoding="UTF-8"%>
+    <%@include file="verifyLogin.jsp"%>
 <body>
 <br>
 Edit User form:<br>

@@ -1,13 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    import= "cmcPackage.entityClasses.*, java.util.*" pageEncoding="UTF-8"%>
-    <%@include file="verifyLogin.jsp"%>
-
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="styles.css">
 <title>Add User Form</title>
-
 </head>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    import= "cmcPackage.entityClasses.*, java.util.*" pageEncoding="UTF-8"%>
+    <%@include file="verifyLogin.jsp"%>
 <body>
 <br>
 Add User form:<br>
