@@ -664,8 +664,6 @@ public class DBController implements Runnable
 	
 	public boolean tfaAuthenticate(String key, String username) {
 		try {
-			System.out.println("Attempt: " + key);
-			System.out.println("Reply: " + this.getMasterKey(this.getUser(username)));
 			return key.equals(tfaUtil.generateCurrentNumberString(this.getMasterKey(this.getUser(username))));
 		}
 		catch (GeneralSecurityException e) { return false;}   
