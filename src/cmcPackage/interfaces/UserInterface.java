@@ -6,7 +6,6 @@
  */
 package cmcPackage.interfaces;
 
-import java.util.ArrayList;
 import cmcPackage.Controllers.DBController;
 import cmcPackage.Controllers.LoginController;
 import cmcPackage.entityClasses.*;

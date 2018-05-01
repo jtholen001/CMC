@@ -6,14 +6,7 @@
  */
 package cmcPackage.Controllers;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.io.Writer;
-import java.net.URL;
+
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 
@@ -21,9 +14,6 @@ import dblibrary.project.csci230.*;
 import cmcPackage.entityClasses.*;
 
 import java.util.HashMap;
-import java.util.Scanner;
-
-import javax.servlet.ServletContext;
 
 import com.j256.twofactorauth.*;
 
@@ -195,7 +185,6 @@ public class DBController implements Runnable
 	 * @param user the user who's profile was edited
 	 */
 
-	//TODO: change saveEditiedUser to not save schools and to create a save schools method
 	public <t extends User> int saveEditedUser(t user)
 	{
 		if(user == null)
@@ -231,8 +220,6 @@ public class DBController implements Runnable
 		}
 		throw new IllegalArgumentException("User is already in databse");		
 	}
-	
-	//TODO change save edited user to this
 
 	  public int saveUniversityToStudent(Student student, University university)
 	  {
@@ -606,6 +593,7 @@ public class DBController implements Runnable
 	 *
 	 * @return string representing URL of QR code for user to scan
 	 */
+	@SuppressWarnings("static-access")
 	public String enableTfa(User user) {	  
 		String uTfa = "%2FA-MASTER%_";
 		uTfa = uTfa.concat(user.getUsername());
@@ -642,7 +630,7 @@ public class DBController implements Runnable
 		try {
 			String uTfa = "%2FA-MASTER%_";
 			uTfa = uTfa.concat(username);
-			University u = this.getUniversity(uTfa);
+			this.getUniversity(uTfa);
 			return true;
 		}
 		catch (IllegalArgumentException iae) {
@@ -662,6 +650,7 @@ public class DBController implements Runnable
 		}
 	}
 	
+	@SuppressWarnings("static-access")
 	public boolean tfaAuthenticate(String key, String username) {
 		try {
 			return key.equals(tfaUtil.generateCurrentNumberString(this.getMasterKey(this.getUser(username))));
