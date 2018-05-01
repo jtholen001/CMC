@@ -28,8 +28,8 @@ public class UserInterface
    */
   public UserInterface()
   {
-    this.lc = new LoginController(new DBController());
     this.dbc = new DBController();
+    this.lc = new LoginController(dbc);
   }
   
   public UserInterface(DBController temp)

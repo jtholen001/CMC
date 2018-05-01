@@ -10,7 +10,9 @@ if (userInt == null){
 	response.sendRedirect("index.jsp?Error=-1"); // invalid password
 }
 else if (userInt instanceof StudentInterface) {
-	session.setAttribute("userInt", userInt);
+	HttpSession requestSession = request.getSession();
+	requestSession.setAttribute("userInt",userInt);
+			session.setAttribute("userInt", userInt);
 	StudentInterface studentInt = (StudentInterface)session.getAttribute("userInt");
 	if (!studentInt.isActivated())
 		response.sendRedirect("index.jsp?Error=-2"); // deactivated
