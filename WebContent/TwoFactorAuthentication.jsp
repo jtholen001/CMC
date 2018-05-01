@@ -4,6 +4,7 @@
 <title>Login Form</title>
 </head>
 <body>
+<h2>2-Factor Authentication</h2>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="cmcPackage.interfaces.*" %>
 <p><% 
 	String error = request.getParameter("Error");
@@ -18,7 +19,6 @@
 
 <form method="post" action="TwoFactorAuthentication_action.jsp" name="Authenticate"><br>
 <img src="assets/img/2FA_auth.png" alt="CMC Logo">
-<h2>2-Factor Authentication</h2>
 
 This extra step shows it's really you trying to sign in.<br>
 Get a verification code from the <strong>Google Authenticator</strong> app
