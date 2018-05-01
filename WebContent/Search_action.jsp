@@ -57,6 +57,14 @@ try {
     	percentFinancialAidUpper, numApplicantsLower, numApplicantsUpper, percentAdmittedLower, percentAdmittedUpper, percentEnrolledLower, 
     	percentEnrolledUpper, academicScaleLower, academicScaleUpper, socialScaleLower, socialScaleUpper, qualityOfLifeScaleLower, qualityOfLifeScaleUpper, emphases);
 } 
+/* 
+Which error happened when searching.
+none: to ViewMatchedResults.jsp
+-1: parseable numbers weren't entered, back to Search.jsp
+-2: invalid ranges entered, back to Search.jsp
+-3: no search criteria were entered, back to Search.jsp
+-4: no universities matched criteria, back to Search.jsp
+*/
 catch (NumberFormatException nfe) {
   	response.sendRedirect("Search.jsp?Error=-1");
   	return;  	
@@ -78,6 +86,9 @@ HashMap<String, University> allUniversities = studentInt.viewUniversities(foundU
 TreeMap<String, University> sortedUniversities = new TreeMap<String, University>();
 sortedUniversities.putAll(allUniversities);
 
+/*
+Add found univerisity names to string to pass as parameters to ViewMatchedResults.jsp 
+*/
 String universityList = "?";
 for(String u: sortedUniversities.keySet()){
 	universityList += "Universities=" + u + "&";

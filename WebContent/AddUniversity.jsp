@@ -30,6 +30,7 @@ String error = request.getParameter("Error");
 <td>State</td>
 <td> <select name="State" style="width: 172px;">
 		<option value="-1">Not Applicable</option>
+		<option value="Foreign">Foreign</option>
 		<option value="Alabama">Alabama</option>
 		<option value="Alaska">Alaska</option>
 		<option value="Arizona">Arizona</option>
@@ -101,7 +102,8 @@ String error = request.getParameter("Error");
 </tr>
 <tr>
 <td>Number Of Students</td>
-<td><input name="numberOfStudents"></td>
+<td><input name="numberOfStudents" id="numberOfStudents" onblur ='meetsCriteria("numberOfStudents", 0, 100000, "int")'>  
+<font color="red" id="numberOfStudentsError"></font></td>
 </tr>
 <tr>
 <td>% Female</td>
@@ -166,8 +168,8 @@ String error = request.getParameter("Error");
 </tr>
 
 <tr>
-<td><input value="Add"
-name="Add" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><button value="Add"
+name="Add" id="Submit" type="submit">Add</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 <td><input value="Reset"
 name="Reset" type="reset"></td>
 </tr>
@@ -180,4 +182,56 @@ name="Reset" type="reset"></td>
 	</form>
 <br>
 </body>
+<script>
+	function meetsCriteria(name, minRequired, maxRequired, type)
+	{
+		var value = document.getElementById(name).value;
+			var valid = false;
+			var invalidRange = false;
+			if (type == "int") {
+				if (value == "") {
+					valid = true;
+				}
+				else if (!value.match(/[^0-9]/g)) {
+					var num1 = parseInt(value);					
+					if (num1 >= minRequired && num1 <= maxRequired)
+						valid = true;
+					else
+						invalidRange = true;
+				}
+			} else {
+				var firstDot = value.indexOf(".");
+				var lastDot = value.lastIndexOf(".");
+
+				var validDots = false;
+				if (firstDot == lastDot) {
+					if (lastDot == -1 || lastDot != value.length - 1)
+						validDots = true;
+				}
+				if (value == "") {
+					valid = true;
+				}
+				else if (!value.match(/[^0-9.]/g)&& validDots) {
+					var num1 = parseFloat(value);					
+					if (num1 >= minRequired && num1 <= maxRequired)
+						valid = true;
+					else
+						invalidRange = true; 										
+				}
+							
+			}
+			if (valid) {
+				document.getElementById("Submit").disabled = false;
+				document.getElementById(name+"Error").innerHTML = "";
+			else {
+				document.getElementById("Submit").disabled = true;
+				if (maxRequired == 1000000.0 || maxRequired == 1000000) //place value for no maximum
+					document.getElementById(name+"Error").innerHTML = "enter a valid number above " + minRequired;
+				else if(type == "int")
+					document.getElementById(name+"Error").innerHTML = "enter a valid number between " + minRequired + " and " + maxRequired;
+				else 
+					document.getElementById(name+"Error").innerHTML = "enter a valid number between " + minRequired + ".0 and " + maxRequired + ".0";
+			}
+		}
+	</script>
 </html>
