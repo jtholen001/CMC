@@ -2,11 +2,10 @@
  * UserInterface is the entry point for the user in the application
  *
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
- * @version 2/21/18
+ * @version 5/2/18
  */
 package cmcPackage.interfaces;
 
-import java.util.ArrayList;
 import cmcPackage.Controllers.DBController;
 import cmcPackage.Controllers.LoginController;
 import cmcPackage.entityClasses.*;

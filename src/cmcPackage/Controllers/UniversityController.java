@@ -2,7 +2,7 @@
  * A controller class that handles University functionalities
  * 
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
- * @version 2/26/18
+ * @version 5/2/18
  */
 package cmcPackage.Controllers;
 
@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 //import Set
-import java.util.Set;
 import cmcPackage.entityClasses.*;
 
 public class UniversityController
