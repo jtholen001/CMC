@@ -73,7 +73,7 @@ for(String u: sortedUniversities.keySet())
 <tr>
 <td>
 <form method="post" action="DeleteUniversity_action.jsp" name="Delete">
-    <input name="Delete" value="Delete" type="submit">
+	<input name="Delete" type="image" src="assets/img/Delete.png" type="submit">
     <input name="UniversityName" value= <%=university.getName()%> type="hidden">
 </form>
 </td>
@@ -95,7 +95,7 @@ for(String u: sortedUniversities.keySet())
 <td><%=university.getQualityOfLifeScale()%></td>
 <td>
 <form method="post" action="EditUniversity.jsp" name="Edit">
-    <input name="Edit" value="Edit" type="submit">
+    <input name="Edit" type="image"	src="assets/img/Edit.png" type="submit">
     <input name="UniversityName" value= '<%=university.getName()%>' type="hidden">
 </form>
 </td>
