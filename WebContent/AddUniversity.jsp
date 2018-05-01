@@ -1,13 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    import= "cmcPackage.entityClasses.*, java.util.*" pageEncoding="UTF-8"%>
-    <%@include file="verifyLogin.jsp"%>
-
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="styles.css">
 <title>Add University Form</title>
-
 </head>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    import= "cmcPackage.entityClasses.*, java.util.*" pageEncoding="UTF-8"%>
+    <%@include file="verifyLogin.jsp"%>
 <body>
 <br>
 Add University:<br>
@@ -77,7 +75,7 @@ String error = request.getParameter("Error");
 		<option value="Texas">Texas</option>
 		<option value="Utah">Utah</option>
 		<option value="Vermont">Vermont</option>
-		<option value="Virrginia">Virrginia</option>
+		<option value="Virginia">Virginia</option>
 		<option value="Washington">Washington</option>
 		<option value="West Virginia">West Virginia</option>
 		<option value="Wisconsin">Wisconsin</option>

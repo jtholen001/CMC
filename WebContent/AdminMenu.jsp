@@ -1,9 +1,9 @@
-<%@include file="verifyLogin.jsp"  %>
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="styles.css">
-<title></title>
+<title>Admin Menu</title>
 </head>
+<%@include file="verifyLogin.jsp"  %>
 <body>
 <%
 	AdminInterface adminInt = (AdminInterface)session.getAttribute("userInt");
