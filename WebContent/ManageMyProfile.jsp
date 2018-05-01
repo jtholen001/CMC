@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="styles.css">
 <title>Manage My Profile</title>
 </head>
+<h2>Manage My Profile</h2>
 <body>
 <form action="EditProfile_action.jsp" name="EditProfile">
 <table style="text-align: left; width: 50%;" border="1" cellpadding="2" cellspacing="2">
@@ -138,6 +139,7 @@
 	<td style="vertical-align: top">Type</td>
 	<td style="vertical-align: top"><input readonly="readonly" name="Type" value=<%=studentInt.getStudent().getType()%>></td>
 </tr> 
+
 </tbody>
 </table>
 <br>
@@ -147,6 +149,53 @@ name="Reset" type="reset">
 </form>
 <form method="post" action="StudentMenu.jsp">
 	    <input name="Return" value="Return to Menu" type="submit">
-	</form>
+</form>
+<br>
+
+Security
+<table style="text-align: left; width: 50%;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+	<td style="vertical-align: top">2-Factor Authentication</td>
+	<%
+	if (studentInt.isTfaEnabled()) {
+	 %>
+	 <td style="vertical-align: top"><form action="EnableTFA_action.jsp"><input type="submit" value="Reset 2FA" /></form></td>
+	 <td style="vertical-align: top"><form action="DisableTFA_action.jsp"><input type="submit" value="Disable 2FA" /></form></td>
+	 <%
+	 } 
+	 else {%>
+	<td style="vertical-align: top"><form action="EnableTFA_action.jsp"><input type="submit" value="Enable 2FA" /></form></td>
+	<%}%>
+</tr>
+<%
+String error = request.getParameter("Error");
+if(error != null) {
+	if (error.equals("-9"))
+		out.print("2FA is not enabled.");
+		}
+		
+String toggle = request.getParameter("gtpl");
+if(toggle != null) {
+	if (toggle.equals("2"))
+		out.print("2FA is now disabled.");
+		}
+ %>
+
+</tbody>
+</table>
+<br>
+
+<%
+if(toggle != null) {
+	if (toggle.equals("1")) {
+		String tfaUrl = (String)session.getAttribute("tfaUrl");
+%>
+	2FA is now enabled. To complete setup, download Google Authenticator for <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">iOS</a> or <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en_US">Android</a> and scan the QR code.
+	<br>
+	<img src=<%out.println(tfaUrl);%>>
+	<%}
+	} %>
+
 </body>
 </html>

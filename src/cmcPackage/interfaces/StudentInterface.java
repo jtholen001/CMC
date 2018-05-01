@@ -2,7 +2,7 @@
  * Class that will be used as an interface for a Student
  * 
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
- * @version 2/27/18
+ * @version 5/2/18
  */
 package cmcPackage.interfaces;
 
@@ -98,7 +98,17 @@ public class StudentInterface extends UserInterface
    */
   public int editProfile(String firstName, String lastName, String password)
   {  
-		  return this.pc.editProfile(firstName, lastName, password); 
+		 return this.pc.editProfile(firstName, lastName, password); 
+  }
+  
+  public String enableTfa()
+  {
+	  return dbc.enableTfa(this.getStudent());
+  }
+  
+  public void disableTfa()
+  {
+	  dbc.disableTfa(this.getStudent());
   }
   
   /**

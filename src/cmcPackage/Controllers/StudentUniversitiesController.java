@@ -2,7 +2,7 @@
  * Class that emcompasses functionalities relating to a Student's saved universities
  * 
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
- * @version 2/20/18
+ * @version 5/2/18
  */
 package cmcPackage.Controllers;
 

@@ -1,7 +1,7 @@
 /**
  * This class represents a University
- * @Author Michael Carroll, Brandan Kalsow, Nicholas Tawil, Jordan Tholen, Ryan Strelow
- * @Version 2/30/2018
+ * @author Michael Carroll, Brandan Kalsow, Nicholas Tawil, Jordan Tholen, Ryan Strelow
+ * @version 5/2/18
  */
 
 package cmcPackage.entityClasses;
