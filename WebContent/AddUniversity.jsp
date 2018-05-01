@@ -30,6 +30,7 @@ String error = request.getParameter("Error");
 <td>State</td>
 <td> <select name="State" style="width: 172px;">
 		<option value="-1">Not Applicable</option>
+		<option value="Foreign">Foreign</option>
 		<option value="Alabama">Alabama</option>
 		<option value="Alaska">Alaska</option>
 		<option value="Arizona">Arizona</option>
@@ -101,39 +102,48 @@ String error = request.getParameter("Error");
 </tr>
 <tr>
 <td>Number Of Students</td>
-<td><input name="numberOfStudents"></td>
+<td><input name="numberOfStudents" id="numberOfStudents" onblur ='meetsCriteria("numberOfStudents", 0, 1000000, "int")'><br>  
+<font color="red" id="numberOfStudentsError"></font></td>
 </tr>
 <tr>
 <td>% Female</td>
-<td><input name="percentFemale"></td>
+<td><input name="percentFemale" id="percentFemale" onblur ='meetsCriteria("percentFemale", 0.0, 100.0, "double")'><br>  
+<font color="red" id="percentFemaleError"></font></td>
 </tr>
 <tr>
 <td>SAT Verbal</td>
-<td><input name="SATVerbal"></td>
+<td><input name="SATVerbal" id="SATVerbal" onblur ='meetsCriteria("SATVerbal", 0.0, 800.0, "double")'><br>  
+<font color="red" id="SATVerbalError"></font></td>
 </tr>
 <tr>
 <td>SAT Math</td>
-<td><input name="SATMath"></td>
+<td><input name="SATMath" id="SATMath" onblur ='meetsCriteria("SATMath", 0.0, 800.0, "double")'><br>  
+<font color="red" id="SATMathError"></font></td>
 </tr>
 <tr>
 <td>Expenses</td>
-<td><input name="Expenses"></td>
+<td><input name="Expenses" id="Expenses" onblur ='meetsCriteria("Expenses", 0.0, 1000000.0, "double")'><br>  
+<font color="red" id="ExpensesError"></font></td>
 </tr>
 <tr>
 <td>% Financial Aid</td>
-<td><input name="percentFinancialAid"></td>
+<td><input name="percentFinancialAid" id="percentFinancialAid" onblur ='meetsCriteria("percentFinancialAid", 0.0, 100.0, "double")'><br>  
+<font color="red" id="percentFinancialAidError"></font></td>
 </tr>
 <tr>
 <td>Number Of Applicants</td>
-<td><input name="numberOfApplicants"></td>
+<td><input name="numberOfApplicants" id="numberOfApplicants" onblur ='meetsCriteria("numberOfApplicants", 0, 1000000, "int")'><br>  
+<font color="red" id="numberOfApplicantsError"></font></td>
 </tr>
 <tr>
 <td>% Admitted</td>
-<td><input name="percentAdmitted"></td>
+<td><input name="percentAdmitted" id="percentAdmitted" onblur ='meetsCriteria("percentAdmitted", 0.0, 100.0, "double")'><br>  
+<font color="red" id="percentAdmittedError"></font></td>
 </tr>
 <tr>
 <td>% Enrolled</td>
-<td><input name="percentEnrolled"></td>
+<td><input name="percentEnrolled" id="percentEnrolled" onblur ='meetsCriteria("percentEnrolled", 0.0, 100.0, "double")'><br>  
+<font color="red" id="percentEnrolledError"></font></td>
 </tr>
 <tr>
 <td>Academic Scale (1-5)</td>
@@ -166,8 +176,8 @@ String error = request.getParameter("Error");
 </tr>
 
 <tr>
-<td><input value="Add"
-name="Add" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><button value="Add"
+name="Add" id="Submit" type="submit">Add</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 <td><input value="Reset"
 name="Reset" type="reset"></td>
 </tr>
@@ -180,4 +190,56 @@ name="Reset" type="reset"></td>
 	</form>
 <br>
 </body>
+<script>
+	function meetsCriteria(name, minRequired, maxRequired, type)
+	{
+		var value = document.getElementById(name).value;
+			var valid = false;
+			var invalidRange = false;
+			if (type == "int") {
+				if (value == "") {
+					valid = true;
+				}
+				else if (!value.match(/[^0-9]/g)) {
+					var num1 = parseInt(value);					
+					if (num1 >= minRequired && num1 <= maxRequired)
+						valid = true;
+					else
+						invalidRange = true;
+				}
+			} else {
+				var firstDot = value.indexOf(".");
+				var lastDot = value.lastIndexOf(".");
+
+				var validDots = false;
+				if (firstDot == lastDot) {
+					if (lastDot == -1 || lastDot != value.length - 1)
+						validDots = true;
+				}
+				if (value == "") {
+					valid = true;
+				}
+				else if (!value.match(/[^0-9.]/g)&& validDots) {
+					var num1 = parseFloat(value);					
+					if (num1 >= minRequired && num1 <= maxRequired)
+						valid = true;
+					else
+						invalidRange = true; 										
+				}
+							
+			}
+			if (valid) {
+				document.getElementById("Submit").disabled = false;
+				document.getElementById(name+"Error").innerHTML = "";
+			} else {
+				document.getElementById("Submit").disabled = true;
+				if (maxRequired == 1000000.0 || maxRequired == 1000000) //place value for no maximum
+					document.getElementById(name+"Error").innerHTML = "enter a valid number above " + minRequired;
+				else if(type == "int")
+					document.getElementById(name+"Error").innerHTML = "enter a valid number between " + minRequired + " and " + maxRequired;
+				else 
+					document.getElementById(name+"Error").innerHTML = "enter a valid number between " + minRequired + ".0 and " + maxRequired + ".0";
+			}
+		}
+	</script>
 </html>
