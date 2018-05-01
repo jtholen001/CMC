@@ -102,40 +102,48 @@ String error = request.getParameter("Error");
 </tr>
 <tr>
 <td>Number Of Students</td>
-<td><input name="numberOfStudents" id="numberOfStudents" onblur ='meetsCriteria("numberOfStudents", 0, 100000, "int")'>  
+<td><input name="numberOfStudents" id="numberOfStudents" onblur ='meetsCriteria("numberOfStudents", 0, 1000000, "int")'><br>  
 <font color="red" id="numberOfStudentsError"></font></td>
 </tr>
 <tr>
 <td>% Female</td>
-<td><input name="percentFemale"></td>
+<td><input name="percentFemale" id="percentFemale" onblur ='meetsCriteria("percentFemale", 0.0, 100.0, "double")'><br>  
+<font color="red" id="percentFemaleError"></font></td>
 </tr>
 <tr>
 <td>SAT Verbal</td>
-<td><input name="SATVerbal"></td>
+<td><input name="SATVerbal" id="SATVerbal" onblur ='meetsCriteria("SATVerbal", 0.0, 800.0, "double")'><br>  
+<font color="red" id="SATVerbalError"></font></td>
 </tr>
 <tr>
 <td>SAT Math</td>
-<td><input name="SATMath"></td>
+<td><input name="SATMath" id="SATMath" onblur ='meetsCriteria("SATMath", 0.0, 800.0, "double")'><br>  
+<font color="red" id="SATMathError"></font></td>
 </tr>
 <tr>
 <td>Expenses</td>
-<td><input name="Expenses"></td>
+<td><input name="Expenses" id="Expenses" onblur ='meetsCriteria("Expenses", 0.0, 1000000.0, "double")'><br>  
+<font color="red" id="ExpensesError"></font></td>
 </tr>
 <tr>
 <td>% Financial Aid</td>
-<td><input name="percentFinancialAid"></td>
+<td><input name="percentFinancialAid" id="percentFinancialAid" onblur ='meetsCriteria("percentFinancialAid", 0.0, 100.0, "double")'><br>  
+<font color="red" id="percentFinancialAidError"></font></td>
 </tr>
 <tr>
 <td>Number Of Applicants</td>
-<td><input name="numberOfApplicants"></td>
+<td><input name="numberOfApplicants" id="numberOfApplicants" onblur ='meetsCriteria("numberOfApplicants", 0, 1000000, "int")'><br>  
+<font color="red" id="numberOfApplicantsError"></font></td>
 </tr>
 <tr>
 <td>% Admitted</td>
-<td><input name="percentAdmitted"></td>
+<td><input name="percentAdmitted" id="percentAdmitted" onblur ='meetsCriteria("percentAdmitted", 0.0, 100.0, "double")'><br>  
+<font color="red" id="percentAdmittedError"></font></td>
 </tr>
 <tr>
 <td>% Enrolled</td>
-<td><input name="percentEnrolled"></td>
+<td><input name="percentEnrolled" id="percentEnrolled" onblur ='meetsCriteria("percentEnrolled", 0.0, 100.0, "double")'><br>  
+<font color="red" id="percentEnrolledError"></font></td>
 </tr>
 <tr>
 <td>Academic Scale (1-5)</td>
@@ -223,7 +231,7 @@ name="Reset" type="reset"></td>
 			if (valid) {
 				document.getElementById("Submit").disabled = false;
 				document.getElementById(name+"Error").innerHTML = "";
-			else {
+			} else {
 				document.getElementById("Submit").disabled = true;
 				if (maxRequired == 1000000.0 || maxRequired == 1000000) //place value for no maximum
 					document.getElementById(name+"Error").innerHTML = "enter a valid number above " + minRequired;
