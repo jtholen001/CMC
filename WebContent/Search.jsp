@@ -12,7 +12,7 @@ http-equiv="content-type">
 <body>
 
 <h2>Search</h2>
-
+<p>
 <%
 String error = request.getParameter("Error");
 if(error != null) {
@@ -26,6 +26,7 @@ if(error != null) {
 		out.print("No universities match your criteria");
 }
  %>
+ </p>
 <br>
 <form action="Search_action.jsp" name="Search"><br>
 <table style="text-align: left; width: 1621px; height: 161px;"
@@ -100,16 +101,21 @@ border="1" cellpadding="2" cellspacing="2">
 </td>
 <td style="vertical-align: top;"><select name="Location" style="width: 172px;">
 		<option value=""></option>
-		<option value="Suburban">Suburban</option>
-		<option value="Urban">Urban</option>
-		<option value="Small-City">Small-City</option>		
+		<option value="SURBURAN">Suburban</option>
+		<option value="URBAN">Urban</option>
+		<option value="SMALL-CITY">Small-City</option>		
 		</select><br>
 </td>
 </tr>
 <tr>
 <td style="vertical-align: top;">by CONTROL<br>
 </td>
-<td style="vertical-align: top;">contains <input name="Control"> (PRIVATE, STATE, CITY, -1 for UNKNOWN)<br>
+<td style="vertical-align: top;"><select name="Control" style="width: 172px;">
+		<option value=""></option>
+		<option value="PRIVATE">Private</option>
+		<option value="STATE">State</option>
+		<option value="CITY">City</option>		
+		</select><br>
 </td>
 </tr>
 <tr>
@@ -224,7 +230,7 @@ and <input name="AcademicScaleUpper" id="AcademicScaleUpper" onblur='meetsCriter
 </table>
 <br>
 <button value="Search for Universities"
-name="Search" id="Submit" type="submit">Search </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+name="Search" id="Submit" type="submit">Search</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input value="Reset Form"
 name="Reset" type="reset">
 </form>
