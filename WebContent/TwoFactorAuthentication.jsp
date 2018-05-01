@@ -19,6 +19,7 @@
 
 <form method="post" action="TwoFactorAuthentication_action.jsp" name="Authenticate"><br>
 <img src="assets/img/2FA_auth.png" alt="CMC Logo">
+<br>
 
 This extra step shows it's really you trying to sign in.<br>
 Get a verification code from the <strong>Google Authenticator</strong> app
