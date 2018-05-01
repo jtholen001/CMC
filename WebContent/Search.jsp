@@ -59,7 +59,7 @@ border="1" cellpadding="2" cellspacing="2">
 <tr>
 <td style="vertical-align: top;">by NUMBER OF STUDENTS<br>
 </td>
- <td style="vertical-align: top;">between <input name="NumStudentsLower" id="NumStudentsLower" onblur='meetsCriteria("NumStudents", 0, 100000, "int")'> 
+ <td style="vertical-align: top;">between <input name="NumStudentsLower" id="NumStudentsLower" onblur='meetsCriteria("NumStudents", 0, 1000000, "int")'> 
  and <input name="NumStudentsUpper" id="NumStudentsUpper" onblur='meetsCriteria("NumStudents", 0, 100000, "int")'>
  <font color="red" id="NumStudentsError"></font><br>
 </td>
@@ -91,7 +91,7 @@ border="1" cellpadding="2" cellspacing="2">
 <tr>
 <td style="vertical-align: top;">by EXPENSES<br>
 </td>
-<td style="vertical-align: top;">between <input name="ExpensesLower" id="ExpensesLower" onblur='meetsCriteria("Expenses", 0.0, 100000.0, "double")'>
+<td style="vertical-align: top;">between <input name="ExpensesLower" id="ExpensesLower" onblur='meetsCriteria("Expenses", 0.0, 1000000.0, "double")'>
  and <input name="ExpensesUpper" id="ExpensesUpper" onblur='meetsCriteria("Expenses", 0.0, 100.0, "double")'> 
  <font color="red" id="ExpensesError"></font> <br>
 </td>
@@ -107,7 +107,7 @@ border="1" cellpadding="2" cellspacing="2">
 <tr>
 <td style="vertical-align: top;">by NUMBER OF APPLICANTS<br>
 </td>
- <td style="vertical-align: top;">between <input name="NumApplicantsLower" id="NumApplicantsLower" onblur='meetsCriteria("NumApplicants", 0, 100000, "int")'> 
+ <td style="vertical-align: top;">between <input name="NumApplicantsLower" id="NumApplicantsLower" onblur='meetsCriteria("NumApplicants", 0, 1000000, "int")'> 
  and <input name="NumApplicantsUpper" id="NumApplicantsUpper" onblur='meetsCriteria("NumApplicants", 0, 100000, "int")'>
  <font color="red" id="NumApplicantsError"></font><br>
 </td>
@@ -182,6 +182,7 @@ name="Reset" type="reset">
 		var lowerValue = document.getElementById(name+"Lower").value;
 	    var upperValue = document.getElementById(name+"Upper").value;
 			var valid = false;
+			var invalidRange = false;
 			if (type == "int") {
 				if (lowerValue == "" && upperValue == "") {
 					valid = true;
@@ -201,6 +202,8 @@ name="Reset" type="reset">
 					var num2 = parseInt(upperValue);
 					if (num1 >= minRequired && num2 <= maxRequired && num1 <= num2)
 						valid = true;
+					else
+						invalidRange = true; 
 				}
 			} else {
 				var firstDotLowerValue = lowerValue.indexOf(".");
@@ -230,15 +233,25 @@ name="Reset" type="reset">
 					var num2 = parseFloat(upperValue);
 					if (num1 >= minRequired && num2 <= maxRequired && num1 <= num2)
 						valid = true;
-				}
-				
+					else
+						invalidRange = true; 						
+				}				
 			}
 			if (valid) {
 				document.getElementById("Submit").disabled = false;
 				document.getElementById(name+"Error").innerHTML = "";
-			} else {
+			} else if (invalidRange) {
 				document.getElementById("Submit").disabled = true;
-				document.getElementById(name+"Error").innerHTML = "enter valid numbers between " + minRequired + " and " + maxRequired;
+				document.getElementById(name+"Error").innerHTML = "invalid range";
+			}
+			else {
+				document.getElementById("Submit").disabled = true;
+				if (maxRequired == 1000000.0 || maxRequired == 1000000) //place value for no maximum
+					document.getElementById(name+"Error").innerHTML = "enter valid numbers above " + minRequired;
+				else if(type == "int")
+					document.getElementById(name+"Error").innerHTML = "enter valid numbers between " + minRequired + " and " + maxRequired;
+				else 
+					document.getElementById(name+"Error").innerHTML = "enter valid numbers between " + minRequired + ".0 and " + maxRequired + ".0";
 			}
 		}
 	</script>
