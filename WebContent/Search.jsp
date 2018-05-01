@@ -59,68 +59,89 @@ border="1" cellpadding="2" cellspacing="2">
 <tr>
 <td style="vertical-align: top;">by NUMBER OF STUDENTS<br>
 </td>
-<td style="vertical-align: top;">between <input name="NumStudentsLower"> and <input name="NumStudentsUpper"><br>
+ <td style="vertical-align: top;">between <input name="NumStudentsLower" id="NumStudentsLower" onblur='meetsCriteria("NumStudents", 0, 100000, "int")'> 
+ and <input name="NumStudentsUpper" id="NumStudentsUpper" onblur='meetsCriteria("NumStudents", 0, 100000, "int")'>
+ <font color="red" id="NumStudentsError"></font><br>
 </td>
 </tr>
 <tr>
 <td style="vertical-align: top;">by % FEMALE<br>
 </td>
-<td style="vertical-align: top;">between <input name="PercentFemaleLower"> and <input name="PercentFemaleUpper"><br>
+<td style="vertical-align: top;">between <input name="PercentFemaleLower" id="PercentFemaleLower" onblur='meetsCriteria("PercentFemale", 0.0, 100.0, "double")'>
+ and <input name="PercentFemaleUpper" id="PercentFemaleUpper" onblur='meetsCriteria("PercentFemale", 0.0, 100.0, "double")'> 
+ <font color="red" id="PercentFemaleError"></font> <br>
 </td>
 </tr>
 <tr>
 <td style="vertical-align: top;">by SAT VERBAL<br>
 </td>
-<td style="vertical-align: top;">between <input name="SATVerbalLower"> and <input name="SATVerbalUpper"><br>
+<td style="vertical-align: top;">between <input name="SATVerbalLower" id="SATVerbalLower" onblur='meetsCriteria("SATVerbal", 0.0, 800.0, "double")'>
+ and <input name="SATVerbalUpper" id="SATVerbalUpper" onblur='meetsCriteria("SATVerbal", 0.0, 800.0, "double")'> 
+ <font color="red" id="SATVerbalError"></font> <br>
 </td>
 </tr>
 <tr>
 <td style="vertical-align: top;">by SAT MATH<br>
 </td>
-<td style="vertical-align: top;">between <input name="SATMathLower"> and <input name="SATMathUpper"><br>
+<td style="vertical-align: top;">between <input name="SATMathLower" id="SATMathLower" onblur='meetsCriteria("SATMath", 0.0, 800.0, "double")'>
+ and <input name="SATMathUpper" id="SATMathUpper" onblur='meetsCriteria("SATMath", 0.0, 800.0, "double")'> 
+ <font color="red" id="SATMathError"></font> <br>
 </td>
 </tr>
 <tr>
 <td style="vertical-align: top;">by EXPENSES<br>
 </td>
-<td style="vertical-align: top;">between <input name="ExpensesLower"> and <input name="ExpensesUpper"><br>
+<td style="vertical-align: top;">between <input name="ExpensesLower" id="ExpensesLower" onblur='meetsCriteria("Expenses", 0.0, 100000.0, "double")'>
+ and <input name="ExpensesUpper" id="ExpensesUpper" onblur='meetsCriteria("Expenses", 0.0, 100.0, "double")'> 
+ <font color="red" id="ExpensesError"></font> <br>
 </td>
 </tr>
 <tr>
 <td style="vertical-align: top;">by % FINANCIAL AID<br>
 </td>
-<td style="vertical-align: top;">between <input name="PercentFinancialAidLower"> and <input name="PercentFinancialAidUpper"><br>
+<td style="vertical-align: top;">between <input name="PercentFinancialAidLower" id="PercentFinancialAidLower" onblur='meetsCriteria("PercentFinancialAid", 0.0, 100.0, "double")'>
+ and <input name="PercentFinancialAidUpper" id="PercentFinancialAidUpper" onblur='meetsCriteria("PercentFinancialAid", 0.0, 100.0, "double")'> 
+ <font color="red" id="PercentFinancialAidError"></font> <br>
 </td>
 </tr>
 <tr>
 <td style="vertical-align: top;">by NUMBER OF APPLICANTS<br>
 </td>
-<td style="vertical-align: top;">between <input name="NumApplicantsLower"> and <input name="NumApplicantsUpper"><br>
+ <td style="vertical-align: top;">between <input name="NumApplicantsLower" id="NumApplicantsLower" onblur='meetsCriteria("NumApplicants", 0, 100000, "int")'> 
+ and <input name="NumApplicantsUpper" id="NumApplicantsUpper" onblur='meetsCriteria("NumApplicants", 0, 100000, "int")'>
+ <font color="red" id="NumApplicantsError"></font><br>
 </td>
 </tr>
 <tr>
 <td style="vertical-align: top;">by % ADMITTED<br>
 </td>
-<td style="vertical-align: top;">between <input name="PercentAdmittedLower"> and <input name="PercentAdmittedUpper"><br>
+<td style="vertical-align: top;">between <input name="PercentAdmittedLower" id="PercentAdmittedLower" onblur='meetsCriteria("PercentAdmitted", 0.0, 100.0, "double")'>
+ and <input name="PercentAdmittedUpper" id="PercentAdmittedUpper" onblur='meetsCriteria("PercentAdmitted", 0.0, 100.0, "double")'> 
+ <font color="red" id="PercentAdmittedError"></font> <br>
 </td>
 </tr>
 <tr>
 <td style="vertical-align: top;">by % ENROLLED<br>
 </td>
 <td style="vertical-align: top;">between <input name="PercentEnrolledLower" id="PercentEnrolledLower" onblur='meetsCriteria("PercentEnrolled", 0.0, 100.0, "double")'>
- and <input name="PercentEnrolledUpper"> <font color="red" id="PercentEnrolledError"></font> <br>
+ and <input name="PercentEnrolledUpper" id="PercentEnrolledUpper" onblur='meetsCriteria("PercentEnrolled", 0.0, 100.0, "double")'> 
+ <font color="red" id="PercentEnrolledError"></font> <br>
 </td>
 </tr>
 <tr>
 <td style="vertical-align: top;">by ACADEMIC SCALE (1-5)<br>
 </td>
-<td style="vertical-align: top;">between <input name="AcademicScaleLower"> and <input name="AcademicScaleUpper"><br>
+<td style="vertical-align: top;">between <input name="AcademicScaleLower" id="AcademicScaleLower" onblur='meetsCriteria("AcademicScale", 1, 5, "int")'> 
+and <input name="AcademicScaleUpper" id="AcademicScaleUpper" onblur='meetsCriteria("AcademicScale", 1, 5, "int")'>
+ <font color="red" id="AcademicScaleError"></font><br>
 </td>
 </tr>
 <tr>
 <td style="vertical-align: top;">by SOCIAL SCALE (1-5)<br>
 </td>
-<td style="vertical-align: top;">between <input name="SocialScaleLower"> and <input name="SocialScaleUpper"><br>
+<td style="vertical-align: top;">between <input name="SocialScaleLower" id="SocialScaleLower" onblur='meetsCriteria("SocialScale", 1, 5, "int")'> 
+ and <input name="SocialScaleUpper" id="SocialScaleUpper" onblur='meetsCriteria("SocialScale", 1, 5, "int")'>
+ <font color="red" id="SocialScaleError"></font><br>
 </td>
 </tr>
 <tr>
@@ -162,22 +183,57 @@ name="Reset" type="reset">
 	    var upperValue = document.getElementById(name+"Upper").value;
 			var valid = false;
 			if (type == "int") {
-				if (!lowerValue.match(/[^0-9]/g) && !upperValue.match(/[^0-9]/g)) {
+				if (lowerValue == "" && upperValue == "") {
+					valid = true;
+				}
+				else if (!lowerValue.match(/[^0-9]/g) && upperValue == "") {
+					var num1 = parseInt(lowerValue);					
+					if (num1 >= minRequired && num1 <= maxRequired)
+						valid = true;
+				}
+				else if (lowerValue == "" && !upperValue.match(/[^0-9]/g)) {
+					var num2 = parseInt(upperValue);					
+					if (num2 >= minRequired && num2 <= maxRequired)
+						valid = true;
+				}
+				else if (!lowerValue.match(/[^0-9]/g) && !upperValue.match(/[^0-9]/g)) {
 					var num1 = parseInt(lowerValue);
 					var num2 = parseInt(upperValue);
 					if (num1 >= minRequired && num2 <= maxRequired && num1 <= num2)
 						valid = true;
 				}
 			} else {
-				var firstDot = lowerValue.indexOf(".");
-				var lastDot = lowerValue.lastIndexOf(".");
-				if (!lowerValue.match(/[^0-9.]/g) && (firstDot == -1 || firstDot == lastDot) && lastDot != lowerValue.length - 1) {
-					var number = parseFloat(lowerValue);
-					if (number >= minRequired && number <= maxRequired)
+				var firstDotLowerValue = lowerValue.indexOf(".");
+				var lastDotLowerValue = lowerValue.lastIndexOf(".");
+				var firstDotUpperValue = upperValue.indexOf(".");
+				var lastDotUpperValue = upperValue.lastIndexOf(".");
+				var validDots = false;
+				if (firstDotLowerValue == lastDotLowerValue && firstDotUpperValue == lastDotUpperValue) {
+					if ((lastDotLowerValue == -1 || lastDotLowerValue != lowerValue.length - 1) && (lastDotUpperValue == -1 || lastDotUpperValue != upperValue.length - 1))
+						validDots = true;
+				}
+				if (lowerValue == "" && upperValue == "") {
+					valid = true;
+				}
+				else if (!lowerValue.match(/[^0-9.]/g) && upperValue == "" && validDots) {
+					var num1 = parseFloat(lowerValue);					
+					if (num1 >= minRequired && num1 <= maxRequired)
 						valid = true;
 				}
+				else if (lowerValue == "" && !upperValue.match(/[^0-9.]/g) && validDots) {
+					var num2 = parseFloat(upperValue);					
+					if (num2 >= minRequired && num2 <= maxRequired)
+						valid = true;
+				}
+				else if (!lowerValue.match(/[^0-9.]/g) && !upperValue.match(/[^0-9.]/g) && validDots) {
+					var num1 = parseFloat(lowerValue);
+					var num2 = parseFloat(upperValue);
+					if (num1 >= minRequired && num2 <= maxRequired && num1 <= num2)
+						valid = true;
+				}
+				
 			}
-			if (valid || lowerValue == "") {
+			if (valid) {
 				document.getElementById("Submit").disabled = false;
 				document.getElementById(name+"Error").innerHTML = "";
 			} else {
