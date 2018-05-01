@@ -1,19 +1,18 @@
-<%@include file="verifyLogin.jsp"  %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<link rel="stylesheet" type="text/css" href="styles.css">
+<meta content="text/html; charset=ISO-8859-1"
+http-equiv="content-type">
 <html>
 <head>
 <title>Search</title>
 </head>
 <body>
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="styles.css">
-<meta content="text/html; charset=ISO-8859-1"
-http-equiv="content-type">
-<title></title>
+<%@include file="verifyLogin.jsp"  %>
 </head>
 <body>
 
+<h2>Search</h2>
+<p>
 <%
 String error = request.getParameter("Error");
 if(error != null) {
@@ -27,6 +26,7 @@ if(error != null) {
 		out.print("No universities match your criteria");
 }
  %>
+ </p>
 <br>
 <form action="Search_action.jsp" name="Search"><br>
 <table style="text-align: left; width: 1621px; height: 161px;"
@@ -41,25 +41,87 @@ border="1" cellpadding="2" cellspacing="2">
 <tr>
 <td style="vertical-align: top;">by STATE<br>
 </td>
-<td style="vertical-align: top;">contains <input name="State"> <br>
+<td style="vertical-align: top;"> <select name="State" style="width: 172px;">
+		<option value=""></option>
+		<option value="Alabama">Alabama</option>
+		<option value="Alaska">Alaska</option>
+		<option value="Arizona">Arizona</option>
+		<option value="Arkansas">Arkansas</option>
+		<option value="California">California</option>
+		<option value="Colorado">Colorado</option>
+		<option value="Connecticut">Connecticut</option>
+		<option value="Delaware">Delaware</option>
+		<option value="Florida">Florida</option>
+		<option value="Georgia">Georgia</option>
+		<option value="Hawaii">Hawaii</option>
+		<option value="Idaho">Idaho</option>
+		<option value="Illinois">Illinois</option>
+		<option value="Indiana">Indiana</option>
+		<option value="Iowa">Iowa</option>
+		<option value="Kansas">Kansas</option>
+		<option value="Kentucky">Kentucky</option>
+		<option value="Louisiana">Louisiana</option>
+		<option value="Maine">Maine</option>
+		<option value="Maryland">Maine</option>
+		<option value="Massachusetts">Massachusetts</option>
+		<option value="Michigan">Michigan</option>
+		<option value="Minnesota">Minnesota</option>
+		<option value="Mississippi">Mississippi</option>
+		<option value="Missouri">Missouri</option>
+		<option value="Montana">Montana</option>
+		<option value="Nebraska">Nebraska</option>
+		<option value="Nevada">Nevada</option>
+		<option value="New Hampshire">New Hampshire</option>
+		<option value="New Jersey">New Jersey</option>
+		<option value="New Mexico">New Mexico</option>
+		<option value="New York">New York</option>
+		<option value="North Carolina">North Carolina</option>
+		<option value="North Dakota">North Dakota</option>
+		<option value="Ohio">Ohio</option>
+		<option value="Oklahoma">Oklahoma</option>
+		<option value="Oregon">Oregon</option>
+		<option value="Pennsylvania">Pennsylvania</option>
+		<option value="Rhode Island">Rhode Island</option>
+		<option value="South Carolina">South Carolina</option>
+		<option value="South Dakota">South Dakota</option>
+		<option value="Tennessee">Tennessee</option>
+		<option value="Texas">Texas</option>
+		<option value="Utah">Utah</option>
+		<option value="Vermont">Vermont</option>
+		<option value="Virginia">Virginia</option>
+		<option value="Washington">Washington</option>
+		<option value="West Virginia">West Virginia</option>
+		<option value="Wisconsin">Wisconsin</option>
+		<option value="Wyoming">Wyoming</option>
+	</select> <br>
 </td>
 </tr>
 <tr>
 <td style="vertical-align: top;">by LOCATION<br>
 </td>
-<td style="vertical-align: top;">contains <input name="Location"> (SURBURAN, URBAN, SMALL-CITY, -1 for UNKNOWN)<br>
+<td style="vertical-align: top;"><select name="Location" style="width: 172px;">
+		<option value=""></option>
+		<option value="SURBURAN">Suburban</option>
+		<option value="URBAN">Urban</option>
+		<option value="SMALL-CITY">Small-City</option>		
+		</select><br>
 </td>
 </tr>
 <tr>
 <td style="vertical-align: top;">by CONTROL<br>
 </td>
-<td style="vertical-align: top;">contains <input name="Control"> (PRIVATE, STATE, CITY, -1 for UNKNOWN)<br>
+<td style="vertical-align: top;"><select name="Control" style="width: 172px;">
+		<option value=""></option>
+		<option value="PRIVATE">Private</option>
+		<option value="STATE">State</option>
+		<option value="CITY">City</option>		
+		</select><br>
 </td>
 </tr>
 <tr>
 <td style="vertical-align: top;">by NUMBER OF STUDENTS<br>
 </td>
- <td style="vertical-align: top;">between <input name="NumStudentsLower" id="NumStudentsLower" onblur='meetsCriteria("NumStudents", 0, 100000, "int")'> 
+ <td style="vertical-align: top;">between <input name="NumStudentsLower" id="NumStudentsLower" onblur='meetsCriteria("NumStudents", 0, 1000000, "int")'> 
  and <input name="NumStudentsUpper" id="NumStudentsUpper" onblur='meetsCriteria("NumStudents", 0, 100000, "int")'>
  <font color="red" id="NumStudentsError"></font><br>
 </td>
@@ -91,7 +153,7 @@ border="1" cellpadding="2" cellspacing="2">
 <tr>
 <td style="vertical-align: top;">by EXPENSES<br>
 </td>
-<td style="vertical-align: top;">between <input name="ExpensesLower" id="ExpensesLower" onblur='meetsCriteria("Expenses", 0.0, 100000.0, "double")'>
+<td style="vertical-align: top;">between <input name="ExpensesLower" id="ExpensesLower" onblur='meetsCriteria("Expenses", 0.0, 1000000.0, "double")'>
  and <input name="ExpensesUpper" id="ExpensesUpper" onblur='meetsCriteria("Expenses", 0.0, 100.0, "double")'> 
  <font color="red" id="ExpensesError"></font> <br>
 </td>
@@ -107,7 +169,7 @@ border="1" cellpadding="2" cellspacing="2">
 <tr>
 <td style="vertical-align: top;">by NUMBER OF APPLICANTS<br>
 </td>
- <td style="vertical-align: top;">between <input name="NumApplicantsLower" id="NumApplicantsLower" onblur='meetsCriteria("NumApplicants", 0, 100000, "int")'> 
+ <td style="vertical-align: top;">between <input name="NumApplicantsLower" id="NumApplicantsLower" onblur='meetsCriteria("NumApplicants", 0, 1000000, "int")'> 
  and <input name="NumApplicantsUpper" id="NumApplicantsUpper" onblur='meetsCriteria("NumApplicants", 0, 100000, "int")'>
  <font color="red" id="NumApplicantsError"></font><br>
 </td>
@@ -168,7 +230,7 @@ and <input name="AcademicScaleUpper" id="AcademicScaleUpper" onblur='meetsCriter
 </table>
 <br>
 <button value="Search for Universities"
-name="Search" id="Submit" type="submit">Search </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+name="Search" id="Submit" type="submit">Search</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input value="Reset Form"
 name="Reset" type="reset">
 </form>
@@ -182,6 +244,7 @@ name="Reset" type="reset">
 		var lowerValue = document.getElementById(name+"Lower").value;
 	    var upperValue = document.getElementById(name+"Upper").value;
 			var valid = false;
+			var invalidRange = false;
 			if (type == "int") {
 				if (lowerValue == "" && upperValue == "") {
 					valid = true;
@@ -201,6 +264,8 @@ name="Reset" type="reset">
 					var num2 = parseInt(upperValue);
 					if (num1 >= minRequired && num2 <= maxRequired && num1 <= num2)
 						valid = true;
+					else
+						invalidRange = true; 
 				}
 			} else {
 				var firstDotLowerValue = lowerValue.indexOf(".");
@@ -230,15 +295,25 @@ name="Reset" type="reset">
 					var num2 = parseFloat(upperValue);
 					if (num1 >= minRequired && num2 <= maxRequired && num1 <= num2)
 						valid = true;
-				}
-				
+					else
+						invalidRange = true; 						
+				}				
 			}
 			if (valid) {
 				document.getElementById("Submit").disabled = false;
 				document.getElementById(name+"Error").innerHTML = "";
-			} else {
+			} else if (invalidRange) {
 				document.getElementById("Submit").disabled = true;
-				document.getElementById(name+"Error").innerHTML = "enter valid numbers between " + minRequired + " and " + maxRequired;
+				document.getElementById(name+"Error").innerHTML = "invalid range";
+			}
+			else {
+				document.getElementById("Submit").disabled = true;
+				if (maxRequired == 1000000.0 || maxRequired == 1000000) //place value for no maximum
+					document.getElementById(name+"Error").innerHTML = "enter valid numbers above " + minRequired;
+				else if(type == "int")
+					document.getElementById(name+"Error").innerHTML = "enter valid numbers between " + minRequired + " and " + maxRequired;
+				else 
+					document.getElementById(name+"Error").innerHTML = "enter valid numbers between " + minRequired + ".0 and " + maxRequired + ".0";
 			}
 		}
 	</script>

@@ -1,10 +1,10 @@
-
-<%@include file="verifyLogin.jsp"%>
 <link rel="stylesheet" type="text/css" href="styles.css">
 <html>
 <head>
 <title>Student Menu</title>
 </head>
+<%@include file="verifyLogin.jsp"%>
+<h2>Main Menu</h2>
 <body>
 	<%
 		StudentInterface studentInt = (StudentInterface) session.getAttribute("userInt");

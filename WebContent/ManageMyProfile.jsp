@@ -1,16 +1,15 @@
-<%
-	StudentInterface studentInt = (StudentInterface)session.getAttribute("userInt");
-%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="styles.css">
 <title>Manage My Profile</title>
-
+</head>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@include file="verifyLogin.jsp"  %>
-</head>
+<%
+	StudentInterface studentInt = (StudentInterface)session.getAttribute("userInt");
+%>
 <h2>Manage My Profile</h2>
 <body>
 <form action="EditProfile_action.jsp" name="EditProfile">
@@ -147,12 +146,11 @@
 <input value="Reset Form"
 name="Reset" type="reset">
 </form>
-<form method="post" action="StudentMenu.jsp">
-	    <input name="Return" value="Return to Menu" type="submit">
-</form>
 <br>
 
-Security
+<h2>Security</h2>
+ <img src="assets/img/2FA_info.png" alt="2FA Info">
+ <br>
 <table style="text-align: left; width: 50%;" border="1" cellpadding="2" cellspacing="2">
 <tbody>
 <tr>
@@ -193,9 +191,16 @@ if(toggle != null) {
 %>
 	2FA is now enabled. To complete setup, download Google Authenticator for <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">iOS</a> or <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en_US">Android</a> and scan the QR code.
 	<br>
-	<img src=<%out.println(tfaUrl);%>>
+	<br>
+			<img src=<%out.println(tfaUrl);%>>
+	<br>
+	<br>
+	<br>
 	<%}
 	} %>
 
+<form method="post" action="StudentMenu.jsp">
+	    <input name="Return" value="Return to Menu" type="submit">
+</form>
 </body>
 </html>
