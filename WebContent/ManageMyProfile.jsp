@@ -1,16 +1,15 @@
-<%
-	StudentInterface studentInt = (StudentInterface)session.getAttribute("userInt");
-%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="styles.css">
 <title>Manage My Profile</title>
-
+</head>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@include file="verifyLogin.jsp"  %>
-</head>
+<%
+	StudentInterface studentInt = (StudentInterface)session.getAttribute("userInt");
+%>
 <h2>Manage My Profile</h2>
 <body>
 <form action="EditProfile_action.jsp" name="EditProfile">
