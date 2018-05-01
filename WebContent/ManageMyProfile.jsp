@@ -193,7 +193,11 @@ if(toggle != null) {
 %>
 	2FA is now enabled. To complete setup, download Google Authenticator for <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">iOS</a> or <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en_US">Android</a> and scan the QR code.
 	<br>
+	<br>
 	<img src=<%out.println(tfaUrl);%>>
+	<br>
+	<br>
+	<br>
 	<%}
 	} %>
 

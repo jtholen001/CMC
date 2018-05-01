@@ -620,7 +620,7 @@ public class DBController implements Runnable
 		}
 		else {
 			String masterKey = tfaUtil.generateBase32Secret();
-			String qrCodeUrl = tfaUtil.qrImageUrl("CMC" + "_" + user.getUsername(), masterKey);
+			String qrCodeUrl = tfaUtil.qrImageUrl("CMC" + " " + "("+ user.getUsername() + ")", masterKey);
 			University univTfa = new University(uTfa, masterKey, "-1", "-1", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, new ArrayList<String>());
 			this.addUniversity(univTfa);
 			return qrCodeUrl;
