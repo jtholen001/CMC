@@ -1,8 +1,8 @@
 /**
- * Class that will emcompass all the functionalities relating to searching
+ * Class that will encompass all the functionalities relating to searching
  * 
  * @author Michael Carroll, Nicholas Tawil, Brandan Kalsow, Jordan Tholen, Ryan Strelow
- * @version 2/27/18
+ * @version 5/2/18
  */
 package cmcPackage.Controllers;
 
