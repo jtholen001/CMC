@@ -23,10 +23,10 @@
 </tr>
 <tr>
 	<td style="vertical-align: top">Last Name</td>
-	<td style="vertical-align: top;"><input name="LastName" id="LastName" onblur='isNotEmptyField("LastName", "Last name")' value=<%=studentInt.getStudent().getLastName()%>>
-<font color="red" id="LastNameError"></font>
-
-</td>
+	<td style="vertical-align: top;"><input name="LastName" id="LastName" onblur='isNotEmptyField("LastName", "Last name")' 
+	value=<%=studentInt.getStudent().getLastName()%>>
+	<font color="red" id="LastNameError"></font>
+	</td>
 </tr>  
 <tr>
 	<td style="vertical-align: top">Username</td>
