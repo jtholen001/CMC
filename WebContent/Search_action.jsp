@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="cmcPackage.entityClasses.*, cmcPackage.Controllers.*, java.util.*"%>
-<%@include file="verifyLogin.jsp"%>
+<%@include file="verifyLoginStudent.jsp"%>
 <%
 StudentInterface studentInt = (StudentInterface)session.getAttribute("userInt");
 ArrayList<University> foundUniversities = new ArrayList<University>();

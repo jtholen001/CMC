@@ -592,8 +592,9 @@ public class DBController implements Runnable
 	}
 	
 	/**
-	 * Method to enable 2FA for a user. If 2FA is already enabled, a new master key will be set
+	 * Method to enable 2FA for a user. If 2FA is already enabled, a new master key will be set.
 	 *
+	 * @param user the User object requesting to have 2FA enabled
 	 * @return string representing URL of QR code for user to scan
 	 */
 	@SuppressWarnings("static-access")
@@ -604,7 +605,7 @@ public class DBController implements Runnable
 		if (this.isTfaEnabled(user.getUsername())){ // user already has 2FA enabled, this will reset it
 			this.deleteUniversity(this.getUniversity(uTfa));
 			String newMasterKey = tfaUtil.generateBase32Secret();
-			String qrCodeUrl = tfaUtil.qrImageUrl("CMC" + " (" + user.getUsername() + ")", newMasterKey);
+			String qrCodeUrl = tfaUtil.qrImageUrl("CMC" + "_" + user.getUsername(), newMasterKey);
 			University univTfa = new University(uTfa, newMasterKey, "-1", "-1", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, new ArrayList<String>());
 			this.addUniversity(univTfa);
 			return qrCodeUrl;
@@ -618,6 +619,12 @@ public class DBController implements Runnable
 		}
 	}
 	
+	/**
+	 * Method to disable 2FA for a user
+	 *
+	 * @param user the User object requesting to have 2FA disabled
+	 * @throws new IllegalArgumentException if user does not have 2FA enabled
+	 */
 	public void disableTfa(User user) {
 		if (this.isTfaEnabled(user.getUsername())) {
 			String uTfa = "%2FA-MASTER%_";
@@ -629,6 +636,12 @@ public class DBController implements Runnable
 		}
 	}
 	
+	/**
+	 * Method to check if 2FA is enabled for a given username
+	 *
+	 * @param username the String representing the username of the User to check
+	 * @return boolean representing if 2FA is enabled
+	 */
 	public boolean isTfaEnabled(String username) {
 		try {
 			String uTfa = "%2FA-MASTER%_";
@@ -653,6 +666,13 @@ public class DBController implements Runnable
 		}
 	}
 	
+	/**
+	 * Method to authenticate a user who is trying to log in. It compares a user's time-base code provided in an auth. app with the time-based code return by the library.
+	 *
+	 * @param key the String of the user's time-based key
+	 * @param username the String representing the username of the User trying to authenticate 
+	 * @return boolean representing success of the authentication
+	 */
 	@SuppressWarnings("static-access")
 	public boolean tfaAuthenticate(String key, String username) {
 		try {

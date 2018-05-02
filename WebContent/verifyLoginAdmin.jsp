@@ -7,8 +7,8 @@ if (loggedUser == null) {
 	response.sendRedirect("index.jsp?Error=-4");
 	return;
 }
-else if (loggedUser instanceof AdminInterface) {
-	response.sendRedirect("AdminMenu.jsp?Error=-1");
+else if (loggedUser instanceof StudentInterface) {
+	response.sendRedirect("StudentMenu.jsp?Error=-1");
 	return;
 }
 %>

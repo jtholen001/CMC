@@ -187,7 +187,7 @@ public class UniversityController
 	  if(location.equals(""))
 		  	location = "-1";
 	  if(control == null || control.equals(""))
-		  	control = "Public";
+		  	control = "-1";
 	  if(numStudents.equals(""))
 		  	numStudents = "-1";
 	  if(percentFemale.equals(""))
