@@ -275,9 +275,9 @@ public class DBController implements Runnable
 			throw new IllegalArgumentException("user was not found in the database");
 
 		User user = this.getUser(username);
-		if(user instanceof Student) 
+		if(user instanceof Student || user instanceof Admin) 
 		{
-			Student stu = (Student) user;
+			User stu = (User) user;
 			String[][] universities = univDBlib.user_getUsernamesWithSavedSchools();
 
 			for(int i = 0; i < universities.length; i++)
@@ -484,13 +484,10 @@ public class DBController implements Runnable
 				univDBlib.university_addUniversityEmphasis(university.getName(), university.getEmphases().get(i).toUpperCase());
 			}
 		}
-		if(!(this.storedUniversities.isEmpty()))
-		{
 			synchronized(this.storedUniversities)
 			{
 				this.storedUniversities.put(university.getName(), university);
 			}
-		}
 		return ret;
 	}
 
@@ -596,7 +593,7 @@ public class DBController implements Runnable
 			}
 		
 			try {
-				Thread.sleep((8 * 1000));
+				Thread.sleep((2 * 1000));
 			}
 			catch(InterruptedException j)
 			{
