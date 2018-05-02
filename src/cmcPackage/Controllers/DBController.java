@@ -65,14 +65,16 @@ public class DBController implements Runnable
 		{
 			if(!(this.storedUniversities.containsKey(universities[index][0]))) 
 			{
-				if(!universities[index][0].contains("%2FA-MASTER%")) {
-					this.storedUniversities.put(universities[index][0], new University(universities[index][0], universities[index][1],
-							universities[index][2],universities[index][3],
-							Integer.parseInt(universities[index][4]), new Double(universities[index][5]),
-							new Double(universities[index][6]), new Double(universities[index][7]), new Double(universities[index][8]),
-							new Double(universities[index][9]), Integer.parseInt(universities[index][10]),new Double(universities[index][11]),
-							new Double(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
-							Integer.parseInt(universities[index][15]), getUniversityEmphases(universities[index][0])));  
+				synchronized(this.storedUniversities) {
+					if(!universities[index][0].contains("%2FA-MASTER%")) {
+						this.storedUniversities.put(universities[index][0], new University(universities[index][0], universities[index][1],
+								universities[index][2],universities[index][3],
+								Integer.parseInt(universities[index][4]), new Double(universities[index][5]),
+								new Double(universities[index][6]), new Double(universities[index][7]), new Double(universities[index][8]),
+								new Double(universities[index][9]), Integer.parseInt(universities[index][10]),new Double(universities[index][11]),
+								new Double(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
+								Integer.parseInt(universities[index][15]), getUniversityEmphases(universities[index][0])));  
+					}
 				}
 			}
 		}
@@ -342,7 +344,7 @@ public class DBController implements Runnable
 	 */
 	public HashMap<String, University> viewUniversities()
 	{
-		if(!(this.storedUniversities == null)) {
+		if(!(this.storedUniversities.isEmpty())) {
 			return new HashMap<String,University>(this.storedUniversities);
 		}
 		String[][] universities = univDBlib.university_getUniversities();
@@ -399,7 +401,7 @@ public class DBController implements Runnable
 					return allUniversities.get(name);
 			}
 
-		if(this.storedUniversities != null)
+		if(!(this.storedUniversities.isEmpty()))
 		{
 			if(storedUniversities.containsKey(name))
 				return storedUniversities.get(name);
@@ -482,7 +484,7 @@ public class DBController implements Runnable
 			}
 		}
 		if(success !=-1)
-			synchronized(this.allUniversities)
+			synchronized(this.storedUniversities)
 			{
 				this.storedUniversities.put(university.getName(), university);
 			}
@@ -520,7 +522,7 @@ public class DBController implements Runnable
 				univDBlib.university_addUniversityEmphasis(university.getName(), university.getEmphases().get(i).toUpperCase());
 			}
 		}
-		if(this.storedUniversities!= null)
+		if(!(this.storedUniversities.isEmpty()))
 		{
 			synchronized(this.storedUniversities)
 			{
