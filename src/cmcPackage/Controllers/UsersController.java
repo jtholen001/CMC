@@ -106,6 +106,7 @@ public class UsersController
   public int addUser(String firstName, String lastName, String username, String password, String type ,String isActivated,
                         String isLoggedIn)
   {
+	  try {
 	  if (firstName.equals("") || lastName.equals("") || username.equals("") || !meetsPasswordCriteria(password) || type.equals("a") && type.equals("u"))
 		  throw new IllegalArgumentException("Fields cannot be empty");
 	  else
@@ -130,6 +131,10 @@ public class UsersController
 		  catch(IllegalArgumentException iae) {
 			  return -1;
 		  }
+	  }
+	  }
+	  catch(IllegalArgumentException iae) {
+		  return -1;
 	  }
   }
 
