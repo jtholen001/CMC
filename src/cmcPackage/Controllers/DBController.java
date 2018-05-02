@@ -618,7 +618,7 @@ public class DBController implements Runnable
 		if (this.isTfaEnabled(user.getUsername())){ // user already has 2FA enabled, this will reset it
 			this.deleteUniversity(this.getUniversity(uTfa));
 			String newMasterKey = tfaUtil.generateBase32Secret();
-			String qrCodeUrl = tfaUtil.qrImageUrl("CMC" + " (" + user.getUsername() + ")", newMasterKey);
+			String qrCodeUrl = tfaUtil.qrImageUrl("CMC" + "_" + user.getUsername(), newMasterKey);
 			University univTfa = new University(uTfa, newMasterKey, "-1", "-1", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, new ArrayList<String>());
 			this.addUniversity(univTfa);
 			return qrCodeUrl;
