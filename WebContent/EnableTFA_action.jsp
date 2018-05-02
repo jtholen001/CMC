@@ -1,4 +1,5 @@
 <%@page language="java" import="cmcPackage.interfaces.*"%>
+<%@include file="verifyLoginStudent.jsp"%>
 <%
 
 StudentInterface studentInt = (StudentInterface)session.getAttribute("userInt");

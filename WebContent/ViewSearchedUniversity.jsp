@@ -4,7 +4,7 @@ http-equiv="content-type">
 <title>View University</title>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="cmcPackage.entityClasses.*, cmcPackage.Controllers.*"%>
-<%@include file="verifyLogin.jsp"%>
+<%@include file="verifyLoginStudent.jsp"%>
 <%
 String[] values = request.getParameterValues("Universities");
 String universityName = request.getParameter("University");

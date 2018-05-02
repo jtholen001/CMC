@@ -218,7 +218,10 @@ public class DBController implements Runnable
 		}
 		catch(IllegalArgumentException i)
 		{
-			return univDBlib.user_addUser(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getType());
+			 int ret = univDBlib.user_addUser(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getType());
+			 if(user.getActivationStatus() == false)
+				 this.saveEditedUser(user);
+			 return ret;
 		}
 		throw new IllegalArgumentException("User is already in databse");		
 	}
