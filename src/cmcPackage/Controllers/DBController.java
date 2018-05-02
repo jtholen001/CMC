@@ -21,6 +21,7 @@ public class DBController implements Runnable
 {
 	HashMap<String,University> storedUniversities;
 	HashMap<String, University> allUniversities;
+	HashMap<String,User> users;
 	private UniversityDBLibrary univDBlib;
 	private boolean run;
 	private Thread thread;
@@ -28,7 +29,7 @@ public class DBController implements Runnable
 	 *  2-factor authentication utility
 	 */
 	TimeBasedOneTimePasswordUtil tfaUtil;
-	
+
 	/**
 	 * Construct a database controller
 	 */
@@ -37,6 +38,7 @@ public class DBController implements Runnable
 	{
 		this.storedUniversities = new HashMap<String, University>();
 		this.allUniversities = new HashMap<String, University>();
+		this.users = new HashMap<String,User>();
 		univDBlib =  new UniversityDBLibrary("byteme","byteme","csci230");
 		this.startThread();
 		//this.storedUniversities = this.viewUniversities();
@@ -64,17 +66,17 @@ public class DBController implements Runnable
 			if(!(this.storedUniversities.containsKey(universities[index][0]))) 
 			{
 				if(!universities[index][0].contains("%2FA-MASTER%")) {
-				this.storedUniversities.put(universities[index][0], new University(universities[index][0], universities[index][1],
-						universities[index][2],universities[index][3],
-						Integer.parseInt(universities[index][4]), new Double(universities[index][5]),
-						new Double(universities[index][6]), new Double(universities[index][7]), new Double(universities[index][8]),
-						new Double(universities[index][9]), Integer.parseInt(universities[index][10]),new Double(universities[index][11]),
-						new Double(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
-						Integer.parseInt(universities[index][15]), getUniversityEmphases(universities[index][0])));  
+					this.storedUniversities.put(universities[index][0], new University(universities[index][0], universities[index][1],
+							universities[index][2],universities[index][3],
+							Integer.parseInt(universities[index][4]), new Double(universities[index][5]),
+							new Double(universities[index][6]), new Double(universities[index][7]), new Double(universities[index][8]),
+							new Double(universities[index][9]), Integer.parseInt(universities[index][10]),new Double(universities[index][11]),
+							new Double(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
+							Integer.parseInt(universities[index][15]), getUniversityEmphases(universities[index][0])));  
 				}
 			}
 		}
-		
+
 		for(int index = 0; index < universities.length; index++)
 		{
 			allUniversities.put(universities[index][0], new University(universities[index][0], universities[index][1],
@@ -96,32 +98,47 @@ public class DBController implements Runnable
 	{
 		if(username == null)
 			throw new IllegalArgumentException("username is a null value");
-
 		username = username.trim();
-		String[][] users = univDBlib.user_getUsers();
-		boolean status = false;
 
-		for(int index = 0; index < users.length; index++)
+		if(this.users.isEmpty())
 		{
-			if(users[index][2].equals(username)) 
+			String[][] users = univDBlib.user_getUsers();
+			boolean status = false;
+
+			for(int index = 0; index < users.length; index++)
 			{
-				if(users[index][5].equals("Y"))
-					status = true;
-
-				if(users[index][4].equals("u"))
+				if(users[index][2].equals(username)) 
 				{
+					if(users[index][5].equals("Y"))
+						status = true;
 
-					return new Student(users[index][0],users[index][1],users[index][2],users[index][3],'u',
-							status, false, this.getUniversitiesForStudent(username));
-				}
-				else
-				{
-					return new Admin(users[index][0],users[index][1],users[index][2],users[index][3],'a',
-							status, false);
+					if(users[index][4].equals("u"))
+					{
+
+						return new Student(users[index][0],users[index][1],users[index][2],users[index][3],'u',
+								status, false, this.getUniversitiesForStudent(username));
+					}
+					else
+					{
+						return new Admin(users[index][0],users[index][1],users[index][2],users[index][3],'a',
+								status, false);
+					}
 				}
 			}
+			throw new IllegalArgumentException("user was not found in the database");
 		}
-		throw new IllegalArgumentException("user was not found in the database");
+		else
+		{
+			User user = this.users.get(username);
+			if(user == null)
+				throw new IllegalArgumentException("user was not found in the database");
+			if(user instanceof Student)
+				return (Student) user;
+			else if(user instanceof Admin)
+				return (Admin) user;
+			else
+				throw new IllegalArgumentException("could not find type of user");
+		}
 	}
 
 	/**
@@ -156,29 +173,35 @@ public class DBController implements Runnable
 	 */
 	public HashMap<String,User> getUsers()
 	{
-		String[][] users = univDBlib.user_getUsers();
-		HashMap<String, User> userMap = new HashMap<String, User>();
-		boolean status;
-
-		for(int index = 0; index < users.length; index++)
+		if(this.users.isEmpty())
 		{
-			//gets the char character of if they are activated and sets a bool value to be used when creating the user
-			if(users[index][5].equals("Y"))
-				status = true;
-			else
-				status = false;
-			//creates the user and puts it in the map
-			if(users[index][4].equals("u"))
+			String[][] users = univDBlib.user_getUsers();
+			HashMap<String, User> userMap = new HashMap<String, User>();
+			boolean status;
+
+			for(int index = 0; index < users.length; index++)
 			{
-				userMap.put(users[index][2],new Student(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
-						status, false, this.getUniversitiesForStudent(users[index][0])));
+				//gets the char character of if they are activated and sets a bool value to be used when creating the user
+				if(users[index][5].equals("Y"))
+					status = true;
+				else
+					status = false;
+				//creates the user and puts it in the map
+				if(users[index][4].equals("u"))
+				{
+					userMap.put(users[index][2],new Student(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
+							status, false, this.getUniversitiesForStudent(users[index][0])));
+				}
+				else if(users[index][4].equals("a")) {
+					userMap.put(users[index][2],new Admin(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
+							status, false));
+				}
 			}
-			else if(users[index][4].equals("a")) {
-				userMap.put(users[index][2],new Admin(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
-						status, false));
-			}
+			this.users = new HashMap<String,User>(userMap);
+			return userMap;
 		}
-		return userMap;
+		else
+			return this.users;
 	}
 
 	/**
@@ -197,8 +220,22 @@ public class DBController implements Runnable
 		else
 			temp = 'Y';
 
-		return univDBlib.user_editUser(user.getUsername(),user.getFirstName(),user.getLastName(),user.getPassword(),user.getType(),
+		univDBlib.user_editUser(user.getUsername(),user.getFirstName(),user.getLastName(),user.getPassword(),user.getType(),
 				temp);
+		if(!this.users.isEmpty())
+		{
+			if(this.users.containsKey(user.getUsername()))
+			{
+				synchronized(this.users)
+				{
+					this.users.replace(user.getUsername(), user);
+					return 1;
+				}
+			}
+			else
+				throw new IllegalArgumentException("user not in database");
+		}
+		return 1;
 	}
 
 	/**
@@ -218,31 +255,36 @@ public class DBController implements Runnable
 		}
 		catch(IllegalArgumentException i)
 		{
-			return univDBlib.user_addUser(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getType());
+			univDBlib.user_addUser(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getType());
+			if(!this.users.isEmpty())
+			{
+				this.users.put(user.getUsername(), user);
+			}
+			return 1;
 		}
 		throw new IllegalArgumentException("User is already in databse");		
 	}
 
-	  public int saveUniversityToStudent(Student student, University university)
-	  {
-		  String[][] savedUniversities = univDBlib.user_getUsernamesWithSavedSchools();
-		  String[][] universities = univDBlib.university_getUniversities();
-		  
-		  for(int i = 0; i < universities.length; i++)
-		  {
-			  if(university.getName().equals(universities[i][0]))
-			  {
-				  for(int j = 0; j < savedUniversities.length; j++)
-				  {
-					  if(savedUniversities[j][1].equals(university.getName()) && savedUniversities[j][0].equals(student.getUsername()))
-						  throw new IllegalArgumentException("Student already has school saved");
-				  }
-				  student.addSchool(university);
-				 return univDBlib.user_saveSchool(student.getUsername(), university.getName());
-			  }
-		  }
-		  throw new IllegalArgumentException("Saved schools in student contains a school not in the databse");
-	  }
+	public int saveUniversityToStudent(Student student, University university)
+	{
+		String[][] savedUniversities = univDBlib.user_getUsernamesWithSavedSchools();
+		String[][] universities = univDBlib.university_getUniversities();
+
+		for(int i = 0; i < universities.length; i++)
+		{
+			if(university.getName().equals(universities[i][0]))
+			{
+				for(int j = 0; j < savedUniversities.length; j++)
+				{
+					if(savedUniversities[j][1].equals(university.getName()) && savedUniversities[j][0].equals(student.getUsername()))
+						throw new IllegalArgumentException("Student already has school saved");
+				}
+				student.addSchool(university);
+				return univDBlib.user_saveSchool(student.getUsername(), university.getName());
+			}
+		}
+		throw new IllegalArgumentException("Saved schools in student contains a school not in the databse");
+	}
 
 
 	/**
@@ -258,7 +300,8 @@ public class DBController implements Runnable
 			throw new IllegalArgumentException("user was not found in the database");
 
 		User user = this.getUser(username);
-		if(user instanceof Student) {
+		if(user instanceof Student) 
+		{
 			Student stu = (Student) user;
 			String[][] universities = univDBlib.user_getUsernamesWithSavedSchools();
 
@@ -270,13 +313,26 @@ public class DBController implements Runnable
 						throw new IllegalArgumentException("Database error removing saved schools for " + stu.getUsername());
 				}
 			}
-			return univDBlib.user_deleteUser(stu.getUsername());
+			univDBlib.user_deleteUser(stu.getUsername());
+			if(!this.users.isEmpty())
+			{
+				synchronized(this.users)
+				{
+					this.users.remove(username);
+					return 1;
+				}
+			}
 		}
 		else if(user == null)
 		{
 			throw new IllegalArgumentException("user was not found in the database");
 		}
-		return univDBlib.user_deleteUser(username);
+		univDBlib.user_deleteUser(username);
+		synchronized(this.users)
+		{
+			this.users.remove(username);
+		}
+		return 1;
 	}
 
 	/**
@@ -287,7 +343,7 @@ public class DBController implements Runnable
 	public HashMap<String, University> viewUniversities()
 	{
 		if(!(this.storedUniversities == null)) {
-				return new HashMap<String,University>(this.storedUniversities);
+			return new HashMap<String,University>(this.storedUniversities);
 		}
 		String[][] universities = univDBlib.university_getUniversities();
 		storedUniversities= new HashMap<String, University>();
@@ -304,19 +360,19 @@ public class DBController implements Runnable
 						Integer.parseInt(universities[index][15]), getUniversityEmphases(universities[index][0]))); //not sure how emphases are stored
 			}
 		}
-		
+
 		allUniversities = new HashMap<String, University>(storedUniversities);
-		
+
 		for(int index = 0; index < universities.length; index++)
 		{
 			if (universities[index][0].contains("%2FA-MASTER%"))
-					allUniversities.put(universities[index][0], new University(universities[index][0], universities[index][1],
-					universities[index][2],universities[index][3],
-					Integer.parseInt(universities[index][4]), Double.parseDouble(universities[index][5]),
-					Double.parseDouble(universities[index][6]), Double.parseDouble(universities[index][7]), Double.parseDouble(universities[index][8]),
-					Double.parseDouble(universities[index][9]), Integer.parseInt(universities[index][10]),Double.parseDouble(universities[index][11]),
-					Double.parseDouble(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
-					Integer.parseInt(universities[index][15]), getUniversityEmphases(universities[index][0]))); //not sure how emphases are stored
+				allUniversities.put(universities[index][0], new University(universities[index][0], universities[index][1],
+						universities[index][2],universities[index][3],
+						Integer.parseInt(universities[index][4]), Double.parseDouble(universities[index][5]),
+						Double.parseDouble(universities[index][6]), Double.parseDouble(universities[index][7]), Double.parseDouble(universities[index][8]),
+						Double.parseDouble(universities[index][9]), Integer.parseInt(universities[index][10]),Double.parseDouble(universities[index][11]),
+						Double.parseDouble(universities[index][12]), Integer.parseInt(universities[index][13]), Integer.parseInt(universities[index][14]),
+						Integer.parseInt(universities[index][15]), getUniversityEmphases(universities[index][0]))); //not sure how emphases are stored
 			else
 				break;
 		}
@@ -342,11 +398,11 @@ public class DBController implements Runnable
 				if(allUniversities.containsKey(name))
 					return allUniversities.get(name);
 			}
-		
+
 		if(this.storedUniversities != null)
 		{
-				if(storedUniversities.containsKey(name))
-					return storedUniversities.get(name);
+			if(storedUniversities.containsKey(name))
+				return storedUniversities.get(name);
 		}
 
 		String[][] universities = univDBlib.university_getUniversities();
@@ -410,7 +466,7 @@ public class DBController implements Runnable
 
 		ArrayList<String> storedVals = getUniversityEmphases(university.getName());
 		ArrayList<String> universityEmphases = university.getEmphases();
-		
+
 		for(String emphases: university.getEmphases())
 		{
 			if(!(storedVals.contains(emphases))){
@@ -427,9 +483,9 @@ public class DBController implements Runnable
 		}
 		if(success !=-1)
 			synchronized(this.allUniversities)
-		{
-			this.storedUniversities.put(university.getName(), university);
-		}
+			{
+				this.storedUniversities.put(university.getName(), university);
+			}
 		return success;
 	}
 
@@ -444,7 +500,7 @@ public class DBController implements Runnable
 	{
 		if(university == null)
 			throw new IllegalArgumentException("university is null");
-		
+
 		int ret =  univDBlib.university_addUniversity(university.getName().toUpperCase(), university.getState().toUpperCase(), university.getLocation().toUpperCase(),
 				university.getControl().toUpperCase(), university.getNumStudents(), university.getPercentFemale(),
 				university.getSATVerbal(), university.getSATMath(), university.getExpenses(),
@@ -504,8 +560,8 @@ public class DBController implements Runnable
 			{
 				return -1;
 			}
-		univDBlib.university_deleteUniversity(university.getName());
-		
+			univDBlib.university_deleteUniversity(university.getName());
+
 		}
 		return -1;
 	}
@@ -574,10 +630,16 @@ public class DBController implements Runnable
 			{
 				this.viewUniversities();
 			}
-
+			if(this.users.isEmpty())
+			{
+				synchronized(this.users)
+				{
+					this.getUsers();
+				}
+			}
 
 			try {
-				Thread.sleep((5 * 1000));
+				Thread.sleep((2 * 1000));
 			}
 			catch(InterruptedException j)
 			{
@@ -585,7 +647,7 @@ public class DBController implements Runnable
 			}
 		}
 	}
-	
+
 	/**
 	 * Method to enable 2FA for a user. If 2FA is already enabled, a new master key will be set
 	 *
@@ -595,7 +657,7 @@ public class DBController implements Runnable
 	public String enableTfa(User user) {	  
 		String uTfa = "%2FA-MASTER%_";
 		uTfa = uTfa.concat(user.getUsername());
-		
+
 		if (this.isTfaEnabled(user.getUsername())){ // user already has 2FA enabled, this will reset it
 			this.deleteUniversity(this.getUniversity(uTfa));
 			String newMasterKey = tfaUtil.generateBase32Secret();
@@ -612,7 +674,7 @@ public class DBController implements Runnable
 			return qrCodeUrl;
 		}
 	}
-	
+
 	public void disableTfa(User user) {
 		if (this.isTfaEnabled(user.getUsername())) {
 			String uTfa = "%2FA-MASTER%_";
@@ -623,7 +685,7 @@ public class DBController implements Runnable
 			throw new IllegalArgumentException("User does not have 2FA enabled");
 		}
 	}
-	
+
 	public boolean isTfaEnabled(String username) {
 		try {
 			String uTfa = "%2FA-MASTER%_";
@@ -635,19 +697,19 @@ public class DBController implements Runnable
 			return false;
 		}
 	}
-	
+
 	public String getMasterKey(User user) {
 		if (this.isTfaEnabled(user.getUsername())) {
 			String uTfa = "%2FA-MASTER%_";
 			uTfa = uTfa.concat(user.getUsername());
 			return this.getUniversity(uTfa).getState();
-			
+
 		}
 		else {
 			throw new IllegalArgumentException("User does not have 2FA enabled");
 		}
 	}
-	
+
 	@SuppressWarnings("static-access")
 	public boolean tfaAuthenticate(String key, String username) {
 		try {
