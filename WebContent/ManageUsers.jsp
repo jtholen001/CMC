@@ -39,7 +39,7 @@ cellspacing="2">
 		<tbody>
 			<tr align="center">
 
-<td colspan="8" rowspan="1" style="vertical-align: top; text-align: center; font-size: 16px;">
+<td colspan="9" rowspan="1" style="vertical-align: top; text-align: center; font-size: 16px;">
 <a href="AddUser.jsp">ADD A USER</a>
 </td>
 
@@ -59,10 +59,20 @@ for(User u: users.values())
 %>
 	<tr>
 		<td style="vertical-align: top;">
-	<form method="post" action="Deactivate_action.jsp" name="Deactivate">
-	    <input name="Deactivate" value="Deactivate" type="submit" class="buttonstyle">
-	    <input name="Username" value=<%=u.getUsername()%> type="hidden">
-	</form></td>
+		<% if (u.getActivationStatus()) { %>
+		<form method="post" action="Deactivate_action.jsp" name="Deactivate">
+	    <input name="Deactivate" value="Deactivate" type="submit">
+		<input name="Username" value=<%=u.getUsername()%> type="hidden">
+		</form> 
+	    <%
+	    } else { %> 
+		<form method="post" action="Activate_action.jsp" name="Activate">
+	    <input name="Activate" value="Activate" type="submit">
+		<input name="Username" value=<%=u.getUsername()%> type="hidden">
+		</form>
+	    <%
+	    } %>		
+		</td>
 	<td style="vertical-align: top;"><%=u.getFirstName()%>
 	</td>
 	<td style="vertical-align: top;"><%=u.getLastName() %>
@@ -87,6 +97,7 @@ for(User u: users.values())
 	    <input name="Username" value=<%=u.getUsername()%> type="hidden">
 	</form></td>
 	</tr>
+	
 <%}
 %>
 		</tbody>
@@ -95,5 +106,6 @@ for(User u: users.values())
 	    <input name="Return" value="Return to Menu" type="submit"
 	    align="right" class="buttonstyle">
 	</form>
+
 </body>
 </html>

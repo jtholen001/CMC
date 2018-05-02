@@ -126,6 +126,18 @@ public class AdminInterface extends UserInterface
   }
   
   /**
+   * A method that allows an Admin to deactivate a User
+   * 
+   * @param user a User object to be deactivated
+   * 
+   * @return -1 if unsucessfull, 0 otherwise
+   */
+  public int activate(User user)
+  {
+    return uCont.activate(user);
+  }
+  
+  /**
    * a method to delete a user'
    * @param username the user to delete
    * @return an integer representing the success/fail of the method
