@@ -61,13 +61,13 @@ for(User u: users.values())
 		<td style="vertical-align: top;">
 		<% if (u.getActivationStatus()) { %>
 		<form method="post" action="Deactivate_action.jsp" name="Deactivate">
-	    <input name="Deactivate" value="Deactivate" type="submit">
+	    <input name="Deactivate" value="Deactivate" type="submit" class="buttonstyle">
 		<input name="Username" value=<%=u.getUsername()%> type="hidden">
 		</form> 
 	    <%
 	    } else { %> 
 		<form method="post" action="Activate_action.jsp" name="Activate">
-	    <input name="Activate" value="Activate" type="submit">
+	    <input name="Activate" value="Activate" type="submit" class="buttonstyle">
 		<input name="Username" value=<%=u.getUsername()%> type="hidden">
 		</form>
 	    <%
