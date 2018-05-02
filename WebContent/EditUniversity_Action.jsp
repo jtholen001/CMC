@@ -24,12 +24,14 @@ for(i = 0; i < university.getEmphases().size(); i++)
 if(!request.getParameter("end").trim().equals(""))
 	emphases.add(request.getParameter("end"));
 
+String state = request.getParameter("state");
+String location = request.getParameter("location");
+String control = request.getParameter("control");
 String numStudents = request.getParameter("numStudents");
 String academicScale = request.getParameter("academicScale");
 String socialScale = request.getParameter("socialScale");
 String qualityOfLifeScale = request.getParameter("qualityOfLife");
 String numApplicants = request.getParameter("numberOfApplicants");
-
 String percentFemale = request.getParameter("percentFemale");
 String SATVerbal = request.getParameter("SATVerbal");
 String SATMath = request.getParameter("SATMath");
@@ -38,22 +40,20 @@ String percentFinancialAid = request.getParameter("percentFinancialAid");
 String percentAdmitted = request.getParameter("percentAdmitted");
 String percentEnrolled = request.getParameter("percentEnrolled");
 	
-int result = adminInt.editUniversity(university, request.getParameter("state"), request.getParameter("location"), request.getParameter("control"), 
+int result = adminInt.editUniversity(university, state, location, control, 
 		numStudents, percentFemale, SATVerbal, 
 		SATMath, expenses, percentFinancialAid, 
 		numApplicants, percentAdmitted, percentEnrolled, 
 		academicScale, socialScale, 
 		qualityOfLifeScale, emphases);
 
-if (result == -1){
+if (result == -1)
+{
 	response.sendRedirect("EditUniversity.jsp?Error=-1&UniversityName="+ university.getName());
 	return;
-}
-	
+}	
+
 response.sendRedirect("ManageUniversities.jsp?EditSuccess=1&editedName="+ university.getName());
-
-
 %>
-
 </body>
 </html>
