@@ -10,8 +10,13 @@
 <body>
 	<%
 	AdminInterface adminInt = (AdminInterface)session.getAttribute("userInt");
-	adminInt.deleteUser(request.getParameter("Username"));
-	response.sendRedirect("ManageUsers.jsp");
+	String userName = request.getParameter("Username");
+	int result = adminInt.deleteUser(userName);
+	
+	if (result != -1)
+		response.sendRedirect("ManageUsers.jsp?deleteSuccess=1&deletedName="+userName);
+	else
+		response.sendRedirect("ManageUsers.jsp?deleteSuccess=-1");
 %>
 </body>
 </html>
