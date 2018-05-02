@@ -34,7 +34,7 @@ for(int i=0;i<values.length;i++)
 		<td style="vertical-align: top;">
 		<% if (!savedUniversities.contains(u)) { %>
 	<form method="post" action="SaveUniversity_action.jsp" name="SaveUniversity">
-	    <input name="Save" value="Save" type="submit">
+	    <input name="Save" value="Save" type="submit" class="buttonstyle">
 	    <input name="University" value='<%=u.getName()%>' type="hidden">
 	    <input name="FromWhere" value="0" type="hidden">
 	    <%for (int j=0;j<values.length;j++) { %>
@@ -49,7 +49,7 @@ for(int i=0;i<values.length;i++)
 	</td>
 	<td style="vertical-align: top;">
 	<form method="post" action="ViewSearchedUniversity.jsp" name="ViewUniversity">
-	    <input name="View" value="View" type="submit">
+	    <input name="View" value="View" type="submit" class="buttonstyle">
 	    <input name="University" value='<%=u.getName()%>' type="hidden">
 	   	<%for (int j=0;j<values.length;j++) { %>
 	    <input name="Universities" value='<%=values[j]%>' type="hidden">
