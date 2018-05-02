@@ -426,7 +426,10 @@ public class DBController implements Runnable
 			}
 		}
 		if(success !=-1)
+			synchronized(this.allUniversities)
+		{
 			this.storedUniversities.put(university.getName(), university);
+		}
 		return success;
 	}
 

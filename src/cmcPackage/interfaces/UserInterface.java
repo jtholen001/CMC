@@ -34,7 +34,8 @@ public class UserInterface
   
   public UserInterface(DBController temp)
   {
-    this.lc = new LoginController(temp);
+	this.dbc = temp;
+    this.lc = new LoginController(dbc);
   }
   
   /**
@@ -53,11 +54,11 @@ public class UserInterface
       char type = user.getType();
       if (type == 'u')
       {
-        return new StudentInterface((Student) user);
+        return new StudentInterface((Student) user,dbc);
       }
       else if(type == 'a')
       {
-    	  return new AdminInterface((Admin) user);
+    	  return new AdminInterface((Admin) user,dbc);
       }
     }
       return null;
