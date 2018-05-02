@@ -651,7 +651,7 @@ public class DBController implements Runnable
 		try {
 			String uTfa = "%2FA-MASTER%_";
 			uTfa = uTfa.concat(username);
-			this.getUniversity(uTfa);
+			System.out.println(this.getUniversity(uTfa));
 			return true;
 		}
 		catch (IllegalArgumentException iae) {
