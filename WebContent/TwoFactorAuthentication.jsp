@@ -4,6 +4,7 @@
 <title>Login Form</title>
 </head>
 <body>
+<center>
 <h2>2-Factor Authentication</h2>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="cmcPackage.interfaces.*" %>
 <p><% 
@@ -16,9 +17,9 @@
 	StudentInterface studentInt = (StudentInterface)session.getAttribute("userInt");
 %>
 </p>
-
 <form method="post" action="TwoFactorAuthentication_action.jsp" name="Authenticate"><br>
 <img src="assets/img/2FA_auth.png" alt="CMC Logo">
+<br>
 <br>
 
 This extra step shows it's really you trying to sign in.<br>
@@ -28,19 +29,16 @@ Get a verification code from the <strong>Google Authenticator</strong> app
 border="1" cellpadding="2" cellspacing="2">
 <tbody>
 <tr>
-<td style="vertical-align: top;">Authentication code<br>
-</td>
-<td style="vertical-align: top;"><input name="key"> </td>
+<td style="vertical-align: top;"><center><input name="key"></center></td>
 </tr>
 <tr>
-<td>
-</td>
-<td style="vertical-align: top;"><input value="Authenticate"
-name="Authenticate" type="submit" class="buttonstyle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="vertical-align: top;"><center><input value="Authenticate"
+name="Authenticate" type="submit" class="buttonstyle"></center>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 </tr>
 </tbody>
 </table>
 </form>
+</center>
 <br>
 </body>
 </html>

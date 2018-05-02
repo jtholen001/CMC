@@ -7,6 +7,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="cmcPackage.*" %>
 <p>
 <% 
+System.out.println("test");
 String error = request.getParameter("Error");
 if(error != null) {
 	if (error.equals("-1"))

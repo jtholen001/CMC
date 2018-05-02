@@ -101,31 +101,31 @@ public class DBController implements Runnable
 			throw new IllegalArgumentException("username is a null value");
 		username = username.trim();
 
-			String[][] users = univDBlib.user_getUsers();
-			boolean status = false;
+		String[][] users = univDBlib.user_getUsers();
+		boolean status = false;
 
-			for(int index = 0; index < users.length; index++)
+		for(int index = 0; index < users.length; index++)
+		{
+			if(users[index][2].equals(username)) 
 			{
-				if(users[index][2].equals(username)) 
+				if(users[index][5].equals("Y"))
+					status = true;
+
+				if(users[index][4].equals("u"))
 				{
-					if(users[index][5].equals("Y"))
-						status = true;
 
-					if(users[index][4].equals("u"))
-					{
-
-						return new Student(users[index][0],users[index][1],users[index][2],users[index][3],'u',
-								status, false, this.getUniversitiesForStudent(username));
-					}
-					else
-					{
-						return new Admin(users[index][0],users[index][1],users[index][2],users[index][3],'a',
-								status, false);
-					}
+					return new Student(users[index][0],users[index][1],users[index][2],users[index][3],'u',
+							status, false, this.getUniversitiesForStudent(username));
+				}
+				else
+				{
+					return new Admin(users[index][0],users[index][1],users[index][2],users[index][3],'a',
+							status, false);
 				}
 			}
-			throw new IllegalArgumentException("user was not found in the database");
 		}
+		throw new IllegalArgumentException("user was not found in the database");
+	}
 
 	/**
 	 * This method gets the list of schools that the given user has saved.
@@ -159,29 +159,29 @@ public class DBController implements Runnable
 	 */
 	public HashMap<String,User> getUsers()
 	{
-			String[][] users = univDBlib.user_getUsers();
-			HashMap<String, User> userMap = new HashMap<String, User>();
-			boolean status;
+		String[][] users = univDBlib.user_getUsers();
+		HashMap<String, User> userMap = new HashMap<String, User>();
+		boolean status;
 
-			for(int index = 0; index < users.length; index++)
+		for(int index = 0; index < users.length; index++)
+		{
+			//gets the char character of if they are activated and sets a bool value to be used when creating the user
+			if(users[index][5].equals("Y"))
+				status = true;
+			else
+				status = false;
+			//creates the user and puts it in the map
+			if(users[index][4].equals("u"))
 			{
-				//gets the char character of if they are activated and sets a bool value to be used when creating the user
-				if(users[index][5].equals("Y"))
-					status = true;
-				else
-					status = false;
-				//creates the user and puts it in the map
-				if(users[index][4].equals("u"))
-				{
-					userMap.put(users[index][2],new Student(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
-							status, false, this.getUniversitiesForStudent(users[index][0])));
-				}
-				else if(users[index][4].equals("a")) {
-					userMap.put(users[index][2],new Admin(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
-							status, false));
-				}
+				userMap.put(users[index][2],new Student(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
+						status, false, this.getUniversitiesForStudent(users[index][0])));
 			}
-			return userMap;
+			else if(users[index][4].equals("a")) {
+				userMap.put(users[index][2],new Admin(users[index][0],users[index][1],users[index][2],users[index][3],users[index][4].charAt(0),
+						status, false));
+			}
+		}
+		return userMap;
 	}
 
 	/**
@@ -202,20 +202,20 @@ public class DBController implements Runnable
 
 		univDBlib.user_editUser(user.getUsername(),user.getFirstName(),user.getLastName(),user.getPassword(),user.getType(),
 				temp);
-//		if(!this.users.isEmpty())
-//		{
-//			if(this.users.containsKey(user.getUsername()))
-//			{
-//				synchronized(this.users)
-//				{
-//					this.users.replace(user.getUsername(), user);
-//					return 1;
-//				}
-//			}
-//			else
-				throw new IllegalArgumentException("user not in database");
-		}
-		//return 1;
+		//		if(!this.users.isEmpty())
+		//		{
+		//			if(this.users.containsKey(user.getUsername()))
+		//			{
+		//				synchronized(this.users)
+		//				{
+		//					this.users.replace(user.getUsername(), user);
+		//					return 1;
+		//				}
+		//			}
+		//			else
+		throw new IllegalArgumentException("user not in database");
+	}
+	//return 1;
 	//}
 
 	/**
@@ -288,14 +288,12 @@ public class DBController implements Runnable
 						throw new IllegalArgumentException("Database error removing saved schools for " + stu.getUsername());
 				}
 			}
-			univDBlib.user_deleteUser(stu.getUsername());
+			return univDBlib.user_deleteUser(stu.getUsername());
 		}
-		else if(user == null)
+		else 
 		{
 			throw new IllegalArgumentException("user was not found in the database");
 		}
-		univDBlib.user_deleteUser(username);
-		return 1;
 	}
 
 	/**
@@ -484,10 +482,16 @@ public class DBController implements Runnable
 				univDBlib.university_addUniversityEmphasis(university.getName(), university.getEmphases().get(i).toUpperCase());
 			}
 		}
-			synchronized(this.storedUniversities)
-			{
-				this.storedUniversities.put(university.getName(), university);
-			}
+		if(university.getName().contains("%2FA-MASTER%"))
+		{
+			this.allUniversities.put(university.getName(), university);
+			return 1;
+		}
+		synchronized(this.storedUniversities)
+		{
+			this.storedUniversities.put(university.getName(), university);
+		}
+
 		return ret;
 	}
 
@@ -519,7 +523,10 @@ public class DBController implements Runnable
 		synchronized(this.storedUniversities) {
 			if(storedUniversities.remove(university.getName()) == null)
 			{
-				return -1;
+				if(this.allUniversities.remove(university.getName()) == null)
+				{
+					return -1;
+				}
 			}
 			univDBlib.university_deleteUniversity(university.getName());
 
@@ -591,7 +598,7 @@ public class DBController implements Runnable
 			{
 				this.viewUniversities();
 			}
-		
+
 			try {
 				Thread.sleep((2 * 1000));
 			}
@@ -615,7 +622,7 @@ public class DBController implements Runnable
 		if (this.isTfaEnabled(user.getUsername())){ // user already has 2FA enabled, this will reset it
 			this.deleteUniversity(this.getUniversity(uTfa));
 			String newMasterKey = tfaUtil.generateBase32Secret();
-			String qrCodeUrl = tfaUtil.qrImageUrl("CMC" + " (" + user.getUsername() + ")", newMasterKey);
+			String qrCodeUrl = tfaUtil.qrImageUrl("CMC" + "_" + user.getUsername(), newMasterKey);
 			University univTfa = new University(uTfa, newMasterKey, "-1", "-1", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, new ArrayList<String>());
 			this.addUniversity(univTfa);
 			return qrCodeUrl;
@@ -644,7 +651,7 @@ public class DBController implements Runnable
 		try {
 			String uTfa = "%2FA-MASTER%_";
 			uTfa = uTfa.concat(username);
-			this.getUniversity(uTfa);
+			System.out.println(this.getUniversity(uTfa));
 			return true;
 		}
 		catch (IllegalArgumentException iae) {
