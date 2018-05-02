@@ -90,8 +90,14 @@ public class AdminInterface extends UserInterface
    */
   public int editUser(String username, String newFirst, String newLast, String newPassword, String newType, String newActivation, String newLoggedIn)
   {
+	  try {
 		  return uCont.editUser(username, newFirst, newLast, newPassword, newType, newActivation, newLoggedIn);
+	  }
+	  catch(IllegalArgumentException iae) {
+		  return -1;
+	  }
   }
+
   
   /**
    * A method that allows an Admin to add a new User

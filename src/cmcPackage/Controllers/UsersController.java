@@ -53,41 +53,43 @@ public class UsersController
    * @return an int representing the success of editing a user
    */
   public int editUser(String username,String firstName, String lastName, String password, String type ,String isActivated,
-                        String isLoggedIn)
+		  String isLoggedIn)
   {
- if (username.equals("") || firstName.equals("") || lastName.equals("") || !meetsPasswordCriteria(password) || !type.equals("a") && !type.equals("u"))
-  throw new IllegalArgumentException("Fields cannot be empty");
- else
- {
-	 boolean activated = false;
-	  if(isActivated.equals("true"))
-	  {
-	  	activated = true;
-	  }
+	 
+		  if (username.equals("") || firstName.equals("") || lastName.equals("") || !meetsPasswordCriteria(password) || !type.equals("a") && !type.equals("u"))
+			  throw new IllegalArgumentException("Fields cannot be empty");
+		  else
+		  {
+			  boolean activated = false;
+			  if(isActivated.equals("true"))
+			  {
+				  activated = true;
+			  }
 
-	  boolean loggedIn = false;
-	  if(isLoggedIn.equals("true"))
-	  {
-	  	loggedIn = true;
-	  }
-	  
-    User toEdit = dbCont.getUser(username);
+			  boolean loggedIn = false;
+			  if(isLoggedIn.equals("true"))
+			  {
+				  loggedIn = true;
+			  }
 
-    //admin can edit anything except for username
-    toEdit.setFirstName(firstName);
-    toEdit.setLastName(lastName);
-    toEdit.setPassword(password);
-    toEdit.setType(type.charAt(0));
-    toEdit.setActivationStatus(activated);
-    toEdit.setLoggedInStatus(loggedIn);
-    
-    try {
-    return dbCont.saveEditedUser(toEdit);
-    }
-    catch(IllegalArgumentException iae) {
-    	return -1;
-    }
- }
+			  User toEdit = dbCont.getUser(username);
+
+			  //admin can edit anything except for username
+			  toEdit.setFirstName(firstName);
+			  toEdit.setLastName(lastName);
+			  toEdit.setPassword(password);
+			  toEdit.setType(type.charAt(0));
+			  toEdit.setActivationStatus(activated);
+			  toEdit.setLoggedInStatus(loggedIn);
+
+			  try {
+				  return dbCont.saveEditedUser(toEdit);
+			  }
+			  catch(IllegalArgumentException iae) {
+				  return -1;
+			  }
+		  }
+
   }
 
   /**

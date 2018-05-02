@@ -10,7 +10,7 @@
 <p>
 <%
 String error = request.getParameter("error");
-if (error!=null && error.equals("-1"))
+if (error!=null && "-1".equals(error))
 	out.print("Uh-oh! Something went wrong! Please check your input and try again.");
 %>
 </p>

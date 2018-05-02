@@ -21,5 +21,5 @@ int result = adminInt.editUser(userName, request.getParameter("FirstName"), requ
 if (result != -1)//success
 	response.sendRedirect("ManageUsers.jsp?editSuccess=1&editedName="+userName);
 else//fail
-	response.sendRedirect("EditUser.jsp?error=-1");
+	response.sendRedirect("EditUser.jsp?error=-1&Username="+userName);
 %>
