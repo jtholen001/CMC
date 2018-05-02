@@ -7,7 +7,7 @@ http-equiv="content-type">
 <title>Search</title>
 </head>
 <body>
-<%@include file="verifyLogin.jsp"  %>
+<%@include file="verifyLoginStudent.jsp"  %>
 </head>
 <body>
 

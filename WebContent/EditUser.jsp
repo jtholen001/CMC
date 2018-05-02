@@ -5,7 +5,7 @@
 </head>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     import= "cmcPackage.entityClasses.*, java.util.HashMap" pageEncoding="UTF-8"%>
-    <%@include file="verifyLogin.jsp"%>
+    <%@include file="verifyLoginAdmin.jsp"%>
 <body>
 <p>
 <%
