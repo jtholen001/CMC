@@ -4,23 +4,13 @@
 <title>Admin Menu</title>
 </head>
 <%@include file="verifyLogin.jsp"  %>
+<h2>Admin Menu</h2>
 <body>
 <%
 	AdminInterface adminInt = (AdminInterface)session.getAttribute("userInt");
 %>
-<table>
-	<tr>
-	<td>Hello <%out.print(adminInt.getAdmin().getFirstName() + " " + adminInt.getAdmin().getLastName()); %>!</td>
-	</tr>
-	<tr>
-	<td><a href="ManageUsers.jsp"><img src="assets/img/ManageUsers.png"></a></td>
-	</tr>
-	<tr>
-	<td><a href="ManageUniversities.jsp"><img src="assets/img/ManageUniversities.png"></a></td>
-	</tr>
-	<tr>
-	<td><a href="Logout_Action.jsp"><img src="assets/img/Logout.png"></a></td>
-	</tr>
-</table>
+	<a href="ManageUsers.jsp"><br> <img src="assets/img/manage_users.png" alt="Search" class="imgFancy"></a>
+	<a href="ManageUniversities.jsp"><br> <img src="assets/img/manage_universities.png" alt="Manage Universities" class="imgFancy"></a>
+	<a href="Logout_Action.jsp"><br> <img src="assets/img/logout.png" alt="Search" class="Logout"></a>
 </body>
 </html>
