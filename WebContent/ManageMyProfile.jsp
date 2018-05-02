@@ -12,6 +12,12 @@
 %>
 <h2>Manage My Profile</h2>
 <body>
+<p>
+<% String error = request.getParameter("Error"); 
+	if (error != null && "-1".equals(error))
+		out.print("Uh-Oh! Please check your input and try again");
+	%>
+</p>
 <form action="EditProfile_action.jsp" name="EditProfile">
 <table style="text-align: left; width: 50%;" border="1" cellpadding="2" cellspacing="2">
   <tbody>
@@ -73,7 +79,7 @@ name="Reset" type="reset" class="buttonstyle">
 	<%}%>
 </tr>
 <%
-String error = request.getParameter("Error");
+error = request.getParameter("Error");
 if(error != null) {
 	if (error.equals("-9"))
 		out.print("2FA is not enabled.");

@@ -40,10 +40,15 @@ public class ProfileController
    */
   public int editProfile(String firstName, String lastName, String password)
   {
+	 try {
 	  if (firstName == null || lastName == null || !meetsPasswordCriteria(password) ||
 			  firstName.trim().isEmpty() || lastName.trim().isEmpty())
 		  throw new IllegalArgumentException();
-	  
+	  }
+	  catch (IllegalArgumentException iae) {
+		return -1;  
+		  
+	  }
     this.student.setFirstName(firstName);
     this.student.setLastName(lastName);
     this.student.setPassword(password);

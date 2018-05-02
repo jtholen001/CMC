@@ -18,10 +18,11 @@ String lastName = request.getParameter("LastName");
 String password = request.getParameter("Password");
 
 
-studentInt.editProfile(firstName, lastName, password);
-
-response.sendRedirect("StudentMenu.jsp");
-
+int result = studentInt.editProfile(firstName, lastName, password);
+if (result != -1)
+	response.sendRedirect("StudentMenu.jsp");
+else
+	response.sendRedirect("ManageMyProfile.jsp?Error=-1");
 
 %>
 </body>
