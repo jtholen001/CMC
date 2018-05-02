@@ -57,16 +57,16 @@ border="1" cellpadding="2" cellspacing="2">
 </tr>
 
 <tr>
-<td style="vertical-align: top;"><button name = "Add" id="Add" type ="submit">Add</button></td>
+<td style="vertical-align: top;"><button name = "Add" id="Add" type ="submit" class="buttonstyle">Add</button></td>
 <td style="vertical-align: top;"><input value="Reset"
-name="Reset" type="reset"></td>
+name="Reset" type="reset" class="buttonstyle"></td>
 </tr>
 </tbody>
 </table>
 <br>
 </form>
 <form method="post" action="ManageUsers.jsp">
-	    <input name="Cancel" value="Cancel" type="submit">
+	    <input name="Cancel" value="Cancel" type="submit" class="buttonstyle">
 	</form>
 <br>
 </body>
