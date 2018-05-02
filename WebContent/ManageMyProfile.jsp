@@ -46,9 +46,9 @@
 </tbody>
 </table>
 <br>
-<button name = "Submit" id="Edit" type ="submit">Edit</button>
+<button name = "Submit" id="Edit" type ="submit" class="buttonstyle">Edit</button>
 <input value="Reset"
-name="Reset" type="reset">
+name="Reset" type="reset" class="buttonstyle">
 </form>
 <br>
 
@@ -62,12 +62,12 @@ name="Reset" type="reset">
 	<%
 	if (studentInt.isTfaEnabled()) {
 	 %>
-	 <td style="vertical-align: top"><form action="EnableTFA_action.jsp"><input type="submit" value="Reset 2FA" /></form></td>
-	 <td style="vertical-align: top"><form action="DisableTFA_action.jsp"><input type="submit" value="Disable 2FA" /></form></td>
+	 <td style="vertical-align: top"><form action="EnableTFA_action.jsp"><input type="submit" value="Reset 2FA" class="buttonstyle"/></form></td>
+	 <td style="vertical-align: top"><form action="DisableTFA_action.jsp"><input type="submit" value="Disable 2FA" class="buttonstyle"/></form></td>
 	 <%
 	 } 
 	 else {%>
-	<td style="vertical-align: top"><form action="EnableTFA_action.jsp"><input type="submit" value="Enable 2FA" /></form></td>
+	<td style="vertical-align: top"><form action="EnableTFA_action.jsp"><input type="submit" value="Enable 2FA" class="buttonstyle"/></form></td>
 	<%}%>
 </tr>
 <%
@@ -104,7 +104,7 @@ if(toggle != null) {
 	} %>
 
 <form method="post" action="StudentMenu.jsp">
-	    <input name="Return" value="Return to Menu" type="submit">
+	    <input name="Return" value="Return to Menu" type="submit" class="buttonstyle">
 </form>
 </body>
 <script>

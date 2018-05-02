@@ -228,8 +228,8 @@ String error = request.getParameter("Error");
 					</td>
 				</tr>
 				<tr>
-					<td><input value="Submit" name="Log in" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-					<td><input value="Cancel" name="Reset" type="reset"></td>
+					<td><input value="Submit" name="Log in" type="submit" class="buttonstyle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td><input value="Cancel" name="Reset" type="reset" class="buttonstyle"></td>
 					
 
 
@@ -238,7 +238,7 @@ String error = request.getParameter("Error");
 		</table>
 	</form>
 	<form method="post" action="AdminMenu.jsp">
-	    <input name="Return" value="Return to Menu" type="submit">
+	    <input name="Return" value="Return to Menu" type="submit" class="buttonstyle">
 	</form>
 </body>
 </html>

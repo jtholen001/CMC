@@ -40,7 +40,7 @@ for(User u: users.values())
 	<tr>
 		<td style="vertical-align: top;">
 	<form method="post" action="Deactivate_action.jsp" name="Deactivate">
-	    <input name="Deactivate" value="Deactivate" type="submit">
+	    <input name="Deactivate" value="Deactivate" type="submit" class="buttonstyle">
 	    <input name="Username" value=<%=u.getUsername()%> type="hidden">
 	</form></td>
 	<td style="vertical-align: top;"><%=u.getFirstName()%>
@@ -57,13 +57,13 @@ for(User u: users.values())
 	</td>
 	<td style="vertical-align: top;">
 	<form method="post" action="EditUser.jsp" name="Edit">
-	    <input name="Edit" type="image" src="assets/img/Edit.png" type="submit">
+	    <input name="Edit" type="image" src="assets/img/Edit.png" type="submit" class="buttonstyle">
 	    <input name="Username" value= <%=u.getUsername()%> type="hidden">
 	</form>
 	</td>
 	<td style="vertical-align: top;">
 	<form method="post" action="DeleteUser.jsp" name="Delete">
-	    <input name="Delete" type="image" src="assets/img/Delete.png" type="submit">
+	    <input name="Delete" type="image" src="assets/img/Delete.png" type="submit" class="buttonstyle">
 	    <input name="Username" value=<%=u.getUsername()%> type="hidden">
 	</form></td>
 	</tr>
@@ -73,7 +73,7 @@ for(User u: users.values())
 	</table>
 	<form method="post" action="AdminMenu.jsp" align="middle">
 	    <input name="Return" value="Return to Menu" type="submit"
-	    align="right">
+	    align="right" class="buttonstyle">
 	</form>
 </body>
 </html>

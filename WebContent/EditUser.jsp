@@ -80,15 +80,15 @@ else
 </tr>
 
 <tr>
-<td style="vertical-align: top;"><button name = "Edit" id="Edit" type ="submit">Submit</button></td>
+<td style="vertical-align: top;"><button name = "Edit" id="Edit" type ="submit" class="buttonstyle">Submit</button></td>
 <td style="vertical-align: top;"><input value="Reset"
-name="Reset" type="reset"></td>
+name="Reset" type="reset" class="buttonstyle"></td>
 </tr>
 </tbody>
 </table>
 </form>
 <form method="post" action="ManageUsers.jsp">
-	    <input name="Return" value="Return to Menu" type="submit">
+	    <input name="Return" value="Return to Menu" type="submit" class="buttonstyle">
 	</form>
 <br>
 </body>
