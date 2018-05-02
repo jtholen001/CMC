@@ -289,7 +289,7 @@ public class DBController implements Runnable
 	 */
 	public HashMap<String, University> viewUniversities()
 	{
-		if(!(this.storedUniversities == null)) {
+		if(!(this.storedUniversities.isEmpty())) {
 				return new HashMap<String,University>(this.storedUniversities);
 		}
 		String[][] universities = univDBlib.university_getUniversities();
@@ -570,13 +570,14 @@ public class DBController implements Runnable
 	public void run()
 	{
 		while(run != false) {
-			if(!(this.storedUniversities == null))
+			if(!(this.storedUniversities.isEmpty()))
 				synchronized(this.storedUniversities){
 					this.updateSavedSchools();
 				}
 			else
 			{
 				this.viewUniversities();
+			
 			}
 
 
