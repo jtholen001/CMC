@@ -140,6 +140,23 @@ public class UsersController
   }
   
   /**
+   * a method to activate a User
+   *
+   * @param user a User object to be deactivated
+   * @throws IllegalArgumentException
+   * @return an int representing the success of activating a user
+   */
+  public int activate(User user) throws IllegalArgumentException
+  {
+	  if(users.get(user.getUsername()).getActivationStatus() == true)
+		  throw new IllegalArgumentException("User is already activated");
+	  else
+		  user.setActivationStatus(true);
+	  		users.get(user.getUsername()).setActivationStatus(true);
+	  	  return dbCont.saveEditedUser(user);
+  }
+  
+  /**
    * a method to delete a user
    * @param username the user to delete from the Database
    * @return an integer representing the success/fail of the method
