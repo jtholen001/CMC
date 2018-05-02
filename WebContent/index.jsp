@@ -18,8 +18,8 @@ if(error != null) {
 }
  %>
  </p>
- <img src="assets/img/Logo.png" alt="CMC Logo">
-<form method="post" action="Login_action.jsp" name="Login"><br>
+ <img src="assets/img/Logo.png" alt="CMC Logo" class="center">
+<center><form method="post" action="Login_action.jsp" name="Login"><br>
 <table style="text-align: left; width: 266px; height: 228px;"
 border="1">
 <tbody>
@@ -41,7 +41,7 @@ name="Reset" type="reset" class="buttonstyle"></td>
 </tr>
 </tbody>
 </table>
-</form>
+</form></center>
 <br>
 </body>
 </html>
