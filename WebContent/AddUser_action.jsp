@@ -10,10 +10,15 @@
 <body>
 <%
 	AdminInterface adminInt = (AdminInterface)session.getAttribute("userInt");
+	String userName = request.getParameter("Username");
 
-adminInt.addUser(request.getParameter("FirstName"), request.getParameter("LastName"), request.getParameter("Username"),
+int result = adminInt.addUser(request.getParameter("FirstName"), request.getParameter("LastName"), userName,
 		request.getParameter("Password"), request.getParameter("Type"), request.getParameter("Status"), "false");
-response.sendRedirect("ManageUsers.jsp");
+
+if (result != -1)
+	response.sendRedirect("ManageUsers.jsp?addSuccess=1&addedUser="+userName);
+else
+	response.sendRedirect("AddUser.jsp?error=-1");
 %>
 </body>
 </html>

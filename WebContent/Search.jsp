@@ -231,12 +231,12 @@ and <input name="AcademicScaleUpper" id="AcademicScaleUpper" onblur='meetsCriter
 </table>
 <br>
 <button value="Search for Universities"
-name="Search" id="Submit" type="submit">Search</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+name="Search" id="Submit" type="submit" class="buttonstyle">Search</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input value="Reset Form"
-name="Reset" type="reset">
+name="Reset" type="reset" class="buttonstyle">
 </form>
 <form method="post" action="StudentMenu.jsp">
-	    <input name="Return" value="Return to Menu" type="submit">
+	    <input name="Return" value="Return to Menu" type="submit" class="buttonstyle">
 	</form>
 </body>
  <script>

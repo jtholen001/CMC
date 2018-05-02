@@ -9,7 +9,7 @@ tr:nth-child(even) {background-color: #C0C0C0;}
 
 /*table borders and alignments*/
 table{    
-    border: 5px solid #0F0F88	;
+    border: 6px solid #0F0F88	;
     text-align: left;
 }
 
@@ -18,12 +18,13 @@ td{
 	border: 1px solid #0F0F88	;
 	text-align: left;
 	font-size: 12px;
+	font-weight: bold;
 }
 
 /*table header*/
 th{
-	background-color: #696969;
-	color: maroon;
+	background-color: #E0FFFF;
+	//color: #0F0F88;
 	font-size: 14px;
 }
 
@@ -111,4 +112,10 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+div.card {
+    width: 250px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
 }

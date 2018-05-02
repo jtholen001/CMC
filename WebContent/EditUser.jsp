@@ -7,6 +7,13 @@
     import= "cmcPackage.entityClasses.*, java.util.HashMap" pageEncoding="UTF-8"%>
     <%@include file="verifyLogin.jsp"%>
 <body>
+<p>
+<%
+String error = request.getParameter("error");
+if (error!=null && error.equals(-1))
+	out.print("Uh-oh! Something went wrong! Please check your input and try again.");
+%>
+</p>
 <br>
 Edit User form:<br>
 <br>
@@ -80,15 +87,15 @@ else
 </tr>
 
 <tr>
-<td style="vertical-align: top;"><button name = "Edit" id="Edit" type ="submit">Submit</button></td>
+<td style="vertical-align: top;"><button name = "Edit" id="Edit" type ="submit" class="buttonstyle">Submit</button></td>
 <td style="vertical-align: top;"><input value="Reset"
-name="Reset" type="reset"></td>
+name="Reset" type="reset" class="buttonstyle"></td>
 </tr>
 </tbody>
 </table>
 </form>
 <form method="post" action="ManageUsers.jsp">
-	    <input name="Return" value="Return to Menu" type="submit">
+	    <input name="Return" value="Return to Menu" type="submit" class="buttonstyle">
 	</form>
 <br>
 </body>

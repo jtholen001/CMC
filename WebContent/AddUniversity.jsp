@@ -177,16 +177,16 @@ String error = request.getParameter("Error");
 
 <tr>
 <td><button value="Add"
-name="Add" id="Submit" type="submit">Add</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+name="Add" id="Submit" type="submit" class="buttonstyle">Add</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 <td><input value="Reset"
-name="Reset" type="reset"></td>
+name="Reset" type="reset" class="buttonstyle"></td>
 </tr>
 </tbody>
 </table>
 <br>
 </form>
 	<form method="post" action="ManageUniversities.jsp">
-	    <input name="Cancel" value="Cancel" type="submit">
+	    <input name="Cancel" value="Cancel" type="submit" class="buttonstyle">
 	</form>
 <br>
 </body>
