@@ -9,29 +9,10 @@
 	<%
 		StudentInterface studentInt = (StudentInterface) session.getAttribute("userInt");
 	%>
-	<table>
-		<tbody>
-			<tr>
-				<td>Hello <%
-					out.print(studentInt.getStudent().getFirstName() + " " + studentInt.getStudent().getLastName());%>!
-				</td>
-			</tr>
-			<tr>
-				<td><a href="Search.jsp"><br> <img
-						src="assets/img/SearchForUniversities.png"></a></td>
-			</tr>
-			<tr>
-				<td><a href="ManageSavedUniversities.jsp"><img
-						src="assets/img/ManageMySavedUniversities.png"></a></td>
-			</tr>
-			<tr>
-				<td><a href="ManageMyProfile.jsp"><img
-						src="assets/img/ManageMyProfile.png"></a></td>
-			</tr>
-			<tr>
-			<td><a href="Logout_Action.jsp"><img src="assets/img/Logout.png"></a></td>
-			</tr>
-		</tbody>
-	</table>
+	<a href="Search.jsp"><br> <img src="assets/img/search_for_universities.png" alt="Search" class="imgFancy"></a>
+	<a href="ManageSavedUniversities.jsp"><br> <img src="assets/img/manage_my_universities.png" alt="Search" class="imgFancy"></a>
+	<a href="ManageMyProfile.jsp"><br> <img src="assets/img/manage_my_profile.png" alt="Search" class="imgFancy"></a>
+	<a href="Logout_Action.jsp"><br> <img src="assets/img/logout.png" alt="Search" class="imgFancy"></a>
+
 </body>
 </html>

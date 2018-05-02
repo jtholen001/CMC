@@ -55,6 +55,8 @@ name="Reset" type="reset" class="buttonstyle">
 <h2>Security</h2>
  <img src="assets/img/2FA_info.png" alt="2FA Info">
  <br>
+ <br>
+ <br>
 <table style="text-align: left; width: 50%;" border="1" cellpadding="2" cellspacing="2">
 <tbody>
 <tr>
@@ -96,7 +98,8 @@ if(toggle != null) {
 	2FA is now enabled. To complete setup, download Google Authenticator for <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">iOS</a> or <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en_US">Android</a> and scan the QR code.
 	<br>
 	<br>
-			<img src=<%out.println(tfaUrl);%>>
+	<br>
+	<img src=<%out.println(tfaUrl);%> class="center">
 	<br>
 	<br>
 	<br>

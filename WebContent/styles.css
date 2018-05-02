@@ -29,7 +29,7 @@ th{
 }
 
 a:hover { 
-    background-color: yellow;
+    background-color: blue;
 }
 
 /*defines a paragraph, use for error messages*/
@@ -58,8 +58,7 @@ p{
     text-shadow: 0 -1px 0 rgba(0,0,0,.08);
 }
 
-div.card {
-    width: 250px;
+.imgFancy {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     text-align: center;
 }
