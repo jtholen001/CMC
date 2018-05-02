@@ -99,7 +99,7 @@ if(toggle != null) {
 	<br>
 	<br>
 	<br>
-	<img src=<%out.println(tfaUrl);%> class="center">
+	<img src=<%out.println(tfaUrl);%>>
 	<br>
 	<br>
 	<br>

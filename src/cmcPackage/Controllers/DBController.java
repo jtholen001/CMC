@@ -21,7 +21,6 @@ public class DBController implements Runnable
 {
 	HashMap<String,University> storedUniversities;
 	HashMap<String, University> allUniversities;
-	HashMap<String,User> users;
 	private UniversityDBLibrary univDBlib;
 	private boolean run;
 	private Thread thread;
@@ -38,9 +37,9 @@ public class DBController implements Runnable
 	{
 		this.storedUniversities = new HashMap<String, University>();
 		this.allUniversities = new HashMap<String, University>();
-		this.users = new HashMap<String,User>();
 		univDBlib =  new UniversityDBLibrary("byteme","byteme","csci230");
 		this.startThread();
+		return;
 		//this.storedUniversities = this.viewUniversities();
 	}
 
@@ -102,8 +101,6 @@ public class DBController implements Runnable
 			throw new IllegalArgumentException("username is a null value");
 		username = username.trim();
 
-		if(this.users.isEmpty())
-		{
 			String[][] users = univDBlib.user_getUsers();
 			boolean status = false;
 
@@ -129,19 +126,6 @@ public class DBController implements Runnable
 			}
 			throw new IllegalArgumentException("user was not found in the database");
 		}
-		else
-		{
-			User user = this.users.get(username);
-			if(user == null)
-				throw new IllegalArgumentException("user was not found in the database");
-			if(user instanceof Student)
-				return (Student) user;
-			else if(user instanceof Admin)
-				return (Admin) user;
-			else
-				throw new IllegalArgumentException("could not find type of user");
-		}
-	}
 
 	/**
 	 * This method gets the list of schools that the given user has saved.
@@ -175,8 +159,6 @@ public class DBController implements Runnable
 	 */
 	public HashMap<String,User> getUsers()
 	{
-		if(this.users.isEmpty())
-		{
 			String[][] users = univDBlib.user_getUsers();
 			HashMap<String, User> userMap = new HashMap<String, User>();
 			boolean status;
@@ -199,11 +181,7 @@ public class DBController implements Runnable
 							status, false));
 				}
 			}
-			this.users = new HashMap<String,User>(userMap);
 			return userMap;
-		}
-		else
-			return this.users;
 	}
 
 	/**
@@ -224,21 +202,21 @@ public class DBController implements Runnable
 
 		univDBlib.user_editUser(user.getUsername(),user.getFirstName(),user.getLastName(),user.getPassword(),user.getType(),
 				temp);
-		if(!this.users.isEmpty())
-		{
-			if(this.users.containsKey(user.getUsername()))
-			{
-				synchronized(this.users)
-				{
-					this.users.replace(user.getUsername(), user);
-					return 1;
-				}
-			}
-			else
+//		if(!this.users.isEmpty())
+//		{
+//			if(this.users.containsKey(user.getUsername()))
+//			{
+//				synchronized(this.users)
+//				{
+//					this.users.replace(user.getUsername(), user);
+//					return 1;
+//				}
+//			}
+//			else
 				throw new IllegalArgumentException("user not in database");
 		}
-		return 1;
-	}
+		//return 1;
+	//}
 
 	/**
 	 * method to add a user to the database
@@ -258,11 +236,6 @@ public class DBController implements Runnable
 		catch(IllegalArgumentException i)
 		{
 			univDBlib.user_addUser(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getType());
-			if(!this.users.isEmpty())
-			{
-				this.users.put(user.getUsername(), user);
-			}
-			return 1;
 		}
 		throw new IllegalArgumentException("User is already in databse");		
 	}
@@ -316,24 +289,12 @@ public class DBController implements Runnable
 				}
 			}
 			univDBlib.user_deleteUser(stu.getUsername());
-			if(!this.users.isEmpty())
-			{
-				synchronized(this.users)
-				{
-					this.users.remove(username);
-					return 1;
-				}
-			}
 		}
 		else if(user == null)
 		{
 			throw new IllegalArgumentException("user was not found in the database");
 		}
 		univDBlib.user_deleteUser(username);
-		synchronized(this.users)
-		{
-			this.users.remove(username);
-		}
 		return 1;
 	}
 
@@ -399,6 +360,7 @@ public class DBController implements Runnable
 			{
 				if(allUniversities.containsKey(name))
 					return allUniversities.get(name);
+				throw new IllegalArgumentException("TFA is disabled");
 			}
 
 		if(!(this.storedUniversities.isEmpty()))
@@ -632,14 +594,7 @@ public class DBController implements Runnable
 			{
 				this.viewUniversities();
 			}
-			if(this.users.isEmpty())
-			{
-				synchronized(this.users)
-				{
-					this.getUsers();
-				}
-			}
-
+		
 			try {
 				Thread.sleep((8 * 1000));
 			}
