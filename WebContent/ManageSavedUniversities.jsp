@@ -11,6 +11,7 @@
 <%
 	StudentInterface studentInt = (StudentInterface)session.getAttribute("userInt");
 %>
+<h2>Manage Saved Universities</h2>
 
 <table style="text-align: left; width: 100%;" border="1" cellpadding="2"
 cellspacing="2">

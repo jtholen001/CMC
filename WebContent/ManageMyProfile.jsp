@@ -96,6 +96,7 @@ if(toggle != null) {
 		String tfaUrl = (String)session.getAttribute("tfaUrl");
 %>
 	2FA is now enabled. To complete setup, download Google Authenticator for <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">iOS</a> or <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en_US">Android</a> and scan the QR code.
+	Now when you log in, there will be one extra step. Simply input the authentication code displayed in the app.
 	<br>
 	<br>
 	<br>
