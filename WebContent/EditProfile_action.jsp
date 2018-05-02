@@ -13,8 +13,8 @@
 <body>
 <%
 
-String firstName = request.getParameter("firstName");
-String lastName = request.getParameter("lastName");
+String firstName = request.getParameter("FirstName");
+String lastName = request.getParameter("LastName");
 String password = request.getParameter("Password");
 
 
