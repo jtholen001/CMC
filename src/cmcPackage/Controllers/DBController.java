@@ -287,10 +287,7 @@ public class DBController implements Runnable
 	public HashMap<String, University> viewUniversities()
 	{
 		if(!(this.storedUniversities == null)) {
-			synchronized(this.storedUniversities)
-			{
 				return new HashMap<String,University>(this.storedUniversities);
-			}
 		}
 		String[][] universities = univDBlib.university_getUniversities();
 		storedUniversities= new HashMap<String, University>();
@@ -348,11 +345,8 @@ public class DBController implements Runnable
 		
 		if(this.storedUniversities != null)
 		{
-			synchronized(this.storedUniversities)
-			{
 				if(storedUniversities.containsKey(name))
 					return storedUniversities.get(name);
-			}
 		}
 
 		String[][] universities = univDBlib.university_getUniversities();
@@ -432,7 +426,10 @@ public class DBController implements Runnable
 			}
 		}
 		if(success !=-1)
+			synchronized(this.allUniversities)
+		{
 			this.storedUniversities.put(university.getName(), university);
+		}
 		return success;
 	}
 
@@ -580,7 +577,7 @@ public class DBController implements Runnable
 
 
 			try {
-				Thread.sleep((1 * 1000));
+				Thread.sleep((5 * 1000));
 			}
 			catch(InterruptedException j)
 			{

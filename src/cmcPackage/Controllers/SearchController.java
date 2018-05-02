@@ -41,15 +41,11 @@ public class SearchController
 	public SearchController()
 	{
 		this.dbc = new DBController(); 
-		this.universities = this.dbc.viewUniversities();
-		this.universityNames = this.universities.keySet();
 	}
 	
 	public SearchController(DBController temp)
 	{
 		this.dbc = temp;
-		this.universities = this.dbc.viewUniversities();
-		this.universityNames = this.universities.keySet();
 	}
 
 	/**
@@ -93,6 +89,9 @@ public class SearchController
 			String academicScaleLower, String academicScaleUpper, String socialScaleLower, String socialScaleUpper, String qualityOfLifeScaleLower, String qualityOfLifeScaleUpper,  
 		  ArrayList<String> searchEmphases) throws IllegalArgumentException, InputMismatchException
 	{
+		this.universities = this.dbc.viewUniversities();
+		this.universityNames = this.universities.keySet();
+		
 		int intNumStudentsLower = 0;
 		int intNumStudentsUpper = 0;
 		double doublePercentFemaleLower = 0.0;
