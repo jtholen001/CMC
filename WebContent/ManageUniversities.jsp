@@ -74,7 +74,7 @@ for(String u: sortedUniversities.keySet())
 <td>
 <form method="post" action="DeleteUniversity_action.jsp" name="Delete">
 	<input name="Delete" type="image" src="assets/img/Delete.png" type="submit" class="buttonstyle">
-    <input name="UniversityName" value= <%=university.getName()%> type="hidden">
+    <input name="UniversityName" value= '<%=university.getName()%>' type="hidden">
 </form>
 </td>
 <td><%=university.getName()%></td>
