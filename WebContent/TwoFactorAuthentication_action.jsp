@@ -1,4 +1,5 @@
 <%@page language="java" import="cmcPackage.interfaces.*"%>
+<%@include file="verifyLoginStudent.jsp"%>
 <%
 
 String key = request.getParameter("key");

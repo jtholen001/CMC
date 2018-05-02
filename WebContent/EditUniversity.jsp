@@ -7,7 +7,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 	import="cmcPackage.entityClasses.University,cmcPackage.interfaces.*,cmcPackage.Controllers.*,java.util.ArrayList"%>
-<%@include file="verifyLogin.jsp"  %>
+<%@include file="verifyLoginAdmin.jsp"  %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 	AdminInterface adminInt = (AdminInterface) session.getAttribute("userInt");
@@ -222,14 +222,9 @@ String error = request.getParameter("Error");
 				</tr>
 				<tr>
 
-					<td><input value="Submit" name="Log in" type="submit" class="buttonstyle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+
+					<td><button value="Submit" id="Edit" type="submit" class="buttonstyle"> Edit </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 					<td><input value="Cancel" name="Reset" type="reset" class="buttonstyle"></td>
-
-					<td><button value="Submit" id="Edit" type="submit"> Edit </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-					<td><input value="Cancel" name="Reset" type="reset"></td>
-
-					
-
 
 				</tr>
 			</tbody>
