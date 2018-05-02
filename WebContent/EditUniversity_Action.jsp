@@ -27,7 +27,7 @@ if(!request.getParameter("end").trim().equals(""))
 String state = request.getParameter("state");
 String location = request.getParameter("location");
 String control = request.getParameter("control");
-String numStudents = request.getParameter("numStudents");
+String numStudents = request.getParameter("numberOfStudents");
 String academicScale = request.getParameter("academicScale");
 String socialScale = request.getParameter("socialScale");
 String qualityOfLifeScale = request.getParameter("qualityOfLife");
@@ -35,7 +35,7 @@ String numApplicants = request.getParameter("numberOfApplicants");
 String percentFemale = request.getParameter("percentFemale");
 String SATVerbal = request.getParameter("SATVerbal");
 String SATMath = request.getParameter("SATMath");
-String expenses = request.getParameter("expenses");
+String expenses = request.getParameter("Expenses");
 String percentFinancialAid = request.getParameter("percentFinancialAid");
 String percentAdmitted = request.getParameter("percentAdmitted");
 String percentEnrolled = request.getParameter("percentEnrolled");

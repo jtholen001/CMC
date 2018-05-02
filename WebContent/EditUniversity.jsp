@@ -37,7 +37,7 @@ String error = request.getParameter("Error");
 				<tr>
 					<td>STATE</td>
 					<td><select name="state" style="width: 172px;">
-								<option value=<%out.println(university.getState());%>><%out.println(university.getState());%></option>
+								<option selected="selected" value=<%out.println(university.getState());%>><%out.println(university.getState());%></option>
 								<option value="Foreign">Foreign</option>
 								<option value="Alabama">Alabama</option>
 								<option value="Alaska">Alaska</option>
@@ -95,7 +95,7 @@ String error = request.getParameter("Error");
 				<tr>
 					<td>LOCATION</td>
 					<td><select name="location" style="width: 172px;">
-								<option value=<%out.println(university.getLocation());%>><%out.println(university.getLocation());%></option>
+								<option selected="selected" value=<%out.println(university.getLocation());%>><%out.println(university.getLocation());%></option>
 								<option value="Suburban">Suburban</option>
 								<option value="Urban">Urban</option>
 								<option value="Small-City">Small-City</option>		
@@ -105,6 +105,7 @@ String error = request.getParameter("Error");
 				<tr>
 					<td>CONTROL</td>
 					<td><%String control = university.getControl(); %>
+						<input type="radio" name="control" value="-1"<%if (control.equals("-1")){ %>checked="checked"<%}%>>-1
 						<input type="radio" name="control" value="City"<%if (control.equals("CITY")){ %>checked="checked"<%}%>>City
 						<input type="radio" name="control" value="Private"<%if (control.equals("PRIVATE")){ %>checked="checked"<%}%>>Private
 						<input type="radio" name="control" value="State"<%if (control.equals("STATE")){ %>checked="checked"<%}%>>State
@@ -160,6 +161,7 @@ String error = request.getParameter("Error");
 					<td>ACADEMICS SCALE (1-5)</td>
 					<td>
 						<%int cAcademicScale = university.getAcademicScale();%>
+						<input type="radio" name="academicScale" value="-1"<%if(cAcademicScale==-1){%> checked = "checked"<%}%>>-1
 						<input type="radio" name="academicScale" value="1"<%if(cAcademicScale==1){%> checked = "checked"<%}%>>1
 						<input type="radio" name="academicScale" value="2"<%if(cAcademicScale==2){%> checked = "checked"<%}%>>2
 						<input type="radio" name="academicScale" value="3"<%if(cAcademicScale==3){%> checked = "checked"<%}%>>3
@@ -171,6 +173,7 @@ String error = request.getParameter("Error");
 					<td>SOCIAL SCALE</td>
 					<td>
 						<%int cSocialScale = university.getSocialScale();%>
+						<input type="radio" name="socialScale" value="-1"<%if(cSocialScale==-1){%> checked = "checked"<%}%>>-1
 						<input type="radio" name="socialScale" value="1"<%if(cSocialScale==1){%> checked = "checked"<%}%>>1
 						<input type="radio" name="socialScale" value="2"<%if(cSocialScale==2){%> checked = "checked"<%}%>>2
 						<input type="radio" name="socialScale" value="3"<%if(cSocialScale==3){%> checked = "checked"<%}%>>3
@@ -182,6 +185,7 @@ String error = request.getParameter("Error");
 					<td>QUALITY OF LIFE SCALE (1-5)</td>
 					<td>
 						<%int cQualityScale = university.getQualityOfLifeScale();%>
+						<input type="radio" name="qualityOfLife" value="-1"<%if(cQualityScale==-1){%> checked = "checked"<%}%>>-1
 						<input type="radio" name="qualityOfLife" value="1"<%if(cQualityScale==1){%> checked = "checked"<%}%>>1
 						<input type="radio" name="qualityOfLife" value="2"<%if(cQualityScale==2){%> checked = "checked"<%}%>>2
 						<input type="radio" name="qualityOfLife" value="3"<%if(cQualityScale==3){%> checked = "checked"<%}%>>3
