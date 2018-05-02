@@ -52,7 +52,7 @@ public class UsersController
    * @throws IllegalArgumentException
    * @return an int representing the success of editing a user
    */
-  public void editUser(String username,String firstName, String lastName, String password, String type ,String isActivated,
+  public int editUser(String username,String firstName, String lastName, String password, String type ,String isActivated,
                         String isLoggedIn)
   {
  if (username.equals("") || firstName.equals("") || lastName.equals("") || !meetsPasswordCriteria(password) || !type.equals("a") && !type.equals("u"))
@@ -81,7 +81,12 @@ public class UsersController
     toEdit.setActivationStatus(activated);
     toEdit.setLoggedInStatus(loggedIn);
     
-    dbCont.saveEditedUser(toEdit);
+    try {
+    return dbCont.saveEditedUser(toEdit);
+    }
+    catch(IllegalArgumentException iae) {
+    	return -1;
+    }
  }
   }
 
@@ -98,7 +103,7 @@ public class UsersController
    * @throws IllegalArgumentException
    * @return an int representing the success of adding a user
    */
-  public void addUser(String firstName, String lastName, String username, String password, String type ,String isActivated,
+  public int addUser(String firstName, String lastName, String username, String password, String type ,String isActivated,
                         String isLoggedIn)
   {
 	  if (firstName.equals("") || lastName.equals("") || username.equals("") || !meetsPasswordCriteria(password) || type.equals("a") && type.equals("u"))
@@ -117,8 +122,14 @@ public class UsersController
 		  	loggedIn = true;
 		  }
 		  
-		  dbCont.addUser(new User(firstName, lastName, username, password, type.charAt(0), activated, loggedIn));
+		  try {
+		  int temp = dbCont.addUser(new User(firstName, lastName, username, password, type.charAt(0), activated, loggedIn));
 	      users.put(username, new User(firstName, lastName, username, password, type.charAt(0), activated, loggedIn));
+	      return temp;
+		  }
+		  catch(IllegalArgumentException iae) {
+			  return -1;
+		  }
 	  }
   }
 
@@ -136,6 +147,23 @@ public class UsersController
 	  else
 		  user.setActivationStatus(false);
 	  		users.get(user.getUsername()).setActivationStatus(false);
+	  	  return dbCont.saveEditedUser(user);
+  }
+  
+  /**
+   * a method to activate a User
+   *
+   * @param user a User object to be deactivated
+   * @throws IllegalArgumentException
+   * @return an int representing the success of activating a user
+   */
+  public int activate(User user) throws IllegalArgumentException
+  {
+	  if(users.get(user.getUsername()).getActivationStatus() == true)
+		  throw new IllegalArgumentException("User is already activated");
+	  else
+		  user.setActivationStatus(true);
+	  		users.get(user.getUsername()).setActivationStatus(true);
 	  	  return dbCont.saveEditedUser(user);
   }
   
