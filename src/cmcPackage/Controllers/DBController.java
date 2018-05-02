@@ -639,7 +639,7 @@ public class DBController implements Runnable
 			}
 
 			try {
-				Thread.sleep((2 * 1000));
+				Thread.sleep((8 * 1000));
 			}
 			catch(InterruptedException j)
 			{
