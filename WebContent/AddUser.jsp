@@ -7,6 +7,13 @@
     import= "cmcPackage.entityClasses.*, java.util.*" pageEncoding="UTF-8"%>
     <%@include file="verifyLogin.jsp"%>
 <body>
+<p>
+<%
+String error = request.getParameter("error");
+if (error!=null && error.equals(-1))
+	out.print("Uh-oh! Something went wrong! Please check your input and try again.");
+%>
+</p>
 <br>
 Add User form:<br>
 <br>
