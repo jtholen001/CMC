@@ -38,6 +38,7 @@ String error = request.getParameter("Error");
 					<td>STATE</td>
 					<td><select name="state" style="width: 172px;">
 								<option value=<%out.println(university.getState());%>><%out.println(university.getState());%></option>
+								<option value="Foreign">Foreign</option>
 								<option value="Alabama">Alabama</option>
 								<option value="Alaska">Alaska</option>
 								<option value="Arizona">Arizona</option>

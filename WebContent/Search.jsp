@@ -43,6 +43,7 @@ border="1" cellpadding="2" cellspacing="2">
 </td>
 <td style="vertical-align: top;"> <select name="State" style="width: 172px;">
 		<option value=""></option>
+		<option value="Foreign">Foreign</option>
 		<option value="Alabama">Alabama</option>
 		<option value="Alaska">Alaska</option>
 		<option value="Arizona">Arizona</option>

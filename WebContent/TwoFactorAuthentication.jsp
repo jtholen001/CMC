@@ -36,7 +36,7 @@ border="1" cellpadding="2" cellspacing="2">
 <td>
 </td>
 <td style="vertical-align: top;"><input value="Authenticate"
-name="Authenticate" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+name="Authenticate" type="submit" class="buttonstyle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 </tr>
 </tbody>
 </table>

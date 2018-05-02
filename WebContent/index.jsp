@@ -35,9 +35,9 @@ border="1">
 </tr>
 <tr>
 <td style="vertical-align: top;"><input value="Log in"
-name="Log in" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+name="Log in" type="submit" class = "buttonstyle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 <td style="vertical-align: top;"><input value="Reset"
-name="Reset" type="reset"></td>
+name="Reset" type="reset" class="buttonstyle"></td>
 </tr>
 </tbody>
 </table>

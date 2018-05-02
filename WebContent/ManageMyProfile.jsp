@@ -17,47 +17,15 @@
   <tbody>
 <tr>
 	<td style="vertical-align: top">First Name</td>
-	<td style="vertical-align: top;"><input name="FirstName" id="First" onblur="isValidFirst()"value=<%=studentInt.getStudent().getFirstName()%>>
-<font color="red" id="errorFN"></font>
-<script>
-	function isValidFirst()
-	{
-		var s = document.getElementById("First").value;
-		if(s == "")
-			{
-				document.getElementById("Submit").disabled = true;
-	   			document.getElementById("errorFN").innerHTML = "First name cannot be empty";
-		   }
-		else
-		{
-				
-		   document.getElementById("Submit").disabled = false;
-	  	   document.getElementById("errorFN").innerHTML = "";
-		} 
-	}
-</script>
+	<td style="vertical-align: top;"><input name="FirstName" id="FirstName" onblur='isNotEmptyField("FirstName", "First name")'value=<%=studentInt.getStudent().getFirstName()%>>
+<font color="red" id="FirstNameError"></font>
 </td>
 </tr>
 <tr>
 	<td style="vertical-align: top">Last Name</td>
-	<td style="vertical-align: top;"><input name="LastName" id="Last" onblur="isValidLast()" value=<%=studentInt.getStudent().getLastName()%>>
-<font color="red" id="errorLN"></font>
-<script>
-	function isValidLast()
-	{
-		var s = document.getElementById("Last").value;
-		if(s == "")
-			{
-				document.getElementById("Submit").disabled = true;
-	   			document.getElementById("errorLN").innerHTML = "Last name cannot be empty";
-		   }
-		else
-		{
-		   document.getElementById("Submit").disabled = false;
-	  	   document.getElementById("errorLN").innerHTML = "";
-		} 
-	}
-</script>
+	<td style="vertical-align: top;"><input name="LastName" id="LastName" onblur='isNotEmptyField("LastName", "Last name")' value=<%=studentInt.getStudent().getLastName()%>>
+<font color="red" id="LastNameError"></font>
+
 </td>
 </tr>  
 <tr>
@@ -67,71 +35,7 @@
 <tr>
 	<td style="vertical-align: top">Password</td>
 <td style="vertical-align: top;"><input name="Password" id="Password" onblur="meetsPasswordCriteria()" value=<%=studentInt.getStudent().getPassword()%>>
-<font color="red" id="error"></font>
-<script>
-	function meetsPasswordCriteria()
-	{
-		var validLength = false;
-		var containsCapital = false;
-		var containsLower = false;
-		var containsNum = false;
-		var containsSpecialChar = false;
-		var s = document.getElementById("Password").value;
-
-		if(s.length >= 6)
-			validLength = true;
-
-		for (var i = 0; i < s.length; i++)
-		{
-			if(!isNaN(s.charAt(i)))
-			{
-				containsNum = true
-			}
-			else if(/^[a-zA-Z0-9- ]*$/.test(s.charAt(i)) == false)
-			{
-				containsSpecialChar = true;
-			}
-		    else if(s.charAt(i) == s.charAt(i).toUpperCase())
-			{
-		    	containsCapital = true;
-			}
-		   else if(s.charAt(i) == s.charAt(i).toLowerCase())
-			{
-			   containsLower = true;
-			}
-		}
-
-	   if(!validLength || !containsCapital || !containsLower || !containsNum || !containsSpecialChar)
-	   {
-		   document.getElementById("Submit").disabled = true;
-		   if(!validLength)
-		   {
-	   			document.getElementById("error").innerHTML = "Passwords must contain at least 6 characters";
-		   }
-		   else if(!containsCapital)
-			   {
-			   	document.getElementById("error").innerHTML = "Passwords must contain at least one capital letter";
-			   }
-		   else if(!containsLower)
-			   {
-			   document.getElementById("error").innerHTML = "Passwords must contain at least one lower case letter";
-			   }
-		   else if(!containsNum)
-			   {
-			   document.getElementById("error").innerHTML = "Passwords must contain at least one number";
-			   }
-		   else
-			   {
-			   document.getElementById("error").innerHTML = "Passwords must contain at least one special character";
-			   }
-	   }
-	   else
-		{
-		   document.getElementById("Submit").disabled = false;
-	  	   document.getElementById("error").innerHTML = "";
-		}
-	}
-</script>
+<font color="red" id="PasswordError"></font>
 	</td>
 </tr> 
 <tr>
@@ -142,8 +46,8 @@
 </tbody>
 </table>
 <br>
-<button name = "Submit" id="Submit" type ="submit">Submit</button>
-<input value="Reset Form"
+<button name = "Submit" id="Edit" type ="submit">Edit</button>
+<input value="Reset"
 name="Reset" type="reset">
 </form>
 <br>
@@ -203,4 +107,65 @@ if(toggle != null) {
 	    <input name="Return" value="Return to Menu" type="submit">
 </form>
 </body>
+<script>
+	function meetsPasswordCriteria()
+	{
+		var validLength = false;
+		var containsCapital = false;
+		var containsLower = false;
+		var containsNum = false;
+		var containsSpecialChar = false;
+		var s = document.getElementById("Password").value;
+
+		if(s.length >= 6)
+			validLength = true;
+		if(s.match(/[0-9]/g))			
+				containsNum = true;			
+		if(s.match(/[^a-zA-Z0-9]/g))
+ 				containsSpecialChar = true;
+ 		if(s.match(/[A-Z]/g))
+ 		    	containsCapital = true;
+ 		if(s.match(/[a-z]/g))
+ 			   containsLower = true;
+
+	   if(!validLength || !containsCapital || !containsLower || !containsNum || !containsSpecialChar)
+	   {
+		   document.getElementById("Edit").disabled = true;
+		   if(!validLength)
+	   			document.getElementById("PasswordError").innerHTML = "Passwords must contain at least 6 characters";
+		   else if(!containsCapital)
+			   	document.getElementById("PasswordError").innerHTML = "Passwords must contain at least one capital letter";
+		   else if(!containsLower)
+			   document.getElementById("PasswordError").innerHTML = "Passwords must contain at least one lower case letter";
+		   else if(!containsNum)
+			   document.getElementById("PasswordError").innerHTML = "Passwords must contain at least one number";
+		   else
+			   document.getElementById("PasswordError").innerHTML = "Passwords must contain at least one special character";
+	   }
+	   else
+		{
+		   document.getElementById("Edit").disabled = false;
+	  	   document.getElementById("PasswordError").innerHTML = "";
+		}
+	}
+</script>
+
+
+<script>
+	function isNotEmptyField(fieldId, value)
+	{
+		var s = document.getElementById(fieldId).value;
+		if(s == "")
+			{
+				document.getElementById("Edit").disabled = true;
+	   			document.getElementById(fieldId +"Error").innerHTML = value + " cannot be empty";
+		   }
+		else
+		{
+				
+		   document.getElementById("Edit").disabled = false;
+	  	   document.getElementById(fieldId + "Error").innerHTML = "";
+		} 
+	}
+</script>
 </html>
