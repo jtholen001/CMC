@@ -112,60 +112,49 @@ String error = request.getParameter("Error");
 				</tr>
 				<tr>
 					<td>NUMBER OF STUDENTS</td>
-					<td><input name="numStudents"
-						value=<%out.println(university.getNumStudents());%>
-						></td>
+					<td><input name="numberOfStudents" id="numberOfStudents" value=<%out.println(university.getNumStudents());%> onblur ='meetsCriteria("numberOfStudents", 0, 1000000, "int")'><br>  
+					<font color="red" id="numberOfStudentsError"></font></td>
 				</tr>
 				<tr>
-					<td>% FEMALE</td>
-					<td><input name="percentFemale"
-						value=<%out.println(university.getPercentFemale());%>
-						></td>
+					<td>% FEMALE</td>			
+					<td><input name="percentFemale" id="percentFemale" value=<%out.println(university.getPercentFemale());%> onblur ='meetsCriteria("percentFemale", 0.0, 100.0, "double")'><br>  
+					<font color="red" id="percentFemaleError"></font></td>
 				</tr>
 				<tr>
 					<td>% SAT VERBAL</td>
-					<td><input name="SATVerbal"
-						value=<%out.println(university.getSATVerbal());%>
-						></td>
+					<td><input name="SATVerbal" id="SATVerbal" value=<%out.println(university.getSATVerbal());%> onblur ='meetsCriteria("SATVerbal", 0.0, 800.0, "double")'><br>  
+					<font color="red" id="SATVerbalError"></font></td>
 				</tr>
 				<tr>
 					<td>% SAT MATH</td>
-					<td><input name="SATMath"
-						value=<%out.println(university.getSATMath());%>
-						></td>
+					<td><input name="SATMath" id="SATMath" value=<%out.println(university.getSATMath());%> onblur ='meetsCriteria("SATMath", 0.0, 800.0, "double")'><br>  
+					<font color="red" id="SATMathError"></font></td>
 				</tr>
 				<tr>
 					<td>EXPENSES</td>
-					<td><input name="expenses"
-						value=<%out.println(university.getExpenses());%>
-						></td>
+					<td><input name="Expenses" id="Expenses" value=<%out.println(university.getExpenses());%> onblur ='meetsCriteria("Expenses", 0.0, 1000000.0, "double")'><br>  
+					<font color="red" id="ExpensesError"></font></td>
 				</tr>
 				<tr>
 					<td>% FINANCIAL AID</td>
-					<td><input
-						name="percentFinancialAid"
-						value=<%out.println(university.getPercentFinancialAid());%>
-						></td>
+					<td><input name="percentFinancialAid" id="percentFinancialAid" value=<%out.println(university.getPercentFinancialAid());%> onblur ='meetsCriteria("percentFinancialAid", 0.0, 100.0, "double")'><br>  
+					<font color="red" id="percentFinancialAidError"></font></td>
 				</tr>
 				<tr>
 					<td>NUMBER OF
 						APPLICANTS</td>
-					<td><input
-						name="numberOfApplicants"
-						value=<%out.println(university.getNumApplicants());%>
-						></td>
+					<td><input name="numberOfApplicants" id="numberOfApplicants" value=<%out.println(university.getNumApplicants());%> onblur ='meetsCriteria("numberOfApplicants", 0, 1000000, "int")'><br>  
+					<font color="red" id="numberOfApplicantsError"></font></td>
 				</tr>
 				<tr>
 					<td>% ADMITTED</td>
-					<td><input name="percentAdmitted"
-						value=<%out.println(university.getPercentAdmitted());%>
-						></td>
+					<td><input name="percentAdmitted" id="percentAdmitted" value=<%out.println(university.getPercentAdmitted());%> onblur ='meetsCriteria("percentAdmitted", 0.0, 100.0, "double")'><br>  
+					<font color="red" id="percentAdmittedError"></font></td>
 				</tr>
 				<tr>
 					<td>% ENROLLED</td>
-					<td><input name="percentEnrolled"
-						value=<%out.println(university.getPercentEnrolled());%>
-						></td>
+					<td><input name="percentEnrolled" id="percentEnrolled" value=<%out.println(university.getPercentEnrolled());%> onblur ='meetsCriteria("percentEnrolled", 0.0, 100.0, "double")'><br>  
+					<font color="red" id="percentEnrolledError"></font></td>
 				</tr>
 				<tr>
 					<td>ACADEMICS SCALE (1-5)</td>
@@ -228,8 +217,13 @@ String error = request.getParameter("Error");
 					</td>
 				</tr>
 				<tr>
+
 					<td><input value="Submit" name="Log in" type="submit" class="buttonstyle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 					<td><input value="Cancel" name="Reset" type="reset" class="buttonstyle"></td>
+
+					<td><button value="Submit" id="Edit" type="submit"> Edit </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td><input value="Cancel" name="Reset" type="reset"></td>
+
 					
 
 
@@ -241,4 +235,56 @@ String error = request.getParameter("Error");
 	    <input name="Return" value="Return to Menu" type="submit" class="buttonstyle">
 	</form>
 </body>
+<script>
+	function meetsCriteria(name, minRequired, maxRequired, type)
+	{
+		var value = document.getElementById(name).value;
+			var valid = false;
+			var invalidRange = false;
+			if (type == "int") {
+				if (value == "") {
+					valid = true;
+				}
+				else if (!value.match(/[^0-9]/g)) {
+					var num1 = parseInt(value);					
+					if (num1 >= minRequired && num1 <= maxRequired)
+						valid = true;
+					else
+						invalidRange = true;
+				}
+			} else {
+				var firstDot = value.indexOf(".");
+				var lastDot = value.lastIndexOf(".");
+
+				var validDots = false;
+				if (firstDot == lastDot) {
+					if (lastDot == -1 || lastDot != value.length - 1)
+						validDots = true;
+				}
+				if (value == "") {
+					valid = true;
+				}
+				else if (!value.match(/[^0-9.]/g)&& validDots) {
+					var num1 = parseFloat(value);					
+					if (num1 >= minRequired && num1 <= maxRequired)
+						valid = true;
+					else
+						invalidRange = true; 										
+				}
+							
+			}
+			if (valid) {
+				document.getElementById("Edit").disabled = false;
+				document.getElementById(name+"Error").innerHTML = "";
+			} else {
+				document.getElementById("Edit").disabled = true;
+				if (maxRequired == 1000000.0 || maxRequired == 1000000) //place value for no maximum
+					document.getElementById(name+"Error").innerHTML = "enter a valid number above " + minRequired;
+				else if(type == "int")
+					document.getElementById(name+"Error").innerHTML = "enter a valid number between " + minRequired + " and " + maxRequired;
+				else 
+					document.getElementById(name+"Error").innerHTML = "enter a valid number between " + minRequired + ".0 and " + maxRequired + ".0";
+			}
+		}
+	</script>
 </html>
