@@ -62,7 +62,7 @@ for(int i=0;i<values.length;i++)
 		</tbody>
 	</table>
 		<form method="post" action="Search.jsp">
-	    <input name="Return" value="Return to Menu" type="submit">
+	    <input name="Return" value="Return to Menu" type="submit" class="buttonstyle">
 	</form>
 </body>
 </html>

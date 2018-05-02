@@ -17,7 +17,7 @@ ArrayList<University> savedUniversities = student.getSavedSchools();
  
  if (!savedUniversities.contains(u)) { %>
 	<form method="post" action="SaveUniversity_action.jsp" name="SaveUniversity">
-	    <input name="Save" value="Save" type="submit">
+	    <input name="Save" value="Save" type="submit" class="buttonstyle">
 	    <input name="University" value='<%=u.getName()%>' type="hidden">
 	    <input name="FromWhere" value="1" type="hidden">
 	     <%for(int i = 0; i < values.length; i++) { %>
@@ -138,7 +138,7 @@ for (University uni: recommendedUniversities) {
  %>
 		<% if (!savedUniversities.contains(uni)) { %>
 	<form method="post" action="SaveUniversity_action.jsp" name="SaveUniversity">
-	    <input name="Save" value="Save" type="submit">
+	    <input name="Save" value="Save" type="submit" class="buttonstyle">
 	    <input name="University" value='<%=uni.getName()%>' type="hidden">
 	    <input name="FromWhere" value="1" type="hidden">
 	    <input name="StartFrom" value='<%=u.getName() %>' type="hidden">
@@ -253,7 +253,7 @@ for(String emphasis: emphases){
 <%}
  %>
 <form method="post" action="ViewMatchedResults.jsp" name="ViewResults">
-  <input name="Return" value="Return to Search Results" type="submit">
+  <input name="Return" value="Return to Search Results" type="submit" class="buttonstyle">
   <%for(int i = 0; i < values.length; i++) { %>
   <input name="Universities" value='<%=values[i] %>' type="hidden">
 <% } %>

@@ -37,7 +37,7 @@ if (deleteSuccess != null && deleteSuccess.equals("1") && deletedUniversity != n
 
 <td colspan="18" style="vertical-align: top; text-align: center; font-size: 16px">
 	<form method="post" action="AdminMenu.jsp">
-	    <input name="Return" value="Return to Menu" type="submit"> 
+	    <input name="Return" value="Return to Menu" type="submit" class="buttonstyle"> 
 	    <a href="AddUniversity.jsp">ADD A UNIVERSITY</a>
 	</form>
 </td>
@@ -73,7 +73,7 @@ for(String u: sortedUniversities.keySet())
 <tr>
 <td>
 <form method="post" action="DeleteUniversity_action.jsp" name="Delete">
-	<input name="Delete" type="image" src="assets/img/Delete.png" type="submit">
+	<input name="Delete" type="image" src="assets/img/Delete.png" type="submit" class="buttonstyle">
     <input name="UniversityName" value= <%=university.getName()%> type="hidden">
 </form>
 </td>
@@ -95,7 +95,7 @@ for(String u: sortedUniversities.keySet())
 <td><%=university.getQualityOfLifeScale()%></td>
 <td>
 <form method="post" action="EditUniversity.jsp" name="Edit">
-    <input name="Edit" type="image"	src="assets/img/Edit.png" type="submit">
+    <input name="Edit" type="image"	src="assets/img/Edit.png" type="submit" class="buttonstyle">
     <input name="UniversityName" value= '<%=university.getName()%>' type="hidden">
 </form>
 </td>

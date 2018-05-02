@@ -128,5 +128,5 @@ for(String emphasis: emphases){
 	</table>
 </form>
 <form method="post" action="ManageSavedUniversities.jsp">
-	<input name="Return" value="Return to Menu" type="submit">
+	<input name="Return" value="Return to Menu" type="submit" class="buttonstyle">
 </form>
